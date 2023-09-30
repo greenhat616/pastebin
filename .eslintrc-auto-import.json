@@ -1,0 +1,9 @@
+{
+  "globals": {
+    "useSWR": true,
+    "NImage": true,
+    "NHead": true,
+    "NLink": true,
+    "NScript": true
+  }
+}
