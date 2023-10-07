@@ -1,7 +1,19 @@
 import { defineConfig, presetUno, presetIcons, presetAttributify } from 'unocss'
+import presetRemToPx from '@unocss/preset-rem-to-px'
 import transformerCompileClass from '@unocss/transformer-compile-class'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import transformerDirectives from '@unocss/transformer-directives'
 export default defineConfig({
+  content: {
+    filesystem: ['**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}']
+    // codes below are commented out because they're required by `@unocss/webpack` to process `@import` and `@apply` directives,
+    // and the usage of `@unocss/webpack` is blocked by the issue https://github.com/unocss/unocss/issues/3198
+    // pipeline: {
+    //   // include: [/src\/.*\.(s?css|[jt]sx?)$/],
+    //   include: [/\.([jt]sx|mdx?|html|s?css)($|\?)/],
+    //   exclude: []
+    // }
+  },
   presets: [
     presetUno({
       dark: {
@@ -10,7 +22,8 @@ export default defineConfig({
       }
     }),
     presetIcons(),
-    presetAttributify()
+    presetAttributify(),
+    presetRemToPx()
   ],
   rules: [
     [
@@ -37,8 +50,12 @@ export default defineConfig({
     ]
   ],
   transformers: [
+    transformerDirectives({
+      enforce: 'pre'
+    }),
     transformerCompileClass({
-      classPrefix: 'ouo-'
+      classPrefix: 'ouo-',
+      trigger: /(["'`]):ouo(?:-)?(?<name>[^\s\1]+)?:\s([^\1]*?)\1/g
     }),
     transformerVariantGroup()
   ]

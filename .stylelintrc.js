@@ -15,10 +15,43 @@ module.exports = {
     '**/typings/**/*',
     'public/css/**/*'
   ],
+  rules: {
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'tailwind',
+          'unocss',
+          'layer',
+          'apply',
+          'variants',
+          'responsive',
+          'screen'
+        ]
+      }
+    ]
+  },
   overrides: [
     {
       files: ['**/*.scss', '*.scss'],
-      customSyntax: require('postcss-scss')
+      customSyntax: require('postcss-scss'),
+      rules: {
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": [
+          true,
+          {
+            ignoreAtRules: [
+              'tailwind',
+              'unocss',
+              'layer',
+              'apply',
+              'variants',
+              'responsive',
+              'screen'
+            ]
+          }
+        ],
+      }
     }
   ]
 }

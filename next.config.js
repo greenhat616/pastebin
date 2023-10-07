@@ -5,15 +5,58 @@ const IconsResolver = require('unplugin-icons/resolver')
 const AutoImports = require('unplugin-auto-import/webpack')
 /**  @type {(options?: import('unplugin-icons/types').Options) => any} */
 const Icons = require('unplugin-icons/webpack')
+// const UnoCSS = require('@unocss/webpack').default
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
+const withNextIntl = require('next-intl/plugin')(
+  // This is the default (also the `src` folder is supported out of the box)
+  './i18n.tsx'
+)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tailwindui.com',
+        port: '',
+        pathname: '**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '**'
+      }
+    ],
+    dangerouslyAllowSVG: true
+  },
+  /**
+   *
+   * @param {import('webpack').Configuration} config
+   * @returns
+   */
   webpack(config) {
-    config.plugins.push(
+    config.experiments = {
+      ...config.experiments,
+      topLevelAwait: true // Enable Top Level Await
+    }
+
+    // UnoCSS Support
+    config.plugins.unshift(
+      // Transformers for Unocss, commented because it's blocked by #
+      // UnoCSS({
+      //   // content: {
+      //   //   pipeline: {
+      //   //     include: [/src\/.*\.(s?css|[jt]sx?)$/],
+      //   //     exclude: []
+      //   //   }
+      //   // }
+      // }),
+      // Unplugin Auto Imports
       AutoImports({
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
@@ -23,6 +66,7 @@ const nextConfig = {
           enabled: true
         },
         resolvers: [
+          // Unplugin Icons
           IconsResolver({
             compiler: 'jsx',
             jsx: 'react'
@@ -36,18 +80,23 @@ const nextConfig = {
             'next/link': [['default', 'NLink']],
             'next/script': [['default', 'NScript']]
           }
-        ]
-      })
-    )
-    config.plugins.push(
+        ],
+        dirs: ['utils', 'hooks']
+      }),
       Icons({
         compiler: 'jsx',
         jsx: 'react'
       })
     )
+    config.optimization.realContentHash = true
 
+    // YAML Support
+    config.module.rules.unshift({
+      test: /\.ya?ml$/,
+      use: 'yaml-loader'
+    })
     return config
   }
 }
 
-module.exports = withBundleAnalyzer(nextConfig)
+module.exports = withBundleAnalyzer(withNextIntl(nextConfig))

@@ -1,3 +1,7 @@
+
+@import url('../node_modules/@unocss/reset/sanitize/sanitize.css');
+@import url('../node_modules/@unocss/reset/sanitize/assets.css');
+
 /* style.css */
 @unocss preflights;
 @unocss default;
@@ -23,6 +27,7 @@
 }
 
 body {
+  height: 100vh;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -34,4 +39,8 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  @apply cursor-pointer border-0;
 }

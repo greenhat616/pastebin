@@ -1,9 +1,15 @@
 {
   "globals": {
-    "useSWR": true,
-    "NImage": true,
     "NHead": true,
+    "NImage": true,
     "NLink": true,
-    "NScript": true
+    "NScript": true,
+    "classNames": true,
+    "getShikiAllSupportedLanguages": true,
+    "useSWR": true,
+    "codeToHTML": true,
+    "shiki": true,
+    "createShikiSingleton": true,
+    "getShikiSingleton": true
   }
 }

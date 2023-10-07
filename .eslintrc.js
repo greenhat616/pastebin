@@ -16,7 +16,8 @@ module.exports = {
   rules: {
     'react/jsx-no-undef': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    '@typescript-eslint/no-unused-vars': 'warn'
   },
   settings: {
     'import/resolver': {

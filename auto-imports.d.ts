@@ -9,5 +9,10 @@ declare global {
   const NImage: typeof import('next/image')['default']
   const NLink: typeof import('next/link')['default']
   const NScript: typeof import('next/script')['default']
+  const classNames: typeof import('./utils/helper')['classNames']
+  const codeToHTML: typeof import('./utils/shiki')['codeToHTML']
+  const createShikiSingleton: typeof import('./utils/shiki')['createShikiSingleton']
+  const getShikiAllSupportedLanguages: typeof import('./utils/shiki')['getShikiAllSupportedLanguages']
+  const getShikiSingleton: typeof import('./utils/shiki')['getShikiSingleton']
   const useSWR: typeof import('swr')['default']
 }

@@ -1,0 +1,117 @@
+.header-container {
+  @apply mx-auto max-w-7xl px-2 sm:px-6 lg:px-8;
+}
+
+.mobile-hamburger-dropdown {
+  @apply block sm:hidden;
+
+  .menu {
+    @apply space-y-1 px-2 pb-3 pt-2;
+
+    .item {
+      @apply block decoration-none rounded-md px-3 py-2 text-base font-medium text-white;
+
+      &.active {
+        @apply bg-gray-900;
+      }
+    }
+  }
+}
+
+.header {
+  @apply relative flex h-16 items-center justify-between;
+
+  .hamburger-menu-container {
+    @apply absolute inset-y-0 left-0 flex items-center sm:hidden;
+
+    .hamburger-menu {
+      @apply bg-transparent border-0 inline-flex items-center justify-center rounded-md p-2 text-gray-400;
+      @apply focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white;
+
+      &:hover {
+        @apply bg-gray-700 text-white;
+      }
+
+      .icon {
+        @apply block h-6 w-6 bg-transparent;
+      }
+    }
+  }
+
+  .main {
+    @apply flex flex-1 items-center justify-center sm:items-stretch sm:justify-start;
+
+    .logo {
+      @apply flex flex-shrink-0 items-center;
+    }
+
+    .menu-container {
+      @apply hidden sm:ml-6 sm:block;
+
+      .menu {
+        @apply flex space-x-4;
+
+        .item {
+          @apply rounded-md decoration-none px-3 py-2 text-sm font-medium;
+          @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+
+          &.active {
+            @apply bg-gray-900 text-white;
+          }
+        }
+      }
+    }
+  }
+
+  .info-panel {
+    @apply absolute inset-y-0 right-0 flex items-center pr-2;
+    @apply sm:static sm:inset-auto sm:ml-6 sm:pr-0;
+
+    .icon-button {
+      @apply rounded-full bg-gray-800 p-1 text-gray-400;
+
+      &:hover {
+        @apply text-white;
+      }
+
+      &:focus {
+        @apply outline-none ring-2 ring-white ring-offset-2 ring-offset-gray-800;
+      }
+    }
+
+    .notification {
+      @extend .icon-button;
+    }
+
+    .user {
+      @apply relative ml-3;
+
+      .avatar {
+        @extend .icon-button;
+
+        @apply p-1px;
+
+
+        img {
+          @apply h-8 w-8 rounded-full;
+        }
+      }
+
+      .dropdown-menu {
+        @apply absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5;
+
+        &:focus {
+          @apply outline-none;
+        }
+
+        .item {
+          @apply block px-4 py-2 text-sm text-gray-700 decoration-none;
+
+          &.active {
+            @apply bg-gray-100;
+          }
+        }
+      }
+    }
+  }
+}

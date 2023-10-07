@@ -1,0 +1,33 @@
+app:
+  name: PasteBin
+  description: A simple pastebin application
+home:
+  form:
+    poster:
+      label: Poster
+      placeholder: Enter your nickname
+      helper_text: Maximum 20 characters
+    syntax:
+      plain_text: Plain Text
+      label: Syntax
+      placeholder: Select syntax
+    expiration:
+      label: Expiration
+      placeholder: Select expiration
+      helper_text: Approximate and not guaranteed
+      options:
+        none: None
+        thirty_minutes: 30 Minutes
+        one_hour: 1 Hour
+        one_day: 1 Day
+        one_week: 1 Week
+        one_month: 1 Month
+        six_months: 6 Months
+        one_year: 1 Year
+    content:
+      label: Content
+      placeholder: Enter your code, snippet, or text here...
+    actions:
+      submit: Submit
+      preview: Preview
+      edit: Edit

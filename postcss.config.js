@@ -1,6 +1,8 @@
 module.exports = {
   plugins: {
     autoprefixer: {},
-    '@unocss/postcss': {}
+    '@unocss/postcss': {
+      content: ['**/*.{html,js,ts,jsx,tsx}']
+    }
   }
 }
