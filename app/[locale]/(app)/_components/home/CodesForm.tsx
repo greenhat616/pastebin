@@ -36,7 +36,7 @@ type FormStateActions = 'update' | 'reset'
 const initialFormState: FormState = {
   poster: '',
   syntax: 'plain',
-  expiration: null,
+  expiration: 60 * 30, // 30 minutes
   content: ''
 }
 
@@ -205,7 +205,7 @@ export default function CodeForm(props: Props) {
         </FormControl>
       </Box>
       <Flex className="mt-sm md:mt-3xl" justify="flex-end" gap={4}>
-        <Button colorScheme="teal" variant="solid">
+        <Button colorScheme="blue" variant="solid">
           {t('form.actions.submit')}
         </Button>
         <Button variant="outline" onClick={() => setPreview((s) => !s)}>

@@ -42,7 +42,7 @@ export function Header(props: Props) {
                 </button>
 
                 {/* Profile dropdown */}
-                <Menu as="div" className={styles.user}>
+                <Menu as={Box} className={styles.user}>
                   <Box>
                     <Menu.Button className={styles.avatar}>
                       <NImage

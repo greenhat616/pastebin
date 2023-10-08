@@ -46,7 +46,7 @@
     }
 
     .menu-container {
-      @apply hidden sm:ml-6 sm:block;
+      @apply hidden sm:ml-6 sm:flex sm:items-center ;
 
       .menu {
         @apply flex space-x-4;

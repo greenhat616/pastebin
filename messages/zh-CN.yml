@@ -26,9 +26,9 @@ home:
       label: 语法
       placeholder: 选择语法
     expiration:
-      label: 到期时间
-      placeholder: 选择到期时间
-      helper_text: 仅供参考，不保证准确
+      label: 失效时间
+      placeholder: 选择失效时间
+      helper_text: 大约时间，不保证准确
       options:
         none: 无
         thirty_minutes: 30 分钟

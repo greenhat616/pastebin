@@ -13,8 +13,8 @@ const ChakraBox = chakra(motion.div, {
 
 function Emoji() {
   const extraProps = {
-    w: 9,
-    h: 9
+    w: 10,
+    h: 10
   }
 
   const emojis = [
@@ -164,8 +164,8 @@ export default function AnimatedLogo(props: Props) {
       }}
       as={motion.div}
       className={classNames(props.className)}
-      w={9}
-      h={9}
+      w={10}
+      h={10}
     >
       <Emoji />
     </ChakraBox>
