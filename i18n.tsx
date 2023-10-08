@@ -43,11 +43,3 @@ export default getRequestConfig(async ({ locale }) => {
     }
   }
 })
-
-export const Locales = {
-  // A list of all locales that are supported
-  locales: ['en', 'zh-CN'],
-
-  // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
-  defaultLocale: 'en'
-}

@@ -4,16 +4,16 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Fragment } from 'react'
 import styles from './Header.module.scss'
+import AnimatedLogo from './header/AnimatedLogo'
+import Navigation from './header/Navigation'
 
-const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'About', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false }
-]
+type Props = {
+  className?: string
+}
 
-export function Header() {
+export function Header(props: Props) {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className={classNames('bg-gray-800', props.className)}>
       {({ open }) => (
         <>
           <Box className={styles['header-container']}>
@@ -29,22 +29,10 @@ export function Header() {
                 </Disclosure.Button>
               </Box>
               <Box className={styles.main}>
-                <Box className={styles.logo}>剪贴板</Box>
+                <AnimatedLogo className={styles.logo} />
                 <Box className={styles['menu-container']}>
                   <Box className={styles.menu}>
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current ? styles.active : '',
-                          styles.item
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    <Navigation platform="mobile" />
                   </Box>
                 </Box>
               </Box>
@@ -123,20 +111,7 @@ export function Header() {
 
           <Disclosure.Panel className={styles['mobile-hamburger-dropdown']}>
             <Box className={styles.menu}>
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={classNames(
-                    styles.item,
-                    item.current && styles.active
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
+              <Navigation platform="mobile" />
             </Box>
           </Disclosure.Panel>
         </>

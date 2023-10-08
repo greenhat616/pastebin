@@ -126,7 +126,7 @@ export default function CodeForm(props: Props) {
         <FormControl w={{ base: '100%', md: '33.3333%' }}>
           <FormLabel>{t('form.syntax.label')}</FormLabel>
           <Select
-            id="syntax"
+            instanceId="syntax"
             name="syntax"
             className="cursor-text"
             useBasicStyles
@@ -145,7 +145,7 @@ export default function CodeForm(props: Props) {
         <FormControl w={{ base: '100%', md: '33.3333%' }}>
           <FormLabel>{t('form.expiration.label')}</FormLabel>
           <Select
-            id="expiration"
+            instanceId="expiration"
             name="expiration"
             className="cursor-text"
             useBasicStyles
