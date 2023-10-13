@@ -7,7 +7,9 @@ import {
   useMessages
 } from 'next-intl'
 import { ReactNode } from 'react'
+
 import { Header } from './_components/layout/Header'
+
 type Props = {
   children: ReactNode
 }

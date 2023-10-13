@@ -45,3 +45,20 @@ home:
       submit: Submit
       preview: Preview
       edit: Edit
+
+code-preview:
+  feedback:
+    copy:
+      success:
+        title: Copied to clipboard
+        description: The content has been copied to your clipboard.
+      fail:
+        title: Failed to copy to clipboard
+        description: "Cause: {error}."
+    share:
+      success:
+        title: Share link copied to clipboard
+        description: You can now share the link with others.
+      fail:
+        title: Failed to copy share link to clipboard
+        description: "Cause: {error}."

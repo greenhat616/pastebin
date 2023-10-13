@@ -86,7 +86,7 @@ const nextConfig = {
             'next/script': [['default', 'NScript']]
           }
         ],
-        dirs: ['utils', 'hooks']
+        dirs: ['utils', 'hooks', 'libs']
       }),
       Icons({
         compiler: 'jsx',

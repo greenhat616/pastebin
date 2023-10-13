@@ -40,6 +40,18 @@
     "trimChars": true,
     "trimCharsLeft": true,
     "trimCharsRight": true,
-    "getLocalePathname": true
+    "getLocalePathname": true,
+    "codeToHTMLWithTransformers": true,
+    "getLines": true,
+    "CodeToHAST": true,
+    "CodeToHast": true,
+    "codeToHast": true,
+    "Root": true,
+    "getDisplayNameByLanguageID": true,
+    "ISolarClipboardBroken": true,
+    "attrsToLines": true,
+    "ISolarShare": true,
+    "ISolarShareLinear": true,
+    "useToastFeedback": true
   }
 }

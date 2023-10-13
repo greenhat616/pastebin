@@ -14,6 +14,12 @@ import {
   getTranslator
 } from 'next-intl/server'
 
+import { Fira_Code } from 'next/font/google'
+const firaCode = Fira_Code({
+  variable: '--font-fira-code',
+  subsets: ['latin', 'cyrillic']
+})
+
 export async function generateMetadata({
   params: { locale }
 }: Omit<Props, 'children'>): Promise<Metadata> {
@@ -42,7 +48,7 @@ export default function LocaleLayout({ children, params }: Props) {
   if (params.locale !== locale) notFound()
   return (
     <html lang={locale}>
-      <body>{children}</body>
+      <body className={`${firaCode.variable} font-sans`}>{children}</body>
     </html>
   )
 }

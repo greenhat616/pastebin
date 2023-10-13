@@ -65,7 +65,7 @@ export default function CodeForm(props: Props) {
     (acc, syntax) => {
       return [...acc, { label: syntax.name || syntax.id, value: syntax.id }]
     },
-    [{ label: t('form.syntax.plain_text'), value: 'plain' }]
+    [{ label: t('form.syntax.plain_text'), value: 'text' }]
   )
   const expirationOptions = [
     { label: t('form.expiration.options.none'), value: -1 },

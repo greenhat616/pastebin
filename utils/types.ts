@@ -51,3 +51,5 @@ export type ReducerDispatch<
   state: O,
   action: Batch extends true ? ReducerActionBatch<O, U> : ReducerAction<O, U>
 ) => O
+
+export type Awaitable<T> = T | Promise<T>

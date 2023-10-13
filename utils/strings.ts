@@ -44,3 +44,12 @@ export function trimCharsRight(str: string, cutset: string) {
 
   return start > 0 || end < str.length ? str.substring(start, end) : str
 }
+
+/**
+ * return the number of lines in a string
+ * @param {string} str - Raw string
+ * @return {number} - Number of lines
+ */
+export function getLines(str: string): number {
+  return str.split('\n').length
+}

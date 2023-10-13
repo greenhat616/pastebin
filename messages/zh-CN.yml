@@ -45,3 +45,20 @@ home:
       submit: 提交
       preview: 预览
       edit: 编辑
+
+code-preview:
+  feedback:
+    copy:
+      success:
+        title: 复制成功
+        description: 内容已复制到您的剪贴板。
+      fail:
+        title: 复制失败
+        description: "原因: {error}。"
+    share:
+      success:
+        title: 已复制分享链接
+        description: 您现在可以与他人分享该链接。
+      fail:
+        title: 无法复制分享链接
+        description: "原因: {error}。"

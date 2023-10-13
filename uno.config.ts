@@ -1,8 +1,8 @@
-import { defineConfig, presetUno, presetIcons, presetAttributify } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
 import transformerCompileClass from '@unocss/transformer-compile-class'
-import transformerVariantGroup from '@unocss/transformer-variant-group'
 import transformerDirectives from '@unocss/transformer-directives'
+import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 export default defineConfig({
   content: {
     filesystem: ['**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}']
@@ -46,6 +46,13 @@ export default defineConfig({
       'font-noto-serif',
       {
         'font-family': '"Noto Serif SC", "Noto Serif TC", serif'
+      }
+    ],
+    [
+      'font-code',
+      {
+        'font-family':
+          '"Cascadia Code", var(--font-fira-code), SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
       }
     ]
   ],
