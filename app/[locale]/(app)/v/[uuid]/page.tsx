@@ -1,4 +1,4 @@
-import { PasteType } from '@/enum/paste'
+import { PasteType } from '@/enums/paste'
 import Joi from 'joi'
 import { notFound } from 'next/navigation'
 import CodePreview from './_components/CodePreview'

@@ -35,7 +35,7 @@ type FormStateActions = 'update' | 'reset'
 
 const initialFormState: FormState = {
   poster: '',
-  syntax: 'plain',
+  syntax: 'text',
   expiration: 60 * 30, // 30 minutes
   content: ''
 }
@@ -88,10 +88,6 @@ export default function CodeForm(props: Props) {
   // Reactive Render Preview
   useEffect(() => {
     setContentPreview(() => 'Rendering...')
-    if (formState.syntax === 'plain') {
-      setContentPreview(() => formState.content)
-      return
-    }
     codeToHTML(formState.content, {
       lang: formState.syntax as BuiltinLanguage
     })
@@ -99,7 +95,11 @@ export default function CodeForm(props: Props) {
         setContentPreview(() => result)
       })
       .catch((err) => {
-        setContentPreview(() => err.message)
+        console.error(err)
+        setContentPreview(
+          () =>
+            `Rendering Error: ${err.message}. You can see the error in the console.`
+        )
       })
   }, [formState.content, formState.syntax])
 
