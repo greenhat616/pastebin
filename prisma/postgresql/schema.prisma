@@ -10,21 +10,38 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  email     String    @unique
-  name      String?
-  password  String
-  role      Int       @default(1) // 1 is normal user, 100 is admin
-  deletedAt DateTime? @map("deleted_at")
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt @map("updated_at")
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime? @map("email_verified")
+  name          String?
+  password      String
+  avatar        String?
+  role          Int       @default(1) // 1 is normal user, 100 is admin
+  isSuspend     Boolean   @default(false) @map("is_suspend")
+  deletedAt     DateTime? @map("deleted_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
 
-  accounts Account[]
-  sessions Session[]
-  Comment  Comment[]
-  Paste    Paste[]
+  accounts          Account[]
+  sessions          Session[]
+  Comment           Comment[]
+  Paste             Paste[]
+  UserPasswordReset UserPasswordReset[]
 
   @@map("users")
+}
+
+model UserPasswordReset {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  User      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  type      Int      @default(1) // 1 is email, 2 is phone
+  expiredAt DateTime @map("expired_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_password_resets")
 }
 
 model Notification {
@@ -40,7 +57,7 @@ model Notification {
   @@map("notifications")
 }
 
-model Annocement {
+model Announcement {
   id        BigInt    @id @default(autoincrement())
   title     String
   content   String
@@ -49,7 +66,7 @@ model Annocement {
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
 
-  @@map("annocements")
+  @@map("announcements")
 }
 
 model Paste {

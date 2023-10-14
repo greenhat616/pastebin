@@ -1,10 +1,10 @@
 'use client'
+import AnimatedLogo from '@/components/AnimatedLogo'
 import { Box } from '@chakra-ui/react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Fragment } from 'react'
 import styles from './Header.module.scss'
-import AnimatedLogo from './header/AnimatedLogo'
 import Navigation from './header/Navigation'
 
 type Props = {

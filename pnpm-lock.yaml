@@ -17,6 +17,9 @@ dependencies:
   chalk:
     specifier: ^5.3.0
     version: 5.3.0
+  prisma-soft-delete-middleware:
+    specifier: ^1.1.2
+    version: 1.1.2(@prisma/client@5.4.2)
   tsx:
     specifier: ^3.13.0
     version: 3.13.0
@@ -2528,6 +2531,10 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
     dev: true
+
+  /@open-draft/deferred-promise@2.2.0:
+    resolution: {integrity: sha512-CecwLWx3rhxVQF6V4bAgPS5t+So2sTbPgAzafKkVizyi7tlwpcFpdFqq+wqF2OwNBmqFuu6tOyouTuxgpMfzmA==}
+    dev: false
 
   /@panva/hkdf@1.1.1:
     resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}
@@ -6202,7 +6209,6 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /log-update@5.0.1:
     resolution: {integrity: sha512-5UtUDQ/6edw4ofyljDNcOVJQ4c7OjDro4h3y8e1GQL5iYElYclVHJ3zeWchylvMaKnDbDilC8irOVyexnA/Slw==}
@@ -7055,6 +7061,25 @@ packages:
 
   /pretty-format@3.8.0:
     resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
+
+  /prisma-nested-middleware@3.0.3(@prisma/client@5.4.2):
+    resolution: {integrity: sha512-8kan2xi+fYj2gtOD/6XsGkvrbpN8F7pYhuknF4/GSL+E7eZrq57594x0diYl3f/4FpVseSWRc+nhP1XbvFKVSg==}
+    peerDependencies:
+      '@prisma/client': '*'
+    dependencies:
+      '@open-draft/deferred-promise': 2.2.0
+      '@prisma/client': 5.4.2(prisma@5.4.2)
+      lodash: 4.17.21
+    dev: false
+
+  /prisma-soft-delete-middleware@1.1.2(@prisma/client@5.4.2):
+    resolution: {integrity: sha512-y/AwQnOQSD+GE5raFdkOcP0QQ9QPzIbNGXnn45CtIdoPlo4XaIwLzozMO/34TPvRC8qmwjYhRtyGIOID/sD5Yg==}
+    peerDependencies:
+      '@prisma/client': '*'
+    dependencies:
+      '@prisma/client': 5.4.2(prisma@5.4.2)
+      prisma-nested-middleware: 3.0.3(@prisma/client@5.4.2)
+    dev: false
 
   /prisma@5.4.2:
     resolution: {integrity: sha512-GDMZwZy7mysB2oXU+angQqJ90iaPFdD0rHaZNkn+dio5NRkGLmMqmXs31//tg/qXT3iB0cTQwnGGQNuirhSTZg==}

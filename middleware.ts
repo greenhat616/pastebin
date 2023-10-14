@@ -4,6 +4,7 @@ import createMiddleware from 'next-intl/middleware'
 import { ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
 import { NextMiddlewareResult } from 'next/dist/server/web/types'
 import { NextFetchEvent, NextResponse } from 'next/server'
+import { Role } from './enums/user'
 import { config as Locales, pathnames } from './navigation'
 
 export type MiddlewareCtx = {
@@ -27,6 +28,8 @@ export type Middleware = (
   ctx: MiddlewareCtx
 ) => Awaitable<NextMiddlewareResult>
 
+const authPathnames = ['/admin', '/me']
+
 const middlewares: Array<Middleware> = [
   injectPathnameMiddleware,
   withAuth({
@@ -34,10 +37,14 @@ const middlewares: Array<Middleware> = [
       authorized({ req, token }) {
         // `/admin` requires admin role
         if (req.nextUrl.pathname === '/admin') {
-          return token?.userRole === 'admin'
+          return token?.userRole === Role.Admin
         }
-        // `/me` only requires the user to be logged in
-        return !!token
+        for (const path of authPathnames) {
+          if (req.nextUrl.pathname.startsWith(path)) {
+            return !!token
+          }
+        }
+        return true
       }
     }
   }) as Middleware,

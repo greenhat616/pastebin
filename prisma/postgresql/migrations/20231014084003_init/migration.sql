@@ -2,14 +2,30 @@
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "email_verified" TIMESTAMP(3),
     "name" TEXT,
     "password" TEXT NOT NULL,
+    "avatar" TEXT,
     "role" INTEGER NOT NULL DEFAULT 1,
+    "is_suspend" BOOLEAN NOT NULL DEFAULT false,
     "deleted_at" TIMESTAMP(3),
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "user_password_resets" (
+    "id" TEXT NOT NULL,
+    "user_id" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "type" INTEGER NOT NULL DEFAULT 1,
+    "expired_at" TIMESTAMP(3) NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "user_password_resets_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -27,7 +43,7 @@ CREATE TABLE "notifications" (
 );
 
 -- CreateTable
-CREATE TABLE "annocements" (
+CREATE TABLE "announcements" (
     "id" BIGSERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
@@ -36,7 +52,7 @@ CREATE TABLE "annocements" (
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
 
-    CONSTRAINT "annocements_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "announcements_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -111,6 +127,9 @@ CREATE TABLE "verification_requests" (
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "user_password_resets_token_key" ON "user_password_resets"("token");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "accounts_provider_id_provider_account_id_key" ON "accounts"("provider_id", "provider_account_id");
 
 -- CreateIndex
@@ -124,6 +143,9 @@ CREATE UNIQUE INDEX "verification_requests_token_key" ON "verification_requests"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "verification_requests_identifier_token_key" ON "verification_requests"("identifier", "token");
+
+-- AddForeignKey
+ALTER TABLE "user_password_resets" ADD CONSTRAINT "user_password_resets_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "pastes" ADD CONSTRAINT "pastes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

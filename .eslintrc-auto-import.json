@@ -52,6 +52,11 @@
     "attrsToLines": true,
     "ISolarShare": true,
     "ISolarShareLinear": true,
-    "useToastFeedback": true
+    "useToastFeedback": true,
+    "getDictionaries": true,
+    "getRuntimeMode": true,
+    "loadEnv": true,
+    "IMdiGoogle": true,
+    "IMdiGithub": true
   }
 }

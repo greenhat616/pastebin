@@ -1,0 +1,27 @@
+.auth-layout {
+  @apply h-100vh w-full flex z-0 justify-center;
+
+  &::before {
+    @apply h-100vh w-full absolute top-0 left-0 z-0;
+
+    content: ' '; // Required for pseudo element
+    background: url('https://bingw.jasonzeng.dev/?resolution=UHD&index=random') no-repeat center center; // Bing random image
+    background-size: cover;
+  }
+
+  .main {
+    @apply w-90% md:w-1/4 mx-auto mt-20 md:mt-25 z-1;
+
+    .logo {
+      @apply w-20 h-20 mx-auto mb-10;
+
+      .inner {
+        @apply w-20 h-20;
+      }
+    }
+
+    .container {
+      @apply w-full bg-white rounded-3xl shadow-lg p-10;
+    }
+  }
+}

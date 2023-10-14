@@ -1,6 +1,6 @@
-import { variants as ShakingVariants } from '@/libs/framer/shaking'
+'use client'
 import { Icon, chakra, shouldForwardProp } from '@chakra-ui/react'
-import { isValidMotionProp, motion, useAnimation } from 'framer-motion'
+import { isValidMotionProp, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -13,10 +13,13 @@ const ChakraBox = chakra(motion.div, {
     isValidMotionProp(prop) || shouldForwardProp(prop)
 })
 
-function Emoji() {
+type EmojiProps = {
+  className?: string
+}
+
+function Emoji(props: EmojiProps) {
   const extraProps = {
-    w: 10,
-    h: 10
+    className: classNames('w-10 h-10', props.className)
   }
 
   const emojis = [
@@ -144,23 +147,13 @@ function Emoji() {
 
 type Props = {
   className?: string
+  emojiClassName?: string
 }
 
 export default function AnimatedLogo(props: Props) {
-  const controls = useAnimation()
-
-  useEffect(() => {
-    controls.start('start')
-    setTimeout(() => {
-      controls.stop()
-      controls.set('reset')
-    }, 200)
-  }, [controls])
-
   return (
     <ChakraBox
       initial={{ scale: 0 }}
-      animate={controls}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore no problem in operation, although type error appears.
       transition={{
@@ -168,46 +161,13 @@ export default function AnimatedLogo(props: Props) {
         stiffness: 260,
         damping: 20
       }}
-      onTapStart={() => controls.start('tap')}
-      onTap={() => controls.start('reset')}
-      onHoverStart={async () => {
-        await controls.start('scale1.2')
-        await controls.set('scale1.2')
-        controls.start('hover')
-      }}
-      onHoverEnd={async () => {
-        await controls.start('reset')
-        await controls.set('reset')
-      }}
-      variants={{
-        'scale1.2': {
-          scale: 1.2
-        },
-        start: {
-          rotate: 360,
-          scale: 1
-        },
-        hover: (i: number) => ({
-          ...ShakingVariants.start(i),
-          rotate: i % 2 === 0 ? [-4, 5, 0] : [4, -5.2, 0],
-          scale: 1.2
-        }),
-        reset: {
-          rotate: 0,
-          scale: 1
-        },
-        tap: {
-          scale: 0.8,
-          rotate: -90,
-          borderRadius: '100%'
-        }
-      }}
+      animate={{ scale: 1, rotate: 360 }}
+      whileHover={{ scale: 1.2, rotate: 0 }}
+      whileTap={{ scale: 0.8, rotate: -90 }}
       as={motion.div}
-      className={classNames(props.className)}
-      w={10}
-      h={10}
+      className={classNames('w-10 h-10', props.className)}
     >
-      <Emoji />
+      <Emoji className={props.emojiClassName} />
     </ChakraBox>
   )
 }

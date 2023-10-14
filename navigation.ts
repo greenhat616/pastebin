@@ -14,6 +14,12 @@ export const config = {
 export const pathnames = {
   // If all locales use the same pathname, a
   // single external path can be provided.
+  '/auth/signin': '/auth/signin',
+  '/auth/signout': '/auth/signout',
+  '/auth/error': '/auth/error',
+  '/auth/signup': '/auth/signup',
+  '/auth/password/reset': '/auth/password/reset',
+  '/auth/password/reset/[token]': '/auth/password/reset/[token]',
   '/': '/',
   '/about': '/about',
   '/v/[uuid]': '/v/[uuid]'
