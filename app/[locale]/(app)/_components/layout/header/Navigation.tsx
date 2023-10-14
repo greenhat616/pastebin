@@ -8,7 +8,11 @@ import styles from '../Header.module.scss'
 const items = [
   { key: 'home', href: '/', current: true },
   { key: 'about', href: '/about', current: false },
-  { key: 'github', href: '#', current: false }
+  {
+    key: 'github',
+    href: 'https://github.com/greenhat616/pastebin',
+    current: false
+  }
 ]
 
 type Props = {
@@ -42,6 +46,7 @@ export default function Navigation(props: Props) {
               props.className
             )}
             aria-current={item.current ? 'page' : undefined}
+            target={item.href.startsWith('http') ? '_blank' : undefined}
           >
             {t(item.key)}
           </Link>
@@ -56,6 +61,7 @@ export default function Navigation(props: Props) {
               props.className
             )}
             aria-current={item.current ? 'page' : undefined}
+            target={item.href.startsWith('http') ? '_blank' : undefined}
           >
             {t(item.key)}
           </Disclosure.Button>

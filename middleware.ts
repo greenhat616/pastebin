@@ -51,7 +51,8 @@ const middlewares: Array<Middleware> = [
   // i18n middleware
   createMiddleware({
     ...Locales,
-    pathnames
+    pathnames,
+    localePrefix: 'never'
   })
 ]
 

@@ -29,7 +29,10 @@ export function Header(props: Props) {
                 </Disclosure.Button>
               </Box>
               <Box className={styles.main}>
-                <AnimatedLogo className={styles.logo} />
+                <AnimatedLogo
+                  className={classNames(styles.logo, 'h-10 w-10')}
+                  emojiClassName="!w-10 !h-10"
+                />
                 <Box className={styles['menu-container']}>
                   <Box className={styles.menu}>
                     <Navigation platform="mobile" />

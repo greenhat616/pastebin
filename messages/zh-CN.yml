@@ -45,7 +45,6 @@ home:
       submit: 提交
       preview: 预览
       edit: 编辑
-
 code-preview:
   feedback:
     copy:
@@ -54,11 +53,36 @@ code-preview:
         description: 内容已复制到您的剪贴板。
       fail:
         title: 复制失败
-        description: "原因: {error}。"
+        description: '原因: {error}。'
     share:
       success:
         title: 已复制分享链接
         description: 您现在可以与他人分享该链接。
       fail:
         title: 无法复制分享链接
-        description: "原因: {error}。"
+        description: '原因: {error}。'
+auth:
+  signin:
+    title: 登录
+    credentials:
+      placeholder:
+        email: 邮箱
+        password: 密码
+      feedback:
+        email:
+          required: 邮箱是必填项
+          invalid: 无效的邮箱
+        password:
+          required: 密码是必填项
+        error:
+          title: 登录失败
+          description: '原因: {error}。'
+        success:
+          title: 登录成功
+          description: 我们将在几秒钟内将您重定向至之前的页面。
+      button: 登录
+      loading: 登录中...
+    forgot: 忘记密码？
+    signup: 立即注册
+    divider: 或
+    sso: 使用 {provider} 登录

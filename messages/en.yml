@@ -62,3 +62,30 @@ code-preview:
       fail:
         title: Failed to copy share link to clipboard
         description: "Cause: {error}."
+
+auth:
+  signin:
+    title: Sign In
+    credentials:
+      placeholder:
+        email: Email
+        password: Password
+      feedback:
+        email:
+          required: Email is required
+          invalid: Invalid email
+        password:
+          required: Password is required
+        error:
+          title: Failed to sign in
+          description: "Cause: {error}."
+        success:
+          title: Signed in successfully
+          description: We will redirect you to the previous page right away.
+      button: Sign In
+      loading: Signing In...
+    forgot: Forgot password?
+    signup: Register Now
+    # SSO
+    divider: OR
+    sso: Sign In With {provider}

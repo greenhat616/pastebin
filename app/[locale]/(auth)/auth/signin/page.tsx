@@ -10,13 +10,48 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
+import { Props } from 'chakra-react-select'
+import { pick } from 'lodash-es'
+import { Metadata } from 'next'
+import {
+  NextIntlClientProvider,
+  useLocale,
+  useMessages,
+  useTranslations,
+  type AbstractIntlMessages
+} from 'next-intl'
+import { getTranslator } from 'next-intl/server'
 import Credentials from './_components/credentials'
 
-export default async function SignInPage() {
+export async function generateMetadata({
+  params: { locale }
+}: Props): Promise<Metadata> {
+  const t = await getTranslator(locale)
+
+  return {
+    title: `${t('auth.signin.title')} - ${t('app.name')}`
+  }
+}
+
+type Props = {
+  params: { locale: string }
+}
+
+export default function SignInPage(props: Props) {
+  const t = useTranslations()
+  const messages = useMessages()
+  const locale = useLocale()
   return (
     <Stack gap={4}>
       {/* Credentials Login */}
-      <Credentials />
+      <NextIntlClientProvider
+        messages={
+          pick(messages, 'auth.signin.credentials') as AbstractIntlMessages
+        }
+        locale={locale}
+      >
+        <Credentials />
+      </NextIntlClientProvider>
       <Grid gap={4} templateColumns="repeat(2, 1fr)">
         <GridItem>
           <Text fontSize="sm">
@@ -25,7 +60,7 @@ export default async function SignInPage() {
               href="/auth/password/reset"
               className="!hover:underline"
             >
-              Forgot Password?
+              {t('auth.signin.forgot')}
             </Link>
           </Text>
         </GridItem>
@@ -36,7 +71,7 @@ export default async function SignInPage() {
               href="/auth/signup"
               className="!hover:underline"
             >
-              Register Now
+              {t('auth.signin.signup')}
             </Link>
           </Text>
         </GridItem>
@@ -45,7 +80,7 @@ export default async function SignInPage() {
       <Box position="relative" paddingY="4">
         <Divider />
         <AbsoluteCenter bg="white" px="4">
-          OR
+          {t('auth.signin.divider')}
         </AbsoluteCenter>
       </Box>
       <Stack gap={4}>
@@ -55,7 +90,9 @@ export default async function SignInPage() {
           size="lg"
           rounded="xl"
         >
-          Sign In with Google
+          {t('auth.signin.sso', {
+            provider: 'Google'
+          })}
         </Button>
         <Button
           leftIcon={<IMdiGithub />}
@@ -63,7 +100,9 @@ export default async function SignInPage() {
           size="lg"
           rounded="xl"
         >
-          Sign In with Github
+          {t('auth.signin.sso', {
+            provider: 'Github'
+          })}
         </Button>
       </Stack>
     </Stack>
