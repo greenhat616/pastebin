@@ -10,7 +10,6 @@ import {
   Stack,
   Text
 } from '@chakra-ui/react'
-import { Props } from 'chakra-react-select'
 import { pick } from 'lodash-es'
 import { Metadata } from 'next'
 import {
