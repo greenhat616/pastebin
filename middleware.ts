@@ -1,12 +1,11 @@
+import { auth } from '@/libs/auth'
+import { config as Locales, pathnames } from '@/libs/navigation'
 import { Awaitable } from '@/utils/types'
-import { withAuth, type NextRequestWithAuth } from 'next-auth/middleware'
+import { NextAuthRequest } from 'next-auth/lib'
 import createMiddleware from 'next-intl/middleware'
-import { ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
+import { type ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
 import { NextMiddlewareResult } from 'next/dist/server/web/types'
-import { NextFetchEvent, NextResponse } from 'next/server'
-import { Role } from './enums/user'
-import { config as Locales, pathnames } from './navigation'
-
+import { NextResponse } from 'next/server'
 export type MiddlewareCtx = {
   headers: Headers
   cookies: ResponseCookies
@@ -15,7 +14,7 @@ export type MiddlewareCtx = {
   context: Map<string, unknown>
 }
 
-const injectPathnameMiddleware: Middleware = async (req, event, ctx) => {
+const injectPathnameMiddleware: Middleware = async (req, ctx) => {
   const { headers } = ctx
   // const res = NextResponse.next()
   // res.headers.set('x-pathname', req.nextUrl.pathname)
@@ -23,31 +22,13 @@ const injectPathnameMiddleware: Middleware = async (req, event, ctx) => {
 }
 
 export type Middleware = (
-  req: NextRequestWithAuth,
-  event: NextFetchEvent,
+  req: NextAuthRequest,
   ctx: MiddlewareCtx
 ) => Awaitable<NextMiddlewareResult>
 
-const authPathnames = ['/admin', '/me']
-
 const middlewares: Array<Middleware> = [
   injectPathnameMiddleware,
-  withAuth({
-    callbacks: {
-      authorized({ req, token }) {
-        // `/admin` requires admin role
-        if (req.nextUrl.pathname === '/admin') {
-          return token?.userRole === Role.Admin
-        }
-        for (const path of authPathnames) {
-          if (req.nextUrl.pathname.startsWith(path)) {
-            return !!token
-          }
-        }
-        return true
-      }
-    }
-  }) as Middleware,
+  auth as Middleware,
   // i18n middleware
   createMiddleware({
     ...Locales,
@@ -56,14 +37,11 @@ const middlewares: Array<Middleware> = [
   })
 ]
 
-export default async function middleware(
-  req: NextRequestWithAuth,
-  event: NextFetchEvent
-) {
+export default async function middleware(req: NextAuthRequest) {
   const response = NextResponse.next()
   const context = new Map<string, unknown>()
   for (const fn of middlewares) {
-    const res = await fn(req, event, {
+    const res = await fn(req, {
       // Note that: it was ref, so that the sub middleware can modify the ctx
       headers: response.headers,
       cookies: response.cookies,

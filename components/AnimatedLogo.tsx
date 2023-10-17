@@ -131,12 +131,12 @@ function Emoji(props: EmojiProps) {
   const [isClient, setIsClient] = useState(false) // prevent SSR
   const pathname = usePathname()
   // random pick emoji while route change
-  useEffect(() => {
+  const [prevPathname, setPrevPathname] = useState(pathname)
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname)
     setIndex(Math.floor(Math.random() * emojis.length))
+  }
 
-    // Disable eslint warning because emojis.length is not a dependency
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
   useEffect(() => {
     // prevent SSR
     setIsClient(true)

@@ -53,3 +53,32 @@ export function trimCharsRight(str: string, cutset: string) {
 export function getLines(str: string): number {
   return str.split('\n').length
 }
+
+export type TranslationKey = `[${string}]`
+
+/**
+ * Judge whether the string is a translation key
+ * @param str - Raw string
+ * @returns {boolean} - Whether the string is a translation key
+ */
+export function isTranslationKey(str: string): boolean {
+  return /^\[.*\]$/.test(str)
+}
+
+/**
+ * Unwrap the translation key
+ * @param str - Raw string
+ * @returns {string} - Unwrapped string
+ */
+export function unwrapTranslationKey(str: TranslationKey): string {
+  return str.replace(/^\[(.*)\]$/, '$1')
+}
+
+/**
+ * Wrap the translation key
+ * @param str - Raw string
+ * @returns {TranslationKey} - Wrapped string
+ */
+export function wrapTranslationKey(str: string): TranslationKey {
+  return `[${str}]` as TranslationKey
+}

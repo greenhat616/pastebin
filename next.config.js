@@ -11,8 +11,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 const withNextIntl = require('next-intl/plugin')(
   // This is the default (also the `src` folder is supported out of the box)
-  './i18n.tsx'
+  './libs/i18n.tsx'
 )
+
+import('./env.mjs')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -21,6 +23,9 @@ const nextConfig = {
   },
   reactStrictMode: true,
   skipTrailingSlashRedirect: true,
+  // experimental: {
+  //   serverComponentsExternalPackages: ['bcrypt']
+  // },
   images: {
     remotePatterns: [
       {
@@ -44,11 +49,12 @@ const nextConfig = {
    * @returns
    */
   webpack(config) {
-    config.experiments = {
-      ...config.experiments,
-      topLevelAwait: true // Enable Top Level Await
-    }
+    // config.experiments = {
+    //   ...config.experiments,
+    //   topLevelAwait: true // Enable Top Level Await
+    // }
 
+    config.externals = [...config.externals, 'bcrypt']
     // UnoCSS Support
     config.plugins.push(
       // Transformers for Unocss, commented because it's blocked by #
@@ -86,7 +92,7 @@ const nextConfig = {
             'next/script': [['default', 'NScript']]
           }
         ],
-        dirs: ['utils', 'hooks', 'libs']
+        dirs: ['utils', 'hooks']
       }),
       Icons({
         compiler: 'jsx',

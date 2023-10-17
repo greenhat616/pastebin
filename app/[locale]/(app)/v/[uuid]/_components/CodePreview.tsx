@@ -1,8 +1,10 @@
 'use client'
 
+import { codeToHTMLWithTransformers } from '@/libs/shiki'
 import { Box, Card, CardBody, SkeletonText, Stack } from '@chakra-ui/react'
+import { useAsyncEffect } from 'ahooks'
 import { useTranslations } from 'next-intl'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import styles from './CodePreview.module.scss'
 import ShikiHeader from './shiki/Header'
 import LineNumbers from './shiki/LineNumbers'
@@ -27,13 +29,11 @@ export default function CodePreview(props: Props) {
   const lines = useMemo(() => getLines(content), [content])
 
   // const BoxRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    ;(async () => {
-      const transformedCode = await codeToHTMLWithTransformers(content, {
-        lang: language
-      })
-      setTransformedCode(() => transformedCode)
-    })()
+  useAsyncEffect(async () => {
+    const code = await codeToHTMLWithTransformers(content, {
+      lang: language
+    })
+    setTransformedCode(() => code)
   }, [content, language])
 
   // Copy content to clipboard

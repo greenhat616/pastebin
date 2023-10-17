@@ -1,6 +1,7 @@
 import { User } from '@prisma/client'
-import argon2 from 'argon2'
+import { compare, hash } from 'bcrypt'
 
+import { env } from '@/env.mjs'
 import prisma from '@/libs/prisma/client'
 
 /**
@@ -13,7 +14,7 @@ export function verifyPassword(
   password: string,
   hash: string
 ): Promise<boolean> {
-  return argon2.verify(hash, password)
+  return compare(password, hash)
 }
 
 /**
@@ -22,7 +23,7 @@ export function verifyPassword(
  * @return {Promise<string>} - hashed password
  */
 export function hashPassword(password: string): Promise<string> {
-  return argon2.hash(password)
+  return hash(password, env.BCRYPT_SALT_ROUNDS)
 }
 
 export class UserIsSuspendedError extends Error {
@@ -72,6 +73,19 @@ export async function createUser(
       email,
       password: hashedPassword,
       ...others
+    }
+  })
+}
+
+/**
+ * Find User By Id
+ * @param id - user id
+ * @returns {Promise<User | null>} - user if found
+ */
+export function findUserById(id: string): Promise<User | null> {
+  return prisma.user.findUnique({
+    where: {
+      id
     }
   })
 }

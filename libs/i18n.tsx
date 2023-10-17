@@ -9,7 +9,7 @@ export default getRequestConfig(async ({ locale }) => {
     now: now ? new Date(now) : undefined,
     timeZone,
     // messages: YAML.parse((await import(`./messages/${locale}.yml`)).default)
-    messages: (await import(`./messages/${locale}.yml`)).default,
+    messages: (await import(`@/messages/${locale}.yml`)).default,
     defaultTranslationValues: {
       globalString: 'Global string',
       highlight: (chunks) => <strong>{chunks}</strong>

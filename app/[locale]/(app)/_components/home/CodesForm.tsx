@@ -1,4 +1,5 @@
 'use client'
+import { codeToHTML, getShikiAllSupportedLanguages } from '@/libs/shiki'
 import { ReducerDispatch } from '@/utils/types'
 import {
   Box,
@@ -12,11 +13,11 @@ import {
   Input,
   Textarea
 } from '@chakra-ui/react'
+import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
 import { useTranslations } from 'next-intl'
-import { useEffect, useReducer, useRef, useState } from 'react'
+import { useReducer, useRef, useState } from 'react'
 import { BuiltinLanguage } from 'shikiji/core'
-
 type Props = {
   className: string
 }
@@ -86,21 +87,21 @@ export default function CodeForm(props: Props) {
   const contentRef = useRef<HTMLTextAreaElement>(null)
 
   // Reactive Render Preview
-  useEffect(() => {
+  useAsyncEffect(async () => {
     setContentPreview(() => 'Rendering...')
-    codeToHTML(formState.content, {
-      lang: formState.syntax as BuiltinLanguage
-    })
-      .then((result) => {
-        setContentPreview(() => result)
+    try {
+      const result = await codeToHTML(formState.content, {
+        lang: formState.syntax as BuiltinLanguage
       })
-      .catch((err) => {
-        console.error(err)
-        setContentPreview(
-          () =>
-            `Rendering Error: ${err.message}. You can see the error in the console.`
-        )
-      })
+      setContentPreview(() => result)
+    } catch (err) {
+      console.error(err)
+      setContentPreview(
+        () =>
+          `Rendering Error: ${(err as Error)
+            ?.message}. You can see the error in the console.`
+      )
+    }
   }, [formState.content, formState.syntax])
 
   return (

@@ -64,6 +64,8 @@ code-preview:
         description: "Cause: {error}."
 
 auth:
+  buttons:
+    back: Go Back
   signin:
     title: Sign In
     credentials:
@@ -76,6 +78,7 @@ auth:
           invalid: Invalid email
         password:
           required: Password is required
+        invalid: Invalid credentials
         error:
           title: Failed to sign in
           description: "Cause: {error}."
@@ -89,3 +92,33 @@ auth:
     # SSO
     divider: OR
     sso: Sign In With {provider}
+  form:
+    title: Sign Up
+    credentials:
+      placeholder:
+        email: Email
+        nickname: Nickname
+        password: Password
+        password_confirmation: Confirm Password
+      feedback:
+        email:
+          required: Email is required
+          invalid: Invalid email
+        password:
+          required: Password is required
+          mismatch: Passwords do not match
+        password_confirmation:
+          required: Password confirmation is required
+          mismatch: Passwords do not match
+        remote:
+          email: Email has already been taken
+        error:
+          title: Failed to sign up
+          description: "Cause: {error}."
+        success:
+          title: Signed up successfully
+          description: We will redirect you to the previous page right away.
+      buttons:
+        submit: Sign Up
+        back: Go Back
+      loading: Signing Up...

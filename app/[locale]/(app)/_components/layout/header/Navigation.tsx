@@ -1,5 +1,5 @@
 'use client'
-import { Link, usePathname } from '@/navigation'
+import { Link, usePathname } from '@/libs/navigation'
 import { Disclosure } from '@headlessui/react'
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'

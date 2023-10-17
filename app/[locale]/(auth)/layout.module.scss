@@ -1,5 +1,9 @@
 .auth-layout {
-  @apply h-100vh w-full flex z-0 justify-center;
+  @apply h-100vh w-full flex z-0 justify-center relative;
+
+  .go-back-button {
+    @apply absolute top-5 left-5 px-5 py-2 hidden md:block;
+  }
 
   &::before {
     @apply h-100vh w-full absolute top-0 left-0 z-0;

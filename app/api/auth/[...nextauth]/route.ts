@@ -1,5 +1,3 @@
-import { config } from '@/auth'
-import NextAuth from 'next-auth/next'
+export { GET, POST } from '@/libs/auth'
 
-const handler = NextAuth(config)
-export { handler as GET, handler as POST }
+// export const runtime = 'edge'

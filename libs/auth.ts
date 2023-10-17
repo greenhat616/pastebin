@@ -1,33 +1,45 @@
-import {
-  getServerSession,
-  type NextAuthOptions as NextAuthConfig
-} from 'next-auth'
+import NextAuth, { DefaultSession } from 'next-auth'
 
+import { Role } from '@/enums/user'
 import prisma from '@/libs/prisma/client'
-import { PrismaAdapter } from '@auth/prisma-adapter'
 import {
-  GetServerSidePropsContext,
-  NextApiRequest,
-  NextApiResponse
-} from 'next'
+  createUser,
+  findUserById,
+  loginByEmail
+} from '@/libs/services/users/user'
+import { wrapTranslationKey } from '@/utils/strings'
+import { PrismaAdapter } from '@auth/prisma-adapter'
+import { uniqueId } from 'lodash-es'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
-import crypto from 'node:crypto'
-import { Role } from './enums/user'
-import { createUser, loginByEmail } from './libs/services/users/user'
+
+export type { Session } from 'next-auth'
 
 // Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
-declare module 'next-auth/jwt' {
+declare module '@auth/core/jwt' {
   interface JWT {
     /** The user's role. */
     userRole?: Role
   }
 }
 
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      id: string
+    } & DefaultSession['user']
+  }
+}
+
 const adapter = PrismaAdapter(prisma)
 
-export const config = {
+const protectedPathname = ['/admin', '/me']
+
+export const {
+  handlers: { GET, POST },
+  auth
+} = NextAuth({
   providers: [
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID,
@@ -48,13 +60,41 @@ export const config = {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        if (!credentials) return null
-        const user = await loginByEmail(credentials.email, credentials.password)
+        if (!credentials.email || !credentials.password) return null
+        const user = await loginByEmail(
+          credentials.email as string,
+          credentials.password as string
+        )
+        if (!user)
+          throw new Error(
+            wrapTranslationKey('auth.signin.credentials.feedback.invalid')
+          )
         return user
       }
     })
   ],
   callbacks: {
+    async authorized({ request, auth }) {
+      if (!request.nextUrl) return true
+      if (request.nextUrl.pathname === '/admin') {
+        if (!auth) return false
+        const user = await findUserById(auth.user.id)
+        return user?.role === Role.Admin
+      }
+      for (const path of protectedPathname) {
+        if (request.nextUrl.pathname.startsWith(path)) {
+          return !!auth
+        }
+      }
+      return true
+    },
+    session: ({ session, user }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: user.id
+      }
+    }),
     async jwt({ token, user: { id } }) {
       const user = await prisma.user.findFirst({
         where: {
@@ -74,15 +114,11 @@ export const config = {
         }
       })
       if (user) return user // User already exists
-      return await createUser(
-        profile.email,
-        crypto.randomBytes(20).toString('hex'), // Generate random password
-        {
-          avatar: profile.image,
-          name: profile.name,
-          emailVerified: profile.emailVerified
-        }
-      )
+      return await createUser(profile.email, uniqueId('user_'), {
+        avatar: profile.image,
+        name: profile.name,
+        emailVerified: profile.emailVerified
+      })
     }
   },
   pages: {
@@ -90,19 +126,7 @@ export const config = {
     signOut: '/auth/signout',
     error: '/auth/error'
   }
-} satisfies NextAuthConfig
-
-// Helper function to get session without passing config every time
-// https://next-auth.js.org/configuration/nextjs#getserversession
-export function auth(
-  ...args:
-    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
-    | [NextApiRequest, NextApiResponse]
-    | []
-) {
-  return getServerSession(...args, config)
-}
-
+})
 // We recommend doing your own environment variable validation
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace

@@ -1,5 +1,6 @@
 'use client'
-import { useRouter } from '@/navigation'
+import { useRouter } from '@/libs/navigation'
+import type { TranslationKey } from '@/utils/strings'
 import {
   Button,
   FormControl,
@@ -72,7 +73,15 @@ export default function Credentials() {
       .then((res) => {
         if (!res || !res.ok) {
           throw new Error(
-            !!res ? `${res.error} - ${res.status}` : 'Unknown error'
+            !!res
+              ? `${
+                  res.error
+                    ? isTranslationKey(res.error)
+                      ? t(unwrapTranslationKey(res.error as TranslationKey))
+                      : res.error
+                    : ''
+                } - ${res.status}`
+              : 'Unknown error'
           )
         }
         toast({

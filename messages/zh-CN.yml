@@ -1,5 +1,5 @@
 app:
-  name: PasteBin
+  name: 粘贴板
   description: 一个简单的粘贴板应用
   nav:
     menu:
@@ -62,6 +62,8 @@ code-preview:
         title: 无法复制分享链接
         description: '原因: {error}。'
 auth:
+  buttons:
+    back: 返回
   signin:
     title: 登录
     credentials:
@@ -74,6 +76,7 @@ auth:
           invalid: 无效的邮箱
         password:
           required: 密码是必填项
+        invalid: 邮箱或密码错误
         error:
           title: 登录失败
           description: '原因: {error}。'
@@ -86,3 +89,35 @@ auth:
     signup: 立即注册
     divider: 或
     sso: 使用 {provider} 登录
+  signup:
+    title: 注册
+    form:
+      placeholder:
+        email: 邮箱
+        nickname: 昵称
+        password: 密码
+        password_confirmation: 确认密码
+      feedback:
+        email:
+          required: 邮箱是必填项
+          invalid: 无效的邮箱
+        nickname:
+          required: 昵称是必填项
+        password:
+          required: 密码是必填项
+          mismatch: 两次输入的密码不一致
+        password_confirmation:
+          required: 确认密码是必填项
+          mismatch: 两次输入的密码不一致
+        remote:
+          email: 邮箱已被注册
+        error:
+          title: 注册失败
+          description: "原因：{error}。"
+        success:
+          title: 注册成功
+          description: 我们将在几秒钟内将您重定向至之前的页面。
+      buttons:
+        submit: 注册
+        back: 返回
+      loading: 注册中...
