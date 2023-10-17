@@ -11,7 +11,6 @@ loadEnv()
 
 async function main() {
   // Get all supported drivers
-
   const drivers = await getDictionaries(path.join(rootDir, './prisma'))
   console.log(
     `${chalk.green('✓')} Found ${chalk.cyan(drivers.length)} drivers.`
@@ -38,20 +37,20 @@ async function main() {
   }
 
   let driversToMigrate = [configuredDriver]
-  if (mode === RuntimeMode.Development && process.argv.includes('dev')) {
+  if (mode === RuntimeMode.Development && process.argv.includes('-A')) {
     console.log(
       `${chalk.yellow('!')} ${chalk.cyan(
         'dev'
-      )} mode detected, will migrate all drivers.`
+      )} mode detected, will exec db command on all drivers.`
     )
     driversToMigrate = drivers
   }
   // run prisma generate, and pipe the output to stdout, stderr, and stdin of the current process
-  console.log(chalk.cyan('Migrating...'))
-  const parentArgvs = process.argv.slice(2)
+  console.log(chalk.cyan('do db operation...'))
+  const parentArgvs = process.argv.slice(2).filter((v) => !v.includes('-A'))
   for (const driver of driversToMigrate) {
     console.log(chalk.cyan(`  - ${driver}`))
-    const command = `./node_modules/.bin/prisma migrate ${parentArgvs.join(
+    const command = `./node_modules/.bin/prisma db ${parentArgvs.join(
       ' '
     )} --schema=./prisma/${configuredDriver}/schema.prisma`
     console.log(chalk.gray(`    $ ${chalk.reset(command)}`))

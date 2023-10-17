@@ -1,15 +1,17 @@
-import NextAuth, { DefaultSession } from 'next-auth'
+import { DefaultSession, NextAuthOptions, getServerSession } from 'next-auth'
 
 import { Role } from '@/enums/user'
+import { env } from '@/env.mjs'
 import prisma from '@/libs/prisma/client'
-import {
-  createUser,
-  findUserById,
-  loginByEmail
-} from '@/libs/services/users/user'
+import { createUser, loginByEmail } from '@/libs/services/users/user'
 import { wrapTranslationKey } from '@/utils/strings'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { uniqueId } from 'lodash-es'
+import {
+  GetServerSidePropsContext,
+  NextApiRequest,
+  NextApiResponse
+} from 'next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
@@ -17,7 +19,7 @@ import Google from 'next-auth/providers/google'
 export type { Session } from 'next-auth'
 
 // Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
-declare module '@auth/core/jwt' {
+declare module 'next-auth/jwt' {
   interface JWT {
     /** The user's role. */
     userRole?: Role
@@ -34,20 +36,15 @@ declare module 'next-auth' {
 
 const adapter = PrismaAdapter(prisma)
 
-const protectedPathname = ['/admin', '/me']
-
-export const {
-  handlers: { GET, POST },
-  auth
-} = NextAuth({
+export const config = {
   providers: [
     GitHub({
-      clientId: process.env.AUTH_GITHUB_ID,
-      clientSecret: process.env.AUTH_GITHUB_SECRET
+      clientId: env.AUTH_GITHUB_ID,
+      clientSecret: env.AUTH_GITHUB_SECRET
     }),
     Google({
-      clientId: process.env.AUTH_GOOGLE_ID,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET
+      clientId: env.AUTH_GOOGLE_ID,
+      clientSecret: env.AUTH_GOOGLE_SECRET
     }),
     CredentialsProvider({
       name: 'Credentials',
@@ -60,7 +57,8 @@ export const {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        if (!credentials.email || !credentials.password) return null
+        if (!credentials || !credentials.email || !credentials.password)
+          return null
         const user = await loginByEmail(
           credentials.email as string,
           credentials.password as string
@@ -74,20 +72,6 @@ export const {
     })
   ],
   callbacks: {
-    async authorized({ request, auth }) {
-      if (!request.nextUrl) return true
-      if (request.nextUrl.pathname === '/admin') {
-        if (!auth) return false
-        const user = await findUserById(auth.user.id)
-        return user?.role === Role.Admin
-      }
-      for (const path of protectedPathname) {
-        if (request.nextUrl.pathname.startsWith(path)) {
-          return !!auth
-        }
-      }
-      return true
-    },
     session: ({ session, user }) => ({
       ...session,
       user: {
@@ -126,19 +110,15 @@ export const {
     signOut: '/auth/signout',
     error: '/auth/error'
   }
-})
-// We recommend doing your own environment variable validation
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace NodeJS {
-    export interface ProcessEnv {
-      NEXTAUTH_SECRET: string
+} satisfies NextAuthOptions
 
-      AUTH_GITHUB_ID: string
-      AUTH_GITHUB_SECRET: string
-
-      AUTH_GOOGLE_ID: string
-      AUTH_GOOGLE_SECRET: string
-    }
-  }
+// Helper function to get session without passing config every time
+// https://next-auth.js.org/configuration/nextjs#getserversession
+export function auth(
+  ...args:
+    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
+    | [NextApiRequest, NextApiResponse]
+    | []
+) {
+  return getServerSession(...args, config)
 }

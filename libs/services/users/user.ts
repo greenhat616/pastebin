@@ -1,7 +1,6 @@
 import { User } from '@prisma/client'
-import { compare, hash } from 'bcrypt'
+import { hash, verify } from 'argon2'
 
-import { env } from '@/env.mjs'
 import prisma from '@/libs/prisma/client'
 
 /**
@@ -14,7 +13,7 @@ export function verifyPassword(
   password: string,
   hash: string
 ): Promise<boolean> {
-  return compare(password, hash)
+  return verify(password, hash)
 }
 
 /**
@@ -23,7 +22,7 @@ export function verifyPassword(
  * @return {Promise<string>} - hashed password
  */
 export function hashPassword(password: string): Promise<string> {
-  return hash(password, env.BCRYPT_SALT_ROUNDS)
+  return hash(password)
 }
 
 export class UserIsSuspendedError extends Error {

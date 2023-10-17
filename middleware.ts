@@ -1,10 +1,10 @@
-import { auth } from '@/libs/auth'
+import { Role } from '@/enums/user'
 import { config as Locales, pathnames } from '@/libs/navigation'
-import { Awaitable } from '@/utils/types'
-import { NextAuthRequest } from 'next-auth/lib'
+import { type Awaitable } from '@/utils/types'
+import { NextRequestWithAuth, withAuth } from 'next-auth/middleware'
 import createMiddleware from 'next-intl/middleware'
 import { type ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
-import { NextMiddlewareResult } from 'next/dist/server/web/types'
+import { type NextMiddlewareResult } from 'next/dist/server/web/types'
 import { NextResponse } from 'next/server'
 export type MiddlewareCtx = {
   headers: Headers
@@ -14,6 +14,27 @@ export type MiddlewareCtx = {
   context: Map<string, unknown>
 }
 
+const protectedPathname = ['/admin', '/me']
+
+const authMiddleware = withAuth({
+  callbacks: {
+    async authorized({ req: request, token }) {
+      if (!request.nextUrl) return true
+      if (request.nextUrl.pathname.startsWith('/admin')) {
+        if (!token) return false
+        return token?.userRole === Role.Admin
+      }
+      for (const path of protectedPathname) {
+        if (request.nextUrl.pathname.startsWith(path)) {
+          return !!token
+        }
+      }
+      return true
+    }
+  }
+}) as unknown as Middleware // It is intentional, because of the event in next middleware is deprecated,
+// and the next-auth/middleware will drop the event in upcoming version 5.
+
 const injectPathnameMiddleware: Middleware = async (req, ctx) => {
   const { headers } = ctx
   // const res = NextResponse.next()
@@ -22,22 +43,22 @@ const injectPathnameMiddleware: Middleware = async (req, ctx) => {
 }
 
 export type Middleware = (
-  req: NextAuthRequest,
+  req: NextRequestWithAuth,
   ctx: MiddlewareCtx
 ) => Awaitable<NextMiddlewareResult>
 
 const middlewares: Array<Middleware> = [
   injectPathnameMiddleware,
-  auth as Middleware,
   // i18n middleware
   createMiddleware({
     ...Locales,
     pathnames,
     localePrefix: 'never'
-  })
+  }),
+  authMiddleware
 ]
 
-export default async function middleware(req: NextAuthRequest) {
+export default async function middleware(req: NextRequestWithAuth) {
   const response = NextResponse.next()
   const context = new Map<string, unknown>()
   for (const fn of middlewares) {

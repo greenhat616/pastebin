@@ -22,8 +22,6 @@
     "useSWR": true,
     "useToastFeedback": true,
     "wrapTranslationKey": true,
-    "IMdiGithub": true,
-    "IMdiGoogle": true,
     "IFluentEmojiFlatAngryFace": true,
     "IFluentEmojiFlatAnxiousFaceWithSweat": true,
     "IFluentEmojiFlatBeamingFaceWithSmilingEyes": true,
@@ -50,7 +48,7 @@
     "IFluentEmojiFlatSmirkingFace": true,
     "IFluentEmojiFlatWoozyFace": true,
     "IFluentEmojiFlatZanyFace": true,
-    "ISolarClipboardBroken": true,
-    "ISolarShareLinear": true
+    "IMdiGithub": true,
+    "IMdiGoogle": true
   }
 }

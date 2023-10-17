@@ -23,9 +23,9 @@ const nextConfig = {
   },
   reactStrictMode: true,
   skipTrailingSlashRedirect: true,
-  // experimental: {
-  //   serverComponentsExternalPackages: ['bcrypt']
-  // },
+  experimental: {
+    serverComponentsExternalPackages: ['argon2']
+  },
   images: {
     remotePatterns: [
       {
@@ -54,7 +54,7 @@ const nextConfig = {
     //   topLevelAwait: true // Enable Top Level Await
     // }
 
-    config.externals = [...config.externals, 'bcrypt']
+    // config.externals = [...config.externals, 'argon2']
     // UnoCSS Support
     config.plugins.push(
       // Transformers for Unocss, commented because it's blocked by #

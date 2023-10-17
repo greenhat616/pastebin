@@ -13,8 +13,7 @@ export const env = createEnv({
     AUTH_GITHUB_ID: z.string().min(1),
     AUTH_GITHUB_SECRET: z.string().min(1),
     AUTH_GOOGLE_ID: z.string().min(1),
-    AUTH_GOOGLE_SECRET: z.string().min(1),
-    BCRYPT_SALT_ROUNDS: z.number().int().positive().default(10)
+    AUTH_GOOGLE_SECRET: z.string().min(1)
   },
   /*
    * Environment variables available on the client (and server).
@@ -38,7 +37,6 @@ export const env = createEnv({
     AUTH_GITHUB_SECRET: process.env.AUTH_GITHUB_SECRET,
     AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID,
     AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET,
-    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    BCRYPT_SALT_ROUNDS: process.env.BCRYPT_SALT_ROUNDS
+    NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL
   }
 })
