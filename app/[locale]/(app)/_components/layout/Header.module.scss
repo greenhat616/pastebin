@@ -83,6 +83,20 @@
       @extend .icon-button;
     }
 
+    .sign-in {
+      &.icon {
+        @extend .icon-button;
+
+        @apply block md:hidden;
+      }
+
+      &.text {
+        @apply hidden md:block;
+        @apply rounded-md decoration-none px-3 py-2 text-sm font-medium;
+        @apply text-gray-300 hover:bg-gray-700 hover:text-white;
+      }
+    }
+
     .user {
       @apply relative ml-3;
 

@@ -28,6 +28,8 @@ declare module 'next-auth' {
     user: {
       id: string
       role: Role
+      avatar: string | null
+      isSuspended: boolean
     } & DefaultSession['user']
   }
 }

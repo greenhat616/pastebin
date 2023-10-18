@@ -1,17 +1,32 @@
 'use client'
 import AnimatedLogo from '@/components/AnimatedLogo'
-import { Box } from '@chakra-ui/react'
+import { Box, Link } from '@chakra-ui/react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import {
+  ArrowRightOnRectangleIcon,
+  Bars3Icon,
+  BellIcon,
+  XMarkIcon
+} from '@heroicons/react/24/outline'
+import { signOut } from 'next-auth/react'
+import { Session } from 'next-auth/types'
 import { Fragment } from 'react'
 import styles from './Header.module.scss'
 import Navigation from './header/Navigation'
 
+import { env } from '@/env.mjs'
+import { useRouter } from '@/libs/navigation'
+import { useTranslations } from 'next-intl'
+
 type Props = {
   className?: string
+  session: Session | null
 }
 
 export function Header(props: Props) {
+  const router = useRouter()
+  const t = useTranslations()
+
   return (
     <Disclosure as="nav" className={classNames('bg-gray-800', props.className)}>
       {({ open }) => (
@@ -40,74 +55,107 @@ export function Header(props: Props) {
                 </Box>
               </Box>
               <Box className={styles['info-panel']}>
-                <button type="button" className={styles.notification}>
-                  <BellIcon className=":ouo: h-6 w-6" aria-hidden="true" />
-                </button>
-
-                {/* Profile dropdown */}
-                <Menu as={Box} className={styles.user}>
-                  <Box>
-                    <Menu.Button className={styles.avatar}>
-                      <NImage
-                        width={32}
-                        height={32}
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt="avatar"
+                {!props.session ? (
+                  <>
+                    <button
+                      type="button"
+                      className={classNames(styles['sign-in'], styles.icon)}
+                    >
+                      <ArrowRightOnRectangleIcon
+                        className=":ouo: h-6 w-6"
+                        aria-hidden="true"
                       />
-                    </Menu.Button>
-                  </Box>
-                  <Transition
-                    as={Fragment}
-                    enter=":ouo: transition ease-out duration-100"
-                    enterFrom=":ouo: transform opacity-0 scale-95"
-                    enterTo=":ouo: transform opacity-100 scale-100"
-                    leave=":ouo: transition ease-in duration-75"
-                    leaveFrom=":ouo: transform opacity-100 scale-100"
-                    leaveTo=":ouo: transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className={styles['dropdown-menu']}>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              styles.item,
-                              active && styles.active
+                    </button>
+                    <Link
+                      onClick={() => {
+                        router.push({
+                          pathname: '/auth/signin',
+                          query: { callbackUrl: window.location.href }
+                        })
+                      }}
+                      className={classNames(styles['sign-in'], styles.text)}
+                    >
+                      {t('app.nav.accounts.sign_in')}
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <button type="button" className={styles.notification}>
+                      <BellIcon className=":ouo: h-6 w-6" aria-hidden="true" />
+                    </button>
+                    {/* Profile dropdown */}
+                    <Menu as={Box} className={styles.user}>
+                      <Box>
+                        <Menu.Button className={styles.avatar}>
+                          <NImage
+                            width={32}
+                            height={32}
+                            src={
+                              props.session?.user?.avatar ||
+                              env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR.replace(
+                                '{hash}',
+                                ''
+                              )
+                            }
+                            alt="avatar"
+                          />
+                        </Menu.Button>
+                      </Box>
+                      <Transition
+                        as={Fragment}
+                        enter=":ouo: transition ease-out duration-100"
+                        enterFrom=":ouo: transform opacity-0 scale-95"
+                        enterTo=":ouo: transform opacity-100 scale-100"
+                        leave=":ouo: transition ease-in duration-75"
+                        leaveFrom=":ouo: transform opacity-100 scale-100"
+                        leaveTo=":ouo: transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className={styles['dropdown-menu']}>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  styles.item,
+                                  active && styles.active
+                                )}
+                              >
+                                {t('app.nav.accounts.drop_down.profile')}
+                              </a>
                             )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              styles.item,
-                              active && styles.active
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={classNames(
+                                  styles.item,
+                                  active && styles.active
+                                )}
+                              >
+                                {t('app.nav.accounts.drop_down.settings')}
+                              </a>
                             )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              styles.item,
-                              active && styles.active
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                className={classNames(
+                                  styles.item,
+                                  'cursor-pointer',
+                                  active && styles.active
+                                )}
+                                onClick={() => signOut()}
+                              >
+                                {t('app.nav.accounts.sign_out')}
+                              </Link>
                             )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                  </Transition>
-                </Menu>
+                          </Menu.Item>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu>
+                  </>
+                )}
               </Box>
             </Box>
           </Box>

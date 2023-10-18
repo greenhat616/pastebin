@@ -13,12 +13,7 @@ export const env = createEnv({
     AUTH_GITHUB_ID: z.string().min(1),
     AUTH_GITHUB_SECRET: z.string().min(1),
     AUTH_GOOGLE_ID: z.string().min(1),
-    AUTH_GOOGLE_SECRET: z.string().min(1),
-    AUTH_GRAVATAR_MIRROR: z
-      .string()
-      .url()
-      .optional()
-      .default('https://cravatar.cn/avatar/{hash}?d=mm&s=500')
+    AUTH_GOOGLE_SECRET: z.string().min(1)
   },
   /*
    * Environment variables available on the client (and server).
@@ -26,7 +21,12 @@ export const env = createEnv({
    * 💡 You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
    */
   client: {
-    NEXT_PUBLIC_APP_URL: z.string().min(1)
+    NEXT_PUBLIC_APP_URL: z.string().min(1),
+    NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR: z
+      .string()
+      .url()
+      .optional()
+      .default('https://cravatar.cn/avatar/{hash}?d=mm&s=500')
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -43,6 +43,7 @@ export const env = createEnv({
     AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID,
     AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
-    AUTH_GRAVATAR_MIRROR: process.env.AUTH_GRAVATAR_MIRROR
+    NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR:
+      process.env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR
   }
 })
