@@ -1,3 +1,4 @@
+import { getDisplayNameByLanguageID } from '@/libs/shiki'
 import { Box } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import styles from '../CodePreview.module.scss'

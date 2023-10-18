@@ -53,6 +53,8 @@
     "translateIfKey": true,
     "nok": true,
     "ok": true,
-    "useSubmitForm": true
+    "useSubmitForm": true,
+    "ISolarClipboardBroken": true,
+    "ISolarShareLinear": true
   }
 }

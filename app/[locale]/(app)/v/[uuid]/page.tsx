@@ -1,19 +1,19 @@
 import { PasteType } from '@/enums/paste'
-import Joi from 'joi'
 import { notFound } from 'next/navigation'
 import CodePreview from './_components/CodePreview'
 import CodePreviewIntlProvider from './_components/CodePreviewIntlProvider'
 
-function checkUUIDValidation(uuid?: string): boolean {
-  if (!uuid) return false
-  try {
-    Joi.attempt(uuid, Joi.string().uuid())
-  } catch (e) {
-    return false
-  }
+function checkUUIDValidation(cuid?: string): boolean {
+  if (!cuid) return false
+  //   try {
+  //     Joi.attempt(uuid, Joi.string().uuid())
+  //   } catch (e) {
+  //     return false
+  //   }
+  //   return true
+
   return true
 }
-
 type PasteData = {
   uuid: string
   type: PasteType

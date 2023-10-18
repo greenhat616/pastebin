@@ -78,7 +78,6 @@
     "framer-motion": "^10.16.4",
     "hast-util-to-html": "^9.0.0",
     "husky": "^8.0.3",
-    "joi": "^17.11.0",
     "lint-staged": "^15.0.1",
     "lodash-es": "^4.17.21",
     "negotiator": "^0.6.3",
