@@ -49,6 +49,7 @@
     "IFluentEmojiFlatWoozyFace": true,
     "IFluentEmojiFlatZanyFace": true,
     "IMdiGithub": true,
-    "IMdiGoogle": true
+    "IMdiGoogle": true,
+    "translateIfKey": true
   }
 }

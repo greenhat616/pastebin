@@ -1,166 +1,212 @@
 'use client'
-import { useRouter } from '@/libs/navigation'
-import type { TranslationKey } from '@/utils/strings'
+import { SignInSchema } from '@/libs/validation/auth'
 import {
   Button,
   FormControl,
   FormErrorMessage,
   Input,
+  Stack,
   useToast
 } from '@chakra-ui/react'
-import { useMemoizedFn, useReactive } from 'ahooks'
-import Joi from 'joi'
-import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
+import { useFormState, useFormStatus } from 'react-dom'
+import { ZodError } from 'zod'
 
-export default function Credentials() {
-  // Deps
-  const router = useRouter()
+type Props = {
+  signInAction: (
+    callbackURL: string | undefined,
+    formData: FormData
+  ) => Promise<FormData>
+}
+
+const initialState = {
+  // form: {
+  //   email: '',
+  //   password: ''
+  // },
+  // error: {
+  //   email: undefined,
+  //   password: undefined
+  // } as {
+  //   email?: string
+  //   password?: string
+  // }
+  error: undefined as string | undefined,
+  issues: [] as ZodError<typeof SignInSchema>['issues']
+}
+
+type SubmitProps = {
+  state: Partial<typeof initialState>
+}
+
+function Submit({ state }: SubmitProps) {
   const t = useTranslations()
   const toast = useToast()
-  const signInSchema = Joi.object({
-    email: Joi.string()
-      .email({ tlds: { allow: false } })
-      .required()
-      .messages({
-        'string.email': t('auth.signin.credentials.feedback.email.invalid'),
-        'string.empty': t('auth.signin.credentials.feedback.email.required')
+  const { pending } = useFormStatus()
+
+  if (!pending && state.error) {
+    toast({
+      title: t('auth.signin.credentials.feedback.error.title'),
+      description: t('auth.signin.credentials.feedback.error.description', {
+        error: translateIfKey(t, state.error)
       }),
-    password: Joi.string()
-      .required()
-      .messages({
-        'string.empty': t('auth.signin.credentials.feedback.password.required')
-      })
-  })
-
-  // States
-  const state = useReactive({
-    form: {
-      email: '',
-      password: ''
-    },
-    error: {
-      email: undefined,
-      password: undefined
-    } as {
-      email?: string
-      password?: string
-    },
-    loading: false
-  })
-
-  // Events
-  const handleSignIn = useMemoizedFn(() => {
-    state.error = {}
-    const { error } = signInSchema.validate(state.form, { abortEarly: false })
-    if (error) {
-      for (const detail of error.details) {
-        console.log(detail)
-        for (const path of detail.path) {
-          if (!state.error[path as keyof typeof state.form])
-            state.error[path as keyof typeof state.form] = detail.message
-        }
-      }
-      return
-    }
-    state.error = {}
-    state.loading = true
-    signIn('credentials', {
-      redirect: false,
-      email: state.form.email,
-      password: state.form.password
+      status: 'error',
+      duration: 5000,
+      isClosable: true
     })
-      .then((res) => {
-        if (!res || !res.ok) {
-          throw new Error(
-            !!res
-              ? `${
-                  res.error
-                    ? isTranslationKey(res.error)
-                      ? t(unwrapTranslationKey(res.error as TranslationKey))
-                      : res.error
-                    : ''
-                } - ${res.status}`
-              : 'Unknown error'
-          )
-        }
-        toast({
-          title: t('auth.signin.credentials.feedback.success.title'),
-          description: t(
-            'auth.signin.credentials.feedback.success.description'
-          ),
-          status: 'success',
-          duration: 2000,
-          isClosable: true
-        })
-        setTimeout(() => {
-          // Disable lint because of callback must be valid url
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore ts(2345)
-          router.push(res.url || '/')
-        }, 3000)
-      })
-      .catch((err) => {
-        console.error(err)
-        toast({
-          title: t('auth.signin.credentials.feedback.error.title'),
-          description: t('auth.signin.credentials.feedback.error.description', {
-            error: err.message
-          }),
-          status: 'error',
-          duration: 5000,
-          isClosable: true
-        })
-      })
-      .finally(() => {
-        state.loading = false
-      })
-  })
+  }
 
   return (
-    <>
-      <FormControl isInvalid={!!state.error.email}>
+    <Button
+      colorScheme="gray"
+      size="lg"
+      rounded="xl"
+      // onClick={handleSignIn}
+      isLoading={pending}
+      loadingText={t('auth.signin.credentials.loading')}
+      type="submit"
+    >
+      {t('auth.signin.credentials.button')}
+    </Button>
+  )
+}
+
+export default function Credentials(props: Props) {
+  // Deps
+  const searchParams = useSearchParams()
+  const signIn = props.signInAction.bind(
+    null,
+    searchParams.get('callbackUrl') || undefined
+  )
+  const [state, signInAction] = useFormState<Partial<typeof initialState>>(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore ts(2345)
+    signIn,
+    initialState
+  )
+  const t = useTranslations()
+
+  const msgs = state.issues?.reduce(
+    (acc, issue) => {
+      for (const path of issue.path) {
+        if (!acc[path as keyof typeof acc])
+          acc[path as keyof typeof acc] = translateIfKey(t, issue.message)
+      }
+      return acc
+    },
+    {
+      email: undefined as string | undefined,
+      password: undefined as string | undefined
+    }
+  )
+  // Events
+  // const handleSignIn = useMemoizedFn(() => {
+  //   state.error = {}
+  //   const result = SignInSchema.safeParse(state.form)
+  //   console.log(result)
+  //   if (!result.success) {
+  //     for (const issue of result.error.issues) {
+  //       for (const path of issue.path) {
+  //         if (!state.error[path as keyof typeof state.form])
+  //           state.error[path as keyof typeof state.form] = translateIfKey(
+  //             t,
+  //             issue.message
+  //           )
+  //       }
+  //     }
+  //     return
+  //   }
+  //   state.error = {}
+  //   state.loading = true
+  //   signIn('credentials', {
+  //     redirect: false,
+  //     email: state.form.email,
+  //     password: state.form.password
+  //   })
+  //     .then((res) => {
+  //       console.log(res)
+  //       if (!res || !res.ok) {
+  //         throw new Error(
+  //           !!res
+  //             ? `${
+  //                 res.error
+  //                   ? isTranslationKey(res.error)
+  //                     ? t(unwrapTranslationKey(res.error as TranslationKey))
+  //                     : res.error
+  //                   : ''
+  //               } - ${res.status}`
+  //             : 'Unknown error'
+  //         )
+  //       }
+  //       toast({
+  //         title: t('auth.signin.credentials.feedback.success.title'),
+  //         description: t(
+  //           'auth.signin.credentials.feedback.success.description'
+  //         ),
+  //         status: 'success',
+  //         duration: 2000,
+  //         isClosable: true
+  //       })
+  //       setTimeout(() => {
+  //         // Disable lint because of callback must be valid url
+  //         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //         // @ts-ignore ts(2345)
+  //         router.push(res.url || '/')
+  //       }, 3000)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //       toast({
+  //         title: t('auth.signin.credentials.feedback.error.title'),
+  //         description: t('auth.signin.credentials.feedback.error.description', {
+  //           error: err.message
+  //         }),
+  //         status: 'error',
+  //         duration: 5000,
+  //         isClosable: true
+  //       })
+  //     })
+  //     .finally(() => {
+  //       state.loading = false
+  //     })
+  // })
+
+  return (
+    <Stack as="form" action={signInAction} gap={4}>
+      <FormControl isInvalid={!!msgs?.email}>
         <Input
           variant="outline"
           placeholder={t('auth.signin.credentials.placeholder.email')}
           rounded="xl"
           size="lg"
           type="email"
-          value={state.form.email}
-          onChange={(e) => {
-            state.form.email = e.target.value
-          }}
+          name="email"
+          // value={state.form.email}
+          // onChange={(e) => {
+          //   state.form.email = e.target.value
+          // }}
         />
-        {!!state.error.email && (
-          <FormErrorMessage>{state.error.email}</FormErrorMessage>
-        )}
+        {!!msgs?.email && <FormErrorMessage>{msgs?.email}</FormErrorMessage>}
       </FormControl>
-      <FormControl isInvalid={!!state.error.password}>
+      <FormControl isInvalid={!!msgs?.password}>
         <Input
           variant="outline"
           placeholder={t('auth.signin.credentials.placeholder.password')}
           rounded="xl"
           size="lg"
           type="password"
-          value={state.form.password}
-          onChange={(e) => {
-            state.form.password = e.target.value
-          }}
+          name="password"
+          // value={state.form.password}
+          // onChange={(e) => {
+          //   state.form.password = e.target.value
+          // }}
         />
-        {!!state.error.password && (
-          <FormErrorMessage>{state.error.password}</FormErrorMessage>
+        {!!msgs?.password && (
+          <FormErrorMessage>{msgs?.password}</FormErrorMessage>
         )}
       </FormControl>
-      <Button
-        colorScheme="gray"
-        size="lg"
-        rounded="xl"
-        onClick={handleSignIn}
-        isLoading={state.loading}
-        loadingText={t('auth.signin.credentials.loading')}
-      >
-        {t('auth.signin.credentials.button')}
-      </Button>
-    </>
+      <Submit state={state} />
+    </Stack>
   )
 }

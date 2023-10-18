@@ -1,4 +1,6 @@
 import NavigationLink from '@/components/NavigationLink'
+import { signIn } from '@/libs/auth'
+import { SignInSchema } from '@/libs/validation/auth'
 import {
   AbsoluteCenter,
   Box,
@@ -40,6 +42,41 @@ export default function SignInPage(props: Props) {
   const t = useTranslations()
   const messages = useMessages()
   const locale = useLocale()
+
+  const signInWithCredentials = async (
+    callbackURL: string | undefined,
+    prevState: never,
+    formData: FormData
+  ) => {
+    'use server'
+    const result = SignInSchema.safeParse({
+      email: formData.get('email'),
+      password: formData.get('password')
+    })
+    if (!result.success) {
+      return {
+        issues: result.error.issues,
+        error: wrapTranslationKey('auth.signin.credentials.feedback.invalid')
+      }
+    }
+    try {
+      await signIn('credentials', {
+        redirect: false,
+        redirectTo: callbackURL,
+        email: result.data.email,
+        password: result.data.password
+      })
+    } catch (error) {
+      return {
+        error:
+          (error as Error).message === 'CredentialsSignin'
+            ? wrapTranslationKey('auth.signin.credentials.feedback.invalid')
+            : (error as Error).message
+      }
+    }
+
+    return formData
+  }
   return (
     <Stack gap={4}>
       {/* Credentials Login */}
@@ -49,7 +86,9 @@ export default function SignInPage(props: Props) {
         }
         locale={locale}
       >
-        <Credentials />
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore ts(2322)*/}
+        <Credentials signInAction={signInWithCredentials} />
       </NextIntlClientProvider>
       <Grid gap={4} templateColumns="repeat(2, 1fr)">
         <GridItem>

@@ -1,11 +1,13 @@
-import { Role } from '@/enums/user'
 import { config as Locales, pathnames } from '@/libs/navigation'
 import { type Awaitable } from '@/utils/types'
-import { NextRequestWithAuth, withAuth } from 'next-auth/middleware'
+import NextAuth from 'next-auth'
+import type { NextAuthRequest } from 'next-auth/lib'
+// import { NextRequestWithAuth, withAuth } from 'next-auth/middleware'
 import createMiddleware from 'next-intl/middleware'
 import { type ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
 import { type NextMiddlewareResult } from 'next/dist/server/web/types'
 import { NextResponse } from 'next/server'
+import { authConfig } from './libs/auth/config/edge'
 export type MiddlewareCtx = {
   headers: Headers
   cookies: ResponseCookies
@@ -14,27 +16,27 @@ export type MiddlewareCtx = {
   context: Map<string, unknown>
 }
 
-const protectedPathname = ['/admin', '/me']
+// const protectedPathname = ['/admin', '/me']
 
-const authMiddleware = withAuth({
-  callbacks: {
-    async authorized({ req: request, token }) {
-      if (!request.nextUrl) return true
-      if (request.nextUrl.pathname.startsWith('/admin')) {
-        if (!token) return false
-        return token?.userRole === Role.Admin
-      }
-      for (const path of protectedPathname) {
-        if (request.nextUrl.pathname.startsWith(path)) {
-          return !!token
-        }
-      }
-      return true
-    }
-  }
-}) as unknown as Middleware // It is intentional, because of the event in next middleware is deprecated,
+// const authMiddleware = withAuth({
+//   callbacks: {
+//     async authorized({ req: request, token }) {
+//       if (!request.nextUrl) return true
+//       if (request.nextUrl.pathname.startsWith('/admin')) {
+//         if (!token) return false
+//         return token?.userRole === Role.Admin
+//       }
+//       for (const path of protectedPathname) {
+//         if (request.nextUrl.pathname.startsWith(path)) {
+//           return !!token
+//         }
+//       }
+//       return true
+//     }
+//   }
+// }) as unknown as Middleware // It is intentional, because of the event in next middleware is deprecated,
 // and the next-auth/middleware will drop the event in upcoming version 5.
-
+const { auth } = NextAuth(authConfig)
 const injectPathnameMiddleware: Middleware = async (req, ctx) => {
   const { headers } = ctx
   // const res = NextResponse.next()
@@ -43,7 +45,7 @@ const injectPathnameMiddleware: Middleware = async (req, ctx) => {
 }
 
 export type Middleware = (
-  req: NextRequestWithAuth,
+  req: NextAuthRequest,
   ctx: MiddlewareCtx
 ) => Awaitable<NextMiddlewareResult>
 
@@ -55,10 +57,10 @@ const middlewares: Array<Middleware> = [
     pathnames,
     localePrefix: 'never'
   }),
-  authMiddleware
+  auth as Middleware
 ]
 
-export default async function middleware(req: NextRequestWithAuth) {
+export default async function middleware(req: NextAuthRequest) {
   const response = NextResponse.next()
   const context = new Map<string, unknown>()
   for (const fn of middlewares) {

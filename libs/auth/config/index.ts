@@ -1,42 +1,19 @@
-import { DefaultSession, NextAuthOptions, getServerSession } from 'next-auth'
-
 import { Role } from '@/enums/user'
-import { env } from '@/env.mjs'
 import prisma from '@/libs/prisma/client'
 import { createUser, loginByEmail } from '@/libs/services/users/user'
-import { wrapTranslationKey } from '@/utils/strings'
+import { SignInSchema } from '@/libs/validation/auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
-import { uniqueId } from 'lodash-es'
-import {
-  GetServerSidePropsContext,
-  NextApiRequest,
-  NextApiResponse
-} from 'next'
-import CredentialsProvider from 'next-auth/providers/credentials'
+import { merge, uniqueId } from 'lodash-es'
+import { NextAuthConfig } from 'next-auth'
+import Credentials from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
-
-export type { Session } from 'next-auth'
-
-// Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
-declare module 'next-auth/jwt' {
-  interface JWT {
-    /** The user's role. */
-    userRole?: Role
-  }
-}
-
-declare module 'next-auth' {
-  interface Session {
-    user: {
-      id: string
-    } & DefaultSession['user']
-  }
-}
-
+import { env } from 'process'
+import 'server-only'
+import { authConfig as edgeConfig } from './edge'
 const adapter = PrismaAdapter(prisma)
 
-export const config = {
+export const authConfig = merge(edgeConfig, {
   providers: [
     GitHub({
       clientId: env.AUTH_GITHUB_ID,
@@ -46,7 +23,7 @@ export const config = {
       clientId: env.AUTH_GOOGLE_ID,
       clientSecret: env.AUTH_GOOGLE_SECRET
     }),
-    CredentialsProvider({
+    Credentials({
       name: 'Credentials',
       credentials: {
         email: {
@@ -57,28 +34,21 @@ export const config = {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        if (!credentials || !credentials.email || !credentials.password)
-          return null
+        const result = await SignInSchema.safeParseAsync(credentials)
+        if (!result.success) return null
         const user = await loginByEmail(
           credentials.email as string,
           credentials.password as string
         )
-        if (!user)
-          throw new Error(
-            wrapTranslationKey('auth.signin.credentials.feedback.invalid')
-          )
+        if (!user) return null
+        // throw new Error(
+        //   wrapTranslationKey('auth.signin.credentials.feedback.invalid')
+        // )
         return user
       }
     })
   ],
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id
-      }
-    }),
     async jwt({ token, user: { id } }) {
       const user = await prisma.user.findFirst({
         where: {
@@ -110,15 +80,4 @@ export const config = {
     signOut: '/auth/signout',
     error: '/auth/error'
   }
-} satisfies NextAuthOptions
-
-// Helper function to get session without passing config every time
-// https://next-auth.js.org/configuration/nextjs#getserversession
-export function auth(
-  ...args:
-    | [GetServerSidePropsContext['req'], GetServerSidePropsContext['res']]
-    | [NextApiRequest, NextApiResponse]
-    | []
-) {
-  return getServerSession(...args, config)
-}
+} satisfies NextAuthConfig)

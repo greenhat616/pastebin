@@ -4,41 +4,39 @@ import z from 'zod'
 export const SignUpSchema = z
   .object({
     email: z
-      .string({
-        required_error: wrapTranslationKey(
-          'auth.signup.form.feedback.email.required'
-        )
+      .string()
+      .min(1, {
+        message: wrapTranslationKey('auth.signup.form.feedback.email.required')
       })
       .email({
         message: wrapTranslationKey('auth.signup.form.feedback.email.invalid')
       }),
-    nickname: z.string({
-      required_error: wrapTranslationKey(
-        'auth.signup.form.feedback.nickname.required'
-      )
+    nickname: z.string().min(1, {
+      message: wrapTranslationKey('auth.signup.form.feedback.nickname.required')
     }),
-    password: z.string({
-      required_error: wrapTranslationKey(
-        'auth.signup.form.feedback.password.required'
-      )
+    password: z.string().min(1, {
+      message: wrapTranslationKey('auth.signup.form.feedback.password.required')
     }),
-    password_confirmation: z.string({
-      required_error: wrapTranslationKey(
+    password_confirmation: z.string().min(1, {
+      message: wrapTranslationKey(
         'auth.signup.form.feedback.password_confirmation.required'
       )
     })
   })
   .refine((data) => data.password === data.password_confirmation, {
     message: wrapTranslationKey(
-      'auth.signup.form.feedback.password_confirmation.required'
+      'auth.signup.form.feedback.password_confirmation.mismatch'
     ),
     path: ['password_confirmation'] // path of error
   })
 
+export type SignUp = z.infer<typeof SignUpSchema>
+
 export const SignInSchema = z.object({
   email: z
-    .string({
-      required_error: wrapTranslationKey(
+    .string()
+    .min(1, {
+      message: wrapTranslationKey(
         'auth.signin.credentials.feedback.email.required'
       )
     })
@@ -47,12 +45,14 @@ export const SignInSchema = z.object({
         'auth.signin.credentials.feedback.email.invalid'
       )
     }),
-  password: z.string({
-    required_error: wrapTranslationKey(
+  password: z.string().min(1, {
+    message: wrapTranslationKey(
       'auth.signin.credentials.feedback.password.required'
     )
   })
 })
+
+export type SignIn = z.infer<typeof SignInSchema>
 
 export const ForgotPasswordSchema = z.object({
   email: z
@@ -67,6 +67,8 @@ export const ForgotPasswordSchema = z.object({
       )
     })
 })
+
+export type ForgotPassword = z.infer<typeof ForgotPasswordSchema>
 
 export const PasswordResetSchema = z
   .object({
@@ -98,3 +100,5 @@ export const PasswordResetSchema = z
     ),
     path: ['password_confirmation'] // path of error
   })
+
+export type PasswordReset = z.infer<typeof PasswordResetSchema>

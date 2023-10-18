@@ -48,6 +48,7 @@ declare global {
   const loadEnv: typeof import('./utils/app')['loadEnv']
   const parseURLParams: typeof import('./utils/middlewares')['parseURLParams']
   const success: typeof import('./utils/response')['success']
+  const translateIfKey: typeof import('./utils/strings')['translateIfKey']
   const trimChars: typeof import('./utils/strings')['trimChars']
   const trimCharsLeft: typeof import('./utils/strings')['trimCharsLeft']
   const trimCharsRight: typeof import('./utils/strings')['trimCharsRight']

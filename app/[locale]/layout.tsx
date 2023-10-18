@@ -14,6 +14,7 @@ import {
   getTranslator
 } from 'next-intl/server'
 
+import { UnoCSSIndicator } from '@/components/UnoCSSIndicator'
 import { Fira_Code } from 'next/font/google'
 const firaCode = Fira_Code({
   variable: '--font-fira-code',
@@ -48,7 +49,10 @@ export default function LocaleLayout({ children, params }: Props) {
   if (params.locale !== locale) notFound()
   return (
     <html lang={locale}>
-      <body className={`${firaCode.variable} font-sans`}>{children}</body>
+      <body className={`${firaCode.variable} font-sans`}>
+        <UnoCSSIndicator />
+        {children}
+      </body>
     </html>
   )
 }

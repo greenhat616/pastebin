@@ -82,3 +82,10 @@ export function unwrapTranslationKey(str: TranslationKey): string {
 export function wrapTranslationKey(str: string): TranslationKey {
   return `[${str}]` as TranslationKey
 }
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function translateIfKey(t: Function, str: string): string {
+  return isTranslationKey(str)
+    ? t(unwrapTranslationKey(str as TranslationKey))
+    : str
+}
