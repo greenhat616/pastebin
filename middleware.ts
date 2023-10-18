@@ -37,10 +37,11 @@ export type MiddlewareCtx = {
 // }) as unknown as Middleware // It is intentional, because of the event in next middleware is deprecated,
 // and the next-auth/middleware will drop the event in upcoming version 5.
 const { auth } = NextAuth(authConfig)
-const injectPathnameMiddleware: Middleware = async (req, ctx) => {
+const injectCtxMiddleware: Middleware = async (req, ctx) => {
   const { headers } = ctx
   // const res = NextResponse.next()
   // res.headers.set('x-pathname', req.nextUrl.pathname)
+  headers.set('x-search-params', req.nextUrl.searchParams.toString())
   headers.set('x-pathname', req.nextUrl.pathname)
 }
 
@@ -50,7 +51,7 @@ export type Middleware = (
 ) => Awaitable<NextMiddlewareResult>
 
 const middlewares: Array<Middleware> = [
-  injectPathnameMiddleware,
+  injectCtxMiddleware,
   // i18n middleware
   createMiddleware({
     ...Locales,

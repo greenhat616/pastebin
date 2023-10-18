@@ -1,4 +1,5 @@
 import { Role } from '@/enums/user'
+import { env } from '@/env.mjs'
 import prisma from '@/libs/prisma/client'
 import { createUser, loginByEmail } from '@/libs/services/users/user'
 import { SignInSchema } from '@/libs/validation/auth'
@@ -8,11 +9,10 @@ import { NextAuthConfig } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
-import { env } from 'process'
+import crypto from 'node:crypto'
 import 'server-only'
 import { authConfig as edgeConfig } from './edge'
 const adapter = PrismaAdapter(prisma)
-
 export const authConfig = merge(edgeConfig, {
   providers: [
     GitHub({
@@ -49,14 +49,23 @@ export const authConfig = merge(edgeConfig, {
     })
   ],
   callbacks: {
-    async jwt({ token, user: { id } }) {
+    async jwt(state) {
+      if (!state.trigger) return state.token
       const user = await prisma.user.findFirst({
         where: {
-          id
+          id: state.user.id
         }
       })
-      token.userRole = user!.role as Role
-      return token
+      state.token.role = user!.role as Role
+      state.token.avatar =
+        user!.avatar ||
+        state.account?.image ||
+        env.AUTH_GRAVATAR_MIRROR.replace(
+          '{hash}',
+          crypto.createHash('md5').update(user!.email).digest('hex')
+        )
+      state.token.isSuspended = user!.isSuspend
+      return { ...state.token }
     }
   },
   adapter: {

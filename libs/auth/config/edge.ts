@@ -18,6 +18,8 @@ declare module '@auth/core/jwt' {
   interface JWT {
     /** The user's role. */
     role: Role
+    avatar: string | null
+    isSuspended: boolean
   }
 }
 
@@ -36,16 +38,24 @@ export const authConfig = {
     strategy: 'jwt'
   },
   callbacks: {
+    // Note that: this hook only invoked in signed in user.
+    // So that, we should reject the request in layout react server component.
     async authorized({ request, auth }) {
       console.log(auth)
       if (!request.nextUrl) return true
       if (request.nextUrl.pathname.startsWith('/admin')) {
-        if (!auth) return NextResponse.redirect('/auth/signin')
-        // return auth?.user === Role.Admin
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore ts(2339)
+        if (!auth || auth?.user?.role !== Role.Admin) {
+          return NextResponse.redirect(request.nextUrl.href)
+        }
+        return true
       }
       for (const path of protectedPathname) {
-        if (request.nextUrl.pathname.startsWith(path)) {
-          return !!auth
+        if (request.nextUrl.pathname.startsWith(path) && !auth) {
+          const redirectUrl = new URL('/auth/signin', request.nextUrl.origin)
+          redirectUrl.searchParams.set('callbackUrl', request.nextUrl.href)
+          return NextResponse.redirect(redirectUrl)
         }
       }
       return true
