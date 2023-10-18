@@ -59,8 +59,10 @@ CREATE TABLE "announcements" (
 CREATE TABLE "pastes" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "poster" TEXT NOT NULL,
+    "description" TEXT,
     "content" JSONB NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_id" TEXT,
     "expired_at" TIMESTAMP(3) NOT NULL,
     "deleted_at" TIMESTAMP(3),
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -148,7 +150,7 @@ CREATE UNIQUE INDEX "verification_requests_identifier_token_key" ON "verificatio
 ALTER TABLE "user_password_resets" ADD CONSTRAINT "user_password_resets_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "pastes" ADD CONSTRAINT "pastes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "pastes" ADD CONSTRAINT "pastes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "comments" ADD CONSTRAINT "comments_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

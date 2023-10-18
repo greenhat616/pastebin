@@ -15,36 +15,57 @@ app:
         snippets: My Snippets
         settings: Settings
         admin: Admin
-home:
-  form:
-    poster:
-      label: Poster
-      placeholder: Enter your nickname
-      helper_text: Maximum 20 characters
-    syntax:
-      plain_text: Plain Text
-      label: Syntax
-      placeholder: Select syntax
-    expiration:
-      label: Expiration
-      placeholder: Select expiration
-      helper_text: Approximate and not guaranteed
-      options:
-        none: None
-        thirty_minutes: 30 Minutes
-        one_hour: 1 Hour
-        one_day: 1 Day
-        one_week: 1 Week
-        one_month: 1 Month
-        six_months: 6 Months
-        one_year: 1 Year
-    content:
-      label: Content
-      placeholder: Enter your code, snippet, or text here...
-    actions:
-      submit: Submit
-      preview: Preview
-      edit: Edit
+
+components:
+  code_form:
+    feedback:
+      validation_failed: Please check your input
+      fail:
+        title: Failed to submit
+        description: "Cause: {error}."
+    validation:
+      poster:
+        required: Poster is required
+        too_long: Poster is too long (maximum is 20 characters)
+      syntax:
+        required: Syntax is required
+        invalid: Syntax is not supported
+      expiration:
+        required: Expiration is required
+        invalid: Expiration is invalid
+      content:
+        required: Content is required
+        too_long: Content is too long (maximum is 65535 characters)
+    form:
+      poster:
+        label: Poster
+        placeholder: Enter your nickname
+        helper_text: Maximum 20 characters
+      syntax:
+        plain_text: Plain Text
+        label: Syntax
+        placeholder: Select syntax
+      expiration:
+        label: Expiration
+        placeholder: Select expiration
+        helper_text: Approximate and not guaranteed
+        options:
+          none: None
+          thirty_minutes: 30 Minutes
+          one_hour: 1 Hour
+          one_day: 1 Day
+          one_week: 1 Week
+          one_month: 1 Month
+          six_months: 6 Months
+          one_year: 1 Year
+      content:
+        label: Content
+        placeholder: Enter your code, snippet, or text here...
+      actions:
+        submit: Submit
+        preview: Preview
+        edit: Edit
+
 
 code-preview:
   feedback:
@@ -101,7 +122,7 @@ auth:
         password: Password
         password_confirmation: Confirm Password
       feedback:
-        validation_failed: Please check your input.
+        validation_failed: Please check your input
         email:
           required: Email is required
           invalid: Invalid email

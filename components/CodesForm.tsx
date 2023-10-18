@@ -1,4 +1,5 @@
 'use client'
+import { submitPasteNormalAction } from '@/actions/paste'
 import { codeToHTML, getShikiAllSupportedLanguages } from '@/libs/shiki'
 import { ReducerDispatch } from '@/utils/types'
 import {
@@ -8,10 +9,12 @@ import {
   CardBody,
   Flex,
   FormControl,
+  FormErrorMessage,
   FormHelperText,
   FormLabel,
   Input,
-  Textarea
+  Textarea,
+  useToast
 } from '@chakra-ui/react'
 import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
@@ -19,6 +22,7 @@ import { useTranslations } from 'next-intl'
 import { useReducer, useRef, useState } from 'react'
 import { BuiltinLanguage } from 'shikiji/core'
 type Props = {
+  defaultNickname?: string
   className: string
 }
 
@@ -59,33 +63,82 @@ const formStateReducer: ReducerDispatch<FormState, FormStateActions> = (
 }
 
 export default function CodeForm(props: Props) {
-  const t = useTranslations('home')
+  const t = useTranslations()
+  const toast = useToast()
 
   // Generates Options with i18n
   const syntaxOptions = syntaxes.reduce(
     (acc, syntax) => {
       return [...acc, { label: syntax.name || syntax.id, value: syntax.id }]
     },
-    [{ label: t('form.syntax.plain_text'), value: 'text' }]
+    [{ label: t('components.code_form.form.syntax.plain_text'), value: 'text' }]
   )
   const expirationOptions = [
-    { label: t('form.expiration.options.none'), value: -1 },
-    { label: t('form.expiration.options.thirty_minutes'), value: 60 * 30 },
-    { label: t('form.expiration.options.one_hour'), value: 60 * 60 },
-    { label: t('form.expiration.options.one_day'), value: 60 * 60 * 24 },
-    { label: t('form.expiration.options.one_week'), value: 60 * 60 * 24 * 7 },
-    { label: t('form.expiration.options.one_month'), value: 60 * 60 * 24 * 30 },
-    { label: t('form.expiration.options.one_year'), value: 60 * 60 * 24 * 365 }
+    {
+      label: t('components.code_form.form.expiration.options.none'),
+      value: -1
+    },
+    {
+      label: t('components.code_form.form.expiration.options.thirty_minutes'),
+      value: 60 * 30
+    },
+    {
+      label: t('components.code_form.form.expiration.options.one_hour'),
+      value: 60 * 60
+    },
+    {
+      label: t('components.code_form.form.expiration.options.one_day'),
+      value: 60 * 60 * 24
+    },
+    {
+      label: t('components.code_form.form.expiration.options.one_week'),
+      value: 60 * 60 * 24 * 7
+    },
+    {
+      label: t('components.code_form.form.expiration.options.one_month'),
+      value: 60 * 60 * 24 * 30
+    },
+    {
+      label: t('components.code_form.form.expiration.options.one_year'),
+      value: 60 * 60 * 24 * 365
+    }
   ]
 
   const [isPreview, setPreview] = useState(false)
   const [contentPreview, setContentPreview] = useState('')
-  const [formState, formStateDispatch] = useReducer(
-    formStateReducer,
-    initialFormState
+  const [formState, formStateDispatch] = useReducer(formStateReducer, {
+    ...initialFormState,
+    poster: props.defaultNickname || ''
+  } as FormState)
+  const { state, action } = useSubmitForm(submitPasteNormalAction, {
+    onError(state) {
+      toast({
+        title: t('components.code_form.feedback.fail.title'),
+        description: t('components.code_form.feedback.fail.description', {
+          error: translateIfKey(t, state.error || 'unknown_error')
+        }),
+        status: 'error',
+        isClosable: true
+      })
+    }
+  })
+  const msgs = state?.issues?.reduce(
+    (acc, cur) => {
+      for (const path of cur.path) {
+        if (!acc[path as keyof typeof acc])
+          acc[path as keyof typeof acc] = translateIfKey(t, cur.message)
+      }
+      return acc
+    },
+    {
+      poster: undefined as string | undefined,
+      syntax: undefined as string | undefined,
+      expiration: undefined as string | undefined,
+      content: undefined as string | undefined
+    }
   )
-  const contentRef = useRef<HTMLTextAreaElement>(null)
 
+  const contentRef = useRef<HTMLTextAreaElement>(null)
   // Reactive Render Preview
   useAsyncEffect(async () => {
     setContentPreview(() => 'Rendering...')
@@ -105,14 +158,17 @@ export default function CodeForm(props: Props) {
   }, [formState.content, formState.syntax])
 
   return (
-    <Box className={props.className}>
+    <Box className={props.className} as="form" action={action}>
       <Flex gap={4} direction={{ base: 'column', md: 'row' }}>
-        <FormControl w={{ base: '100%', md: '33.3333%' }}>
-          <FormLabel>{t('form.poster.label')}</FormLabel>
+        <FormControl
+          w={{ base: '100%', md: '33.3333%' }}
+          isInvalid={!!msgs?.poster}
+        >
+          <FormLabel>{t('components.code_form.form.poster.label')}</FormLabel>
           <Input
             name="poster"
             type="text"
-            placeholder={t('form.poster.placeholder')}
+            placeholder={t('components.code_form.form.poster.placeholder')}
             value={formState.poster}
             onChange={(e) =>
               formStateDispatch({
@@ -122,17 +178,26 @@ export default function CodeForm(props: Props) {
               })
             }
           />
-          <FormHelperText>{t('form.poster.helper_text')}</FormHelperText>
+          {!!msgs?.poster ? (
+            <FormErrorMessage>{msgs.poster}</FormErrorMessage>
+          ) : (
+            <FormHelperText>
+              {t('components.code_form.form.poster.helper_text')}
+            </FormHelperText>
+          )}
         </FormControl>
-        <FormControl w={{ base: '100%', md: '33.3333%' }}>
-          <FormLabel>{t('form.syntax.label')}</FormLabel>
+        <FormControl
+          w={{ base: '100%', md: '33.3333%' }}
+          isInvalid={!!msgs?.syntax}
+        >
+          <FormLabel>{t('components.code_form.form.syntax.label')}</FormLabel>
           <Select
             instanceId="syntax"
             name="syntax"
             className="cursor-text"
             useBasicStyles
             options={syntaxOptions}
-            placeholder={t('form.syntax.placeholder')}
+            placeholder={t('components.code_form.form.syntax.placeholder')}
             value={syntaxOptions.find((o) => o.value === formState.syntax)}
             onChange={(e) => {
               formStateDispatch({
@@ -142,16 +207,22 @@ export default function CodeForm(props: Props) {
               })
             }}
           ></Select>
+          {!!msgs?.syntax && <FormErrorMessage>{msgs.syntax}</FormErrorMessage>}
         </FormControl>
-        <FormControl w={{ base: '100%', md: '33.3333%' }}>
-          <FormLabel>{t('form.expiration.label')}</FormLabel>
+        <FormControl
+          w={{ base: '100%', md: '33.3333%' }}
+          isInvalid={!!msgs?.expiration}
+        >
+          <FormLabel>
+            {t('components.code_form.form.expiration.label')}
+          </FormLabel>
           <Select
             instanceId="expiration"
             name="expiration"
             className="cursor-text"
             useBasicStyles
             options={expirationOptions}
-            placeholder={t('form.expiration.placeholder')}
+            placeholder={t('components.code_form.form.expiration.placeholder')}
             value={expirationOptions.find(
               (o) => o.value === formState.expiration
             )}
@@ -164,13 +235,19 @@ export default function CodeForm(props: Props) {
             }}
           ></Select>
 
-          <FormHelperText>{t('form.expiration.helper_text')}</FormHelperText>
+          {!!msgs?.expiration ? (
+            <FormErrorMessage>{msgs.expiration}</FormErrorMessage>
+          ) : (
+            <FormHelperText>
+              {t('components.code_form.form.expiration.helper_text')}
+            </FormHelperText>
+          )}
         </FormControl>
       </Flex>
 
       <Box className="mt-sm">
-        <FormControl>
-          <FormLabel>{t('form.content.label')}</FormLabel>
+        <FormControl isInvalid={!!msgs?.content}>
+          <FormLabel>{t('components.code_form.form.content.label')}</FormLabel>
           {isPreview ? (
             <Card variant="outline" height="md" p={0}>
               <CardBody
@@ -189,7 +266,7 @@ export default function CodeForm(props: Props) {
             <Textarea
               ref={contentRef}
               name="content"
-              placeholder={t('form.content.placeholder')}
+              placeholder={t('components.code_form.form.content.placeholder')}
               height="md"
               value={formState.content}
               onChange={(e) =>
@@ -203,14 +280,17 @@ export default function CodeForm(props: Props) {
               resize="none"
             ></Textarea>
           )}
+          {!!msgs?.content && (
+            <FormErrorMessage>{msgs.content}</FormErrorMessage>
+          )}
         </FormControl>
       </Box>
       <Flex className="mt-sm md:mt-3xl" justify="flex-end" gap={4}>
-        <Button colorScheme="blue" variant="solid">
-          {t('form.actions.submit')}
+        <Button colorScheme="blue" variant="solid" type="submit">
+          {t('components.code_form.form.actions.submit')}
         </Button>
         <Button variant="outline" onClick={() => setPreview((s) => !s)}>
-          {t('form.actions.preview')}
+          {t('components.code_form.form.actions.preview')}
         </Button>
       </Flex>
     </Box>

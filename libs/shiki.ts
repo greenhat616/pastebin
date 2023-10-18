@@ -1,4 +1,3 @@
-'use client'
 import { BUNDLED_LANGUAGES } from 'shiki'
 // TODO: use shiki instead of shikiji
 // Shikiji is a fork of Shiki, and it will be merged back to Shiki soon
@@ -27,7 +26,7 @@ export type ShikiLanguage = {
  */
 export function getDisplayNameByLanguageID(id: string): string {
   const lang = cachedShikiAllSupportedLanguages.find((lang) => lang.id === id)
-  return lang ? lang.name || lang.id : id.charAt(0).toUpperCase + id.slice(1)
+  return lang ? lang.name || lang.id : id.charAt(0).toUpperCase() + id.slice(1)
 }
 
 /**

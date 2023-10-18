@@ -15,36 +15,56 @@ app:
         snippets: 我的片段
         settings: 设置
         admin: 管理员
-home:
-  form:
-    poster:
-      label: 昵称
-      placeholder: 输入您的昵称
-      helper_text: 最多 20 个字符
-    syntax:
-      plain_text: 纯文本
-      label: 语法
-      placeholder: 选择语法
-    expiration:
-      label: 失效时间
-      placeholder: 选择失效时间
-      helper_text: 大约时间，不保证准确
-      options:
-        none: 无
-        thirty_minutes: 30 分钟
-        one_hour: 1 小时
-        one_day: 1 天
-        one_week: 1 周
-        one_month: 1 个月
-        six_months: 6 个月
-        one_year: 1 年
-    content:
-      label: 内容
-      placeholder: 在此输入您的代码、片段或文本...
-    actions:
-      submit: 提交
-      preview: 预览
-      edit: 编辑
+components:
+  code_form:
+    feedback:
+      validation_failed: 请检查您的输入
+      fail:
+        title: 提交失败
+        description: "原因：{error}。"
+    validation:
+      poster:
+        required: 昵称是必填项
+        too_long: 昵称太长（最多 20 个字符）
+      syntax:
+        required: 语法是必填项
+        invalid: 不支持的语法
+      expiration:
+        required: 失效时间是必填项
+        invalid: 不支持的失效时间
+      content:
+        required: 内容是必填项
+        too_long: 内容太长（最多 65535 个字符）
+    form:
+      poster:
+        label: 昵称
+        placeholder: 输入您的昵称
+        helper_text: 最多 20 个字符
+      syntax:
+        plain_text: 纯文本
+        label: 语法
+        placeholder: 选择语法
+      expiration:
+        label: 失效时间
+        placeholder: 选择失效时间
+        helper_text: 大约时间，不保证准确
+        options:
+          none: 无
+          thirty_minutes: 30 分钟
+          one_hour: 1 小时
+          one_day: 1 天
+          one_week: 1 周
+          one_month: 1 个月
+          six_months: 6 个月
+          one_year: 1 年
+      content:
+        label: 内容
+        placeholder: 在此输入您的代码、片段或文本...
+      actions:
+        submit: 提交
+        preview: 预览
+        edit: 编辑
+
 code-preview:
   feedback:
     copy:
@@ -98,7 +118,7 @@ auth:
         password: 密码
         password_confirmation: 确认密码
       feedback:
-        validation_failed: 请检查您的输入。
+        validation_failed: 请检查您的输入
         email:
           required: 邮箱是必填项
           invalid: 无效的邮箱
