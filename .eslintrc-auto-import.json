@@ -50,6 +50,9 @@
     "IFluentEmojiFlatZanyFace": true,
     "IMdiGithub": true,
     "IMdiGoogle": true,
-    "translateIfKey": true
+    "translateIfKey": true,
+    "nok": true,
+    "ok": true,
+    "useSubmitForm": true
   }
 }

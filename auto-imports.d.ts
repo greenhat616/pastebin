@@ -46,6 +46,8 @@ declare global {
   const getRuntimeMode: typeof import('./utils/app')['getRuntimeMode']
   const isTranslationKey: typeof import('./utils/strings')['isTranslationKey']
   const loadEnv: typeof import('./utils/app')['loadEnv']
+  const nok: typeof import('./utils/actions')['nok']
+  const ok: typeof import('./utils/actions')['ok']
   const parseURLParams: typeof import('./utils/middlewares')['parseURLParams']
   const success: typeof import('./utils/response')['success']
   const translateIfKey: typeof import('./utils/strings')['translateIfKey']
@@ -54,6 +56,7 @@ declare global {
   const trimCharsRight: typeof import('./utils/strings')['trimCharsRight']
   const unwrapTranslationKey: typeof import('./utils/strings')['unwrapTranslationKey']
   const useSWR: typeof import('swr')['default']
+  const useSubmitForm: typeof import('./hooks/actions')['useSubmitForm']
   const useToastFeedback: typeof import('./hooks/toast')['useToastFeedback']
   const wrapTranslationKey: typeof import('./utils/strings')['wrapTranslationKey']
 }

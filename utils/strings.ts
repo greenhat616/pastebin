@@ -54,7 +54,7 @@ export function getLines(str: string): number {
   return str.split('\n').length
 }
 
-export type TranslationKey = `[${string}]`
+export type TranslationKey = `[[${string}]]`
 
 /**
  * Judge whether the string is a translation key
@@ -62,7 +62,7 @@ export type TranslationKey = `[${string}]`
  * @returns {boolean} - Whether the string is a translation key
  */
 export function isTranslationKey(str: string): boolean {
-  return /^\[.*\]$/.test(str)
+  return /^\[\[.*\]\]$/.test(str)
 }
 
 /**
@@ -71,7 +71,7 @@ export function isTranslationKey(str: string): boolean {
  * @returns {string} - Unwrapped string
  */
 export function unwrapTranslationKey(str: TranslationKey): string {
-  return str.replace(/^\[(.*)\]$/, '$1')
+  return str.slice(2, -2)
 }
 
 /**
@@ -80,7 +80,7 @@ export function unwrapTranslationKey(str: TranslationKey): string {
  * @returns {TranslationKey} - Wrapped string
  */
 export function wrapTranslationKey(str: string): TranslationKey {
-  return `[${str}]` as TranslationKey
+  return `[[${str}]]` as TranslationKey
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types

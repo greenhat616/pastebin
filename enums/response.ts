@@ -1,4 +1,5 @@
 export enum ResponseCode {
+  NotInvoke = -1, // 未调用
   OK = 0,
   InternalError = 50, // 内部发生错误
   ValidationFailed = 51, // 数据验证失败

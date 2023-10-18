@@ -13,7 +13,7 @@ export function verifyPassword(
   password: string,
   hash: string
 ): Promise<boolean> {
-  return verify(password, hash)
+  return verify(hash, password)
 }
 
 /**

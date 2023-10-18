@@ -1,5 +1,5 @@
 'use client'
-import { SignInSchema } from '@/libs/validation/auth'
+import { signInAction } from '@/actions/auth'
 import {
   Button,
   FormControl,
@@ -10,52 +10,38 @@ import {
 } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
-import { useFormState, useFormStatus } from 'react-dom'
-import { ZodError } from 'zod'
+import { useFormStatus } from 'react-dom'
 
 type Props = {
-  signInAction: (
-    callbackURL: string | undefined,
-    formData: FormData
-  ) => Promise<FormData>
+  // signInAction: (
+  //   callbackURL: string | undefined,
+  //   formData: FormData
+  // ) => Promise<FormData>
 }
 
-const initialState = {
-  // form: {
-  //   email: '',
-  //   password: ''
-  // },
-  // error: {
-  //   email: undefined,
-  //   password: undefined
-  // } as {
-  //   email?: string
-  //   password?: string
-  // }
-  error: undefined as string | undefined,
-  issues: [] as ZodError<typeof SignInSchema>['issues']
-}
+// const initialState = {
+//   // form: {
+//   //   email: '',
+//   //   password: ''
+//   // },
+//   // error: {
+//   //   email: undefined,
+//   //   password: undefined
+//   // } as {
+//   //   email?: string
+//   //   password?: string
+//   // }
+//   error: undefined as string | undefined,
+//   issues: [] as ZodError<typeof SignInSchema>['issues']
+// }
 
-type SubmitProps = {
-  state: Partial<typeof initialState>
-}
+// type SubmitProps = {
+//   state: Partial<typeof initialState>
+// }
 
-function Submit({ state }: SubmitProps) {
+function Submit() {
   const t = useTranslations()
-  const toast = useToast()
   const { pending } = useFormStatus()
-
-  if (!pending && state.error) {
-    toast({
-      title: t('auth.signin.credentials.feedback.error.title'),
-      description: t('auth.signin.credentials.feedback.error.description', {
-        error: translateIfKey(t, state.error)
-      }),
-      status: 'error',
-      duration: 5000,
-      isClosable: true
-    })
-  }
 
   return (
     <Button
@@ -74,17 +60,26 @@ function Submit({ state }: SubmitProps) {
 
 export default function Credentials(props: Props) {
   // Deps
+  const toast = useToast()
   const searchParams = useSearchParams()
-  const signIn = props.signInAction.bind(
+  const signIn = signInAction.bind(
     null,
     searchParams.get('callbackUrl') || undefined
   )
-  const [state, signInAction] = useFormState<Partial<typeof initialState>>(
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore ts(2345)
-    signIn,
-    initialState
-  )
+
+  const { state, action } = useSubmitForm(signIn, {
+    onError: (state) => {
+      toast({
+        title: t('auth.signin.credentials.feedback.error.title'),
+        description: t('auth.signin.credentials.feedback.error.description', {
+          error: translateIfKey(t, state.error || 'Unknown error')
+        }),
+        status: 'error',
+        duration: 5000,
+        isClosable: true
+      })
+    }
+  })
   const t = useTranslations()
 
   const msgs = state.issues?.reduce(
@@ -173,7 +168,7 @@ export default function Credentials(props: Props) {
   // })
 
   return (
-    <Stack as="form" action={signInAction} gap={4}>
+    <Stack as="form" action={action} gap={4}>
       <FormControl isInvalid={!!msgs?.email}>
         <Input
           variant="outline"
@@ -206,7 +201,7 @@ export default function Credentials(props: Props) {
           <FormErrorMessage>{msgs?.password}</FormErrorMessage>
         )}
       </FormControl>
-      <Submit state={state} />
+      <Submit />
     </Stack>
   )
 }

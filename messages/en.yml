@@ -101,6 +101,7 @@ auth:
         password: Password
         password_confirmation: Confirm Password
       feedback:
+        validation_failed: Please check your input.
         email:
           required: Email is required
           invalid: Invalid email
