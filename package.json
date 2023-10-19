@@ -10,7 +10,7 @@
     "db:push": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push",
     "dev": "next dev -p 6754",
     "gen:oauth": "tsx ./scripts/tools/gen-oauth.ts",
-    "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/migrate.ts deploy && cross-env NODE_ENV=development tsx ./scripts/prisma/generate.ts",
+    "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/generate.ts",
     "lint": "bun lint:eslint && bun lint:ts && bun lint:styles",
     "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:styles": "stylelint --fix --allow-empty-input --all",

@@ -36,7 +36,7 @@ type Props = {
   params: { cuid: string }
 }
 
-export function PosterInfo({
+function PosterInfo({
   data,
   timeZone,
   locale

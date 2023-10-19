@@ -44,7 +44,6 @@ export const authConfig = {
     // Note that: this hook only invoked in signed in user.
     // So that, we should reject the request in layout react server component.
     async authorized({ request, auth }) {
-      console.log(auth)
       if (!request.nextUrl) return true
       if (request.nextUrl.pathname.startsWith('/admin')) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
