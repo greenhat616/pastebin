@@ -1,6 +1,7 @@
 import React from 'react'
 
 // Lib
+import { Analytics } from '@vercel/analytics/react'
 // import { useLocale } from 'next-intl'
 import { notFound } from 'next/navigation'
 // import { Inter } from 'next/font/google'
@@ -52,6 +53,7 @@ export default function LocaleLayout({ children, params }: Props) {
       <body className={`${firaCode.variable} font-sans`}>
         <UnoCSSIndicator />
         {children}
+        <Analytics />
       </body>
     </html>
   )
