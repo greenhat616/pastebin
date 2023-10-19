@@ -148,7 +148,7 @@ export default function CodeForm(props: Props) {
       })
       setContentPreview(() => result)
     } catch (err) {
-      // console.error(err)
+      console.error(err)
       setContentPreview(
         () =>
           `Rendering Error: ${(err as Error)
