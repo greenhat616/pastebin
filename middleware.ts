@@ -57,7 +57,7 @@ const middlewares: Array<Middleware> = [
     ...Locales,
     pathnames,
     localePrefix: 'never'
-  }),
+  }) as unknown as Middleware,
   auth as Middleware
 ]
 

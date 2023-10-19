@@ -83,7 +83,7 @@ export default function SignUpForm() {
   const msgs = state?.issues?.reduce(
     (acc, issue) => {
       for (const path of issue.path) {
-        console.log(translateIfKey(t, issue.message))
+        // console.log(translateIfKey(t, issue.message))
         if (!acc[path as keyof typeof acc])
           acc[path as keyof typeof acc] = translateIfKey(t, issue.message)
       }

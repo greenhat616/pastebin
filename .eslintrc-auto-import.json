@@ -51,6 +51,8 @@
     "IFluentEmojiFlatSmilingFaceWithSunglasses": true,
     "IFluentEmojiFlatSmirkingFace": true,
     "IFluentEmojiFlatWoozyFace": true,
-    "IFluentEmojiFlatZanyFace": true
+    "IFluentEmojiFlatZanyFace": true,
+    "ISolarClipboardBroken": true,
+    "ISolarShareLinear": true
   }
 }
