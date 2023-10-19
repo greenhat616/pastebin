@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
         }
       }
     })
-    if (expiredPastes.length > 0) {
+    if (expiredPastes && expiredPastes.length > 0) {
       await client.paste.deleteMany({
         where: {
           id: {

@@ -1,6 +1,6 @@
 'use client'
 import AnimatedLogo from '@/components/AnimatedLogo'
-import { Box, Link, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Link, useToast } from '@chakra-ui/react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {
   ArrowRightOnRectangleIcon,
@@ -88,9 +88,8 @@ export function Header(props: Props) {
                     <Menu as={Box} className={styles.user}>
                       <Box>
                         <Menu.Button className={styles.avatar}>
-                          <NImage
-                            width={32}
-                            height={32}
+                          <Avatar
+                            size="sm"
                             src={
                               props.session?.user?.avatar ||
                               env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR.replace(
@@ -98,7 +97,7 @@ export function Header(props: Props) {
                                 ''
                               )
                             }
-                            alt="avatar"
+                            name={props.session?.user?.name || undefined}
                           />
                         </Menu.Button>
                       </Box>

@@ -31,8 +31,6 @@ declare global {
   const IFluentEmojiFlatSmirkingFace: typeof import('~icons/fluent-emoji-flat/smirking-face')['default']
   const IFluentEmojiFlatWoozyFace: typeof import('~icons/fluent-emoji-flat/woozy-face')['default']
   const IFluentEmojiFlatZanyFace: typeof import('~icons/fluent-emoji-flat/zany-face')['default']
-  const IMdiGithub: typeof import('~icons/mdi/github')['default']
-  const IMdiGoogle: typeof import('~icons/mdi/google')['default']
   const ISolarClipboardBroken: typeof import('~icons/solar/clipboard-broken')['default']
   const ISolarShareLinear: typeof import('~icons/solar/share-linear')['default']
   const NHead: typeof import('next/head')['default']

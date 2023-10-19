@@ -103,7 +103,7 @@ export default async function View(props: Props) {
   // if (!checkUUIDValidation(props.params.cuid)) return notFound()
   const cuid = props.params.cuid
   const data = await getPasteData(cuid)
-  if (!data || !(data?.content as Content[])[0]) return notFound()
+  if (!data || !(data?.content as Content[])[0]) notFound()
 
   const content = (data?.content as Content[])[0] // TODO: support multiple content, gist like
 

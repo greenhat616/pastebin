@@ -6,6 +6,7 @@
     "NScript": true,
     "classNames": true,
     "fail": true,
+    "formatDateTime": true,
     "getDictionaries": true,
     "getLines": true,
     "getLocalePathname": true,
@@ -13,6 +14,7 @@
     "getRuntimeMode": true,
     "isTranslationKey": true,
     "loadEnv": true,
+    "newDayjs": true,
     "nok": true,
     "ok": true,
     "parseURLParams": true,
@@ -53,8 +55,6 @@
     "IFluentEmojiFlatWoozyFace": true,
     "IFluentEmojiFlatZanyFace": true,
     "ISolarClipboardBroken": true,
-    "ISolarShareLinear": true,
-    "formatDateTime": true,
-    "newDayjs": true
+    "ISolarShareLinear": true
   }
 }
