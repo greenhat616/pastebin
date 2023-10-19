@@ -10,7 +10,9 @@ import {
 } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
-import { useFormStatus } from 'react-dom'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore ts(2305)
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 
 type Props = {
   // signInAction: (

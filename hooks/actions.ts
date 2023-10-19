@@ -5,7 +5,9 @@ import { ActionReturn, State } from '@/utils/actions'
 import { Awaitable } from '@/utils/types'
 import { useEffect, useRef, type MutableRefObject } from 'react'
 
-import { useFormState } from 'react-dom'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore ts(2305)
+import { experimental_useFormState as useFormState } from 'react-dom'
 
 /**
  * useSubmitForm is a wrapper to use React Server Actions with callbacks handled correctly.

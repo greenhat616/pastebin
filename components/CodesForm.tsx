@@ -20,7 +20,9 @@ import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
 import { useTranslations } from 'next-intl'
 import React, { useReducer, useRef, useState } from 'react'
-import { useFormStatus } from 'react-dom'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore ts(2305)
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { BuiltinLanguage } from 'shikiji/core'
 type Props = {
   defaultNickname?: string
