@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -24,21 +20,17 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
-    "types": [
-      "unplugin-icons/types/react"
-    ]
+    "types": ["unplugin-icons/types/react"]
   },
   "include": [
     "next-env.d.ts",
+    "auto-imports.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "app/[locale]/(auth)/_components/layouts/go-back.-buttontsx"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    ".next/types/**/*.ts",
+    "app/[locale]/(auth)/_components/layouts/go-back.-buttontsx"
+  ],
+  "exclude": ["node_modules"]
 }
