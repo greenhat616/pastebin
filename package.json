@@ -83,7 +83,7 @@
     "negotiator": "^0.6.3",
     "next": "canary",
     "next-auth": "experimental",
-    "next-intl": "3.0.0-rc.2",
+    "next-intl": "3.0.0-rc.5",
     "postcss": "^8.4.31",
     "postcss-html": "^1.5.0",
     "postcss-scss": "^4.0.9",
