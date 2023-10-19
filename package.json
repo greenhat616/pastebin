@@ -13,7 +13,7 @@
     "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/generate.ts",
     "lint": "bun lint:eslint && bun lint:ts && bun lint:styles",
     "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint:styles": "stylelint --fix --allow-empty-input --all",
+    "lint:styles": "stylelint --allow-empty-input \"**/*.{css,scss}\"",
     "lint:ts": "tsc --noEmit",
     "pkg:fmt": "prettier --write package.json",
     "pkg:sort": "bunx sort-package-json",
