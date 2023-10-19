@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PasteBin
 
-## Getting Started
+A lightweight and modern paste bin and url shortener.
 
-First, run the development server:
+# Features
+
+- :yum: Next.js 13 with `App Directory` support
+  - `RSC` (React State Component) for global state management and data fetching
+  - `React Server Actions` for mutation
+- :globe_with_meridians: I18n with `next-intl` 3 
+- :closed_lock_with_key: Auth with `next-auth` 5, including full OAuth support and basic credentials.
+  - `next-auth` with `prisma` adapter, so that it is not support Edge environment in api route.
+  - Credentials password hashed with `argon2`
+- :shield: Validation with `zod`
+- :gem: Database ORM with `prisma`
+  - Upcoming multi-drivers support, including `PostgreSQL`, `MySQL`, `SQLite`, `SQL Server`, and `MongoDB`
+- :atom_symbol: UI with `Chakra UI`
+- :gear: CSS utils library `UnoCSS`
+- :screwdriver: Hooks library `react-use` and `ahooks`
+- :package: Package management with `bun`
+- :zap: Syntax highlight with `shikiji`
+- :nazar_amulet: Environment variables provides and validation with `@t3-oss/env`
+- :rainbow: `TypeScript` native support
+- :policeman: Lints and CI process with `husky` and `lint-staged` with `eslint`, `tsc`, `prettier`, and `stylelint`
+
+# Installation
+
+You should define `database` related environment variables  in `.env.local` file before running the app.
+
+It is required by `prisma` to generate database schema and types.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+bun i # Install dependencies and generate database schema and types
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+bun dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+# Build
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+bun run build
+```
