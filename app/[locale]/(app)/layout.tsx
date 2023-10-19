@@ -1,31 +1,26 @@
+import IntlClientProvider from '@/components/IntlClientProvider'
+import { auth } from '@/libs/auth'
 import { ChakraProvider } from '@chakra-ui/react'
 import { omit, pick } from 'lodash-es'
-import {
-  AbstractIntlMessages,
-  NextIntlClientProvider,
-  useLocale,
-  useMessages
-} from 'next-intl'
-import { ReactNode } from 'react'
-
-import { auth } from '@/libs/auth'
 import { Session } from 'next-auth/types'
+import { AbstractIntlMessages, useLocale, useMessages } from 'next-intl'
+import { ReactNode } from 'react'
 import { Header } from './_components/layout/Header'
 
 type Props = {
   children: ReactNode
 }
 
-function IntlProvider({ children }: Props) {
+function HeaderIntlProvider({ children }: Props) {
   const locale = useLocale()
   const messages = useMessages()
   return (
-    <NextIntlClientProvider
+    <IntlClientProvider
       locale={locale}
       messages={pick(messages, 'app.nav') as AbstractIntlMessages}
     >
       {children}
-    </NextIntlClientProvider>
+    </IntlClientProvider>
   )
 }
 
@@ -34,7 +29,7 @@ export default async function AppLayout({ children }: Props) {
 
   return (
     <ChakraProvider>
-      <IntlProvider>
+      <HeaderIntlProvider>
         <Header
           session={
             session
@@ -42,7 +37,7 @@ export default async function AppLayout({ children }: Props) {
               : null
           }
         />
-      </IntlProvider>
+      </HeaderIntlProvider>
       <main>
         <div className="mx-auto max-w-7xl px-3 py-6 sm:px-6 lg:px-8">
           {children}

@@ -1,12 +1,8 @@
+import IntlClientProvider from '@/components/IntlClientProvider'
 import { Stack } from '@chakra-ui/react'
 import { pick } from 'lodash-es'
 import { Metadata } from 'next'
-import {
-  NextIntlClientProvider,
-  useLocale,
-  useMessages,
-  type AbstractIntlMessages
-} from 'next-intl'
+import { AbstractIntlMessages, useLocale, useMessages } from 'next-intl'
 import { getTranslator } from 'next-intl/server'
 import SignUpForm from './_components/form'
 
@@ -26,17 +22,26 @@ export async function generateMetadata({
   }
 }
 
-export default function SignUpPage(props: Props) {
+function SignUpIntlProvider({ children }: { children: React.ReactNode }) {
   const messages = useMessages()
   const locale = useLocale()
+
   return (
-    <Stack gap={4}>
-      <NextIntlClientProvider
-        messages={pick(messages, 'auth.signup.form') as AbstractIntlMessages}
-        locale={locale}
-      >
+    <IntlClientProvider
+      messages={pick(messages, 'auth.signup.form') as AbstractIntlMessages}
+      locale={locale}
+    >
+      {children}
+    </IntlClientProvider>
+  )
+}
+
+export default async function SignUpPage(props: Props) {
+  return (
+    <SignUpIntlProvider>
+      <Stack gap={4}>
         <SignUpForm />
-      </NextIntlClientProvider>
-    </Stack>
+      </Stack>
+    </SignUpIntlProvider>
   )
 }

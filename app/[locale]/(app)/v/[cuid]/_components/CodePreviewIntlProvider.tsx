@@ -1,10 +1,6 @@
+import IntlClientProvider from '@/components/IntlClientProvider'
 import { pick } from 'lodash-es'
-import {
-  NextIntlClientProvider,
-  useLocale,
-  useMessages,
-  type AbstractIntlMessages
-} from 'next-intl'
+import { useLocale, useMessages, type AbstractIntlMessages } from 'next-intl'
 import React from 'react'
 
 type Props = {
@@ -16,11 +12,11 @@ export default function CodePreviewIntlProvider(props: Props) {
   const locale = useLocale()
 
   return (
-    <NextIntlClientProvider
+    <IntlClientProvider
       messages={pick(messages, 'code-preview') as AbstractIntlMessages}
       locale={locale}
     >
       {props.children}
-    </NextIntlClientProvider>
+    </IntlClientProvider>
   )
 }

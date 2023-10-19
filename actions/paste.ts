@@ -43,7 +43,10 @@ export async function submitPasteNormalAction<T>(
         content,
         poster: result.data.poster,
         userId: session ? session.user.id : null,
-        expiredAt: new Date(Date.now() + result.data.expiration * 1000)
+        expiredAt:
+          result.data.expiration === -1 // -1 means never expired
+            ? null
+            : new Date(Date.now() + result.data.expiration * 1000)
       }
     })
     redirect(`/v/${newPaste.id}`)

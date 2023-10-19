@@ -110,7 +110,7 @@ export default function SignUpForm() {
           //   state.form.email = e.target.value
           // }}
         />
-        {msgs?.email && <FormErrorMessage>{msgs?.email}</FormErrorMessage>}
+        {!!msgs?.email && <FormErrorMessage>{msgs?.email}</FormErrorMessage>}
       </FormControl>
       <FormControl isInvalid={!!msgs?.nickname}>
         <Input
@@ -124,7 +124,7 @@ export default function SignUpForm() {
           //   state.form.nickname = e.target.value
           // }}
         />
-        {msgs?.nickname && (
+        {!!msgs?.nickname && (
           <FormErrorMessage>{msgs?.nickname}</FormErrorMessage>
         )}
       </FormControl>
@@ -158,7 +158,7 @@ export default function SignUpForm() {
           //   state.form.password_confirmation = e.target.value
           // }}
         />
-        {msgs?.password_confirmation && (
+        {!!msgs?.password_confirmation && (
           <FormErrorMessage>{msgs?.password_confirmation}</FormErrorMessage>
         )}
       </FormControl>

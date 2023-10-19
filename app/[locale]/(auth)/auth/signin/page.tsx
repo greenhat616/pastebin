@@ -1,3 +1,4 @@
+import IntlClientProvider from '@/components/IntlClientProvider'
 import NavigationLink from '@/components/NavigationLink'
 import { providers } from '@/libs/auth/providers'
 import {
@@ -13,7 +14,6 @@ import {
 import { pick } from 'lodash-es'
 import { Metadata } from 'next'
 import {
-  NextIntlClientProvider,
   useLocale,
   useMessages,
   useTranslations,
@@ -32,17 +32,17 @@ export async function generateMetadata({
   }
 }
 
-function IntlProviders({ children }: { children: React.ReactNode }) {
+function SignInPageIntlProviders({ children }: { children: React.ReactNode }) {
   const messages = useMessages()
   const locale = useLocale()
 
   return (
-    <NextIntlClientProvider
+    <IntlClientProvider
       messages={pick(messages, 'auth.signin') as AbstractIntlMessages}
       locale={locale}
     >
       {children}
-    </NextIntlClientProvider>
+    </IntlClientProvider>
   )
 }
 
@@ -92,7 +92,7 @@ type Props = {
 
 export default async function SignInPage(props: Props) {
   return (
-    <IntlProviders>
+    <SignInPageIntlProviders>
       <Stack gap={4}>
         {/* Credentials Login */}
         <Credentials />
@@ -100,6 +100,6 @@ export default async function SignInPage(props: Props) {
           <OAuthProvider providers={providers} />
         </PageInner>
       </Stack>
-    </IntlProviders>
+    </SignInPageIntlProviders>
   )
 }

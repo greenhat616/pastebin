@@ -25,18 +25,18 @@ async function getPasteData(cuid: string) {
 }
 
 type Props = {
-  params: { uuid: string }
+  params: { cuid: string }
 }
 
 export default async function View(props: Props) {
-  if (!checkUUIDValidation(props.params.uuid)) return notFound()
-  const uuid = props.params.uuid
-  const data = await getPasteData(uuid)
+  if (!checkUUIDValidation(props.params.cuid)) return notFound()
+  const cuid = props.params.cuid
+  const data = await getPasteData(cuid)
   if (!data || !(data?.content as Content[])[0]) return notFound()
   const content = (data?.content as Content[])[0] // TODO: support multiple content, gist like
   return (
     <div>
-      <h1>View {uuid}</h1>
+      <h1>View {cuid}</h1>
       <CodePreviewIntlProvider>
         <CodePreview content={content.content} language={content.syntax} />
       </CodePreviewIntlProvider>
