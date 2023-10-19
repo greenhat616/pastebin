@@ -1,0 +1,41 @@
+{
+  "extends": [
+    "config:base",
+    "default:automergeMinor",
+    "default:disableRateLimiting",
+    "default:rebaseStalePrs",
+    "group:allNonMajor"
+  ],
+  "packageRules": [
+    {
+      "groupName": "next packages",
+      "matchPackagePatterns": [
+        "next"
+      ]
+    },
+    {
+      "groupName": "TypeScript",
+      "matchPackagePatterns": [
+        "typescript"
+      ]
+    },
+    {
+      "groupName": "Lint packages",
+      "matchPackagePatterns": [
+        "eslint",
+        "prettier",
+        "commitlint",
+        "stylelint",
+        "husky",
+        "lint-staged"
+      ]
+    },
+    {
+      "groupName": "Testing packages",
+      "matchPackagePatterns": [
+        "vitest",
+        "cypress"
+      ]
+    }
+  ]
+}
