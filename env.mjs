@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     PG_URL: z.string().url(),
+    PG_DIRECT_URL: z.string().url(),
     NEXTAUTH_URL: z.string().url().optional(),
     NEXTAUTH_SECRET: z.string().min(1),
     AUTH_GITHUB_ID: z.string().min(1),
@@ -36,6 +37,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     PG_URL: process.env.PG_URL,
+    PG_DIRECT_URL: process.env.PG_DIRECT_URL,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     AUTH_GITHUB_ID: process.env.AUTH_GITHUB_ID,
