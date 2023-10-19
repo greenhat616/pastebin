@@ -20,6 +20,7 @@ import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
 import { useTranslations } from 'next-intl'
 import { useReducer, useRef, useState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { BuiltinLanguage } from 'shikiji/core'
 type Props = {
   defaultNickname?: string
@@ -122,6 +123,7 @@ export default function CodeForm(props: Props) {
       })
     }
   })
+  const { pending } = useFormStatus()
   const msgs = state?.issues?.reduce(
     (acc, cur) => {
       for (const path of cur.path) {
@@ -286,7 +288,14 @@ export default function CodeForm(props: Props) {
         </FormControl>
       </Box>
       <Flex className="mt-sm md:mt-3xl" justify="flex-end" gap={4}>
-        <Button colorScheme="blue" variant="solid" type="submit">
+        <Button
+          colorScheme="blue"
+          variant="solid"
+          type="submit"
+          isLoading={pending}
+          disabled={pending}
+          loadingText={t('components.code_form.form.submitting')}
+        >
           {t('components.code_form.form.actions.submit')}
         </Button>
         <Button variant="outline" onClick={() => setPreview((s) => !s)}>

@@ -5,6 +5,7 @@ import { ResponseCode } from '@/enums/response'
 import { auth } from '@/libs/auth'
 import client from '@/libs/prisma/client'
 import { CodeFormSchema, Content } from '@/libs/validation/paste'
+import type { Session } from 'next-auth/types'
 import { isRedirectError } from 'next/dist/client/components/redirect'
 import { redirect } from 'next/navigation'
 
@@ -42,7 +43,8 @@ export async function submitPasteNormalAction<T>(
         description: '',
         content,
         poster: result.data.poster,
-        userId: session ? session.user.id : null,
+        // TODO: remove this force cast, waiting for next-auth update
+        userId: session ? (session as unknown as Session).user.sub : null,
         expiredAt:
           result.data.expiration === -1 // -1 means never expired
             ? null
@@ -52,6 +54,7 @@ export async function submitPasteNormalAction<T>(
     redirect(`/v/${newPaste.id}`)
   } catch (error) {
     if (isRedirectError(error)) throw error
+    console.error(error)
     return nok(ResponseCode.OperationFailed, {
       error: (error as Error).message
     })

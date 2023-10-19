@@ -37,6 +37,7 @@ components:
         required: Content is required
         too_long: Content is too long (maximum is 65535 characters)
     form:
+      submitting: Submitting...
       poster:
         label: Poster
         placeholder: Enter your nickname
@@ -68,6 +69,12 @@ components:
 
 
 code-preview:
+  info:
+    poster: Poster
+    syntax: Syntax
+    expiration: "Expiration: {expiration}"
+    expiration_never: Never
+    posted_at: Posted at {time}
   feedback:
     copy:
       success:

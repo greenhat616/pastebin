@@ -26,7 +26,8 @@ declare module '@auth/core/jwt' {
 declare module 'next-auth' {
   interface Session {
     user: {
-      id: string
+      sub: string // It is a alias of id
+      // id: string
       role: Role
       avatar: string | null
       isSuspended: boolean

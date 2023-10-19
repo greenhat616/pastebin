@@ -36,6 +36,7 @@ components:
         required: 内容是必填项
         too_long: 内容太长（最多 65535 个字符）
     form:
+      submitting: 提交中...
       poster:
         label: 昵称
         placeholder: 输入您的昵称
@@ -66,6 +67,13 @@ components:
         edit: 编辑
 
 code-preview:
+  info:
+    poster: 作者
+    syntax: 语法
+    expiration: 失效于：{expiration}
+    expiration_never: 从不
+    posted_at: 发布于：{time}
+
   feedback:
     copy:
       success:

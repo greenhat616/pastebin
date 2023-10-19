@@ -53,6 +53,8 @@
     "IFluentEmojiFlatWoozyFace": true,
     "IFluentEmojiFlatZanyFace": true,
     "ISolarClipboardBroken": true,
-    "ISolarShareLinear": true
+    "ISolarShareLinear": true,
+    "formatDateTime": true,
+    "newDayjs": true
   }
 }

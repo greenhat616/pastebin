@@ -33,7 +33,11 @@ export default async function AppLayout({ children }: Props) {
         <Header
           session={
             session
-              ? (omit(session, ['user.jti', 'user.exp', 'user.iat']) as Session)
+              ? (omit(session, [
+                  'user.jti',
+                  'user.exp',
+                  'user.iat'
+                ]) as Partial<Session>)
               : null
           }
         />

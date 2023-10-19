@@ -20,7 +20,7 @@ import { useTranslations } from 'next-intl'
 
 type Props = {
   className?: string
-  session: Session | null
+  session: Partial<Session> | null
 }
 
 export function Header(props: Props) {

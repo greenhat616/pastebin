@@ -10,7 +10,7 @@
     "db:push": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push",
     "dev": "next dev -p 6754",
     "gen:oauth": "tsx ./scripts/tools/gen-oauth.ts",
-    "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push --accept-data-loss && cross-env NODE_ENV=development tsx ./scripts/prisma/generate.ts",
+    "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/migrate.ts deploy && cross-env NODE_ENV=development tsx ./scripts/prisma/generate.ts",
     "lint": "bun lint:eslint && bun lint:ts && bun lint:styles",
     "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "lint:styles": "stylelint --fix --allow-empty-input --all",
@@ -69,6 +69,7 @@
     "autoprefixer": "^10.4.16",
     "chakra-react-select": "^4.7.5",
     "cross-env": "^7.0.3",
+    "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "eslint": "^8.51.0",
     "eslint-config-next": "^13.5.6",
@@ -114,8 +115,7 @@
     "unplugin-auto-import": "^0.16.6",
     "unplugin-icons": "^0.17.0",
     "yaml": "^2.3.3",
-    "yaml-loader": "^0.8.0",
-    "zustand": "^4.4.3"
+    "yaml-loader": "^0.8.0"
   },
   "oauth": {
     "qq": "qqchat"
