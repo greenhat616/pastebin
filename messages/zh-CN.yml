@@ -9,7 +9,12 @@ app:
     accounts:
       sign_in: 登录
       sign_up: 注册
-      sign_out: 注销
+      sign_out:
+        label: 注销
+        toast:
+          success:
+            title: 注销成功
+            description: 我们将在几秒钟内将您重定向至之前的页面。
       drop_down:
         profile: 我的资料
         snippets: 我的片段

@@ -9,7 +9,12 @@ app:
     accounts:
       sign_in: Sign In
       sign_up: Sign Up
-      sign_out: Sign Out
+      sign_out:
+        label: Sign Out
+        toast:
+          success:
+            title: Signed out successfully
+            description: We will redirect you to the previous page right away.
       drop_down:
         profile: My Profile
         snippets: My Snippets

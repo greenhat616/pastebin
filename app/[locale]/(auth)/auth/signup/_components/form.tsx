@@ -149,7 +149,7 @@ export default function SignUpForm() {
         <Input
           variant="outline"
           placeholder={t('auth.signup.form.placeholder.password_confirmation')}
-          type="password_confirmation"
+          type="password"
           name="password_confirmation"
           rounded="xl"
           size="lg"

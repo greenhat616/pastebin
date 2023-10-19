@@ -20,6 +20,7 @@ import {
   type AbstractIntlMessages
 } from 'next-intl'
 import { getTranslator } from 'next-intl/server'
+import { headers } from 'next/headers'
 import Credentials from './_components/Credentials'
 import OAuthProvider from './_components/OAuthProvider'
 export async function generateMetadata({
@@ -35,7 +36,6 @@ export async function generateMetadata({
 function SignInPageIntlProviders({ children }: { children: React.ReactNode }) {
   const messages = useMessages()
   const locale = useLocale()
-
   return (
     <IntlClientProvider
       messages={pick(messages, 'auth.signin') as AbstractIntlMessages}
@@ -48,6 +48,10 @@ function SignInPageIntlProviders({ children }: { children: React.ReactNode }) {
 
 function PageInner({ children }: { children: React.ReactNode }) {
   const t = useTranslations()
+  const header = headers()
+  const searchParams = header.get('x-search-params')
+    ? `?${header.get('x-search-params')}`
+    : ``
   return (
     <>
       <Grid gap={4} templateColumns="repeat(2, 1fr)">
@@ -66,7 +70,7 @@ function PageInner({ children }: { children: React.ReactNode }) {
           <Text fontSize="sm" textAlign="right">
             <Link
               as={NavigationLink}
-              href="/auth/signup"
+              href={`/auth/signup${searchParams}`}
               className="!hover:underline"
             >
               {t('auth.signin.signup')}

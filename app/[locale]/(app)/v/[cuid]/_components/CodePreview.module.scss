@@ -10,6 +10,8 @@
   .shiki-container {
     @apply flex-1 pl-5 overflow-x-auto py-3;
 
+    scrollbar-width: none;
+
     .header {
       @apply block text-right text-gray-400 select-none relative;
 
@@ -23,7 +25,7 @@
         @apply transition-50 transition-all ease-linear opacity-0 scale-0;
 
         .share-button, .copy-button {
-          @apply flex items-center justify-center text-xs w-10 h-10 rounded-lg border-1 border-solid border-gray-200 cursor-pointer;
+          @apply flex items-center justify-center text-xs w-10 h-10 rounded-lg border-1 border-solid border-gray-200 cursor-pointer bg-white opacity-80;
         }
       }
 

@@ -1,6 +1,6 @@
 'use client'
 import AnimatedLogo from '@/components/AnimatedLogo'
-import { Box, Link } from '@chakra-ui/react'
+import { Box, Link, useToast } from '@chakra-ui/react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {
   ArrowRightOnRectangleIcon,
@@ -26,6 +26,7 @@ type Props = {
 export function Header(props: Props) {
   const router = useRouter()
   const t = useTranslations()
+  const toast = useToast()
 
   return (
     <Disclosure as="nav" className={classNames('bg-gray-800', props.className)}>
@@ -145,9 +146,26 @@ export function Header(props: Props) {
                                   'cursor-pointer',
                                   active && styles.active
                                 )}
-                                onClick={() => signOut()}
+                                onClick={() =>
+                                  signOut().then(() => {
+                                    toast({
+                                      title: t(
+                                        'app.nav.accounts.sign_out.toast.success.title'
+                                      ),
+                                      description: t(
+                                        'app.nav.accounts.sign_out.toast.success.description'
+                                      ),
+                                      status: 'success',
+                                      duration: 3000,
+                                      isClosable: true
+                                    })
+                                    setTimeout(() => {
+                                      router.refresh()
+                                    }, 2000)
+                                  })
+                                }
                               >
-                                {t('app.nav.accounts.sign_out')}
+                                {t('app.nav.accounts.sign_out.label')}
                               </Link>
                             )}
                           </Menu.Item>

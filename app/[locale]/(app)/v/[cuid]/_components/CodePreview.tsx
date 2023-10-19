@@ -8,6 +8,7 @@ import { useMemo, useState } from 'react'
 import styles from './CodePreview.module.scss'
 import ShikiHeader from './shiki/Header'
 import LineNumbers from './shiki/LineNumbers'
+import './shiki/shiki.scss'
 
 type Props = {
   content: string
@@ -84,7 +85,7 @@ export default function CodePreview(props: Props) {
       <CardBody p={0}>
         {transformedCode !== '' ? (
           <Box
-            className={styles['code-preview']}
+            className={classNames(styles['code-preview'], 'code-preview')}
             as="div"
             style={{
               // Disable line because of this line is work
