@@ -9,7 +9,7 @@
     "db:pull": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts pull",
     "db:push": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push",
     "dev": "next dev -p 6754",
-    "postinstall": "husky install",
+    "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push --accept-data-loss && cross-env NODE_ENV=development tsx ./scripts/prisma/generate.ts",
     "lint": "next lint",
     "pkg:fmt": "prettier --write package.json",
     "pkg:sort": "bunx sort-package-json",
