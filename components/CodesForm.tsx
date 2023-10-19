@@ -281,7 +281,7 @@ export default function CodeForm(props: Props) {
                 className="overflow-y-auto"
                 onClick={() => {
                   setPreview((s) => !s)
-                  contentRef.current?.focus()
+                  contentRef?.current?.focus()
                 }}
               />
             </Card>
