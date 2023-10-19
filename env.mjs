@@ -7,8 +7,11 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
-    PG_URL: z.string().url(),
-    PG_DIRECT_URL: z.string().url(),
+    DB_ADAPTER: z
+      .enum(['postgresql', 'mongodb', 'mysql'])
+      .default('postgresql'),
+    PG_URL: z.string().url().optional(),
+    PG_DIRECT_URL: z.string().url().optional(),
     NEXTAUTH_URL: z.string().url().optional(),
     NEXTAUTH_SECRET: z.string().min(1),
     AUTH_GITHUB_ID: z.string().min(1),

@@ -34,7 +34,7 @@ export async function generateMetadata({
     description: t('description'),
     other: {
       currentYear: formatter.dateTime(now, { year: 'numeric' }),
-      timeZone: timeZone || 'N/A'
+      timeZone: timeZone || 'Asia/Shanghai'
     }
   }
 }

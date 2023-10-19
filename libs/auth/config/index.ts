@@ -10,7 +10,7 @@ import Credentials from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
 import crypto from 'node:crypto'
-import 'server-only'
+// import 'server-only'
 import { authConfig as edgeConfig } from './edge'
 const adapter = PrismaAdapter(prisma)
 export const authConfig = merge(edgeConfig, {

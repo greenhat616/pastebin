@@ -13,13 +13,17 @@
     "getRuntimeMode": true,
     "isTranslationKey": true,
     "loadEnv": true,
+    "nok": true,
+    "ok": true,
     "parseURLParams": true,
     "success": true,
+    "translateIfKey": true,
     "trimChars": true,
     "trimCharsLeft": true,
     "trimCharsRight": true,
     "unwrapTranslationKey": true,
     "useSWR": true,
+    "useSubmitForm": true,
     "useToastFeedback": true,
     "wrapTranslationKey": true,
     "IFluentEmojiFlatAngryFace": true,
@@ -47,14 +51,6 @@
     "IFluentEmojiFlatSmilingFaceWithSunglasses": true,
     "IFluentEmojiFlatSmirkingFace": true,
     "IFluentEmojiFlatWoozyFace": true,
-    "IFluentEmojiFlatZanyFace": true,
-    "IMdiGithub": true,
-    "IMdiGoogle": true,
-    "translateIfKey": true,
-    "nok": true,
-    "ok": true,
-    "useSubmitForm": true,
-    "ISolarClipboardBroken": true,
-    "ISolarShareLinear": true
+    "IFluentEmojiFlatZanyFace": true
   }
 }

@@ -1,8 +1,8 @@
 import NavigationLink from '@/components/NavigationLink'
+import { providers } from '@/libs/auth/providers'
 import {
   AbsoluteCenter,
   Box,
-  Button,
   Divider,
   Grid,
   GridItem,
@@ -20,8 +20,8 @@ import {
   type AbstractIntlMessages
 } from 'next-intl'
 import { getTranslator } from 'next-intl/server'
-import Credentials from './_components/credentials'
-
+import Credentials from './_components/Credentials'
+import OAuthProvider from './_components/OAuthProvider'
 export async function generateMetadata({
   params: { locale }
 }: Props): Promise<Metadata> {
@@ -32,26 +32,24 @@ export async function generateMetadata({
   }
 }
 
-type Props = {
-  params: { locale: string }
-}
-
-export default function SignInPage(props: Props) {
-  const t = useTranslations()
+function IntlProviders({ children }: { children: React.ReactNode }) {
   const messages = useMessages()
   const locale = useLocale()
 
   return (
-    <Stack gap={4}>
-      {/* Credentials Login */}
-      <NextIntlClientProvider
-        messages={
-          pick(messages, 'auth.signin.credentials') as AbstractIntlMessages
-        }
-        locale={locale}
-      >
-        <Credentials />
-      </NextIntlClientProvider>
+    <NextIntlClientProvider
+      messages={pick(messages, 'auth.signin') as AbstractIntlMessages}
+      locale={locale}
+    >
+      {children}
+    </NextIntlClientProvider>
+  )
+}
+
+function PageInner({ children }: { children: React.ReactNode }) {
+  const t = useTranslations()
+  return (
+    <>
       <Grid gap={4} templateColumns="repeat(2, 1fr)">
         <GridItem>
           <Text fontSize="sm">
@@ -83,28 +81,25 @@ export default function SignInPage(props: Props) {
           {t('auth.signin.divider')}
         </AbsoluteCenter>
       </Box>
+      {children}
+    </>
+  )
+}
+
+type Props = {
+  params: { locale: string }
+}
+
+export default async function SignInPage(props: Props) {
+  return (
+    <IntlProviders>
       <Stack gap={4}>
-        <Button
-          leftIcon={<IMdiGoogle />}
-          colorScheme="gray"
-          size="lg"
-          rounded="xl"
-        >
-          {t('auth.signin.sso', {
-            provider: 'Google'
-          })}
-        </Button>
-        <Button
-          leftIcon={<IMdiGithub />}
-          colorScheme="gray"
-          size="lg"
-          rounded="xl"
-        >
-          {t('auth.signin.sso', {
-            provider: 'Github'
-          })}
-        </Button>
+        {/* Credentials Login */}
+        <Credentials />
+        <PageInner>
+          <OAuthProvider providers={providers} />
+        </PageInner>
       </Stack>
-    </Stack>
+    </IntlProviders>
   )
 }

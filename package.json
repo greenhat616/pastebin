@@ -9,6 +9,7 @@
     "db:pull": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts pull",
     "db:push": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push",
     "dev": "next dev -p 6754",
+    "gen:oauth": "tsx ./scripts/tools/gen-oauth.ts",
     "postinstall": "husky install && cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push --accept-data-loss && cross-env NODE_ENV=development tsx ./scripts/prisma/generate.ts",
     "lint": "next lint",
     "pkg:fmt": "prettier --write package.json",
@@ -111,6 +112,9 @@
     "yaml": "^2.3.3",
     "yaml-loader": "^0.8.0",
     "zustand": "^4.4.3"
+  },
+  "oauth": {
+    "qq": "qqchat"
   },
   "trustedDependencies": [
     "@prisma/engines",
