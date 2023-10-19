@@ -1,8 +1,14 @@
+import { ResponseCode } from '@/enums/response'
 import { Role } from '@/enums/user'
 import client from '@/libs/prisma/client'
 import { NextRequest } from 'next/server'
 
 export async function GET(req: NextRequest) {
+  if (
+    req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return fail(ResponseCode.NotAuthorized, {})
+  }
   try {
     // 1. Check if the first user is admin, if not, grant admin role to it.
     const firstUser = await client.user.findFirst({
