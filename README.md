@@ -2,7 +2,7 @@
 
 A lightweight and modern paste bin and url shortener.
 
-# Features
+## Features
 
 :yum: Next.js 13 with `App Directory` support
   - `RSC` (React State Component) for global state management and data fetching
@@ -40,7 +40,7 @@ A lightweight and modern paste bin and url shortener.
 
 :policeman: Lints and CI process with `husky` and `lint-staged`, checking via `eslint`, `tsc`, `prettier`, and `stylelint`
 
-# Installation
+## Installation
 
 You should define `database` related environment variables  in `.env.local` file before running the app.
 
@@ -50,19 +50,19 @@ It is required by `prisma` to generate database schema and types.
 bun i # Install dependencies and generate database schema and types
 ```
 
-# Development
+## Development
 
 ```bash
 bun dev
 ```
 
-# Build
+## Build
 
 ```bash
 bun run build
 ```
 
-# Preview
+## Preview
 
 ```bash
 bun start
