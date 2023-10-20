@@ -1,25 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "bun run build",
   "cleanUrls": true,
   "crons": [
     {
       "path": "/api/task",
-      "schedule": "*/30 * * * *"
+      "schedule": "5 0 * * *"
     }
   ],
-  "devCommand": "bun dev",
-  "framework": "nextjs",
-  "functions": {
-    "actions/**/*.ts": {
-      "maxDuration": 30,
-      "memory": 3008
-    },
-    "app/api/**/*.ts": {
-      "maxDuration": 30,
-      "memory": 3008
-    }
-  },
-  "installCommand": "bun i && bun cross-env NODE_ENV=production tsx ./scripts/prisma/migrate.ts deploy",
   "trailingSlash": true
 }

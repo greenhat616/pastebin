@@ -1,11 +1,13 @@
 import { ResponseCode } from '@/enums/response'
 import { Role } from '@/enums/user'
+import { env } from '@/env.mjs'
 import client from '@/libs/prisma/client'
 import { NextRequest } from 'next/server'
 
 export async function GET(req: NextRequest) {
   if (
-    req.headers.get('Authorization') !== `Bearer ${process.env.CRON_SECRET}`
+    env.CRON_TASK_TOKEN &&
+    req.headers.get('Authorization') !== `Bearer ${env.CRON_TASK_TOKEN}`
   ) {
     return fail(ResponseCode.NotAuthorized, {})
   }

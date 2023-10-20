@@ -12,6 +12,7 @@ export const env = createEnv({
       .default('postgresql'),
     PG_URL: z.string().url().optional(),
     PG_DIRECT_URL: z.string().url().optional(),
+    CRON_TASK_TOKEN: z.string().optional(),
     NEXTAUTH_URL: z.string().url().optional(),
     NEXTAUTH_SECRET: z.string().min(1),
     AUTH_GITHUB_ID: z.string().min(1),
@@ -49,6 +50,9 @@ export const env = createEnv({
     AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR:
-      process.env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR
+      process.env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR,
+    CRON_TASK_TOKEN:
+      process.env.CRON_SECRET || // This is provided by Vercel
+      process.env.CRON_TASK_TOKEN // This is provided by us, to customize the token
   }
 })
