@@ -30,7 +30,7 @@ export default async function Home(props: Props) {
       <Announcement />
       <CodeFormIntlProvider>
         <CodeForm
-          className="mt-sm"
+          className="mt-4"
           defaultNickname={session ? session.user.name || undefined : undefined}
         />
       </CodeFormIntlProvider>

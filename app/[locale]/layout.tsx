@@ -1,5 +1,9 @@
 import React from 'react'
 
+// Global CSS
+// import 'uno.css'
+import '@/styles/global.scss'
+
 // Lib
 import { Analytics } from '@vercel/analytics/react'
 // import { useLocale } from 'next-intl'

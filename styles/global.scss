@@ -2,45 +2,113 @@
 @import url('../node_modules/@unocss/reset/sanitize/sanitize.css');
 @import url('../node_modules/@unocss/reset/sanitize/assets.css');
 
-/* style.css */
-@unocss preflights;
-@unocss default;
+// /* style.css */
+// @unocss preflights;
+// @unocss default;
 
-/*
-  Fallback layer. It's always recommended to include.
-  Only unused layers will be injected here.
-*/
-@unocss;
+// /*
+//   Fallback layer. It's always recommended to include.
+//   Only unused layers will be injected here.
+// */
+// @unocss;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    // Background
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    // Mute
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    // Popover
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    // Border
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    // Card
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    // Primary
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    // Secondary
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    // Accent
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    // Destructive
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+    // Ring
+    --ring: 215 20.2% 65.1%;
+    // Radius
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    // Background
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    // Mute
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+    // Popover
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+    // Border
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+    // Card
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    // Card
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    // Primary
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+    // Secondary
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+    // Accent
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+    // Ring
+    --ring: 216 34% 17%;
+    // Radius
+    --radius: 0.5rem;
   }
 }
 
-body {
-  height: 100vh;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+@layer base {
+  * {
+    @apply border-border;
+
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+
+    height: 100vh;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+  }
 
-* {
-  box-sizing: border-box;
-}
+  button {
+    @apply cursor-pointer border-0;
+  }
 
-button {
-  @apply cursor-pointer border-0;
 }

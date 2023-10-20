@@ -5,7 +5,7 @@ import transformerVariantGroup from '@unocss/transformer-variant-group'
 import { defineConfig, presetAttributify, presetIcons, presetUno } from 'unocss'
 export default defineConfig({
   content: {
-    filesystem: ['**/*.{html,js,ts,jsx,tsx,vue,svelte,astro}']
+    filesystem: ['**/*.{scss,css,html,js,ts,jsx,tsx,vue,svelte,astro}']
     // codes below are commented out because they're required by `@unocss/webpack` to process `@import` and `@apply` directives,
     // and the usage of `@unocss/webpack` is blocked by the issue https://github.com/unocss/unocss/issues/3198
     // pipeline: {

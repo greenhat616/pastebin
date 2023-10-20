@@ -17,15 +17,15 @@
 
       .language-name {
         @apply whitespace-normal absolute right-8 -top-1.5 text-xs;
-        @apply transition-50 transition-all ease-linear opacity-100;
+        @apply duration-75 transition-all ease-linear opacity-100;
       }
 
       .actions-group {
         @apply grid grid-cols-2 gap-2 absolute right-5 top-0 text-xs w-fit h-10;
-        @apply transition-50 transition-all ease-linear opacity-0 scale-0;
+        @apply duration-75 transition-all ease-linear opacity-0 scale-0;
 
         .share-button, .copy-button {
-          @apply flex items-center justify-center text-xs w-10 h-10 rounded-lg border-1 border-solid border-gray-200 cursor-pointer bg-white opacity-80;
+          @apply flex items-center justify-center text-xs w-10 h-10 rounded-lg border border-solid border-gray-200 cursor-pointer bg-white opacity-80;
         }
       }
 
@@ -47,7 +47,7 @@
   }
 
   .line-numbers-container {
-    @apply block border-0 border-r-1 border-solid border-gray-200 w-auto py-3;
+    @apply block border-0 border-r border-solid border-gray-200 w-auto py-3;
 
     .line-number {
       @apply block text-right text-gray-400 select-none;

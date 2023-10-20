@@ -270,7 +270,7 @@ export default function CodeForm(props: Props) {
         </FormControl>
       </Flex>
 
-      <Box className="mt-sm">
+      <Box className="mt-4">
         <FormControl isInvalid={!!msgs?.content}>
           <FormLabel>{t('components.code_form.form.content.label')}</FormLabel>
           {isPreview ? (
@@ -310,7 +310,7 @@ export default function CodeForm(props: Props) {
           )}
         </FormControl>
       </Box>
-      <Flex className="mt-sm md:mt-3xl" justify="flex-end" gap={4}>
+      <Flex className="mt-4 md:mt-6" justify="flex-end" gap={4}>
         <SubmitButton loadingText={t('components.code_form.form.submitting')}>
           {t('components.code_form.form.actions.submit')}
         </SubmitButton>
