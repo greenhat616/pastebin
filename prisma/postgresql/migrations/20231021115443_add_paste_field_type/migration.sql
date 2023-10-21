@@ -1,0 +1,1 @@
+ALTER TABLE "public"."pastes" ADD COLUMN "type" INTEGER NOT NULL DEFAULT 1;

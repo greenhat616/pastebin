@@ -16,8 +16,9 @@ app:
             title: 注销成功
             description: 我们将在几秒钟内将您重定向至之前的页面。
       drop_down:
-        profile: 我的资料
-        snippets: 我的片段
+        overview: 概览
+        profile: 资料
+        snippets: 片段
         settings: 设置
         admin: 管理员
 components:

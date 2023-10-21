@@ -16,8 +16,9 @@ app:
             title: Signed out successfully
             description: We will redirect you to the previous page right away.
       drop_down:
-        profile: My Profile
-        snippets: My Snippets
+        overview: Overview
+        profile: Profile
+        snippets: Snippets
         settings: Settings
         admin: Admin
 

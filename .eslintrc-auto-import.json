@@ -56,6 +56,15 @@
     "IFluentEmojiFlatZanyFace": true,
     "ISolarClipboardBroken": true,
     "ISolarShareLinear": true,
-    "getUserAvatar": true
+    "getUserAvatar": true,
+    "ISolarSettingsLinear": true,
+    "ISolarChatRound": true,
+    "ISolarChatRoundDotsLinear": true,
+    "ISolarDocumentsLinear": true,
+    "ISolarUserCircleLinear": true,
+    "ISolarLayersLinear": true,
+    "ISolarHomeSmileLinear": true,
+    "ISolarInboxLinear": true,
+    "formatPasteType": true
   }
 }

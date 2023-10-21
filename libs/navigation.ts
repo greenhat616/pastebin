@@ -22,7 +22,10 @@ export const pathnames = {
   '/auth/password/reset/[token]': '/auth/password/reset/[token]',
   '/': '/',
   '/about': '/about',
-  '/v/[uuid]': '/v/[uuid]'
+  '/v/[uuid]': '/v/[uuid]',
+  '/dashboard': '/dashboard',
+  '/dashboard/profiles': '/dashboard/profiles',
+  '/dashboard/settings': '/dashboard/settings'
 } satisfies Pathnames<typeof config.locales>
 
 export const { Link, redirect, usePathname, useRouter, getPathname } =

@@ -87,7 +87,7 @@ function PosterInfo({
   )
 }
 
-export function renderCode(code: string, language: string) {
+function renderCode(code: string, language: string) {
   return codeToHTMLWithTransformers(code, {
     lang: language
   })

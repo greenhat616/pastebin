@@ -4,6 +4,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 
 // TODO: load locale files automatically, maybe use a script to generate the list?
+import { PasteType } from '@/enums/paste'
 import 'dayjs/locale/en'
 import 'dayjs/locale/zh-cn'
 
@@ -31,4 +32,15 @@ export function newDayjs(
   { locale = 'zh-CN', timeZone = 'Asia/Shanghai' }: DayJSOptions = {}
 ) {
   return dayjs(date).locale(locale.toLowerCase()).tz(timeZone)
+}
+
+export function formatPasteType(type: PasteType) {
+  switch (type) {
+    case PasteType.Normal:
+      return 'Normal'
+    case PasteType.Gist:
+      return 'Gist'
+    default:
+      return 'Unknown'
+  }
 }

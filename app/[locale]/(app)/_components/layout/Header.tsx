@@ -113,28 +113,41 @@ export function Header(props: Props) {
                         <Menu.Items className={styles['dropdown-menu']}>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
-                                href="#"
+                              <Link
+                                href="/dashboard"
                                 className={classNames(
                                   styles.item,
                                   active && styles.active
                                 )}
                               >
-                                {t('app.nav.accounts.drop_down.profile')}
-                              </a>
+                                {t('app.nav.accounts.drop_down.overview')}
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>
                             {({ active }) => (
-                              <a
-                                href="#"
+                              <Link
+                                href="/dashboard/snippets"
+                                className={classNames(
+                                  styles.item,
+                                  active && styles.active
+                                )}
+                              >
+                                {t('app.nav.accounts.drop_down.snippets')}
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                href="/dashboard/settings"
                                 className={classNames(
                                   styles.item,
                                   active && styles.active
                                 )}
                               >
                                 {t('app.nav.accounts.drop_down.settings')}
-                              </a>
+                              </Link>
                             )}
                           </Menu.Item>
                           <Menu.Item>

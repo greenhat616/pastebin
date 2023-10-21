@@ -56,6 +56,7 @@ export const authConfig = merge(edgeConfig, {
           id: state.user.id
         }
       })
+      state.token.id = user!.id
       state.token.role = user!.role as Role
       state.token.avatar =
         user!.avatar ||

@@ -17,6 +17,8 @@ model User {
   name          String?
   password      String
   avatar        String?
+  website       String?
+  bio           String?
   role          Int       @default(1) // 1 is normal user, 100 is admin
   isSuspend     Boolean   @default(false) @map("is_suspend")
   deletedAt     DateTime? @map("deleted_at")
@@ -76,6 +78,8 @@ model Paste {
   poster      String
   description String?
   content     Json // JSON data
+  type        Int       @default(1) // 1 is noraml, 2 is gist like
+  syntax      String    @default("text") // LangID, only work in normal paste
   userId      String?   @map("user_id")
   user        User?     @relation(fields: [userId], references: [id])
   expiredAt   DateTime? @map("expired_at")

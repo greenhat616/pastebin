@@ -41,6 +41,8 @@ export async function submitPasteNormalAction<T>(
       data: {
         title: '',
         description: '',
+        syntax: result.data.syntax,
+        type: PasteType.Normal,
         content,
         poster: result.data.poster,
         // TODO: remove this force cast, waiting for next-auth update
