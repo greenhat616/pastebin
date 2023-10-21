@@ -122,6 +122,14 @@ const nextConfig = {
 
     // // Modify the file loader rule to ignore *.svg, since we have it handled now.
     // fileLoaderRule.exclude = /\.svg$/i
+
+    // MJS Support
+    config.module.rules.push({
+      test: /\.mjs$/,
+      include: /node_modules/,
+      type: 'javascript/auto'
+    })
+
     return config
   }
 }

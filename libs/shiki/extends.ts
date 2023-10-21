@@ -1,6 +1,6 @@
 // extends mean it should do something in hast tree. not inject in hook.
 import type { Element, Root } from 'hast'
-import { getDisplayNameByLanguageID } from '../shiki'
+import { getDisplayNameByLanguageID } from './'
 
 /**
  * This function appends a header to the root node.

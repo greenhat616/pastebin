@@ -45,6 +45,7 @@ declare global {
   const getLocalePathname: typeof import('./utils/helper')['getLocalePathname']
   const getResponseCodeMessage: typeof import('./utils/response')['getResponseCodeMessage']
   const getRuntimeMode: typeof import('./utils/app')['getRuntimeMode']
+  const getUserAvatar: typeof import('./utils/user')['getUserAvatar']
   const isTranslationKey: typeof import('./utils/strings')['isTranslationKey']
   const loadEnv: typeof import('./utils/app')['loadEnv']
   const newDayjs: typeof import('./utils/formatter')['newDayjs']

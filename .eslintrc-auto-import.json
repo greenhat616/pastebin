@@ -55,6 +55,7 @@
     "IFluentEmojiFlatWoozyFace": true,
     "IFluentEmojiFlatZanyFace": true,
     "ISolarClipboardBroken": true,
-    "ISolarShareLinear": true
+    "ISolarShareLinear": true,
+    "getUserAvatar": true
   }
 }

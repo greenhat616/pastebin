@@ -1,10 +1,8 @@
 'use client'
 
-import { codeToHTMLWithTransformers } from '@/libs/shiki'
-import { Box, Card, CardBody, SkeletonText, Stack } from '@chakra-ui/react'
-import { useAsyncEffect } from 'ahooks'
+import { Box, Card, CardBody } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
-import { useMemo, useState } from 'react'
+import React, { useMemo } from 'react'
 import styles from './CodePreview.module.scss'
 import ShikiHeader from './shiki/Header'
 import LineNumbers from './shiki/LineNumbers'
@@ -13,6 +11,7 @@ import './shiki/shiki.scss'
 type Props = {
   content: string
   language: string
+  children?: React.ReactNode
 }
 
 const calcLineNumbersWidth = (lineCount: number) => {
@@ -26,16 +25,16 @@ export default function CodePreview(props: Props) {
   const t = useTranslations('code-preview')
 
   // States
-  const [transformedCode, setTransformedCode] = useState('')
+  // const [transformedCode, setTransformedCode] = useState('')
   const lines = useMemo(() => getLines(content), [content])
 
   // const BoxRef = useRef<HTMLDivElement>(null)
-  useAsyncEffect(async () => {
-    const code = await codeToHTMLWithTransformers(content, {
-      lang: language
-    })
-    setTransformedCode(() => code)
-  }, [content, language])
+  // useAsyncEffect(async () => {
+  //   const code = await codeToHTMLWithTransformers(content, {
+  //     lang: language
+  //   })
+  //   setTransformedCode(() => code)
+  // }, [content, language])
 
   // Copy content to clipboard
   const onCopyButtonClick = useToastFeedback({
@@ -83,7 +82,7 @@ export default function CodePreview(props: Props) {
   return (
     <Card variant="outline" p={0} rounded="3xl" overflow="hidden">
       <CardBody p={0}>
-        {transformedCode !== '' ? (
+        {/* {transformedCode !== '' ? (
           <Box
             className={classNames(styles['code-preview'], 'code-preview')}
             as="div"
@@ -112,7 +111,30 @@ export default function CodePreview(props: Props) {
           <Stack px="1.5em" py="1em">
             <SkeletonText noOfLines={30} spacing="4" skeletonHeight="2" />
           </Stack>
-        )}
+        )} */}
+        <Box
+          className={classNames(styles['code-preview'], 'code-preview')}
+          as="div"
+          style={{
+            // Disable line because of this line is work
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore ts(2322)
+            '--line-numbers-width': calcLineNumbersWidth(lines || 1)
+          }}
+          // ref={BoxRef}
+        >
+          <LineNumbers lines={lines} />
+          <Box as="div" className={styles['shiki-container']}>
+            <ShikiHeader
+              lang={language}
+              onCopyClick={onCopyButtonClick}
+              onShareClick={onShareButtonClick}
+            />
+            <Box as="div" className={styles.content}>
+              {props.children}
+            </Box>
+          </Box>
+        </Box>
       </CardBody>
     </Card>
   )

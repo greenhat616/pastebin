@@ -1,11 +1,11 @@
-import { env } from '@/env.mjs'
 import client from '@/libs/prisma/client'
+import { codeToHTMLWithTransformers } from '@/libs/shiki'
 import { Content } from '@/libs/validation/paste'
+import { getUserAvatar } from '@/utils/user'
 import { Avatar, Flex, Text } from '@chakra-ui/react'
 import { useLocale, useTranslations } from 'next-intl'
 import { getTimeZone } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import crypto from 'node:crypto'
 import CodePreview from './_components/CodePreview'
 import CodePreviewIntlProvider from './_components/CodePreviewIntlProvider'
 
@@ -53,17 +53,7 @@ function PosterInfo({
   // })
   // const format = useFormatter()
 
-  const avatarUrl =
-    data?.user?.avatar ??
-    env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR.replace(
-      '{hash}',
-      data?.user?.email
-        ? crypto
-            .createHash('md5')
-            .update(data?.user?.email)
-            .digest('hex')
-        : ''
-    )
+  const avatarUrl = getUserAvatar(data?.user)
   return (
     <Flex
       className="mt-3 mb-5 justify-center md:justify-start items-center"
@@ -97,6 +87,12 @@ function PosterInfo({
   )
 }
 
+export function renderCode(code: string, language: string) {
+  return codeToHTMLWithTransformers(code, {
+    lang: language
+  })
+}
+
 export default async function View(props: Props) {
   const locale = useLocale()
   const timeZone = await getTimeZone(locale)
@@ -106,13 +102,19 @@ export default async function View(props: Props) {
   if (!data || !(data?.content as Content[])[0]) notFound()
 
   const content = (data?.content as Content[])[0] // TODO: support multiple content, gist like
-
+  const renderedContent = await renderCode(content.content, content.syntax)
   return (
     <div>
       {/* <h1>View {cuid}</h1> */}
       <PosterInfo data={data} locale={locale} timeZone={timeZone} />
       <CodePreviewIntlProvider>
-        <CodePreview content={content.content} language={content.syntax} />
+        <CodePreview content={content.content} language={content.syntax}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: renderedContent
+            }}
+          />
+        </CodePreview>
       </CodePreviewIntlProvider>
     </div>
   )
