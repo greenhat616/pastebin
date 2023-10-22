@@ -6,12 +6,6 @@ import AsideNav from './_components/AsideNav'
 
 type DashboardLayoutProps = {
   children: React.ReactNode
-  aside: React.ReactNode
-  main: React.ReactNode
-}
-
-export function useNavItems() {
-  return
 }
 
 export default async function DashboardLayout(props: DashboardLayoutProps) {
