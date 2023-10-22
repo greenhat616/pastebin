@@ -22,7 +22,7 @@ type ProfilesProps = {
 
 export default function Profiles({ user, ssos }: ProfilesProps) {
   return (
-    <Card variant="outline" className="!rounded-2xl">
+    <Card variant="outline" rounded="16px">
       <CardHeader>
         <Heading size="md">Profiles</Heading>
       </CardHeader>

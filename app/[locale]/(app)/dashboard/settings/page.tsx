@@ -6,7 +6,7 @@ import AppSettings from './_components/AppSettings'
 export default async function DashboardPage() {
   const session = await auth()
   return (
-    <Card variant="outline" rounded={'32px'}>
+    <Card variant="outline" rounded={'16px'}>
       <CardHeader>
         <Heading size="md">Apps</Heading>
       </CardHeader>
