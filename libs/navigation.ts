@@ -24,7 +24,8 @@ export const pathnames = {
   '/about': '/about',
   '/v/[uuid]': '/v/[uuid]',
   '/dashboard': '/dashboard',
-  '/dashboard/profiles': '/dashboard/profiles',
+  '/dashboard/notifications': '/dashboard/notifications',
+  '/dashboard/snippets': '/dashboard/snippets',
   '/dashboard/settings': '/dashboard/settings'
 } satisfies Pathnames<typeof config.locales>
 

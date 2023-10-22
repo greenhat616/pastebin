@@ -61,6 +61,12 @@ export function Header(props: Props) {
                     <button
                       type="button"
                       className={classNames(styles['sign-in'], styles.icon)}
+                      onClick={() => {
+                        router.push({
+                          pathname: '/auth/signin',
+                          query: { callbackUrl: window.location.href }
+                        })
+                      }}
                     >
                       <ArrowRightOnRectangleIcon
                         className=":ouo: h-6 w-6"
@@ -81,7 +87,13 @@ export function Header(props: Props) {
                   </>
                 ) : (
                   <>
-                    <button type="button" className={styles.notification}>
+                    <button
+                      type="button"
+                      className={styles.notification}
+                      onClick={() => {
+                        router.push('/dashboard/notifications')
+                      }}
+                    >
                       <BellIcon className=":ouo: h-6 w-6" aria-hidden="true" />
                     </button>
                     {/* Profile dropdown */}
