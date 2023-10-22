@@ -1,7 +1,7 @@
 module.exports = {
   '**.{ts,tsx}': [
-    'sh -c \'tsc-files --noEmit $(find ./ -name "*.d.ts" -not -path "./node_modules/**") $0 $@\'',
-    'eslint -c .eslintrc.js'
+    'eslint -c .eslintrc.js',
+    () => 'tsc -p tsconfig.json --noEmit'
   ],
   '**.{js,jsx}': ['eslint -c .eslintrc.js'],
   '*.scss,*.css': ['stylelint --config .stylelintrc.json']

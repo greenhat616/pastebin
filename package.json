@@ -113,7 +113,6 @@
     "swr": "^2.2.4",
     "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.7",
-    "tsc-files": "^1.1.4",
     "typescript": "^5.2.2",
     "unocss": "^0.56.5",
     "unplugin-auto-import": "^0.16.6",
