@@ -145,12 +145,12 @@ function Emoji(props: EmojiProps) {
   return <>{isClient && emojis[index]}</>
 }
 
-type Props = {
+export type AnimatedLogoProps = {
   className?: string
   emojiClassName?: string
 }
 
-export default function AnimatedLogo(props: Props) {
+export default function AnimatedLogo(props: AnimatedLogoProps) {
   return (
     <ChakraBox
       initial={{ scale: 0 }}

@@ -1,4 +1,3 @@
-import AnimatedLogo from '@/components/AnimatedLogo'
 import { auth } from '@/libs/auth'
 import { Box, ChakraProvider } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
@@ -6,6 +5,7 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import Content from './_components/layouts/content'
 import GoBackButton from './_components/layouts/go-back-button'
+import Logo from './_components/layouts/logo'
 import styles from './layout.module.scss'
 
 type Props = {
@@ -39,7 +39,7 @@ export default async function AuthLayout(props: Props) {
       <Box className={styles['auth-layout']}>
         <GoBack />
         <Box className={styles.main}>
-          <AnimatedLogo className={styles.logo} emojiClassName={styles.inner} />
+          <Logo className={styles.logo} emojiClassName={styles.inner} />
           <Content className={styles.container}>{props.children}</Content>
         </Box>
       </Box>
