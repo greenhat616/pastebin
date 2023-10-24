@@ -1,15 +1,19 @@
-import CodeForm from '@/components/CodesForm'
 import IntlClientProvider from '@/components/IntlClientProvider'
 import { auth } from '@/libs/auth'
 import { Flex } from '@chakra-ui/react'
 import { pick } from 'lodash-es'
 import { useLocale, useMessages, type AbstractIntlMessages } from 'next-intl'
 import Announcement from './_components/home/Announcement'
+import { CreateSnippetForm } from './_components/home/form'
 type Props = {
   params: { locale: string }
 }
 
-function CodeFormIntlProvider({ children }: { children: React.ReactNode }) {
+function CreateSnippetIntlProvider({
+  children
+}: {
+  children: React.ReactNode
+}) {
   const locale = useLocale()
   const messages = useMessages()
   return (
@@ -28,12 +32,12 @@ export default async function Home(props: Props) {
   return (
     <Flex direction="column">
       <Announcement />
-      <CodeFormIntlProvider>
-        <CodeForm
+      <CreateSnippetIntlProvider>
+        <CreateSnippetForm
           className="mt-4"
-          defaultNickname={session ? session.user.name || undefined : undefined}
+          nickname={session ? session.user.name || undefined : undefined}
         />
-      </CodeFormIntlProvider>
+      </CreateSnippetIntlProvider>
     </Flex>
   )
 }

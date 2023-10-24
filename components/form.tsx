@@ -1,7 +1,7 @@
-'use client'
 import { submitPasteNormalAction } from '@/actions/paste'
 import { codeToHTML, getShikiAllSupportedLanguages } from '@/libs/shiki'
-import { ReducerDispatch } from '@/utils/types'
+import { CreateNormalSnippetForm } from '@/libs/validation/paste'
+import { ReducerDispatcher } from '@/utils/types'
 import {
   Box,
   Button,
@@ -18,15 +18,18 @@ import {
 } from '@chakra-ui/react'
 import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
+import 'client-only'
 import { useTranslations } from 'next-intl'
 import React, { useReducer, useRef, useState } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore ts(2305)
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 import { BuiltinLanguage } from 'shikiji/core'
+
 type Props = {
   defaultNickname?: string
-  className: string
+  className?: string
+  onSuccess?: (pasteID: string) => void // If it exists,it will prevent auto redirect, and call onSuccess instead.
 }
 
 const syntaxes = getShikiAllSupportedLanguages()
@@ -48,7 +51,7 @@ const initialFormState: FormState = {
   content: ''
 }
 
-const formStateReducer: ReducerDispatch<FormState, FormStateActions> = (
+const formStateReducer: ReducerDispatcher<FormState, FormStateActions> = (
   state,
   action
 ) => {
@@ -87,7 +90,7 @@ export function SubmitButton({
   )
 }
 
-export default function CodeForm(props: Props) {
+export function CreateNormalSnippet(props: Props) {
   const t = useTranslations()
   const toast = useToast()
 
@@ -135,7 +138,10 @@ export default function CodeForm(props: Props) {
     ...initialFormState,
     poster: props.defaultNickname || ''
   } as FormState)
-  const { state, action } = useSubmitForm(submitPasteNormalAction, {
+  const { state, action } = useSubmitForm<
+    CreateNormalSnippetForm,
+    { id: string }
+  >(submitPasteNormalAction, {
     onError(state) {
       toast({
         title: t('components.code_form.feedback.fail.title'),
@@ -145,6 +151,11 @@ export default function CodeForm(props: Props) {
         status: 'error',
         isClosable: true
       })
+    },
+    onSuccess(state) {
+      if (props.onSuccess) {
+        props.onSuccess(state!.data!.id)
+      }
     }
   })
   const msgs = state?.issues?.reduce(
@@ -268,43 +279,47 @@ export default function CodeForm(props: Props) {
             </FormHelperText>
           )}
         </FormControl>
+        <input
+          name="redirect"
+          className="hidden"
+          type="hidden"
+          value={!!props.onSuccess ? 0 : 1}
+        />
       </Flex>
 
       <Box className="mt-4">
         <FormControl isInvalid={!!msgs?.content}>
           <FormLabel>{t('components.code_form.form.content.label')}</FormLabel>
-          {isPreview ? (
-            <Card variant="outline" height="md" p={0}>
-              <CardBody
-                paddingX="1em"
-                paddingY="0.5em"
-                lineHeight="short"
-                dangerouslySetInnerHTML={{ __html: contentPreview }}
-                className="overflow-y-auto"
-                onClick={() => {
-                  setPreview((s) => !s)
-                  contentRef?.current?.focus()
-                }}
-              />
-            </Card>
-          ) : (
-            <Textarea
-              ref={contentRef}
-              name="content"
-              placeholder={t('components.code_form.form.content.placeholder')}
-              height="md"
-              value={formState.content}
-              onChange={(e) =>
-                formStateDispatch({
-                  type: 'update',
-                  field: 'content',
-                  value: e.target.value
-                })
-              }
-              className="font-mono"
-              resize="none"
-            ></Textarea>
-          )}
+          <Card variant="outline" height="md" p={0} hidden={!isPreview}>
+            <CardBody
+              paddingX="1em"
+              paddingY="0.5em"
+              lineHeight="short"
+              dangerouslySetInnerHTML={{ __html: contentPreview }}
+              className="overflow-y-auto"
+              onClick={() => {
+                setPreview((s) => !s)
+                contentRef?.current?.focus()
+              }}
+            />
+          </Card>
+          <Textarea
+            ref={contentRef}
+            className={classNames('font-mono', isPreview && 'hidden')}
+            name="content"
+            placeholder={t('components.code_form.form.content.placeholder')}
+            height="md"
+            value={formState.content}
+            onChange={(e) =>
+              formStateDispatch({
+                type: 'update',
+                field: 'content',
+                value: e.target.value
+              })
+            }
+            resize="none"
+          ></Textarea>
+
           {!!msgs?.content && (
             <FormErrorMessage>{msgs.content}</FormErrorMessage>
           )}

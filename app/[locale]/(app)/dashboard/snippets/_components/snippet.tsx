@@ -7,7 +7,7 @@ import { type Paste } from '@prisma/client'
 
 import { Link } from '@/libs/navigation'
 import { motion } from 'framer-motion'
-import styles from './Snippet.module.scss'
+import styles from './snippet.module.scss'
 
 export type SnippetProps = {
   locale: string

@@ -65,6 +65,8 @@
     "ISolarLayersLinear": true,
     "ISolarHomeSmileLinear": true,
     "ISolarInboxLinear": true,
-    "formatPasteType": true
+    "formatPasteType": true,
+    "ISolarAddOutlineLinear": true,
+    "ISolarAddSquareLinear": true
   }
 }

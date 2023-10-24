@@ -43,7 +43,7 @@ export type ReducerActionBatch<O, U extends string> = {
   state: Partial<O>
 }
 
-export type ReducerDispatch<
+export type ReducerDispatcher<
   O,
   U extends string,
   Batch extends boolean = false

@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { PasteType } from '@/enums/paste'
 import { BUNDLED_LANGUAGES } from 'shiki'
 
-export const CodeFormSupportedExpiration = [
+export const CreateSnippetSupportedExpiration = [
   -1, // never
   60 * 30, // 30 minutes
   60 * 60, // 1 hour
@@ -13,7 +13,7 @@ export const CodeFormSupportedExpiration = [
   60 * 60 * 24 * 365 // 1 year
 ]
 
-export const CodeFormSchema = z.object({
+export const CreateNormalSnippetFormSchema = z.object({
   poster: z.string().min(1, {
     message: wrapTranslationKey(
       'components.code_form.validation.poster.required'
@@ -42,7 +42,7 @@ export const CodeFormSchema = z.object({
       .number()
       .int()
       .refine(
-        (expiration) => CodeFormSupportedExpiration.includes(expiration),
+        (expiration) => CreateSnippetSupportedExpiration.includes(expiration),
         {
           message: wrapTranslationKey(
             'components.code_form.validation.expiration.invalid'
@@ -61,10 +61,13 @@ export const CodeFormSchema = z.object({
       message: wrapTranslationKey(
         'components.code_form.validation.content.too_long'
       )
-    })
+    }),
+  redirect: z.preprocess((x) => Number(x) === 1, z.boolean()).default(true)
 })
 
-export type CodeForm = z.infer<typeof CodeFormSchema>
+export type CreateNormalSnippetForm = z.infer<
+  typeof CreateNormalSnippetFormSchema
+>
 
 export const ContentSchema = z.object({
   type: z.nativeEnum(PasteType).default(PasteType.Normal),

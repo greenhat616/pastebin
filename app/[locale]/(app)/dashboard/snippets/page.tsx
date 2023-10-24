@@ -1,16 +1,46 @@
+import IntlClientProvider from '@/components/IntlClientProvider'
 import { auth } from '@/libs/auth'
 import client from '@/libs/prisma/client'
-import { useLocale } from 'next-intl'
+import { Paste } from '@prisma/client'
+import { pick } from 'lodash-es'
+import { AbstractIntlMessages, useLocale, useMessages } from 'next-intl'
 import { getTimeZone } from 'next-intl/server'
 import Header from '../_components/Header'
 import Shell from '../_components/Shell'
-import Snippet from './_components/Snippet'
+import { AddButton } from './_components/button'
+import Snippet from './_components/snippet'
 function getSnippets(userID: string) {
   return client.paste.findMany({
     where: {
       userId: userID
+    },
+    orderBy: {
+      createdAt: 'desc'
+    },
+    select: {
+      id: true,
+      title: true,
+      createdAt: true,
+      expiredAt: true,
+      description: true,
+      syntax: true,
+      type: true,
+      content: false
     }
   })
+}
+
+function AddButtonIntlProvider({ children }: { children: React.ReactNode }) {
+  const locale = useLocale()
+  const messages = useMessages()
+  return (
+    <IntlClientProvider
+      locale={locale}
+      messages={pick(messages, 'components') as AbstractIntlMessages}
+    >
+      {children}
+    </IntlClientProvider>
+  )
 }
 
 export default async function SnippetsPage() {
@@ -21,13 +51,17 @@ export default async function SnippetsPage() {
 
   return (
     <Shell>
-      <Header heading="Snippets" text="View unexpired snippets you posted." />
+      <Header heading="Snippets" text="View unexpired snippets you posted.">
+        <AddButtonIntlProvider>
+          <AddButton username={session?.user.name as string} />
+        </AddButtonIntlProvider>
+      </Header>
       {snippets.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
           {snippets.map((snippet) => (
             <Snippet
               key={snippet.id}
-              snippet={snippet}
+              snippet={snippet as Paste}
               timeZone={timeZone}
               locale={locale}
             />
