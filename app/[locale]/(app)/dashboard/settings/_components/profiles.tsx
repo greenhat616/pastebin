@@ -16,6 +16,7 @@ import {
   Textarea
 } from '@chakra-ui/react'
 import type { User } from '@prisma/client'
+import { signIn } from 'next-auth/react'
 type ProfilesProps = {
   user: User
   ssos: ((typeof providers)[0] & { connected: boolean })[]
@@ -89,6 +90,7 @@ export default function Profiles({ user, ssos }: ProfilesProps) {
                 key={sso.id}
                 colorScheme={sso.connected ? 'blue' : 'gray'}
                 className="flex gap-3"
+                onClick={() => signIn(sso.id)}
               >
                 {sso.icon} Link with {sso.name}
               </Button>
