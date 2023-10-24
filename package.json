@@ -32,7 +32,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@auth/core": "^0.17.0",
+    "@auth/core": "^0.18.0",
     "@chakra-ui/react": "^2.8.1",
     "@choc-ui/chakra-autocomplete": "^5.2.8",
     "@commitlint/cli": "^18.0.0",
