@@ -2,7 +2,7 @@ import { dashboardConfig } from '@/config/dashboard'
 import { auth } from '@/libs/auth'
 import { redirect } from '@/libs/navigation'
 import { Box, Flex } from '@chakra-ui/react'
-import AsideNav from './_components/AsideNav'
+import AsideNav from './_components/aside-nav'
 
 type DashboardLayoutProps = {
   children: React.ReactNode

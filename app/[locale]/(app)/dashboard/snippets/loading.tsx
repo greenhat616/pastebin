@@ -1,9 +1,9 @@
 'use client'
 
 import { Card, CardBody, CardHeader } from '@chakra-ui/react'
-import Header from '../_components/Header'
-import Shell from '../_components/Shell'
-import { H2Skeleton, PSkeleton, TextSkeleton } from '../_components/Skeleton'
+import Header from '../_components/header'
+import Shell from '../_components/shell'
+import { H2Skeleton, PSkeleton, TextSkeleton } from '../_components/skeleton'
 
 export default function SnippetsLoading() {
   return (

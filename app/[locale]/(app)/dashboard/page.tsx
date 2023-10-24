@@ -1,8 +1,8 @@
 import { auth } from '@/libs/auth'
 import { useLocale } from 'next-intl'
 import { getTimeZone } from 'next-intl/server'
-import Header from './_components/Header'
-import Shell from './_components/Shell'
+import Header from './_components/header'
+import Shell from './_components/shell'
 
 export default async function DashboardPage() {
   const session = await auth()

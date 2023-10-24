@@ -1,5 +1,5 @@
-import Header from '../_components/Header'
-import Shell from '../_components/Shell'
+import Header from '../_components/header'
+import Shell from '../_components/shell'
 
 export default function NotificationsPage() {
   return (

@@ -2,7 +2,7 @@ import { auth } from '@/libs/auth'
 import { providers } from '@/libs/auth/providers'
 import client from '@/libs/prisma/client'
 import { User } from '@prisma/client'
-import Profiles from '../_components/Profiles'
+import Profiles from '../_components/profiles'
 
 async function getSSOs(userID: string) {
   const accounts = await client.account.findMany({
