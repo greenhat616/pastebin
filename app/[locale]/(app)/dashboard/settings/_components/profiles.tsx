@@ -1,3 +1,4 @@
+'use client'
 import { providers } from '@/libs/auth/providers'
 import {
   Avatar,
@@ -14,7 +15,7 @@ import {
   Stack,
   Textarea
 } from '@chakra-ui/react'
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 type ProfilesProps = {
   user: User
   ssos: ((typeof providers)[0] & { connected: boolean })[]
@@ -31,28 +32,35 @@ export default function Profiles({ user, ssos }: ProfilesProps) {
           <Grid gap={4}>
             <FormControl>
               <FormLabel>Nickname</FormLabel>
-              <Input type="text" />
+              <Input type="text" defaultValue={user.name || undefined} />
               <FormHelperText>
                 This is how your name will be displayed in the account.
               </FormHelperText>
             </FormControl>
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" disabled value={user!.email} />
+              <Input type="email" disabled value={user.email} />
               <FormHelperText>
                 We&apos;ll never share your email with anyone else.
               </FormHelperText>
             </FormControl>
             <FormControl>
               <FormLabel>Website</FormLabel>
-              <Input type="text" placeholder="https://" />
+              <Input
+                type="text"
+                placeholder="https://"
+                defaultValue={user.website || undefined}
+              />
               <FormHelperText>
                 Your personal website, blog, or portfolio.
               </FormHelperText>
             </FormControl>
             <FormControl>
               <FormLabel>Bio</FormLabel>
-              <Textarea placeholder="Bio..." />
+              <Textarea
+                placeholder="Bio..."
+                defaultValue={user.bio || undefined}
+              />
               <FormHelperText>
                 Tell us a little bit about yourself.
               </FormHelperText>

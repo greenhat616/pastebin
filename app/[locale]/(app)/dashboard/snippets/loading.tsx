@@ -15,8 +15,10 @@ export default function SnippetsLoading() {
             <H2Skeleton />
           </CardHeader>
           <CardBody pt="0">
-            <TextSkeleton lines={2} />
-            <PSkeleton />
+            <div className="flex flex-col gap-4">
+              <TextSkeleton lines={2} />
+              <PSkeleton />
+            </div>
           </CardBody>
         </Card>
         <Card variant="outline" className="!rounded-2xl">
@@ -24,8 +26,10 @@ export default function SnippetsLoading() {
             <H2Skeleton />
           </CardHeader>
           <CardBody pt="0">
-            <TextSkeleton lines={2} />
-            <PSkeleton />
+            <div className="flex flex-col gap-4">
+              <TextSkeleton lines={2} />
+              <PSkeleton />
+            </div>
           </CardBody>
         </Card>
       </div>
