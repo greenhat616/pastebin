@@ -52,7 +52,7 @@ export async function submitPasteNormalAction<T>(
         content,
         poster: result.data.poster,
         // TODO: remove this force cast, waiting for next-auth update
-        userId: session ? (session as unknown as Session).user.sub : null,
+        userId: session ? (session as unknown as Session).user.id : null,
         expiredAt:
           result.data.expiration === -1 // -1 means never expired
             ? null

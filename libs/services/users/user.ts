@@ -71,6 +71,8 @@ export async function createUser(
     data: {
       email,
       password: hashedPassword,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      extraFields: {} as any,
       ...others
     }
   })

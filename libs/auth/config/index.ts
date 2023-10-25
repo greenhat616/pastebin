@@ -1,16 +1,20 @@
 import { Role } from '@/enums/user'
 import { env } from '@/env.mjs'
 import prisma from '@/libs/prisma/client'
-import { createUser, loginByEmail } from '@/libs/services/users/user'
-import { SignInSchema } from '@/libs/validation/auth'
+import {
+  createUser,
+  findUserById,
+  loginByEmail
+} from '@/libs/services/users/user'
+import { SignInWithPasswordSchema } from '@/libs/validation/auth'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { merge, uniqueId } from 'lodash-es'
-import { NextAuthConfig } from 'next-auth'
-import Credentials from 'next-auth/providers/credentials'
+import CredentialsProvider from 'next-auth/providers/credentials'
 import GitHub from 'next-auth/providers/github'
 import Google from 'next-auth/providers/google'
 import crypto from 'node:crypto'
 // import 'server-only'
+import { NextAuthConfig } from 'next-auth'
 import { authConfig as edgeConfig } from './edge'
 const adapter = PrismaAdapter(prisma)
 export const authConfig = merge(edgeConfig, {
@@ -23,9 +27,18 @@ export const authConfig = merge(edgeConfig, {
       clientId: env.AUTH_GOOGLE_ID,
       clientSecret: env.AUTH_GOOGLE_SECRET
     }),
-    Credentials({
+    CredentialsProvider({
+      // id: 'passwordCredentials',
+      // TODO: split this into two providers, waiting for upstream fix
+      id: 'credentials',
       name: 'Credentials',
       credentials: {
+        id: {
+          label: 'ID',
+          type: 'text',
+          placeholder: 'UserID'
+        },
+        token: { label: 'token', type: 'password' },
         email: {
           label: 'Email',
           type: 'text',
@@ -34,19 +47,62 @@ export const authConfig = merge(edgeConfig, {
         password: { label: 'Password', type: 'password' }
       },
       async authorize(credentials) {
-        const result = await SignInSchema.safeParseAsync(credentials)
-        if (!result.success) return null
-        const user = await loginByEmail(
-          credentials.email as string,
-          credentials.password as string
-        )
-        if (!user) return null
-        // throw new Error(
-        //   wrapTranslationKey('auth.signin.credentials.feedback.invalid')
-        // )
-        return user
+        // console.log(credentials)
+        if ('id' in credentials) {
+          const id = credentials.id as string
+          const token = credentials.token as string
+
+          const authenticator = await prisma.authenticator.findFirst({
+            where: {
+              userId: id,
+              credentialID: token
+            }
+          })
+          if (!authenticator) return null
+          const user = await findUserById(id)
+          return user
+        } else if ('email' in credentials) {
+          const result =
+            await SignInWithPasswordSchema.safeParseAsync(credentials)
+          if (!result.success) return null
+          const user = await loginByEmail(
+            credentials.email as string,
+            credentials.password as string
+          )
+          if (!user) return null
+          // throw new Error(
+          //   wrapTranslationKey('auth.signin.credentials.feedback.invalid')
+          // )
+          return user
+        }
+
+        return null
       }
     })
+    // CredentialsProvider({
+    //   // Note that: it must be called in the server side
+    //   id: 'webauthnCredentials',
+    //   name: 'WebAuthn',
+    //   credentials: {
+    //     id: { label: 'id', type: 'text' },
+    //     token: { label: 'token', type: 'text' }
+    //   },
+    //   async authorize(credentials) {
+    //     console.log(credentials)
+    // const id = credentials.id as string
+    // const token = credentials.token as string
+
+    // const authenticator = await prisma.authenticator.findFirst({
+    //   where: {
+    //     userId: id,
+    //     credentialID: token
+    //   }
+    // })
+    // if (!authenticator) return null
+    // const user = await findUserById(id)
+    // return user
+    //   }
+    // })
   ],
   callbacks: {
     async jwt(state) {
@@ -81,7 +137,29 @@ export const authConfig = merge(edgeConfig, {
       return await createUser(profile.email, uniqueId('user_'), {
         avatar: profile.image,
         name: profile.name,
-        emailVerified: profile.emailVerified
+        emailVerified: profile.emailVerified,
+        extraFields: {}
+      })
+    }
+  },
+  events: {
+    async linkAccount(message) {
+      const user = await findUserById(message.user.id)
+      await prisma.user.update({
+        where: {
+          id: user!.id
+        },
+        data: {
+          extraFields: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ...((user!.extraFields as any) || {}),
+            avatar: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ...((user!.extraFields as any)?.avatar || {}),
+              [message.account.provider]: message.profile.name
+            }
+          }
+        }
       })
     }
   },

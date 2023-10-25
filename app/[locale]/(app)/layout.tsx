@@ -26,7 +26,7 @@ function HeaderIntlProvider({ children }: Props) {
 
 export default async function AppLayout({ children }: Props) {
   const session = await auth()
-
+  // console.log(session)
   return (
     <ChakraProvider>
       <HeaderIntlProvider>

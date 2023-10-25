@@ -14,7 +14,6 @@ import { Fragment } from 'react'
 import styles from './Header.module.scss'
 import Navigation from './header/Navigation'
 
-import { env } from '@/env.mjs'
 import { useRouter } from '@/libs/navigation'
 import { useTranslations } from 'next-intl'
 
@@ -102,13 +101,7 @@ export function Header(props: Props) {
                         <Menu.Button className={styles.avatar}>
                           <Avatar
                             size="sm"
-                            src={
-                              props.session?.user?.avatar ||
-                              env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR.replace(
-                                '{hash}',
-                                ''
-                              )
-                            }
+                            src={getUserAvatar(props.session as Session)}
                             name={props.session?.user?.name || undefined}
                           />
                         </Menu.Button>

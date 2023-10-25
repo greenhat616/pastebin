@@ -28,7 +28,9 @@ function SignUpIntlProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <IntlClientProvider
-      messages={pick(messages, 'auth.signup.form') as AbstractIntlMessages}
+      messages={
+        pick(messages, 'auth.signup.form', 'auth.type') as AbstractIntlMessages
+      }
       locale={locale}
     >
       {children}

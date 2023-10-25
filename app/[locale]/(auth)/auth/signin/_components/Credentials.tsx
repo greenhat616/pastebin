@@ -1,5 +1,8 @@
 'use client'
-import { signInAction } from '@/actions/auth'
+import { signInAction, verifySignInWithWebAuthnAction } from '@/actions/auth'
+import { CredentialsAuthType } from '@/enums/app'
+import { ResponseCode } from '@/enums/response'
+import { SignInWithPassword } from '@/libs/validation/auth'
 import {
   Button,
   FormControl,
@@ -8,8 +11,14 @@ import {
   Stack,
   useToast
 } from '@chakra-ui/react'
+import {
+  browserSupportsWebAuthn,
+  startAuthentication
+} from '@simplewebauthn/browser'
+import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/typescript-types'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
+import { useEffect, useState, useTransition } from 'react'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore ts(2305)
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
@@ -41,9 +50,9 @@ type Props = {
 //   state: Partial<typeof initialState>
 // }
 
-function Submit() {
+function Submit({ pending }: { pending: boolean }) {
   const t = useTranslations()
-  const { pending } = useFormStatus()
+  const { pending: formPending } = useFormStatus()
 
   return (
     <Button
@@ -51,7 +60,7 @@ function Submit() {
       size="lg"
       rounded="xl"
       // onClick={handleSignIn}
-      isLoading={pending}
+      isLoading={pending || formPending}
       loadingText={t('auth.signin.credentials.loading')}
       type="submit"
     >
@@ -63,14 +72,86 @@ function Submit() {
 export default function Credentials(props: Props) {
   // Deps
   const toast = useToast()
+
+  const [authType, setAuthType] = useState(CredentialsAuthType.WebAuthn)
+  const [pending, startTransition] = useTransition()
+
   const searchParams = useSearchParams()
   const signIn = signInAction.bind(
     null,
     searchParams.get('callbackUrl') || undefined
   )
 
-  const { state, action } = useSubmitForm(signIn, {
+  const { state, action } = useSubmitForm<
+    SignInWithPassword,
+    PublicKeyCredentialCreationOptionsJSON
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  >(signIn as any, {
+    onSuccess: (state) => {
+      startTransition(async () => {
+        let asseResp
+        try {
+          // Pass the options to the authenticator and wait for a response
+          asseResp = await startAuthentication(state.data!)
+        } catch (error) {
+          console.error(error)
+          toast({
+            title: t('auth.signin.credentials.feedback.error.title'),
+            description: t(
+              'auth.signin.credentials.feedback.error.description',
+              {
+                error:
+                  error instanceof Error
+                    ? error.name === 'NotAllowedError'
+                      ? t('auth.signin.form.feedback.error.not_allowed_error')
+                      : 'Unknown error'
+                    : 'Unknown error'
+              }
+            ),
+            status: 'error',
+            duration: 5000,
+            isClosable: true
+          })
+          return
+        }
+
+        try {
+          const resp = await verifySignInWithWebAuthnAction(
+            searchParams.get('callbackUrl') || undefined,
+            {
+              ctx: asseResp
+            }
+          )
+          if (!resp) return // It means redirect
+          if (resp.status !== ResponseCode.OK) throw new Error(resp.error)
+        } catch (error) {
+          console.error(error)
+          toast({
+            title: t('auth.signin.credentials.feedback.error.title'),
+            description: t(
+              'auth.signin.credentials.feedback.error.description',
+              {
+                error: (error as Error).message
+              }
+            ),
+            status: 'error',
+            duration: 5000,
+            isClosable: true
+          })
+        }
+      })
+    },
     onError: (state) => {
+      if (
+        state.status === ResponseCode.OperationFailed &&
+        state.error ===
+          wrapTranslationKey(
+            'auth.signin.credentials.feedback.no_authenticator'
+          )
+      ) {
+        setAuthType(CredentialsAuthType.Password)
+        return
+      }
       toast({
         title: t('auth.signin.credentials.feedback.error.title'),
         description: t('auth.signin.credentials.feedback.error.description', {
@@ -169,6 +250,16 @@ export default function Credentials(props: Props) {
   //     })
   // })
 
+  // If browser doesn't support WebAuthn, fallback to password
+  useEffect(() => {
+    if (
+      !browserSupportsWebAuthn() &&
+      authType === CredentialsAuthType.WebAuthn
+    ) {
+      setAuthType(CredentialsAuthType.Password)
+    }
+  }, [authType])
+
   return (
     <Stack as="form" action={action} gap={4}>
       <FormControl isInvalid={!!msgs?.email}>
@@ -186,24 +277,33 @@ export default function Credentials(props: Props) {
         />
         {!!msgs?.email && <FormErrorMessage>{msgs?.email}</FormErrorMessage>}
       </FormControl>
-      <FormControl isInvalid={!!msgs?.password}>
-        <Input
-          variant="outline"
-          placeholder={t('auth.signin.credentials.placeholder.password')}
-          rounded="xl"
-          size="lg"
-          type="password"
-          name="password"
-          // value={state.form.password}
-          // onChange={(e) => {
-          //   state.form.password = e.target.value
-          // }}
-        />
-        {!!msgs?.password && (
-          <FormErrorMessage>{msgs?.password}</FormErrorMessage>
-        )}
-      </FormControl>
-      <Submit />
+      {authType === CredentialsAuthType.Password && (
+        <FormControl isInvalid={!!msgs?.password}>
+          <Input
+            variant="outline"
+            placeholder={t('auth.signin.credentials.placeholder.password')}
+            rounded="xl"
+            size="lg"
+            type="password"
+            name="password"
+            // value={state.form.password}
+            // onChange={(e) => {
+            //   state.form.password = e.target.value
+            // }}
+          />
+          {!!msgs?.password && (
+            <FormErrorMessage>{msgs?.password}</FormErrorMessage>
+          )}
+        </FormControl>
+      )}
+      <input
+        className="hidden"
+        type="hidden"
+        name="auth_type"
+        value={authType}
+      />
+
+      <Submit pending={pending} />
     </Stack>
   )
 }

@@ -1,7 +1,6 @@
 import { Role } from '@/enums/user'
 import { DefaultSession, NextAuthConfig } from 'next-auth'
 import { NextResponse } from 'next/server'
-
 export const protectedPathname = ['/admin', '/me']
 
 export type { Session } from 'next-auth'
@@ -15,7 +14,7 @@ declare module '@auth/core/adapters' {
 }
 
 declare module '@auth/core/jwt' {
-  interface JWT {
+  interface JWT extends DefaultJWT {
     /** The user's role. */
     role: Role
     avatar: string | null
@@ -26,7 +25,7 @@ declare module '@auth/core/jwt' {
 declare module 'next-auth' {
   interface Session {
     user: {
-      sub: string // It is a alias of id
+      id: string // It is a alias of id
       // id: string
       role: Role
       avatar: string | null
@@ -61,15 +60,21 @@ export const authConfig = {
         }
       }
       return true
+    },
+    // TODO: remove type annotation after fucking next-auth fix its issue
+    async session(params) {
+      params.session = {
+        ...params.session,
+        user: {
+          ...params.session.user,
+          id: params.token.id as string,
+          role: params.token.role as Role,
+          avatar: params.token.avatar as string | null,
+          isSuspended: params.token.isSuspended as boolean
+        }
+      }
+      return params.session
     }
-    // session: ({ session, user }) => ({
-    //   ...session,
-    //   user: {
-    //     ...session.user,
-    //     id: user.id,
-    //     role: user.role
-    //   }
-    // })
   },
   pages: {
     signIn: '/auth/signin',

@@ -96,6 +96,10 @@ code-preview:
         title: 无法复制分享链接
         description: '原因: {error}。'
 auth:
+  type:
+    credentials: 密码
+    sso: 第三方登录
+    webauthn: 无密码
   buttons:
     back: 返回
   signin:
@@ -133,6 +137,8 @@ auth:
         password_confirmation: 确认密码
       feedback:
         validation_failed: 请检查您的输入
+        not_allowed_error: 用户主动取消或验证超时。
+        invalid_state_error: 验证器已被用户注册。
         email:
           required: 邮箱是必填项
           invalid: 无效的邮箱
@@ -154,5 +160,6 @@ auth:
           description: 我们将在几秒钟内将您重定向至之前的页面。
       buttons:
         submit: 注册
+        toggle: 使用{auth_type}注册
         back: 返回
       loading: 注册中...

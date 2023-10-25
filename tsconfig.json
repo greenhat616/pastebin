@@ -43,5 +43,5 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/[locale]/(auth)/_components/layouts/go-back.-buttontsx"
-  ]
+, "scripts/tools/gen-oauth.mts"  ]
 }
