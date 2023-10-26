@@ -9,7 +9,7 @@ type IntlProviderProps = {
   children: React.ReactNode
 }
 
-export default async function IntlClientProvider({
+export async function IntlClientProvider({
   locale,
   messages,
   children

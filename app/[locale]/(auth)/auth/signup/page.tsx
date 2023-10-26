@@ -1,4 +1,4 @@
-import IntlClientProvider from '@/components/IntlClientProvider'
+import { IntlClientProvider } from '@/components/server-provider'
 import { Stack } from '@chakra-ui/react'
 import { pick } from 'lodash-es'
 import { Metadata } from 'next'

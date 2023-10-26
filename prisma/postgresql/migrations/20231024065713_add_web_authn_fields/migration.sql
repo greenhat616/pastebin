@@ -1,4 +1,4 @@
-ALTER TABLE "users" ADD COLUMN "extraFields" JSONB NOT NULL;
+ALTER TABLE "users" ADD COLUMN "extra_fields" JSONB NOT NULL DEFAULT '{}'::jsonb;
 
 -- CreateTable
 CREATE TABLE "authenticators" (

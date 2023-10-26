@@ -19,7 +19,7 @@ import {
   getTranslator
 } from 'next-intl/server'
 
-import { UnoCSSIndicator } from '@/components/UnoCSSIndicator'
+import { UnoCSSIndicator } from '@/components/uno-css-indicator'
 import { Fira_Code } from 'next/font/google'
 const firaCode = Fira_Code({
   variable: '--font-fira-code',

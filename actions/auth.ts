@@ -214,11 +214,20 @@ async function signUpWithPassword<T>(
  * Add WebAuthn device while user is signed in
  * @returns
  */
-export async function RequestAddWebAuthnAction(): Promise<
+export async function requestAddWebAuthnAction(): Promise<
   ActionReturn<never, PublicKeyCredentialCreationOptionsJSON>
 > {
   const session = await auth()
   if (!session) return nok(ResponseCode.NotAuthorized)
+
+  try {
+    checkTwiceSignedCookie()
+  } catch (e) {
+    return nok(ResponseCode.OperationFailed, {
+      error: (e as Error).message
+    })
+  }
+
   const user = await findUserById(session.user.id)
   if (!user) return nok(ResponseCode.NotAuthorized)
 
@@ -237,6 +246,15 @@ export async function verifyAddWebAuthnAction({
 }) {
   const session = await auth()
   if (!session) return nok(ResponseCode.NotAuthorized)
+
+  try {
+    checkTwiceSignedCookie()
+  } catch (e) {
+    return nok(ResponseCode.OperationFailed, {
+      error: (e as Error).message
+    })
+  }
+
   const user = await findUserById(session.user.id)
   if (!user) return nok(ResponseCode.NotAuthorized)
 

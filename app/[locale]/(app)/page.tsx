@@ -1,4 +1,4 @@
-import IntlClientProvider from '@/components/IntlClientProvider'
+import { IntlClientProvider } from '@/components/server-provider'
 import { auth } from '@/libs/auth'
 import { Flex } from '@chakra-ui/react'
 import { pick } from 'lodash-es'

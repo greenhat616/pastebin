@@ -1,5 +1,5 @@
 'use client'
-import AnimatedLogo from '@/components/AnimatedLogo'
+import AnimatedLogo from '@/components/animated-logo'
 import { Avatar, Box, Link, useToast } from '@chakra-ui/react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {

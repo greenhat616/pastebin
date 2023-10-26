@@ -6,62 +6,101 @@ import {
   Card,
   CardBody,
   CardHeader,
-  Heading
+  Heading,
+  useDisclosure
 } from '@chakra-ui/react'
 import type { User } from '@prisma/client'
 import { signIn } from 'next-auth/react'
 import { ProfileForm } from './form'
+import { ChangePasswordModal, ManagePasskeysModal } from './modal'
 type ProfilesProps = {
   user: User
   ssos: ((typeof providers)[0] & { connected: boolean })[]
 }
 
 export default function Profiles({ user, ssos }: ProfilesProps) {
+  const {
+    isOpen: isManagePasskeysModalOpen,
+    onClose: onManagePasskeysModalClose,
+    onOpen: onManagePasskeysModalOpen
+  } = useDisclosure()
+  const {
+    isOpen: isChangePasswordModalOpen,
+    onClose: onChangePasswordModalClose,
+    onOpen: onChangePasswordModalOpen
+  } = useDisclosure()
+
   return (
-    <Card variant="outline" rounded="16px">
-      <CardHeader>
-        <Heading size="md">Profiles</Heading>
-      </CardHeader>
-      <CardBody pt="0">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <ProfileForm
-            defaultValues={{
-              nickname: user.name!,
-              email: user.email!,
-              website: user.website || undefined,
-              bio: user.bio || undefined
-            }}
-          />
-          <div className="grid content-start gap-4">
-            <div className="flex items-center justify-center mt-0 md:-mt-10">
-              <Avatar
-                size="xl"
-                name={user!.name || ''}
-                src={getUserAvatar(user)}
-                draggable={false}
-              />
-            </div>
-            <div className="flex flex-col gap-3">
-              <Button>Change Email</Button>
-              <Button>Change Password</Button>
-              <Button>Manage Passkeys</Button>
-            </div>
-            <h4 className="mt-2 font-medium text-xl">SSO</h4>
-            <div className="flex flex-col gap-3">
-              {ssos.map((sso) => (
-                <Button
-                  key={sso.id}
-                  colorScheme={sso.connected ? 'blue' : 'gray'}
-                  className="flex gap-3"
-                  onClick={() => signIn(sso.id)}
-                >
-                  {sso.icon} Link with {sso.name}
+    <>
+      {/* Modals */}
+      <ManagePasskeysModal
+        key={
+          isManagePasskeysModalOpen
+            ? 'manage-passkey-open'
+            : 'manage-passkey-close'
+        }
+        isOpen={isManagePasskeysModalOpen}
+        onClose={onManagePasskeysModalClose}
+      />
+      <ChangePasswordModal
+        key={
+          isChangePasswordModalOpen
+            ? 'change-password-open'
+            : 'change-password-close'
+        }
+        isOpen={isChangePasswordModalOpen}
+        onClose={onChangePasswordModalClose}
+      />
+      {/* Profiles */}
+      <Card variant="outline" rounded="16px">
+        <CardHeader>
+          <Heading size="md">Profiles</Heading>
+        </CardHeader>
+        <CardBody pt="0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <ProfileForm
+              defaultValues={{
+                nickname: user.name!,
+                email: user.email!,
+                website: user.website || undefined,
+                bio: user.bio || undefined
+              }}
+            />
+            <div className="grid content-start gap-4">
+              <div className="flex items-center justify-center mt-0 md:-mt-10">
+                <Avatar
+                  size="xl"
+                  name={user!.name || ''}
+                  src={getUserAvatar(user)}
+                  draggable={false}
+                />
+              </div>
+              <div className="flex flex-col gap-3">
+                <Button>Change Email</Button>
+                <Button onClick={onChangePasswordModalOpen}>
+                  Change Password
                 </Button>
-              ))}
+                <Button onClick={onManagePasskeysModalOpen}>
+                  Manage Passkeys
+                </Button>
+              </div>
+              <h4 className="mt-2 font-medium text-xl">SSO</h4>
+              <div className="flex flex-col gap-3">
+                {ssos.map((sso) => (
+                  <Button
+                    key={sso.id}
+                    colorScheme={sso.connected ? 'blue' : 'gray'}
+                    className="flex gap-3"
+                    onClick={() => signIn(sso.id)}
+                  >
+                    {sso.icon} Link with {sso.name}
+                  </Button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </CardBody>
-    </Card>
+        </CardBody>
+      </Card>
+    </>
   )
 }

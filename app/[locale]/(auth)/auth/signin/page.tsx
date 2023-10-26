@@ -1,5 +1,5 @@
-import IntlClientProvider from '@/components/IntlClientProvider'
-import NavigationLink from '@/components/NavigationLink'
+import { IntlClientProvider } from '@/components/server-provider'
+import NavigationLink from '@/components/navigation-link'
 import { providers } from '@/libs/auth/providers'
 import {
   AbsoluteCenter,

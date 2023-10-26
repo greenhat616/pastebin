@@ -20,7 +20,7 @@ model User {
   bio               String?
   role              Int                 @default(1)
   isSuspend         Boolean             @default(false) @map("is_suspend")
-  extraFields       Json
+  extraFields       Json                @default("{}") @map("extra_fields")
   deletedAt         DateTime?           @map("deleted_at")
   createdAt         DateTime            @default(now()) @map("created_at")
   updatedAt         DateTime            @updatedAt @map("updated_at")
@@ -36,6 +36,7 @@ model User {
 
 model Authenticator {
   id                   BigInt   @id @unique @default(autoincrement())
+  name                 String?  @map("name")
   credentialID         String   @map("credential_id")
   credentialPublicKey  Bytes    @map("credential_public_key")
   counter              Int      @default(0)

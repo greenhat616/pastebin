@@ -3,6 +3,7 @@ import { sign, unsign } from 'cookie-signature'
 import type { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import { cookies } from 'next/headers'
 import 'server-only'
+import { z } from 'zod'
 
 export class CookieSignatureMismatchError extends Error {
   constructor() {
@@ -34,4 +35,18 @@ export function getCookie(
     item.value = unsigned
   }
   return item
+}
+
+export function checkTwiceSignedCookie() {
+  const signedTwiceConfirmationToken = getCookie('user.twice_confirmed', {
+    signed: true
+  })
+  if (!signedTwiceConfirmationToken) throw new Error('No signed token found')
+  const arr = signedTwiceConfirmationToken.value.split('.')
+  if (arr.length !== 2) throw new Error('Invalid signed token')
+  z.string().uuid().parse(arr[0]) // Check token
+  if (Date.now() - Number(arr[1]) > 1000 * 60 * 15) {
+    // 15 minutes
+    throw new Error('Token expired')
+  }
 }

@@ -63,7 +63,12 @@
     "ISolarDocumentsLinear": true,
     "ISolarHomeSmileLinear": true,
     "ISolarSettingsLinear": true,
+    "ISolarShieldUserBold": true,
     "ISolarInboxLinear": true,
+    "ISolarSheildKeyholeBold": true,
+    "ISolarShieldKeyholeBold": true,
+    "ISolarShieldKeyholeMinimalisticBold": true,
+    "checkTwiceSignedCookie": true,
     "ISolarClipboardBroken": true,
     "ISolarShareLinear": true
   }

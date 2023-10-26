@@ -1,4 +1,4 @@
-import IntlClientProvider from '@/components/IntlClientProvider'
+import { IntlClientProvider } from '@/components/server-provider'
 import { pick } from 'lodash-es'
 import { useLocale, useMessages, type AbstractIntlMessages } from 'next-intl'
 import React from 'react'

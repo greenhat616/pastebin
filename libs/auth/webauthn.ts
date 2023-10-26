@@ -152,7 +152,7 @@ export class NoAuthenticatorFoundError extends Error {
   }
 }
 
-export async function getUserAuthenticationOptions(user: User) {
+export async function getUserAuthenticationOptions(user: { id: string }) {
   const authenticators = await client.authenticator.findMany({
     where: { userId: user.id }
   })
@@ -181,7 +181,7 @@ export async function getUserAuthenticationOptions(user: User) {
 }
 
 export async function verifyUserAuthentication(
-  user: User,
+  user: { id: string },
   ctx: AuthenticationResponseJSON
 ): Promise<VerifyUserResult> {
   const challenge = getCookie('next-auth.challenge', { signed: true }) // Must be signed

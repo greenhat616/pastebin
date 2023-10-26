@@ -1,4 +1,5 @@
-import IntlClientProvider from '@/components/IntlClientProvider'
+import { QueryClientProvider } from '@/components/provider'
+import { IntlClientProvider } from '@/components/server-provider'
 import { auth } from '@/libs/auth'
 import { ChakraProvider } from '@chakra-ui/react'
 import { omit, pick } from 'lodash-es'
@@ -29,24 +30,26 @@ export default async function AppLayout({ children }: Props) {
   // console.log(session)
   return (
     <ChakraProvider>
-      <HeaderIntlProvider>
-        <Header
-          session={
-            session
-              ? (omit(session, [
-                  'user.jti',
-                  'user.exp',
-                  'user.iat'
-                ]) as Partial<Session>)
-              : null
-          }
-        />
-      </HeaderIntlProvider>
-      <main>
-        <div className="mx-auto max-w-7xl px-3 py-6 sm:px-6 lg:px-8">
-          {children}
-        </div>
-      </main>
+      <QueryClientProvider>
+        <HeaderIntlProvider>
+          <Header
+            session={
+              session
+                ? (omit(session, [
+                    'user.jti',
+                    'user.exp',
+                    'user.iat'
+                  ]) as Partial<Session>)
+                : null
+            }
+          />
+        </HeaderIntlProvider>
+        <main>
+          <div className="mx-auto max-w-7xl px-3 py-6 sm:px-6 lg:px-8">
+            {children}
+          </div>
+        </main>
+      </QueryClientProvider>
     </ChakraProvider>
   )
 }

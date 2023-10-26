@@ -1,4 +1,4 @@
-import IntlClientProvider from '@/components/IntlClientProvider'
+import { IntlClientProvider } from '@/components/server-provider'
 import { auth } from '@/libs/auth'
 import client from '@/libs/prisma/client'
 import { Paste } from '@prisma/client'
