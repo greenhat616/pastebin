@@ -43,7 +43,7 @@
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@iconify/json": "^2.2.133",
-    "@next/bundle-analyzer": "^13.5.6",
+    "@next/bundle-analyzer": "^14.0.0",
     "@simplewebauthn/browser": "^8.3.3",
     "@simplewebauthn/server": "^8.3.3",
     "@simplewebauthn/typescript-types": "^8.3.3",
