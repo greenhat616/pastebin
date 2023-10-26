@@ -13,18 +13,21 @@ import { v4 as uuidV4 } from 'uuid'
 
 export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
   const toast = useToast()
-  let token = ''
+  const [token, setToken] = useState('')
+  const latestToken = useLatest(token)
   const [pending, startTransition] = useTransition()
   const [authType, setAuthType] = useState(CredentialsAuthType.WebAuthn)
+  const [password, setPassword] = useState('')
   const latestAuthType = useLatest(authType)
 
   const requestTwiceConfirmation = useMemoizedFn(() => {
-    token = uuidV4() // Generate a new token
+    latestToken.current = uuidV4() // Generate a new token
+    setToken(latestToken.current)
     startTransition(async () => {
       // 1. Request twice confirmation token
       // 2. If no authenticator found, set needPassword to true, otherwise, continue
       const requestRes = await requestTwiceConfirmationTokenAction({
-        token: token
+        token: latestToken.current
       })
       if (
         requestRes.status === ResponseCode.OperationFailed &&
@@ -77,7 +80,7 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
       // console.log(token)
       const finishRes = await confirmTwiceAction({
         authType: latestAuthType.current,
-        token: token,
+        token: latestToken.current,
         ctx: authResp
       })
       if (finishRes.status !== ResponseCode.OK) {
@@ -95,6 +98,29 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
       onSuccess()
     })
   })
+
+  const onPasswordConfirm = useMemoizedFn(() =>
+    startTransition(async () => {
+      const finishRes = await confirmTwiceAction({
+        authType: latestAuthType.current,
+        token: latestToken.current,
+        password: password
+      })
+      if (finishRes.status !== ResponseCode.OK) {
+        toast({
+          title: wrapTranslationKey(
+            'actions.user.request_twice_confirmation.failed'
+          ),
+          description: finishRes.error || 'Unknown Error',
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        })
+        return
+      }
+      onSuccess()
+    })
+  )
 
   return authType === CredentialsAuthType.WebAuthn ? (
     <div className="flex flex-col gap-8 py-5 items-center w-full justify-center">
@@ -114,37 +140,22 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
     <div>
       <div className="flex flex-col gap-8 pt-5 items-center w-full justify-center">
         <FormControl>
-          <Input type="password" placeholder="Password" />
-          <Button
-            onClick={() =>
-              startTransition(async () => {
-                const finishRes = await confirmTwiceAction({
-                  authType: latestAuthType.current,
-                  token: token,
-                  ctx: {
-                    type: 'password',
-                    password: ''
-                  }
-                })
-                if (finishRes.status !== ResponseCode.OK) {
-                  toast({
-                    title: wrapTranslationKey(
-                      'actions.user.request_twice_confirmation.failed'
-                    ),
-                    description: finishRes.error || 'Unknown Error',
-                    status: 'error',
-                    duration: 5000,
-                    isClosable: true
-                  })
-                  return
-                }
-                onSuccess()
-              })
-            }
-          >
-            Confirmation
-          </Button>
+          <Input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </FormControl>
+        <Button
+          onClick={onPasswordConfirm}
+          width="100%"
+          isLoading={pending}
+          disabled={pending}
+          loadingText="Confirming"
+        >
+          Confirm
+        </Button>
       </div>
     </div>
   )
