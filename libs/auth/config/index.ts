@@ -156,7 +156,31 @@ export const authConfig = merge(edgeConfig, {
             avatar: {
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               ...((user!.extraFields as any)?.avatar || {}),
-              [message.account.provider]: message.profile.name
+              [message.account.provider]: message.profile.image
+            }
+          }
+        }
+      })
+    },
+    async signIn(message) {
+      if (message.account?.type === 'credentials') return
+      if (!message.profile?.picture) return
+      const user = await findUserById(message.user.id)
+      await prisma.user.update({
+        where: {
+          id: message.user.id
+        },
+        data: {
+          extraFields: {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ...((user!.extraFields as any) || {}),
+            avatar: {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ...((user!.extraFields as any)?.avatar || {}),
+              [message.account!.provider]:
+                message.profile.picture ||
+                message.profile.avatar_url ||
+                message.profile.image
             }
           }
         }
