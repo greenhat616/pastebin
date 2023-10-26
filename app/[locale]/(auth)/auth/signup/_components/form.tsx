@@ -88,7 +88,7 @@ export default function SignUpForm() {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   >(signUp as any, {
     onSuccess: async (state) => {
-      console.log(state)
+      // console.log(state)
 
       startTransition(async () => {
         // In current case, if enter this branch, it means this request is a webauthn request

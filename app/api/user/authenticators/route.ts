@@ -1,7 +1,7 @@
 import { ResponseCode } from '@/enums/response'
 import { auth } from '@/libs/auth'
 import client from '@/libs/prisma/client'
-import { type NextResponse } from 'next/server'
+import { NextRequest, type NextResponse } from 'next/server'
 import { z } from 'zod'
 
 export type APIAuthenticatorResponse = {
@@ -48,4 +48,4 @@ export const GET = auth(async function (req): Promise<NextResponse> {
         }) as APIAuthenticatorResponse
     )
   )
-})
+}) as (req: NextRequest) => Promise<NextResponse>

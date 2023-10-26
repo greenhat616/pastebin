@@ -74,7 +74,7 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
         return
       }
       // 3. finish authentication
-      console.log(token)
+      // console.log(token)
       const finishRes = await confirmTwiceAction({
         authType: latestAuthType.current,
         token: token,
