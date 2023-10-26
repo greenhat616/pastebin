@@ -13,7 +13,7 @@ async function getSSOs(userID: string) {
   return providers.map((provider) => {
     return {
       ...provider,
-      connected: accounts.some((account) => account.providerId === provider.id)
+      connected: accounts.some((account) => account.provider === provider.id)
     }
   })
 }
