@@ -92,7 +92,7 @@ export default function Profiles({ user, ssos }: ProfilesProps) {
                     colorScheme={sso.connected ? 'blue' : 'gray'}
                     className="flex gap-3"
                     onClick={() =>
-                      sso.connected ? console.log('not impl') : signIn(sso.id)
+                      sso.connected ? console.warn('not impl') : signIn(sso.id)
                     }
                   >
                     {sso.icon} {sso.connected ? 'Unlink' : 'Link'} {sso.name}
