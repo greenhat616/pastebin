@@ -116,7 +116,6 @@ export const authConfig = merge(edgeConfig, {
       state.token.role = user!.role as Role
       state.token.avatar =
         user!.avatar ||
-        state.account?.image ||
         env.NEXT_PUBLIC_AUTH_GRAVATAR_MIRROR.replace(
           '{hash}',
           crypto.createHash('md5').update(user!.email).digest('hex')
