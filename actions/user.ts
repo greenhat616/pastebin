@@ -2,7 +2,7 @@
 
 import { CredentialsAuthType } from '@/enums/app'
 import { ResponseCode } from '@/enums/response'
-import { auth } from '@/libs/auth'
+import { auth, signIn } from '@/libs/auth'
 import {
   getUserAuthenticationOptions,
   verifyUserAuthentication
@@ -19,6 +19,7 @@ import {
   SignInWithPasswordSchema
 } from '@/libs/validation/auth'
 import { UserProfileSchema } from '@/libs/validation/user'
+import { ActionReturn } from '@/utils/actions'
 import { checkTwiceSignedCookie } from '@/utils/cookies'
 import md5 from 'md5'
 import { z } from 'zod'
@@ -265,5 +266,68 @@ export async function removeAuthenticatorAction({
       )
     })
   }
+  return ok()
+}
+
+/**
+ * SSO Operation
+ */
+
+export async function linkAccountAction(
+  providerID: string
+): Promise<ActionReturn<never, { url: string }>> {
+  const session = await auth()
+  if (!session) return nok(ResponseCode.NotAuthorized)
+  const record = await client.account.findFirst({
+    where: { provider: providerID, userId: session.user.id }
+  })
+  if (record) {
+    return nok(ResponseCode.OperationFailed, {
+      error: wrapTranslationKey(
+        'actions.user.link_account.account_already_linked'
+      )
+    })
+  }
+  try {
+    const url = await signIn(providerID, {
+      redirect: false
+    })
+    return ok({ url })
+  } catch (e) {
+    return nok(ResponseCode.OperationFailed, {
+      error: (e as Error).message
+    })
+  }
+}
+
+export async function unlinkAccountAction(providerID: string) {
+  const session = await auth()
+  if (!session) return nok(ResponseCode.NotAuthorized)
+  const record = await client.account.findFirst({
+    where: { provider: providerID, userId: session.user.id }
+  })
+  if (!record) {
+    return nok(ResponseCode.OperationFailed, {
+      error: wrapTranslationKey(
+        'actions.user.unlink_account.account_not_linked'
+      )
+    })
+  }
+  // Do unlink
+  try {
+    await client.account.delete({
+      where: {
+        provider_providerAccountId: {
+          provider: providerID,
+          providerAccountId: record.providerAccountId
+        }
+      }
+    })
+  } catch (e) {
+    return nok(ResponseCode.OperationFailed, {
+      error: (e as Error).message
+    })
+  }
+
   return ok()
 }

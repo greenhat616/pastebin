@@ -5,6 +5,7 @@
     "NImage": true,
     "NLink": true,
     "NScript": true,
+    "checkTwiceSignedCookie": true,
     "classNames": true,
     "fail": true,
     "formatDateTime": true,
@@ -63,12 +64,9 @@
     "ISolarDocumentsLinear": true,
     "ISolarHomeSmileLinear": true,
     "ISolarSettingsLinear": true,
-    "ISolarShieldUserBold": true,
-    "ISolarInboxLinear": true,
-    "ISolarSheildKeyholeBold": true,
     "ISolarShieldKeyholeBold": true,
-    "ISolarShieldKeyholeMinimalisticBold": true,
-    "checkTwiceSignedCookie": true,
+    "ISolarInboxLinear": true,
+    "ISolarShieldUserBold": true,
     "ISolarClipboardBroken": true,
     "ISolarShareLinear": true
   }

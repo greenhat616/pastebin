@@ -10,7 +10,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import type { User } from '@prisma/client'
-import { signIn } from 'next-auth/react'
+import { SSOButton } from './button'
 import { ProfileForm } from './form'
 import { ChangePasswordModal, ManagePasskeysModal } from './modal'
 type ProfilesProps = {
@@ -87,16 +87,7 @@ export default function Profiles({ user, ssos }: ProfilesProps) {
               <h4 className="mt-2 font-medium text-xl">SSO</h4>
               <div className="flex flex-col gap-3">
                 {ssos.map((sso) => (
-                  <Button
-                    key={sso.id}
-                    colorScheme={sso.connected ? 'blue' : 'gray'}
-                    className="flex gap-3"
-                    onClick={() =>
-                      sso.connected ? console.warn('not impl') : signIn(sso.id)
-                    }
-                  >
-                    {sso.icon} {sso.connected ? 'Unlink' : 'Link'} {sso.name}
-                  </Button>
+                  <SSOButton key={sso.id} sso={sso} />
                 ))}
               </div>
             </div>
