@@ -23,9 +23,8 @@ import {
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore ts(2305)
-import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+
+import { useFormStatus } from 'react-dom'
 
 // type State = {
 //   form: {

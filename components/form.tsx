@@ -21,9 +21,8 @@ import { Select } from 'chakra-react-select'
 import 'client-only'
 import { useTranslations } from 'next-intl'
 import React, { useReducer, useRef, useState } from 'react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore ts(2305)
-import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+
+import { useFormStatus } from 'react-dom'
 import { BuiltinLanguage } from 'shikiji/core'
 
 type Props = {

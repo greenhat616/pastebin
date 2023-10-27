@@ -10,9 +10,8 @@ import {
   Textarea,
   useToast
 } from '@chakra-ui/react'
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore ts(2305)
-import { experimental_useFormStatus as useFormStatus } from 'react-dom'
+
+import { useFormStatus } from 'react-dom'
 
 export type ProfileFormProps = {
   defaultValues: {

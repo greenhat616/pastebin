@@ -4,7 +4,7 @@ A lightweight and modern paste bin and url shortener.
 
 ## Features
 
-:yum: Next.js 13 with `App Directory` support
+:yum: Next.js 14 with `App Directory` support
   - `RSC` (React Server Component) for global state hold and data fetching
   - `React Server Actions` for forms mutation
     - A React style full stack solution, a alternative to `tRPC`
