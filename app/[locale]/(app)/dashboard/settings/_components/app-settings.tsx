@@ -24,6 +24,18 @@ export default function AppSettings() {
             Manage the languages you want to use in the app.
           </FormHelperText>
         </FormControl>
+        <FormControl>
+          <FormLabel>Prefer Theme</FormLabel>
+          <Select
+            instanceId="theme"
+            name="syntax"
+            className="cursor-text"
+            useBasicStyles
+          ></Select>
+          <FormHelperText>
+            Automatically detect or choose a theme for the app.
+          </FormHelperText>
+        </FormControl>
       </div>
 
       <Button type="submit" colorScheme="blue" mt="4">
