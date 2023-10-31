@@ -48,4 +48,4 @@ export const GET = auth(async function (req): Promise<NextResponse> {
         }) as APIAuthenticatorResponse
     )
   )
-}) as (req: NextRequest) => Promise<NextResponse>
+}) as unknown as (req: NextRequest) => Promise<NextResponse>
