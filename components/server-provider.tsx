@@ -14,8 +14,8 @@ export async function IntlClientProvider({
   messages,
   children
 }: IntlProviderProps) {
-  const now = await getNow(locale)
-  const timeZone = await getTimeZone(locale)
+  const now = await getNow({ locale })
+  const timeZone = await getTimeZone({ locale })
   return (
     <NextIntlClientProvider now={now} timeZone={timeZone} messages={messages}>
       {children}

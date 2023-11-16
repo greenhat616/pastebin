@@ -7,7 +7,7 @@ import Shell from './_components/shell'
 export default async function DashboardPage() {
   const session = await auth()
   const locale = useLocale()
-  const timeZone = await getTimeZone(locale)
+  const timeZone = await getTimeZone({ locale })
   const now = newDayjs(undefined, { locale, timeZone })
   return (
     <Shell>

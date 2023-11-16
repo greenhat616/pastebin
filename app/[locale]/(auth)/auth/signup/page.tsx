@@ -3,7 +3,7 @@ import { Stack } from '@chakra-ui/react'
 import { pick } from 'lodash-es'
 import { Metadata } from 'next'
 import { AbstractIntlMessages, useLocale, useMessages } from 'next-intl'
-import { getTranslator } from 'next-intl/server'
+import { getTranslations } from 'next-intl/server'
 import SignUpForm from './_components/form'
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
 export async function generateMetadata({
   params: { locale }
 }: Props): Promise<Metadata> {
-  const t = await getTranslator(locale)
+  const t = await getTranslations({ locale })
 
   return {
     title: `${t('auth.signup.title')} - ${t('app.name')}`

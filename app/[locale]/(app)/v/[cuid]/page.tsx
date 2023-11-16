@@ -95,7 +95,7 @@ function renderCode(code: string, language: string) {
 
 export default async function View(props: Props) {
   const locale = useLocale()
-  const timeZone = await getTimeZone(locale)
+  const timeZone = await getTimeZone({ locale })
   // if (!checkUUIDValidation(props.params.cuid)) return notFound()
   const cuid = props.params.cuid
   const data = await getPasteData(cuid)

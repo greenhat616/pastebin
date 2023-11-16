@@ -16,7 +16,7 @@ import {
   getFormatter,
   getNow,
   getTimeZone,
-  getTranslator
+  getTranslations
 } from 'next-intl/server'
 
 import { UnoCSSIndicator } from '@/components/uno-css-indicator'
@@ -29,10 +29,13 @@ const firaCode = Fira_Code({
 export async function generateMetadata({
   params: { locale }
 }: Omit<Props, 'children'>): Promise<Metadata> {
-  const t = await getTranslator(locale, 'app')
-  const formatter = await getFormatter(locale)
-  const now = await getNow(locale)
-  const timeZone = await getTimeZone(locale)
+  const t = await getTranslations({
+    locale: locale,
+    namespace: 'app'
+  })
+  const formatter = await getFormatter({ locale })
+  const now = await getNow({ locale })
+  const timeZone = await getTimeZone({ locale })
 
   return {
     title: t('name'),

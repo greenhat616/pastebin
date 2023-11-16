@@ -1,5 +1,5 @@
-import { IntlClientProvider } from '@/components/server-provider'
 import NavigationLink from '@/components/navigation-link'
+import { IntlClientProvider } from '@/components/server-provider'
 import { providers } from '@/libs/auth/providers'
 import {
   AbsoluteCenter,
@@ -19,14 +19,14 @@ import {
   useTranslations,
   type AbstractIntlMessages
 } from 'next-intl'
-import { getTranslator } from 'next-intl/server'
+import { getTranslations } from 'next-intl/server'
 import { headers } from 'next/headers'
 import Credentials from './_components/Credentials'
 import OAuthProvider from './_components/OAuthProvider'
 export async function generateMetadata({
   params: { locale }
 }: Props): Promise<Metadata> {
-  const t = await getTranslator(locale)
+  const t = await getTranslations({ locale })
 
   return {
     title: `${t('auth.signin.title')} - ${t('app.name')}`

@@ -45,7 +45,7 @@ function AddButtonIntlProvider({ children }: { children: React.ReactNode }) {
 
 export default async function SnippetsPage() {
   const locale = useLocale()
-  const timeZone = await getTimeZone(locale)
+  const timeZone = await getTimeZone({ locale })
   const session = await auth()
   const snippets = await getSnippets(session!.user.id)
 
