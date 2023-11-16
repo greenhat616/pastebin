@@ -1,11 +1,10 @@
 import { PrismaClient } from '@prisma/client'
-import { createSoftDeleteMiddleware } from 'prisma-soft-delete-middleware'
-
+import { createSoftDeleteExtension } from 'prisma-extension-soft-delete'
 const client = new PrismaClient()
 
 // use soft delete
-client.$use(
-  createSoftDeleteMiddleware({
+client.$extends(
+  createSoftDeleteExtension({
     models: {
       User: {
         field: 'deletedAt',

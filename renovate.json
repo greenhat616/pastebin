@@ -10,7 +10,13 @@
   ],
   "packageRules": [
     {
-      "groupName": "next packages",
+      "groupName": "Prisma packages",
+      "matchPackagePatterns": [
+        "prisma"
+      ]
+    },
+    {
+      "groupName": "Next.js packages",
       "matchPackagePatterns": [
         "next"
       ]
