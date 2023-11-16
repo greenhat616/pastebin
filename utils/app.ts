@@ -6,10 +6,10 @@ export function getRuntimeMode(): RuntimeMode {
   return !process.env.NODE_ENV
     ? RuntimeMode.Development
     : process.env.NODE_ENV.toLowerCase() === 'production'
-    ? RuntimeMode.Production
-    : process.env.NODE_ENV.toLowerCase() === 'test'
-    ? RuntimeMode.Test
-    : RuntimeMode.Development
+      ? RuntimeMode.Production
+      : process.env.NODE_ENV.toLowerCase() === 'test'
+        ? RuntimeMode.Test
+        : RuntimeMode.Development
 }
 
 /**
