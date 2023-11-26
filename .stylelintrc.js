@@ -12,6 +12,7 @@ module.exports = {
   ignoreFiles: [
     'node_modules/**/*',
     'dist/**/*',
+    '.next/**/*',
     '**/typings/**/*',
     'public/css/**/*'
   ],

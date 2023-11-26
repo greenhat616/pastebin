@@ -105,8 +105,8 @@ export default function SignUpForm() {
                   ? error.name === 'InvalidStateError'
                     ? t('auth.signup.form.feedback.error.invalid_state_error')
                     : error.name === 'NotAllowedError'
-                    ? t('auth.signup.form.feedback.error.not_allowed_error')
-                    : 'Unknown error'
+                      ? t('auth.signup.form.feedback.error.not_allowed_error')
+                      : 'Unknown error'
                   : 'Unknown error'
             }),
             status: 'error',
