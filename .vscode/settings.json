@@ -1,10 +1,6 @@
 {
-  "css.customData": [
-    ".vscode/unocss.json"
-  ],
-  "i18n-ally.localesPaths": [
-    "messages"
-  ],
+  "css.customData": [".vscode/unocss.json"],
+  "i18n-ally.localesPaths": ["messages"],
   "i18n-ally.keystyle": "nested",
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.updateImportsOnFileMove.enabled": "always"

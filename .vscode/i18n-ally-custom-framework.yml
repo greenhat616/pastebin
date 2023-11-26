@@ -31,6 +31,5 @@ scopeRangeRegex: "useTranslation\\(\\s*\\[?\\s*['\"`](.*?)['\"`]"
 # refactorTemplates:
 #  - i18n.get("$1")
 
-
 # If set to true, only enables this custom framework (will disable all built-in frameworks)
 monopoly: false

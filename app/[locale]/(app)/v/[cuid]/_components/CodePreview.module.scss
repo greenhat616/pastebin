@@ -1,7 +1,8 @@
 .code-preview {
   @apply m-0 flex;
 
-  &, :where(pre, code, kbd,samp) {
+  &,
+  :where(pre, code, kbd, samp) {
     @apply font-code;
 
     font-variant-ligatures: contextual;
@@ -22,7 +23,8 @@
         @apply grid grid-cols-2 gap-2 absolute right-5 top-3 text-xs w-fit h-10;
         @apply duration-75 transition-all ease-linear opacity-0 scale-0;
 
-        .share-button, .copy-button {
+        .share-button,
+        .copy-button {
           @apply flex items-center justify-center text-xs w-10 h-10 rounded-lg border border-solid border-gray-200 cursor-pointer bg-white opacity-80;
         }
       }
@@ -54,13 +56,11 @@
 
     .line-number {
       @apply block text-right text-gray-400 select-none;
-      @apply pl-2  pr-3 ;
+      @apply pl-2  pr-3;
 
       width: var(--line-numbers-width, 2em);
     }
   }
-
-
 
   // .shiki {
   //   .line[data-line] {

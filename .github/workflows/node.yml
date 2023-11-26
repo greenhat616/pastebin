@@ -2,9 +2,9 @@ name: Node.js CI
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
   push:
-    branches: [ main ]
+    branches: [main]
 jobs:
   test:
     name: Lint
@@ -13,18 +13,18 @@ jobs:
       matrix:
         node-version: [20.x]
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-    - uses: oven-sh/setup-bun@v1
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: oven-sh/setup-bun@v1
 
-    - name: Install dependencies
-      run: DB_ADAPTER=postgresql bun i
+      - name: Install dependencies
+        run: DB_ADAPTER=postgresql bun i
 
-    - name: Lint
-      run: bun lint
+      - name: Lint
+        run: bun lint
 
   # build:
   #   name: Build

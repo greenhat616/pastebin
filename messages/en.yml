@@ -28,7 +28,7 @@ components:
       validation_failed: Please check your input
       fail:
         title: Failed to submit
-        description: "Cause: {error}."
+        description: 'Cause: {error}.'
     validation:
       poster:
         required: Poster is required
@@ -73,12 +73,11 @@ components:
         preview: Preview
         edit: Edit
 
-
 code-preview:
   info:
     poster: Poster
     syntax: Syntax
-    expiration: "Expiration: {expiration}"
+    expiration: 'Expiration: {expiration}'
     expiration_never: Never
     posted_at: Posted at {time}
   feedback:
@@ -88,14 +87,14 @@ code-preview:
         description: The content has been copied to your clipboard.
       fail:
         title: Failed to copy to clipboard
-        description: "Cause: {error}."
+        description: 'Cause: {error}.'
     share:
       success:
         title: Share link copied to clipboard
         description: You can now share the link with others.
       fail:
         title: Failed to copy share link to clipboard
-        description: "Cause: {error}."
+        description: 'Cause: {error}.'
 
 auth:
   buttons:
@@ -115,7 +114,7 @@ auth:
         invalid: Invalid credentials
         error:
           title: Failed to sign in
-          description: "Cause: {error}."
+          description: 'Cause: {error}.'
         success:
           title: Signed in successfully
           description: We will redirect you to the previous page right away.
@@ -149,7 +148,7 @@ auth:
           email: Email has already been taken
         error:
           title: Failed to sign up
-          description: "Cause: {error}."
+          description: 'Cause: {error}.'
         success:
           title: Signed up successfully
           description: We will redirect you to the previous page right away.

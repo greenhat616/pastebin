@@ -46,7 +46,7 @@
     }
 
     .menu-container {
-      @apply hidden sm:ml-6 sm:flex sm:items-center ;
+      @apply hidden sm:ml-6 sm:flex sm:items-center;
 
       .menu {
         @apply flex space-x-4;
@@ -104,7 +104,6 @@
         @extend .icon-button;
 
         @apply p-[1px];
-
 
         img {
           @apply h-8 w-8 rounded-full;

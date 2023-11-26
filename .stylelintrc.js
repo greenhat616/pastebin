@@ -36,8 +36,8 @@ module.exports = {
       files: ['**/*.scss', '*.scss'],
       customSyntax: require('postcss-scss'),
       rules: {
-        "at-rule-no-unknown": null,
-        "scss/at-rule-no-unknown": [
+        'at-rule-no-unknown': null,
+        'scss/at-rule-no-unknown': [
           true,
           {
             ignoreAtRules: [
@@ -50,7 +50,7 @@ module.exports = {
               'screen'
             ]
           }
-        ],
+        ]
       }
     }
   ]

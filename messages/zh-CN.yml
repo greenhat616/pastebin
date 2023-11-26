@@ -27,7 +27,7 @@ components:
       validation_failed: 请检查您的输入
       fail:
         title: 提交失败
-        description: "原因：{error}。"
+        description: '原因：{error}。'
     validation:
       poster:
         required: 昵称是必填项
@@ -154,7 +154,7 @@ auth:
           email: 邮箱已被注册
         error:
           title: 注册失败
-          description: "原因：{error}。"
+          description: '原因：{error}。'
         success:
           title: 注册成功
           description: 我们将在几秒钟内将您重定向至之前的页面。

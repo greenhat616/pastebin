@@ -2,7 +2,7 @@
 /**  @type {(options?: import('unplugin-icons/resolver').ComponentResolverOption) => (name: string) => string | undefined} */
 const IconsResolver = require('unplugin-icons/resolver')
 /**  @type {(options?: import('unplugin-auto-import/types').Options) => any} */
-const AutoImports = require('unplugin-auto-import/webpack')
+const AutoImports = require('unplugin-auto-import/webpack').default
 /**  @type {(options?: import('unplugin-icons/types').Options) => any} */
 const Icons = require('unplugin-icons/webpack')
 // const UnoCSS = require('@unocss/webpack').default

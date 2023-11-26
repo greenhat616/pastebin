@@ -6,18 +6,12 @@
     "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
     "plugins": [
       {
@@ -29,19 +23,16 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": [
-      "unplugin-icons/types/react"
-    ]
+    "types": ["unplugin-icons/types/react"]
   },
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
     "auto-imports.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/[locale]/(auth)/_components/layouts/go-back.-buttontsx"
-, "scripts/tools/gen-oauth.mts"  ]
+    "app/[locale]/(auth)/_components/layouts/go-back.-buttontsx",
+    "scripts/tools/gen-oauth.mts"
+  ]
 }

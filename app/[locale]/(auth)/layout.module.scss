@@ -9,7 +9,8 @@
     @apply h-[100vh] w-full absolute top-0 left-0 z-0;
 
     content: ' '; // Required for pseudo element
-    background: url('https://bingw.jasonzeng.dev/?resolution=UHD&index=random') no-repeat center center; // Bing random image
+    background: url('https://bingw.jasonzeng.dev/?resolution=UHD&index=random')
+      no-repeat center center; // Bing random image
     background-size: cover;
   }
 
