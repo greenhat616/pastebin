@@ -95,7 +95,7 @@
     "framer-motion": "10.16.5",
     "hast-util-to-html": "9.0.0",
     "husky": "8.0.3",
-    "lint-staged": "15.1.0",
+    "lint-staged": "15.2.0",
     "lodash-es": "4.17.21",
     "md5": "2.3.0",
     "negotiator": "0.6.3",
