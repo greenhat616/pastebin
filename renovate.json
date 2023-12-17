@@ -6,7 +6,7 @@
     "default:disableRateLimiting",
     "default:rebaseStalePrs",
     "default:pinVersions",
-    "group:allNonMajor"
+    "group:monorepos"
   ],
   "packageRules": [
     {
