@@ -11,7 +11,7 @@
     "db:push": "cross-env NODE_ENV=production tsx ./scripts/prisma/db.ts push",
     "dev": "next dev -p 6754",
     "gen:oauth": "bun run ./scripts/tools/gen-oauth.ts",
-    "postinstall": "husky install",
+    "postinstall": "husky install && npm run db:gen:prod",
     "lint": "run-p lint:*",
     "lint:prettier": "prettier --check \"**/*.{css,html,json,md,scss,ts,tsx,yaml,yml}\"",
     "lint:eslint": "eslint --cache --ext .js,.jsx,.ts,.tsx .",

@@ -19,7 +19,7 @@ async function main() {
   console.log(drivers.map((v) => `  - ` + v).join('\n'))
 
   // Get configured driver
-  const configuredDriver = process.env.DB_ADAPTER || ''
+  const configuredDriver = process.env.DB_ADAPTER || 'postgresql'
   if (!drivers.includes(configuredDriver)) {
     console.error(
       `${chalk.red('✗')} ${chalk.cyan(
