@@ -128,7 +128,7 @@
     "typescript": "5.3.3",
     "unocss": "0.58.0",
     "unplugin-auto-import": "0.17.2",
-    "unplugin-icons": "0.17.4",
+    "unplugin-icons": "0.18.1",
     "uuid": "9.0.1",
     "yaml": "2.3.4",
     "yaml-loader": "0.8.0"
