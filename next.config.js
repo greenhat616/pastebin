@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /**  @type {(options?: import('unplugin-icons/resolver').ComponentResolverOption) => (name: string) => string | undefined} */
-const IconsResolver = require('unplugin-icons/resolver')
+const IconsResolver = require('unplugin-icons/resolver').default
 /**  @type {(options?: import('unplugin-auto-import/types').Options) => any} */
 const AutoImports = require('unplugin-auto-import/webpack').default
 /**  @type {(options?: import('unplugin-icons/types').Options) => any} */
-const Icons = require('unplugin-icons/webpack')
+const Icons = require('unplugin-icons/webpack').default
 // const UnoCSS = require('@unocss/webpack').default
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
