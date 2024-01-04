@@ -23,7 +23,7 @@ import { useTranslations } from 'next-intl'
 import React, { useReducer, useRef, useState } from 'react'
 
 import { useFormStatus } from 'react-dom'
-import { BundledLanguage } from 'shikiji/bundle/web'
+import { BundledLanguage } from 'shikiji/bundle/full'
 
 type Props = {
   defaultNickname?: string

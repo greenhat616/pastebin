@@ -8,7 +8,7 @@ import {
   getHighlighter,
   type BundledLanguage,
   type Highlighter
-} from 'shikiji/bundle/web'
+} from 'shikiji/bundle/full'
 
 const cachedShikiAllSupportedLanguages = Object.values(
   bundledLanguagesInfo
