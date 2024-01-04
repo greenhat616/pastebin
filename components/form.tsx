@@ -23,7 +23,7 @@ import { useTranslations } from 'next-intl'
 import React, { useReducer, useRef, useState } from 'react'
 
 import { useFormStatus } from 'react-dom'
-import { BuiltinLanguage } from 'shikiji/core'
+import { BundledLanguage } from 'shikiji/bundle/web'
 
 type Props = {
   defaultNickname?: string
@@ -179,7 +179,7 @@ export function CreateNormalSnippet(props: Props) {
     setContentPreview(() => 'Rendering...')
     try {
       const result = await codeToHTML(formState.content, {
-        lang: formState.syntax as BuiltinLanguage
+        lang: formState.syntax as BundledLanguage
       })
       setContentPreview(() => result)
     } catch (err) {

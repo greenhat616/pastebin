@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { PasteType } from '@/enums/paste'
-import { BUNDLED_LANGUAGES } from 'shiki'
+import { bundledLanguagesInfo } from 'shikiji/bundle/web'
 
 export const CreateSnippetSupportedExpiration = [
   -1, // never
@@ -28,7 +28,7 @@ export const CreateNormalSnippetFormSchema = z.object({
     })
     .refine(
       (syntax) =>
-        !!BUNDLED_LANGUAGES.find((lang) => lang.id === syntax) ||
+        !!bundledLanguagesInfo.find((lang) => lang.id === syntax) ||
         syntax === 'text',
       {
         message: wrapTranslationKey(
@@ -80,7 +80,7 @@ export const ContentSchema = z.object({
     })
     .refine(
       (syntax) =>
-        !!BUNDLED_LANGUAGES.find((lang) => lang.id === syntax) ||
+        !!bundledLanguagesInfo.find((lang) => lang.id === syntax) ||
         syntax === 'text',
       {
         message: wrapTranslationKey(

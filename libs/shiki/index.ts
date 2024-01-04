@@ -1,15 +1,21 @@
-import { BUNDLED_LANGUAGES } from 'shiki'
 // TODO: use shiki instead of shikiji
 // Shikiji is a fork of Shiki, and it will be merged back to Shiki soon
 import { DistributiveOmit, DistributivePick } from '@/utils/types'
 import type { Root } from 'hast'
 import { toHtml as hastToHTML } from 'hast-util-to-html'
-import { getHighlighter, type BuiltinLanguage, type Highlighter } from 'shikiji'
+import {
+  bundledLanguagesInfo,
+  getHighlighter,
+  type BundledLanguage,
+  type Highlighter
+} from 'shikiji/bundle/web'
 
-const cachedShikiAllSupportedLanguages = BUNDLED_LANGUAGES.map((lang) => {
+const cachedShikiAllSupportedLanguages = Object.values(
+  bundledLanguagesInfo
+).map((lang) => {
   return {
     id: lang.id,
-    name: lang.displayName
+    name: lang.name
   }
 })
 
@@ -119,7 +125,7 @@ export async function codeToHast(
     mergedOptions.lang !== 'text' &&
     !loadedLangs.includes(mergedOptions.lang)
   ) {
-    await shiki.loadLanguage(mergedOptions.lang as BuiltinLanguage)
+    await shiki.loadLanguage(mergedOptions.lang as BundledLanguage)
   }
   return shiki.codeToHast(code, mergedOptions)
 }
