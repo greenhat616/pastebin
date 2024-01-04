@@ -1,4 +1,3 @@
-import { authConfig } from '@/libs/auth/config'
 import pkg from '@/package.json'
 import { getRuntimeMode, loadEnv } from '@/utils/app'
 import chalk from 'chalk'
@@ -16,6 +15,7 @@ async function main() {
   )
   const imports = []
   const drivers = []
+  const { authConfig } = await import('@/libs/auth/config')
   for (const provider of authConfig.providers) {
     console.log(
       chalk.gray('Detected provider:'),
