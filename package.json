@@ -112,7 +112,7 @@
     "prettier": "3.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-use": "17.4.2",
+    "react-use": "17.4.3",
     "sass": "1.69.7",
     "shikiji": "0.9.19",
     "stylelint": "16.1.0",
