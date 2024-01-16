@@ -59,8 +59,8 @@ devDependencies:
     specifier: 11.11.0
     version: 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.48)(react@18.2.0)
   '@formatjs/intl-localematcher':
-    specifier: 0.5.3
-    version: 0.5.3
+    specifier: 0.5.4
+    version: 0.5.4
   '@headlessui/react':
     specifier: 1.7.18
     version: 1.7.18(react-dom@18.2.0)(react@18.2.0)
@@ -2530,8 +2530,8 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /@formatjs/intl-localematcher@0.5.3:
-    resolution: {integrity: sha512-1/X4YCuocNFcnD8t0J6ksiUk1gvI+UIGWicX6HdPvS9GnAoFsTT0pqNBh0jZ1tJY+oSqY/t9aKIGR9FbXD4yjw==}
+  /@formatjs/intl-localematcher@0.5.4:
+    resolution: {integrity: sha512-zTwEpWOzZ2CiKcB93BLngUX59hQkuZjT2+SAQEscSm52peDW/getsawMcWF1rGRpMCX6D7nSJA3CzJ8gn13N/g==}
     dependencies:
       tslib: 2.6.2
     dev: true
