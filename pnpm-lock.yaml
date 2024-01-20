@@ -74,8 +74,8 @@ devDependencies:
     specifier: 14.0.4
     version: 14.0.4
   '@simplewebauthn/browser':
-    specifier: 8.3.4
-    version: 8.3.4
+    specifier: 8.3.7
+    version: 8.3.7
   '@simplewebauthn/server':
     specifier: 8.3.6
     version: 8.3.6
@@ -3040,8 +3040,8 @@ packages:
     resolution: {integrity: sha512-UY+FGM/2jjMkzQLn8pxcHGMaVLh9aEitG3zY2CiY7XHdLiz3bZOwa6oDxNqEMv7zZkV+cj5DOdz0cQ1BP5Hjgw==}
     dev: true
 
-  /@simplewebauthn/browser@8.3.4:
-    resolution: {integrity: sha512-rO0hZ0ESD28bZl6Qe8k7RUuYvDLbsS6oPezkMMTtZ5vC80U07j4qBELKBzojDD6BsdL3dIJ9SExVp8E7pqQ5fA==}
+  /@simplewebauthn/browser@8.3.7:
+    resolution: {integrity: sha512-ZtRf+pUEgOCvjrYsbMsJfiHOdKcrSZt2zrAnIIpfmA06r0FxBovFYq0rJ171soZbe13KmWzAoLKjSxVW7KxCdQ==}
     dependencies:
       '@simplewebauthn/typescript-types': 8.3.4
     dev: true
