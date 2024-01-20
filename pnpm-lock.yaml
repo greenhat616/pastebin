@@ -77,8 +77,8 @@ devDependencies:
     specifier: 8.3.7
     version: 8.3.7
   '@simplewebauthn/server':
-    specifier: 8.3.6
-    version: 8.3.6
+    specifier: 8.3.7
+    version: 8.3.7
   '@simplewebauthn/typescript-types':
     specifier: 8.3.4
     version: 8.3.4
@@ -3046,8 +3046,8 @@ packages:
       '@simplewebauthn/typescript-types': 8.3.4
     dev: true
 
-  /@simplewebauthn/server@8.3.6:
-    resolution: {integrity: sha512-6dNfV2cJX4q5RKeg5Fetn3NzQuym0sOT4lEcejyw+Qs7qYEgGwSctehvS7m/gRgOm3otVvO+g1OcyEQRTWXREw==}
+  /@simplewebauthn/server@8.3.7:
+    resolution: {integrity: sha512-RqCG72p1o6kXEoA/U2KEfKeamDZVDTDw7oNzfAuvYx1dPnuqUspT3+LDf8WByVDsH/0S/WT3ommY3a4pTuaXyA==}
     engines: {node: '>=16.0.0'}
     dependencies:
       '@hexagon/base64': 1.1.28
