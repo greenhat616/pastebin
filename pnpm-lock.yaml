@@ -269,8 +269,8 @@ devDependencies:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-use:
-    specifier: 17.4.3
-    version: 17.4.3(react-dom@18.2.0)(react@18.2.0)
+    specifier: 17.4.4
+    version: 17.4.4(react-dom@18.2.0)(react@18.2.0)
   sass:
     specifier: 1.70.0
     version: 1.70.0
@@ -8260,8 +8260,8 @@ packages:
       tslib: 2.6.2
     dev: true
 
-  /react-use@17.4.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-05Oyuwn4ZccdzLD4ttLbMe8TkobdKpOj7YCFE9VhVpbXrTWZpvCcMyroRw/Banh1RIcQRcM06tfzPpY5D9sTsQ==}
+  /react-use@17.4.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-TzEP2uxihZdsVIvpGq0KB6P/bARHja8LzvJhDpSJNlphybLHcFf5SQzXE3u7APcU25dJz1+p0dv/oKibq+jG4Q==}
     peerDependencies:
       react: '*'
       react-dom: '*'
