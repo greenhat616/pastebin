@@ -311,8 +311,8 @@ devDependencies:
     specifier: 0.58.3
     version: 0.58.3(@unocss/webpack@0.58.3)(postcss@8.4.33)(vite@5.0.12)
   unplugin-auto-import:
-    specifier: 0.17.3
-    version: 0.17.3
+    specifier: 0.17.4
+    version: 0.17.4
   unplugin-icons:
     specifier: 0.18.2
     version: 0.18.2(@svgr/core@8.1.0)
@@ -9610,8 +9610,8 @@ packages:
       - supports-color
     dev: true
 
-  /unplugin-auto-import@0.17.3:
-    resolution: {integrity: sha512-0cn0wr8X579TtdZKUAps0dDVrYzttx38ImdxZjmCeNlMDJX8UuSjO83vFqgS4ClNDIGWAute+xl9j5vRSX+vsw==}
+  /unplugin-auto-import@0.17.4:
+    resolution: {integrity: sha512-sInr7+UOeFMtiRCr7lYZXouTnVqXNUJtN5yN5GDzg6Sr2rwY5ZWZmqf4yvItYCm8mq1PdzPw3oojYHgZAJnTRQ==}
     engines: {node: '>=14'}
     peerDependencies:
       '@nuxt/kit': ^3.2.2
