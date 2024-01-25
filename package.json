@@ -126,7 +126,7 @@
     "tailwindcss-animate": "1.0.7",
     "typescript": "5.3.3",
     "unocss": "0.58.3",
-    "unplugin-auto-import": "0.17.4",
+    "unplugin-auto-import": "0.17.5",
     "unplugin-icons": "0.18.2",
     "uuid": "9.0.1",
     "vite": "5.0.12",
