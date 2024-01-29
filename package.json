@@ -95,7 +95,7 @@
     "eslint-plugin-promise": "6.1.1",
     "framer-motion": "11.0.3",
     "hast-util-to-html": "9.0.0",
-    "husky": "8.0.3",
+    "husky": "9.0.7",
     "lint-staged": "15.2.0",
     "lodash-es": "4.17.21",
     "md5": "2.3.0",
