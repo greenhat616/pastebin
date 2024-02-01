@@ -161,8 +161,8 @@ devDependencies:
     specifier: 1.1.2
     version: 1.1.2
   ahooks:
-    specifier: 3.7.9
-    version: 3.7.9(react@18.2.0)
+    specifier: 3.7.10
+    version: 3.7.10(react@18.2.0)
   autoprefixer:
     specifier: 10.4.17
     version: 10.4.17(postcss@8.4.33)
@@ -4015,8 +4015,8 @@ packages:
       - supports-color
     dev: false
 
-  /ahooks@3.7.9(react@18.2.0):
-    resolution: {integrity: sha512-1nuCnaBe/DvZD2QAZVGLLmu0vDi6jxbiAP3Ghkj6Ocqk9YSXI6ydwo2x5I3lXowZyM8MNJDnHFvIo0vJS1CuFw==}
+  /ahooks@3.7.10(react@18.2.0):
+    resolution: {integrity: sha512-/HLYif7sFA/5qSuWKrwvjDbf3bq+sdaMrUWS7XGCDRWdC2FrG/i+u5LZdakMYc6UIgJTMQ7tGiJCV7sdU4kSIw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -4025,7 +4025,7 @@ packages:
       dayjs: 1.11.10
       intersection-observer: 0.12.2
       js-cookie: 2.2.1
-      lodash-es: 4.17.21
+      lodash: 4.17.21
       react: 18.2.0
       resize-observer-polyfill: 1.5.1
       screenfull: 5.2.0
