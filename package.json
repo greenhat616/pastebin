@@ -127,7 +127,7 @@
     "typescript": "5.3.3",
     "unocss": "0.58.4",
     "unplugin-auto-import": "0.17.5",
-    "unplugin-icons": "0.18.3",
+    "unplugin-icons": "0.18.4",
     "uuid": "9.0.1",
     "vite": "5.0.12",
     "vite-node": "1.2.2",
