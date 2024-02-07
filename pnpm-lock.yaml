@@ -44,8 +44,8 @@ devDependencies:
     specifier: 2.8.2
     version: 2.8.2(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(framer-motion@11.0.3)(react-dom@18.2.0)(react@18.2.0)
   '@choc-ui/chakra-autocomplete':
-    specifier: 5.2.9
-    version: 5.2.9(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0)
+    specifier: 5.2.10
+    version: 5.2.10(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0)
   '@commitlint/cli':
     specifier: 18.4.4
     version: 18.4.4(@types/node@20.11.16)(typescript@5.3.3)
@@ -1977,8 +1977,8 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@choc-ui/chakra-autocomplete@5.2.9(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0):
-    resolution: {integrity: sha512-UgtGabCZozROkOJW4Ow23/BhK8ochoIWQwVcALDwjjttO2CMTE1M71qUuTDRdm2NvWJihAmLEPWNBvnHAZg2fw==}
+  /@choc-ui/chakra-autocomplete@5.2.10(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0):
+    resolution: {integrity: sha512-Ht+wBKXSqG/BewR4cO4jd0RQwDeWA13OO1vNjb9dL75u76dDx7hcYCoJcx1GbcRfoRY7qkP/RIFNs+uIeElDig==}
     engines: {node: '>=10'}
     peerDependencies:
       '@chakra-ui/react': ^2.5.5
@@ -1994,13 +1994,13 @@ packages:
       '@chakra-ui/utils': 2.0.14
       '@emotion/react': 11.11.3(@types/react@18.2.55)(react@18.2.0)
       '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(@types/react@18.2.55)(react@18.2.0)
-      '@size-limit/esbuild': 11.0.0(size-limit@11.0.0)
-      '@size-limit/esbuild-why': 11.0.0(size-limit@11.0.0)
-      '@size-limit/file': 11.0.0(size-limit@11.0.0)
+      '@size-limit/esbuild': 11.0.2(size-limit@11.0.2)
+      '@size-limit/esbuild-why': 11.0.2(size-limit@11.0.2)
+      '@size-limit/file': 11.0.2(size-limit@11.0.2)
       framer-motion: 11.0.3(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-nanny: 2.15.0(react@18.2.0)
-      size-limit: 11.0.0
+      size-limit: 11.0.2
     dev: true
 
   /@commitlint/cli@18.4.4(@types/node@20.11.16)(typescript@5.3.3):
@@ -3165,35 +3165,35 @@ packages:
     engines: {node: '>=18'}
     dev: true
 
-  /@size-limit/esbuild-why@11.0.0(size-limit@11.0.0):
-    resolution: {integrity: sha512-YTEmxCBE5PF6LH9lvNYXJM/h7XqVjpCVFVf2NrsJ75d3HdU8q77WriI7/T1++reBf8GfUhY5RIyASdR1ZJ8S4w==}
+  /@size-limit/esbuild-why@11.0.2(size-limit@11.0.2):
+    resolution: {integrity: sha512-pYm1z5F4XXhg609qnh/VWe52o0T5Z3YjIQlZ9lgxchTYXUskVnRUDqRLKXC3NHuEqHdMtg13Du3rpaGvXMTyuw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      size-limit: 11.0.0
+      size-limit: 11.0.2
     dependencies:
-      esbuild-visualizer: 0.4.1
-      open: 9.1.0
-      size-limit: 11.0.0
+      esbuild-visualizer: 0.6.0
+      open: 10.0.3
+      size-limit: 11.0.2
     dev: true
 
-  /@size-limit/esbuild@11.0.0(size-limit@11.0.0):
-    resolution: {integrity: sha512-OOmba2ZuMpaUhmBXgCfgrO7L6zkUDwvFFfW8T+dK08968LQ79Q+kNgEXQAd+dhj9TlTkHyyEDczWmx16e9cXoQ==}
+  /@size-limit/esbuild@11.0.2(size-limit@11.0.2):
+    resolution: {integrity: sha512-67p+y+wkMBJJegLZUp1X3v1YEvgGSbbAukFbHtxJ1c/DTj/ApiHvtgMzvA5ij+A5UOay+jSU4bXetpNJlUK3Ow==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      size-limit: 11.0.0
+      size-limit: 11.0.2
     dependencies:
       esbuild: 0.19.11
       nanoid: 5.0.4
-      size-limit: 11.0.0
+      size-limit: 11.0.2
     dev: true
 
-  /@size-limit/file@11.0.0(size-limit@11.0.0):
-    resolution: {integrity: sha512-tTg6sSiFbiogiof3GV4iIRCPS4+46Hvq4QWXGXp00Be/tOnpglXF62xNpCfFwefx9YCXxCyeYSqqaRBjpRCsmQ==}
+  /@size-limit/file@11.0.2(size-limit@11.0.2):
+    resolution: {integrity: sha512-874lrMtWYRL+xb/6xzejjwD+krfHTOo+2uFGpZfJScvuNv91Ni2O7k0o09zC70VzCYBGkXquV92ln/H+/ognGg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
-      size-limit: 11.0.0
+      size-limit: 11.0.2
     dependencies:
-      size-limit: 11.0.0
+      size-limit: 11.0.2
     dev: true
 
   /@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.23.7):
@@ -4389,11 +4389,6 @@ packages:
     resolution: {integrity: sha512-1ugUSr8BHXRnK23KfuYS+gVMC3LB8QGH9W1iGtDPsNWoQbgtXSExkBu2aDR4epiGWZOjZsj6lDl/N/AqqTC3UA==}
     dev: true
 
-  /big-integer@1.6.52:
-    resolution: {integrity: sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==}
-    engines: {node: '>=0.6'}
-    dev: true
-
   /big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
     dev: true
@@ -4401,13 +4396,6 @@ packages:
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
-    dev: true
-
-  /bplist-parser@0.2.0:
-    resolution: {integrity: sha512-z0M+byMThzQmD9NILRniCUXYsYpjwnlO8N5uCFaCqIOpqRsJCrQL9NK3JsD67CN5a08nF5oIL2bD6loTdHOuKw==}
-    engines: {node: '>= 5.10.0'}
-    dependencies:
-      big-integer: 1.6.52
     dev: true
 
   /brace-expansion@1.1.11:
@@ -4455,11 +4443,11 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /bundle-name@3.0.0:
-    resolution: {integrity: sha512-PKA4BeSvBpQKQ8iPOGCSiell+N8P+Tf1DlwqmYhpe2gAhKPHn8EYOxVT+ShuGmhg8lN8XiSlS80yiExKXrURlw==}
-    engines: {node: '>=12'}
+  /bundle-name@4.1.0:
+    resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}
+    engines: {node: '>=18'}
     dependencies:
-      run-applescript: 5.0.0
+      run-applescript: 7.0.0
     dev: true
 
   /busboy@1.6.0:
@@ -4985,22 +4973,17 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
 
-  /default-browser-id@3.0.0:
-    resolution: {integrity: sha512-OZ1y3y0SqSICtE8DE4S8YOE9UZOJ8wO16fKWVP5J1Qz42kV9jcnMVFrEE/noXb/ss3Q4pZIH79kxofzyNNtUNA==}
-    engines: {node: '>=12'}
-    dependencies:
-      bplist-parser: 0.2.0
-      untildify: 4.0.0
+  /default-browser-id@5.0.0:
+    resolution: {integrity: sha512-A6p/pu/6fyBcA1TRz/GqWYPViplrftcW2gZC9q79ngNCKAeR/X3gcEdXQHl4KNXV+3wgIJ1CPkJQ3IHM6lcsyA==}
+    engines: {node: '>=18'}
     dev: true
 
-  /default-browser@4.0.0:
-    resolution: {integrity: sha512-wX5pXO1+BrhMkSbROFsyxUm0i/cJEScyNhA4PPxc41ICuv05ZZB/MX28s8aZx6xjmatvebIapF6hLEKEcpneUA==}
-    engines: {node: '>=14.16'}
+  /default-browser@5.2.1:
+    resolution: {integrity: sha512-WY/3TUME0x3KPYdRRxEJJvXRHV4PyPoUsxtZa78lwItwRQRHhd2U9xOscaT/YTf8uCXIAjeJOFBVEh/7FtD8Xg==}
+    engines: {node: '>=18'}
     dependencies:
-      bundle-name: 3.0.0
-      default-browser-id: 3.0.0
-      execa: 7.2.0
-      titleize: 3.0.0
+      bundle-name: 4.1.0
+      default-browser-id: 5.0.0
     dev: true
 
   /define-data-property@1.1.1:
@@ -5294,12 +5277,13 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
-  /esbuild-visualizer@0.4.1:
-    resolution: {integrity: sha512-5XI3unzqPr3xqfzR/mzK3LhoAJs3FQhiIXBsKJ3Oh6CjyjuXz6HVmhJMoisrcpeTZip65fR54Dk53MZncA0AUQ==}
-    engines: {node: '>=14.20'}
+  /esbuild-visualizer@0.6.0:
+    resolution: {integrity: sha512-oNK3JAhC7+re93VTtUdWJKTDVnA2qXPAjCAoaw9OxEFUXztszw3kcaK46u1U790T8FdUBAWv6F9Xt59P8nJCVA==}
+    engines: {node: '>=18'}
     hasBin: true
     dependencies:
       open: 8.4.2
+      picomatch: 2.3.1
       yargs: 17.7.2
     dev: true
 
@@ -5783,21 +5767,6 @@ packages:
       onetime: 5.1.2
       signal-exit: 3.0.7
       strip-final-newline: 2.0.0
-    dev: true
-
-  /execa@7.2.0:
-    resolution: {integrity: sha512-UduyVP7TLB5IcAQl+OzLyLcS/l32W/GLg+AhHJ+ow40FOk2U3SAllPwR44v4vmdFwIWqpdwxxpQbF1n5ta9seA==}
-    engines: {node: ^14.18.0 || ^16.14.0 || >=18.0.0}
-    dependencies:
-      cross-spawn: 7.0.3
-      get-stream: 6.0.1
-      human-signals: 4.3.1
-      is-stream: 3.0.0
-      merge-stream: 2.0.0
-      npm-run-path: 5.2.0
-      onetime: 6.0.0
-      signal-exit: 3.0.7
-      strip-final-newline: 3.0.0
     dev: true
 
   /execa@8.0.1:
@@ -6418,11 +6387,6 @@ packages:
     engines: {node: '>=10.17.0'}
     dev: true
 
-  /human-signals@4.3.1:
-    resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
-    engines: {node: '>=14.18.0'}
-    dev: true
-
   /human-signals@5.0.0:
     resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
     engines: {node: '>=16.17.0'}
@@ -6772,6 +6736,13 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       is-docker: 2.2.1
+    dev: true
+
+  /is-wsl@3.1.0:
+    resolution: {integrity: sha512-UcVfVfaK4Sc4m7X3dUSoHoozQGBEFeDC+zVo06t98xe8CzHSZZBekNXH+tu0NalHolcJ/QAGqS46Hef7QXBIMw==}
+    engines: {node: '>=16'}
+    dependencies:
+      is-inside-container: 1.0.0
     dev: true
 
   /isarray@2.0.5:
@@ -7717,22 +7688,22 @@ packages:
       mimic-fn: 4.0.0
     dev: true
 
+  /open@10.0.3:
+    resolution: {integrity: sha512-dtbI5oW7987hwC9qjJTyABldTaa19SuyJse1QboWv3b0qCcrrLNVDqBx1XgELAjh9QTVQaP/C5b1nhQebd1H2A==}
+    engines: {node: '>=18'}
+    dependencies:
+      default-browser: 5.2.1
+      define-lazy-prop: 3.0.0
+      is-inside-container: 1.0.0
+      is-wsl: 3.1.0
+    dev: true
+
   /open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
     dependencies:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
-      is-wsl: 2.2.0
-    dev: true
-
-  /open@9.1.0:
-    resolution: {integrity: sha512-OS+QTnw1/4vrf+9hh1jc1jnYjzSG4ttTBB8UxOwAnInG3Uo4ssetzC1ihqaIHjLJnA5GGlRl6QlZXOTQhRBUvg==}
-    engines: {node: '>=14.16'}
-    dependencies:
-      default-browser: 4.0.0
-      define-lazy-prop: 3.0.0
-      is-inside-container: 1.0.0
       is-wsl: 2.2.0
     dev: true
 
@@ -8519,11 +8490,9 @@ packages:
       '@babel/runtime': 7.23.7
     dev: true
 
-  /run-applescript@5.0.0:
-    resolution: {integrity: sha512-XcT5rBksx1QdIhlFOCtgZkB99ZEouFZ1E2Kc2LHqNW13U3/74YGdkQRmThTwxy4QIyookibDKYZOPqX//6BlAg==}
-    engines: {node: '>=12'}
-    dependencies:
-      execa: 5.1.1
+  /run-applescript@7.0.0:
+    resolution: {integrity: sha512-9by4Ij99JUr/MCFBUkDKLWK3G9HVXmabKz9U5MlIAIuvuzkiOicRYs8XJLxX+xahD+mLiiCYDqF9dKAgtzKP1A==}
+    engines: {node: '>=18'}
     dev: true
 
   /run-parallel@1.2.0:
@@ -8701,15 +8670,15 @@ packages:
       totalist: 3.0.1
     dev: true
 
-  /size-limit@11.0.0:
-    resolution: {integrity: sha512-6+i4rE1GRzx/vRpuitRYQiZJNTXJjde+4P2NPg8AK7pURrE1+hA3mGstzvT8vQ8DuYFnvp9fh4CHM7Heq3EKXA==}
+  /size-limit@11.0.2:
+    resolution: {integrity: sha512-iFZ8iTR/3zPqxSwEIdGnTVYVU0F2nhodLQG/G6zpi/NxECYAK9ntq2lNr+prXH7h3gyBjx2Umt2D/oS2Qzz+eg==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
     dependencies:
       bytes-iec: 3.1.1
       chokidar: 3.5.3
       globby: 14.0.0
-      lilconfig: 2.1.0
+      lilconfig: 3.0.0
       nanospinner: 1.1.0
       picocolors: 1.0.0
     dev: true
@@ -9338,11 +9307,6 @@ packages:
     resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
     dev: true
 
-  /titleize@3.0.0:
-    resolution: {integrity: sha512-KxVu8EYHDPBdUYdKZdKtU2aj2XfEx9AfjXxE/Aj0vT06w2icA09Vus1rh6eSu1y01akYg6BjIK/hxyLJINoMLQ==}
-    engines: {node: '>=12'}
-    dev: true
-
   /to-fast-properties@2.0.0:
     resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
@@ -9688,11 +9652,6 @@ packages:
       chokidar: 3.5.3
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.1
-    dev: true
-
-  /untildify@4.0.0:
-    resolution: {integrity: sha512-KK8xQ1mkzZeg9inewmFVDNkg3l5LUhoq9kN6iWYB/CC9YMG8HA+c1Q8HwDe6dEX7kErrEVNVBO3fWsVq5iDgtw==}
-    engines: {node: '>=8'}
     dev: true
 
   /update-browserslist-db@1.0.13(browserslist@4.22.2):
