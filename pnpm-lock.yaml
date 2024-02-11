@@ -44,8 +44,8 @@ devDependencies:
     specifier: 2.8.2
     version: 2.8.2(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@types/react@18.2.55)(framer-motion@11.0.3)(react-dom@18.2.0)(react@18.2.0)
   '@choc-ui/chakra-autocomplete':
-    specifier: 5.2.10
-    version: 5.2.10(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0)
+    specifier: 5.3.0
+    version: 5.3.0(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0)
   '@commitlint/cli':
     specifier: 18.4.4
     version: 18.4.4(@types/node@20.11.17)(typescript@5.3.3)
@@ -1977,8 +1977,8 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@choc-ui/chakra-autocomplete@5.2.10(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0):
-    resolution: {integrity: sha512-Ht+wBKXSqG/BewR4cO4jd0RQwDeWA13OO1vNjb9dL75u76dDx7hcYCoJcx1GbcRfoRY7qkP/RIFNs+uIeElDig==}
+  /@choc-ui/chakra-autocomplete@5.3.0(@chakra-ui/react-utils@2.0.11)(@chakra-ui/react@2.8.2)(@chakra-ui/utils@2.0.14)(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(framer-motion@11.0.3)(react@18.2.0):
+    resolution: {integrity: sha512-cJG6bzZ9ueu0cpSzf35PTj1C1afSb9ioD9av7FALwe5v8DQijigTZoqH1lwl1iR+eNnnYYmY6fBiS8mUsh8dTQ==}
     engines: {node: '>=10'}
     peerDependencies:
       '@chakra-ui/react': ^2.5.5
