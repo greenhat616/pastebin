@@ -92,8 +92,8 @@ devDependencies:
     specifier: 0.5.10
     version: 0.5.10(tailwindcss@3.4.1)
   '@tanstack/react-query':
-    specifier: 5.20.5
-    version: 5.20.5(react@18.2.0)
+    specifier: 5.21.2
+    version: 5.21.2(react@18.2.0)
   '@types/cookie-signature':
     specifier: 1.1.2
     version: 1.1.2
@@ -3367,16 +3367,16 @@ packages:
       tailwindcss: 3.4.1
     dev: true
 
-  /@tanstack/query-core@5.20.5:
-    resolution: {integrity: sha512-T1W28gGgWn0A++tH3lxj3ZuUVZZorsiKcv+R50RwmPYz62YoDEkG4/aXHZELGkRp4DfrW07dyq2K5dvJ4Wl1aA==}
+  /@tanstack/query-core@5.21.2:
+    resolution: {integrity: sha512-jg7OcDG44oLT3uuGQQ9BM65ZBIdAq9xNZXPEk7Gr6w1oM1wo2/95H3dPDjLVs0yZKwrmE/ORUOC2Pyi1sp2fDA==}
     dev: true
 
-  /@tanstack/react-query@5.20.5(react@18.2.0):
-    resolution: {integrity: sha512-6MHwJ8G9cnOC/XKrwt56QMc91vN7hLlAQNUA0ubP7h9Jj3a/CmkUwT6ALdFbnVP+PsYdhW3WONa8WQ4VcTaSLQ==}
+  /@tanstack/react-query@5.21.2(react@18.2.0):
+    resolution: {integrity: sha512-/Vv1qTumNDDVA5EYk40kivHZ2kICs1w38GBLRvV6A/lrixUJR5bfqZMKqHA1S6ND3gR9hvSyAAYejBbjLrQnSA==}
     peerDependencies:
       react: ^18.0.0
     dependencies:
-      '@tanstack/query-core': 5.20.5
+      '@tanstack/query-core': 5.21.2
       react: 18.2.0
     dev: true
 
