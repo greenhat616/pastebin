@@ -329,8 +329,8 @@ devDependencies:
     specifier: 2.3.4
     version: 2.3.4
   yaml-loader:
-    specifier: 0.8.0
-    version: 0.8.0
+    specifier: 0.8.1
+    version: 0.8.1
 
 packages:
 
@@ -10051,9 +10051,9 @@ packages:
   /yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
 
-  /yaml-loader@0.8.0:
-    resolution: {integrity: sha512-LjeKnTzVBKWiQBeE2L9ssl6WprqaUIxCSNs5tle8PaDydgu3wVFXTbMfsvF2MSErpy9TDVa092n4q6adYwJaWg==}
-    engines: {node: '>= 12.13'}
+  /yaml-loader@0.8.1:
+    resolution: {integrity: sha512-BCEndnUoi3BaZmePkwGGe93txRxLgMhBa/gE725v1/GHnura8QvNs7c4+4C1yyhhKoj3Dg63M7IqhA++15j6ww==}
+    engines: {node: '>= 14'}
     dependencies:
       javascript-stringify: 2.1.0
       loader-utils: 2.0.4
