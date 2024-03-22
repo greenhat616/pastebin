@@ -68,8 +68,8 @@ devDependencies:
     specifier: 2.1.1
     version: 2.1.1(react@18.2.0)
   '@iconify/json':
-    specifier: 2.2.194
-    version: 2.2.194
+    specifier: 2.2.195
+    version: 2.2.195
   '@next/bundle-analyzer':
     specifier: 14.0.4
     version: 14.0.4
@@ -2874,8 +2874,8 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
-  /@iconify/json@2.2.194:
-    resolution: {integrity: sha512-kt6oB8uvCfUAenD7BUN1Sf+coZvkLbXlT2wPcdurqVQrbL0SLNgiknxaV6RXVXXN7uE/BV239vRGfoHub4dBvA==}
+  /@iconify/json@2.2.195:
+    resolution: {integrity: sha512-oDO79OGefkm/F4xeRDWSiigxsf7yMJAHRzyOoqmkrerUDJ/5JxRSsezUJhYlVarbRFdaBLGh7joJwtLO5mAmXw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
