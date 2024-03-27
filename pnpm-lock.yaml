@@ -89,8 +89,8 @@ devDependencies:
     specifier: 8.1.0
     version: 8.1.0(@svgr/core@8.1.0)
   '@tailwindcss/typography':
-    specifier: 0.5.11
-    version: 0.5.11(tailwindcss@3.4.2)
+    specifier: 0.5.12
+    version: 0.5.12(tailwindcss@3.4.2)
   '@tanstack/react-query':
     specifier: 5.28.9
     version: 5.28.9(react@18.2.0)
@@ -3540,8 +3540,8 @@ packages:
       zod: 3.22.4
     dev: false
 
-  /@tailwindcss/typography@0.5.11(tailwindcss@3.4.2):
-    resolution: {integrity: sha512-ahOULqBQGCdSqL3vMNjH1R5cU2gxTh059fJIKF2enHXE8c/s3yKGDSKZ1+4poCr7BZRREJS8n5cCFmwsW4Ok3A==}
+  /@tailwindcss/typography@0.5.12(tailwindcss@3.4.2):
+    resolution: {integrity: sha512-CNwpBpconcP7ppxmuq3qvaCxiRWnbhANpY/ruH4L5qs2GCiVDJXde/pjj2HWPV1+Q4G9+V/etrwUYopdcjAlyg==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
