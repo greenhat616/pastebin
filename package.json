@@ -41,7 +41,7 @@
     "@commitlint/cli": "18.4.4",
     "@commitlint/config-conventional": "18.4.4",
     "@emotion/react": "11.11.4",
-    "@emotion/styled": "11.11.0",
+    "@emotion/styled": "11.11.5",
     "@formatjs/intl-localematcher": "0.5.4",
     "@headlessui/react": "1.7.18",
     "@heroicons/react": "2.1.3",
