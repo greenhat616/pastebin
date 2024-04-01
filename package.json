@@ -76,7 +76,7 @@
     "@unocss/transformer-variant-group": "0.58.8",
     "@unocss/webpack": "0.58.8",
     "@vercel/analytics": "1.2.2",
-    "ahooks": "3.7.10",
+    "ahooks": "3.7.11",
     "autoprefixer": "10.4.19",
     "chakra-react-select": "4.7.6",
     "cookie-signature": "1.2.1",
