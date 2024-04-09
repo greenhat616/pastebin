@@ -60,7 +60,7 @@
     "@types/md5": "2.3.5",
     "@types/negotiator": "0.6.3",
     "@types/node": "20.12.5",
-    "@types/react": "18.2.74",
+    "@types/react": "18.2.75",
     "@types/react-dom": "18.2.24",
     "@types/uuid": "9.0.8",
     "@typescript-eslint/eslint-plugin": "7.0.2",
