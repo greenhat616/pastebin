@@ -48,7 +48,7 @@
     "@iconify/json": "2.2.201",
     "@next/bundle-analyzer": "14.0.4",
     "@simplewebauthn/browser": "8.3.7",
-    "@simplewebauthn/server": "8.3.7",
+    "@simplewebauthn/server": "10.0.0",
     "@simplewebauthn/typescript-types": "8.3.4",
     "@svgr/core": "8.1.0",
     "@svgr/plugin-jsx": "8.1.0",
