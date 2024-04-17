@@ -76,8 +76,8 @@ importers:
         specifier: 14.0.4
         version: 14.0.4
       '@simplewebauthn/browser':
-        specifier: 8.3.7
-        version: 8.3.7
+        specifier: 10.0.0
+        version: 10.0.0
       '@simplewebauthn/server':
         specifier: 8.3.7
         version: 8.3.7
@@ -1821,12 +1821,15 @@ packages:
   '@rushstack/eslint-patch@1.6.1':
     resolution: {integrity: sha512-UY+FGM/2jjMkzQLn8pxcHGMaVLh9aEitG3zY2CiY7XHdLiz3bZOwa6oDxNqEMv7zZkV+cj5DOdz0cQ1BP5Hjgw==}
 
-  '@simplewebauthn/browser@8.3.7':
-    resolution: {integrity: sha512-ZtRf+pUEgOCvjrYsbMsJfiHOdKcrSZt2zrAnIIpfmA06r0FxBovFYq0rJ171soZbe13KmWzAoLKjSxVW7KxCdQ==}
+  '@simplewebauthn/browser@10.0.0':
+    resolution: {integrity: sha512-hG0JMZD+LiLUbpQcAjS4d+t4gbprE/dLYop/CkE01ugU/9sKXflxV5s0DRjdz3uNMFecatRfb4ZLG3XvF8m5zg==}
 
   '@simplewebauthn/server@8.3.7':
     resolution: {integrity: sha512-RqCG72p1o6kXEoA/U2KEfKeamDZVDTDw7oNzfAuvYx1dPnuqUspT3+LDf8WByVDsH/0S/WT3ommY3a4pTuaXyA==}
     engines: {node: '>=16.0.0'}
+
+  '@simplewebauthn/types@10.0.0':
+    resolution: {integrity: sha512-SFXke7xkgPRowY2E+8djKbdEznTVnD5R6GO7GPTthpHrokLvNKw8C3lFZypTxLI7KkCfGPfhtqB3d7OVGGa9jQ==}
 
   '@simplewebauthn/typescript-types@8.3.4':
     resolution: {integrity: sha512-38xtca0OqfRVNloKBrFB5LEM6PN5vzFbJG6rAutPVrtGHFYxPdiV3btYWq0eAZAZmP+dqFPYJxJWeJrGfmYHng==}
@@ -7236,9 +7239,9 @@ snapshots:
 
   '@rushstack/eslint-patch@1.6.1': {}
 
-  '@simplewebauthn/browser@8.3.7':
+  '@simplewebauthn/browser@10.0.0':
     dependencies:
-      '@simplewebauthn/typescript-types': 8.3.4
+      '@simplewebauthn/types': 10.0.0
 
   '@simplewebauthn/server@8.3.7':
     dependencies:
@@ -7253,6 +7256,8 @@ snapshots:
       cross-fetch: 4.0.0
     transitivePeerDependencies:
       - encoding
+
+  '@simplewebauthn/types@10.0.0': {}
 
   '@simplewebauthn/typescript-types@8.3.4': {}
 
