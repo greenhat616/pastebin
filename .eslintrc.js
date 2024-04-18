@@ -32,14 +32,8 @@ module.exports = {
     }
   ],
   settings: {
-    'import/resolver': {
-      alias: {
-        map: [
-          ['@', './src'],
-          ['~', './']
-        ],
-        extensions: ['.tsx', '.ts', '.jsx', '.js']
-      }
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
     }
   }
 }

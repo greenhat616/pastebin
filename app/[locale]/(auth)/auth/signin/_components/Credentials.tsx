@@ -15,7 +15,7 @@ import {
   browserSupportsWebAuthn,
   startAuthentication
 } from '@simplewebauthn/browser'
-import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/typescript-types'
+import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'

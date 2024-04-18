@@ -10,7 +10,7 @@ import {
   type CreateNormalSnippetForm
 } from '@/libs/validation/paste'
 import type { ActionReturn } from '@/utils/actions'
-import type { Session } from 'next-auth/types'
+import type { Session } from 'next-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect'
 import { redirect } from 'next/navigation'
 

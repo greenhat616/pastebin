@@ -9,7 +9,7 @@ import {
   XMarkIcon
 } from '@heroicons/react/24/outline'
 import { signOut } from 'next-auth/react'
-import { Session } from 'next-auth/types'
+import { type Session } from 'next-auth'
 import { Fragment } from 'react'
 import styles from './Header.module.scss'
 import Navigation from './header/Navigation'

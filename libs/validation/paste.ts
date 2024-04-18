@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { PasteType } from '@/enums/paste'
-import { bundledLanguagesInfo } from 'shikiji/bundle/full'
+import { bundledLanguagesInfo } from 'shiki/bundle/full'
 
 export const CreateSnippetSupportedExpiration = [
   -1, // never

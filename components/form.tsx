@@ -23,7 +23,7 @@ import { useTranslations } from 'next-intl'
 import React, { useReducer, useRef, useState } from 'react'
 
 import { useFormStatus } from 'react-dom'
-import { BundledLanguage } from 'shikiji/bundle/full'
+import { BundledLanguage } from 'shiki/bundle/full'
 
 type Props = {
   defaultNickname?: string
@@ -186,8 +186,9 @@ export function CreateNormalSnippet(props: Props) {
       console.error(err)
       setContentPreview(
         () =>
-          `Rendering Error: ${(err as Error)
-            ?.message}. You can see the error in the console.`
+          `Rendering Error: ${
+            (err as Error)?.message
+          }. You can see the error in the console.`
       )
     }
   }, [formState.content, formState.syntax])

@@ -14,17 +14,18 @@ import type {
   AuthenticatorTransportFuture,
   CredentialDeviceType,
   RegistrationResponseJSON
-} from '@simplewebauthn/typescript-types'
+} from '@simplewebauthn/types'
 import { randomBytes } from 'crypto'
-import 'server-only'
 import client from '../prisma/client'
 import { createUser } from '../services/users/user'
+
+import 'server-only'
 
 const appURL = new URL(env.NEXT_PUBLIC_APP_URL)
 
 export type Authenticator = {
   // SQL: Encode to base64url then store as `TEXT`. Index this column
-  credentialID: Uint8Array
+  credentialID: string // Base64URLString
   // SQL: Store raw bytes as `BYTEA`/`BLOB`/etc...
   credentialPublicKey: Uint8Array
   // SQL: Consider `BIGINT` since some authenticators return atomic timestamps as counters
@@ -58,11 +59,11 @@ export async function getUserRegisterOptions(
       : []
   const options = await generateRegistrationOptions({
     ...baseConfig,
-    userID: 'id' in user ? user.id : randomBytes(16).toString('hex'),
+    userID: 'id' in user ? new TextEncoder().encode(user.id) : randomBytes(16),
     userName: user.email,
     userDisplayName: (user as User)?.name || user.email,
     excludeCredentials: authenticators.map((authenticator) => ({
-      id: Buffer.from(authenticator.credentialID, 'base64url'),
+      id: authenticator.credentialID,
       type: 'public-key',
       // Optional
       transports:
@@ -160,7 +161,7 @@ export async function getUserAuthenticationOptions(user: { id: string }) {
   const options = await generateAuthenticationOptions({
     userVerification: 'preferred',
     allowCredentials: authenticators.map((authenticator) => ({
-      id: Buffer.from(authenticator.credentialID, 'base64url'),
+      id: authenticator.credentialID,
       type: 'public-key',
       // Optional
       transports: authenticator.transports
@@ -168,7 +169,8 @@ export async function getUserAuthenticationOptions(user: { id: string }) {
             ','
           ) as AuthenticatorTransportFuture[])
         : undefined
-    }))
+    })),
+    rpID: baseConfig.rpID
   })
   setCookie('next-auth.challenge', options.challenge, {
     httpOnly: true,
@@ -203,7 +205,7 @@ export async function verifyUserAuthentication(
     expectedOrigin: env.NEXT_PUBLIC_APP_URL,
     expectedRPID: baseConfig.rpID,
     authenticator: {
-      credentialID: Buffer.from(authenticator.credentialID, 'base64url'),
+      credentialID: authenticator.credentialID,
       credentialPublicKey: authenticator.credentialPublicKey,
       counter: authenticator.counter,
       transports: authenticator.transports?.split(

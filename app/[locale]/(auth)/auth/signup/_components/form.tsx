@@ -19,7 +19,7 @@ import {
 import {
   PublicKeyCredentialCreationOptionsJSON,
   RegistrationResponseJSON
-} from '@simplewebauthn/typescript-types'
+} from '@simplewebauthn/types'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'

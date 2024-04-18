@@ -1,6 +1,9 @@
 import { Role } from '@/enums/user'
-import { DefaultSession, NextAuthConfig } from 'next-auth'
+import { NextAuthConfig, type DefaultSession } from 'next-auth'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type JWT } from 'next-auth/jwt'
 import { NextResponse } from 'next/server'
+
 export const protectedPathname = ['/admin', '/me']
 
 export type { Session } from 'next-auth'
@@ -13,9 +16,10 @@ declare module '@auth/core/adapters' {
   }
 }
 
-declare module '@auth/core/jwt' {
-  interface JWT extends DefaultJWT {
+declare module 'next-auth/jwt' {
+  interface JWT {
     /** The user's role. */
+    id: string
     role: Role
     avatar: string | null
     isSuspended: boolean
@@ -33,6 +37,7 @@ declare module 'next-auth' {
     } & DefaultSession['user']
   }
 }
+
 // Note that it is a minimal config, that it is ensure it can exec in edge runtime.
 export const authConfig = {
   providers: [],
@@ -61,16 +66,15 @@ export const authConfig = {
       }
       return true
     },
-    // TODO: remove type annotation after fucking next-auth fix its issue
     async session(params) {
       params.session = {
         ...params.session,
         user: {
           ...params.session.user,
-          id: params.token.id as string,
-          role: params.token.role as Role,
-          avatar: params.token.avatar as string | null,
-          isSuspended: params.token.isSuspended as boolean
+          id: params.token.id,
+          role: params.token.role,
+          avatar: params.token.avatar,
+          isSuspended: params.token.isSuspended
         }
       }
       return params.session

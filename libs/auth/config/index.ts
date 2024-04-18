@@ -147,6 +147,7 @@ export const authConfig = merge(edgeConfig, {
      * @param message
      */
     async linkAccount(message) {
+      if (!message.user.id) return
       const user = await findUserById(message.user.id)
       await prisma.user.update({
         where: {
@@ -171,7 +172,7 @@ export const authConfig = merge(edgeConfig, {
      */
     async signIn(message) {
       if (message.account?.type === 'credentials') return
-      if (!message.profile) return
+      if (!message.profile || !message.user.id) return
       const user = await findUserById(message.user.id)
       await prisma.user.update({
         where: {

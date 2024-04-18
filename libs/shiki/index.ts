@@ -1,14 +1,15 @@
-// TODO: use shiki instead of shikiji
 // Shikiji is a fork of Shiki, and it will be merged back to Shiki soon
+// TODO: use shiki internal plugin instead our own extension
 import { DistributiveOmit, DistributivePick } from '@/utils/types'
 import type { Root } from 'hast'
 import { toHtml as hastToHTML } from 'hast-util-to-html'
 import {
+  bundledLanguages,
   bundledLanguagesInfo,
   getHighlighter,
   type BundledLanguage,
   type Highlighter
-} from 'shikiji/bundle/full'
+} from 'shiki/bundle/full'
 
 const cachedShikiAllSupportedLanguages = Object.values(
   bundledLanguagesInfo
@@ -45,7 +46,8 @@ export function getShikiAllSupportedLanguages(): Array<ShikiLanguage> {
 
 type HighlighterOptions = Parameters<typeof getHighlighter>[0]
 const defaultHighlighterOptions: HighlighterOptions = {
-  themes: ['nord', 'min-light']
+  themes: ['nord', 'min-light'],
+  langs: Object.keys(bundledLanguages)
 }
 
 let shiki = undefined as Highlighter | undefined
@@ -180,20 +182,23 @@ export async function codeToHTMLWithTransformers(
   }
   // let lines = 0
   const mergedOptions = {
-    transforms: {
-      code(node) {
-        options.lang && (node.properties.class = `language-${options.lang}`)
-      },
-      line(node, line) {
-        // node.properties['data-line'] = line
-        // lines = line
-        if (highlightLines && highlightLines.includes(line))
-          node.properties.class += ' highlight'
-      },
-      token(node, line, col) {
-        node.properties.class = `token:${line}:${col}`
+    transformers: [
+      ...(options.transformers || []),
+      {
+        code(node) {
+          options.lang && (node.properties.class = `language-${options.lang}`)
+        },
+        line(node, line) {
+          // node.properties['data-line'] = line
+          // lines = line
+          if (highlightLines && highlightLines.includes(line))
+            node.properties.class += ' highlight'
+        },
+        span(node, line, col) {
+          node.properties.class = `token:${line}:${col}`
+        }
       }
-    },
+    ],
     ...options
   } as Options
   const hast = await codeToHast(code, mergedOptions)

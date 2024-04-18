@@ -30,7 +30,7 @@ import type {
   PublicKeyCredentialCreationOptionsJSON,
   PublicKeyCredentialRequestOptionsJSON,
   RegistrationResponseJSON
-} from '@simplewebauthn/typescript-types'
+} from '@simplewebauthn/types'
 import { isRedirectError } from 'next/dist/client/components/redirect'
 import { redirect } from 'next/navigation'
 import { ZodError } from 'zod'

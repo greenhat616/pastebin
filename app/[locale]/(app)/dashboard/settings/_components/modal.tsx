@@ -32,7 +32,7 @@ import {
   useToast
 } from '@chakra-ui/react'
 import { startRegistration } from '@simplewebauthn/browser'
-import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/typescript-types'
+import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types'
 import { useBoolean, useMemoizedFn } from 'ahooks'
 import { useState, useTransition } from 'react'
 import { ZodError } from 'zod'

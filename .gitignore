@@ -38,3 +38,6 @@ next-env.d.ts
 
 .eslintcache
 .stylelintcache
+
+tsx-0/
+tsconfig.tsbuildinfo
