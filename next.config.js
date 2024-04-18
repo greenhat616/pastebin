@@ -24,7 +24,7 @@ const nextConfig = {
   reactStrictMode: true,
   skipTrailingSlashRedirect: true,
   experimental: {
-    serverComponentsExternalPackages: ['argon2']
+    serverComponentsExternalPackages: ['@node-rs/argon2']
   },
   images: {
     remotePatterns: [

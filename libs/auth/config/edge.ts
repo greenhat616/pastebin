@@ -8,14 +8,6 @@ export const protectedPathname = ['/admin', '/me']
 
 export type { Session } from 'next-auth'
 
-// Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
-declare module '@auth/core/adapters' {
-  interface AdapterUser {
-    /** The user's role. */
-    role: Role
-  }
-}
-
 declare module 'next-auth/jwt' {
   interface JWT {
     /** The user's role. */

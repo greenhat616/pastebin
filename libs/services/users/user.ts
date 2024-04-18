@@ -1,5 +1,5 @@
+import { hash, verify } from '@node-rs/argon2'
 import { User } from '@prisma/client'
-import { hash, verify } from 'argon2'
 
 import prisma from '@/libs/prisma/client'
 
