@@ -9,7 +9,7 @@ import {
   getHighlighter,
   type BundledLanguage,
   type Highlighter
-} from 'shiki/bundle/full'
+} from 'shiki'
 
 const cachedShikiAllSupportedLanguages = Object.values(
   bundledLanguagesInfo
