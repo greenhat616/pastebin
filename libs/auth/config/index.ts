@@ -33,12 +33,12 @@ export const authConfig = merge(edgeConfig, {
       id: 'credentials',
       name: 'Credentials',
       credentials: {
-        id: {
-          label: 'ID',
-          type: 'text',
-          placeholder: 'UserID'
-        },
-        token: { label: 'token', type: 'password' },
+        // id: {
+        //   label: 'ID',
+        //   type: 'text',
+        //   placeholder: 'UserID'
+        // },
+        // token: { label: 'token', type: 'password' },
         email: {
           label: 'Email',
           type: 'text',
@@ -48,61 +48,61 @@ export const authConfig = merge(edgeConfig, {
       },
       async authorize(credentials) {
         // console.log(credentials)
-        if ('id' in credentials) {
-          const id = credentials.id as string
-          const token = credentials.token as string
+        // if ('id' in credentials) {
+        //   const id = credentials.id as string
+        //   const token = credentials.token as string
 
-          const authenticator = await prisma.authenticator.findFirst({
-            where: {
-              userId: id,
-              credentialID: token
-            }
-          })
-          if (!authenticator) return null
-          const user = await findUserById(id)
-          return user
-        } else if ('email' in credentials) {
-          const result =
-            await SignInWithPasswordSchema.safeParseAsync(credentials)
-          if (!result.success) return null
-          const user = await loginByEmail(
-            credentials.email as string,
-            credentials.password as string
-          )
-          if (!user) return null
-          // throw new Error(
-          //   wrapTranslationKey('auth.signin.credentials.feedback.invalid')
-          // )
-          return user
-        }
+        //   const authenticator = await prisma.authenticator.findFirst({
+        //     where: {
+        //       userId: id,
+        //       credentialID: token
+        //     }
+        //   })
+        //   if (!authenticator) return null
+        //   const user = await findUserById(id)
+        //   return user
+        // } else if ('email' in credentials) {
+        const result =
+          await SignInWithPasswordSchema.safeParseAsync(credentials)
+        if (!result.success) return null
+        const user = await loginByEmail(
+          credentials.email as string,
+          credentials.password as string
+        )
+        if (!user) return null
+        // throw new Error(
+        //   wrapTranslationKey('auth.signin.credentials.feedback.invalid')
+        // )
+        return user
+        // }
 
         return null
       }
-    })
-    // CredentialsProvider({
-    //   // Note that: it must be called in the server side
-    //   id: 'webauthnCredentials',
-    //   name: 'WebAuthn',
-    //   credentials: {
-    //     id: { label: 'id', type: 'text' },
-    //     token: { label: 'token', type: 'text' }
-    //   },
-    //   async authorize(credentials) {
-    //     console.log(credentials)
-    // const id = credentials.id as string
-    // const token = credentials.token as string
+    }),
+    CredentialsProvider({
+      // Note that: it must be called in the server side
+      id: 'webauthnCredentials',
+      name: 'WebAuthn',
+      credentials: {
+        id: { label: 'id', type: 'text' },
+        token: { label: 'token', type: 'password' }
+      },
+      async authorize(credentials) {
+        // console.log(credentials)
+        const id = credentials.id! as string
+        const token = credentials.token! as string
 
-    // const authenticator = await prisma.authenticator.findFirst({
-    //   where: {
-    //     userId: id,
-    //     credentialID: token
-    //   }
-    // })
-    // if (!authenticator) return null
-    // const user = await findUserById(id)
-    // return user
-    //   }
-    // })
+        const authenticator = await prisma.authenticator.findFirst({
+          where: {
+            userId: id,
+            credentialID: token
+          }
+        })
+        if (!authenticator) return null
+        const user = await findUserById(id)
+        return user
+      }
+    })
   ],
   callbacks: {
     async jwt(state) {

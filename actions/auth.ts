@@ -31,6 +31,7 @@ import type {
   PublicKeyCredentialRequestOptionsJSON,
   RegistrationResponseJSON
 } from '@simplewebauthn/types'
+import { CredentialsSignin } from 'next-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect'
 import { redirect } from 'next/navigation'
 import { ZodError } from 'zod'
@@ -97,7 +98,7 @@ async function signInWithPassword<T>(
     if (isRedirectError(error)) throw error // If it is a redirect interrupt, throw it
     return nok(ResponseCode.OperationFailed, {
       error:
-        (error as Error).message === 'CredentialsSignin'
+        error instanceof CredentialsSignin
           ? wrapTranslationKey('auth.signin.credentials.feedback.invalid')
           : (error as Error).message
     })
@@ -194,7 +195,7 @@ async function signUpWithPassword<T>(
     if (error instanceof Error) {
       return nok(ResponseCode.OperationFailed, {
         error:
-          error.message === 'CredentialsSignin'
+          error instanceof CredentialsSignin
             ? wrapTranslationKey('auth.signin.credentials.feedback.invalid')
             : error.message
       })
@@ -353,12 +354,10 @@ export async function verifySignUpWithWebAuthnAction(
     )
     if (!result.verified) return nok(ResponseCode.OperationFailed)
     // do sign in
-    await signIn('credentials', {
+    await signIn('webauthnCredentials', {
       redirect: false,
       id: result.userID,
-      token: Buffer.from(result.authenticator.credentialID).toString(
-        'base64url'
-      ),
+      token: result.authenticator.credentialID,
       redirectTo: callbackUrl
     })
     redirect(callbackUrl || '/')
@@ -463,12 +462,10 @@ export async function verifySignInWithWebAuthnAction(
         error: wrapTranslationKey('auth.signin.webauthn.feedback.auth_invalid')
       })
     // do sign in
-    const res = await signIn('credentials', {
+    const res = await signIn('webauthnCredentials', {
       redirect: false,
       id: result.userID,
-      token: Buffer.from(result.authenticator.credentialID).toString(
-        'base64url'
-      ),
+      token: result.authenticator.credentialID,
       redirectTo: callbackUrl
     })
     // console.log(res)

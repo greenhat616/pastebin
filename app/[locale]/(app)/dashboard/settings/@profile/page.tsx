@@ -20,9 +20,10 @@ async function getSSOs(userID: string) {
 
 export default async function ProfilePage() {
   const session = await auth()
+  if (!session) return null
   const user = await client.user.findUnique({
     where: {
-      id: session!.user.id
+      id: session.user.id
     }
   })
   const ssos = await getSSOs(session!.user.id)

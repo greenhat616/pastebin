@@ -128,9 +128,7 @@ export async function verifyUserRegistration(
   }
   await client.authenticator.create({
     data: {
-      credentialID: Buffer.from(authenticator.credentialID).toString(
-        'base64url'
-      ),
+      credentialID: authenticator.credentialID,
       credentialPublicKey: Buffer.from(authenticator.credentialPublicKey),
       counter: authenticator.counter,
       credentialDeviceType: authenticator.credentialDeviceType,
