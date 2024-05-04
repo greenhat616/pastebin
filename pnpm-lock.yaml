@@ -322,8 +322,8 @@ importers:
         specifier: 5.2.11
         version: 5.2.11(@types/node@20.12.8)(sass@1.76.0)(terser@5.30.3)
       vite-node:
-        specifier: 1.5.3
-        version: 1.5.3(@types/node@20.12.8)(sass@1.76.0)(terser@5.30.3)
+        specifier: 1.6.0
+        version: 1.6.0(@types/node@20.12.8)(sass@1.76.0)(terser@5.30.3)
       vite-tsconfig-paths:
         specifier: 4.3.2
         version: 4.3.2(typescript@5.4.5)(vite@5.2.11(@types/node@20.12.8)(sass@1.76.0)(terser@5.30.3))
@@ -5332,8 +5332,8 @@ packages:
   vfile@6.0.1:
     resolution: {integrity: sha512-1bYqc7pt6NIADBJ98UiG0Bn/CHIVOoZ/IyEkqIruLg0mE1BKzkOXY2D6CSqQIcKqgadppE5lrxgWXJmXd7zZJw==}
 
-  vite-node@1.5.3:
-    resolution: {integrity: sha512-axFo00qiCpU/JLd8N1gu9iEYL3xTbMbMrbe5nDp9GL0nb6gurIdZLkkFogZXWnE8Oyy5kfSLwNVIcVsnhE7lgQ==}
+  vite-node@1.6.0:
+    resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -11212,7 +11212,7 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-node@1.5.3(@types/node@20.12.8)(sass@1.76.0)(terser@5.30.3):
+  vite-node@1.6.0(@types/node@20.12.8)(sass@1.76.0)(terser@5.30.3):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
