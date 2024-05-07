@@ -1,8 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import { Icon, chakra, shouldForwardProp } from '@chakra-ui/react'
-import { isValidMotionProp, motion } from 'framer-motion'
+import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import {
+  JSXElementConstructor,
+  ReactElement,
+  SVGProps,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 
 // ChakraBox is Icon wrapper of motion.div
 const ChakraBox = chakra(motion.div, {
@@ -15,119 +23,66 @@ const ChakraBox = chakra(motion.div, {
 
 type EmojiProps = {
   className?: string
+  index: number
+  setIndex: (index: number) => void
 }
 
-function Emoji(props: EmojiProps) {
-  const extraProps = {
-    className: classNames('w-10 h-10', props.className)
-  }
-
-  const emojis = [
-    <Icon
-      key="face-with-tears-of-joy"
-      as={IFluentEmojiFlatFaceWithTearsOfJoy}
-      {...extraProps}
-    />,
-    <Icon
-      key="grinning-squinting-face"
-      as={IFluentEmojiFlatGrinningSquintingFace}
-      {...extraProps}
-    />,
-    <Icon
-      key="face-with-symbols-on-mouth"
-      as={IFluentEmojiFlatFaceWithSymbolsOnMouth}
-      {...extraProps}
-    />,
-    <Icon key="zany-face" as={IFluentEmojiFlatZanyFace} {...extraProps} />,
-    <Icon key="woozy-face" as={IFluentEmojiFlatWoozyFace} {...extraProps} />,
-    <Icon
-      key="beaming-face-with-smiling-eyes"
-      as={IFluentEmojiFlatBeamingFaceWithSmilingEyes}
-      {...extraProps}
-    />,
-    <Icon key="clown-face" as={IFluentEmojiFlatClownFace} {...extraProps} />,
-    <Icon
-      key="exploding-head"
-      as={IFluentEmojiFlatExplodingHead}
-      {...extraProps}
-    />,
-    <Icon
-      key="face-with-diagonal-mouth"
-      as={IFluentEmojiFlatFaceWithDiagonalMouth}
-      {...extraProps}
-    />,
-    <Icon key="angry-face" as={IFluentEmojiFlatAngryFace} {...extraProps} />,
-    <Icon
-      key="face-holding-back-tears"
-      as={IFluentEmojiFlatFaceHoldingBackTears}
-      {...extraProps}
-    />,
-    <Icon
-      key="anxious-face-with-sweat"
-      as={IFluentEmojiFlatAnxiousFaceWithSweat}
-      {...extraProps}
-    />,
-    <Icon
-      key="downcast-face-with-sweat"
-      as={IFluentEmojiFlatDowncastFaceWithSweat}
-      {...extraProps}
-    />,
-    <Icon
-      key="face-savoring-food"
-      as={IFluentEmojiFlatFaceSavoringFood}
-      {...extraProps}
-    />,
-    <Icon
-      key="grinning-face-with-big-eyes"
-      as={IFluentEmojiFlatGrinningFaceWithBigEyes}
-      {...extraProps}
-    />,
-    <Icon key="hot-face" as={IFluentEmojiFlatHotFace} {...extraProps} />,
-    <Icon
-      key="loudly-crying-face"
-      as={IFluentEmojiFlatLoudlyCryingFace}
-      {...extraProps}
-    />,
-    <Icon key="lying-face" as={IFluentEmojiFlatLyingFace} {...extraProps} />,
-    <Icon key="ghost" as={IFluentEmojiFlatGhost} {...extraProps} />,
-    <Icon
-      key="grinning-face-with-sweat"
-      as={IFluentEmojiFlatGrinningFaceWithSweat}
-      {...extraProps}
-    />,
-    <Icon
-      key="knocked-out-face"
-      as={IFluentEmojiFlatKnockedOutFace}
-      {...extraProps}
-    />,
-    <Icon
-      key="face-with-raised-eyebrow"
-      as={IFluentEmojiFlatFaceWithRaisedEyebrow}
-      {...extraProps}
-    />,
-    <Icon
-      key="face-with-rolling-eyes"
-      as={IFluentEmojiFlatFaceWithRollingEyes}
-      {...extraProps}
-    />,
-    <Icon
-      key="partying-face"
-      as={IFluentEmojiFlatPartyingFace}
-      {...extraProps}
-    />,
-    <Icon
-      key="smirking-face"
-      as={IFluentEmojiFlatSmirkingFace}
-      {...extraProps}
-    />,
-    <Icon
-      key="smiling-face-with-sunglasses"
-      as={IFluentEmojiFlatSmilingFaceWithSunglasses}
-      {...extraProps}
-    />
+const emojis = [
+  ['face-with-tears-of-joy', IFluentEmojiFlatFaceWithTearsOfJoy],
+  ['grinning-squinting-face', IFluentEmojiFlatGrinningSquintingFace],
+  ['face-with-symbols-on-mouth', IFluentEmojiFlatFaceWithSymbolsOnMouth],
+  ['zany-face', IFluentEmojiFlatZanyFace],
+  ['woozy-face', IFluentEmojiFlatWoozyFace],
+  [
+    'beaming-face-with-smiling-eyes',
+    IFluentEmojiFlatBeamingFaceWithSmilingEyes
+  ],
+  ['clown-face', IFluentEmojiFlatClownFace],
+  ['exploding-head', IFluentEmojiFlatExplodingHead],
+  ['face-with-diagonal-mouth', IFluentEmojiFlatFaceWithDiagonalMouth],
+  ['angry-face', IFluentEmojiFlatAngryFace],
+  ['face-holding-back-tears', IFluentEmojiFlatFaceHoldingBackTears],
+  ['anxious-face-with-sweat', IFluentEmojiFlatAnxiousFaceWithSweat],
+  ['downcast-face-with-sweat', IFluentEmojiFlatDowncastFaceWithSweat],
+  ['face-savoring-food', IFluentEmojiFlatFaceSavoringFood],
+  ['grinning-face-with-big-eyes', IFluentEmojiFlatGrinningFaceWithBigEyes],
+  ['hot-face', IFluentEmojiFlatHotFace],
+  ['loudly-crying-face', IFluentEmojiFlatLoudlyCryingFace],
+  ['lying-face', IFluentEmojiFlatLyingFace],
+  ['ghost', IFluentEmojiFlatGhost],
+  ['grinning-face-with-sweat', IFluentEmojiFlatGrinningFaceWithSweat],
+  ['knocked-out-face', IFluentEmojiFlatKnockedOutFace],
+  ['face-with-raised-eyebrow', IFluentEmojiFlatFaceWithRaisedEyebrow],
+  ['face-with-rolling-eyes', IFluentEmojiFlatFaceWithRollingEyes],
+  ['partying-face', IFluentEmojiFlatPartyingFace],
+  ['smirking-face', IFluentEmojiFlatSmirkingFace],
+  ['smiling-face-with-sunglasses', IFluentEmojiFlatSmilingFaceWithSunglasses]
+] as Array<
+  [
+    string,
+    (
+      props: SVGProps<SVGSVGElement>
+    ) => ReactElement<any, string | JSXElementConstructor<any>>
   ]
+>
 
-  const [index, setIndex] = useState(Math.floor(Math.random() * emojis.length))
+function Emoji(props: EmojiProps) {
+  const { index, setIndex } = props
+  const extraProps = useMemo(
+    () => ({
+      className: classNames('w-10 h-10', props.className)
+    }),
+    [props]
+  )
+
+  const mergedEmojis = useMemo(
+    () =>
+      emojis.map((emoji) => (
+        <Icon key={emoji[0]} as={emoji[1]} {...extraProps} />
+      )),
+    [extraProps]
+  )
+
   const [isClient, setIsClient] = useState(false) // prevent SSR
   const pathname = usePathname()
   // random pick emoji while route change
@@ -142,7 +97,7 @@ function Emoji(props: EmojiProps) {
     setIsClient(true)
   }, [])
 
-  return <>{isClient && emojis[index]}</>
+  return <>{isClient && mergedEmojis[index]}</>
 }
 
 export type AnimatedLogoProps = {
@@ -151,23 +106,31 @@ export type AnimatedLogoProps = {
 }
 
 export default function AnimatedLogo(props: AnimatedLogoProps) {
+  const [index, setIndex] = useState(Math.floor(Math.random() * emojis.length))
   return (
-    <ChakraBox
-      initial={{ scale: 0 }}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore no problem in operation, although type error appears.
-      transition={{
-        type: 'spring',
-        stiffness: 260,
-        damping: 20
-      }}
-      animate={{ scale: 1, rotate: 360 }}
-      whileHover={{ scale: 1.2, rotate: 0 }}
-      whileTap={{ scale: 0.8, rotate: -90 }}
-      as={motion.div}
-      className={classNames('w-10 h-10', props.className)}
-    >
-      <Emoji className={props.emojiClassName} />
-    </ChakraBox>
+    <AnimatePresence>
+      <ChakraBox
+        key={index}
+        initial={{ scale: 0 }}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore no problem in operation, although type error appears.
+        transition={{
+          type: 'spring',
+          stiffness: 260,
+          damping: 20
+        }}
+        animate={{ scale: 1, rotate: 360 }}
+        whileHover={{ scale: 1.2, rotate: 0 }}
+        whileTap={{ scale: 0.8, rotate: -90 }}
+        as={motion.div}
+        className={classNames('w-10 h-10', props.className)}
+      >
+        <Emoji
+          className={props.emojiClassName}
+          index={index}
+          setIndex={setIndex}
+        />
+      </ChakraBox>
+    </AnimatePresence>
   )
 }
