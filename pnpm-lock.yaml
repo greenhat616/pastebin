@@ -310,8 +310,8 @@ importers:
         specifier: 0.60.0
         version: 0.60.0(@unocss/webpack@0.60.0(rollup@4.14.3)(webpack@5.91.0))(postcss@8.4.38)(rollup@4.14.3)(vite@5.2.11(@types/node@20.12.11)(sass@1.77.0)(terser@5.30.3))
       unplugin-auto-import:
-        specifier: 0.17.5
-        version: 0.17.5(rollup@4.14.3)
+        specifier: 0.17.6
+        version: 0.17.6(rollup@4.14.3)
       unplugin-icons:
         specifier: 0.19.0
         version: 0.19.0(@svgr/core@8.1.0(typescript@5.4.5))
@@ -356,6 +356,9 @@ packages:
 
   '@antfu/utils@0.7.7':
     resolution: {integrity: sha512-gFPqTG7otEJ8uP6wrhDv6mqwGWYZKNvAcCq6u9hOj0c+IKCEsY4L1oC9trPq2SaWIzAfHvqfBDxF591JkMf+kg==}
+
+  '@antfu/utils@0.7.8':
+    resolution: {integrity: sha512-rWQkqXRESdjXtc+7NRfK9lASQjpXJu1ayp7qi1d23zZorY+wBHVLHHoVcMsEnkqEBWTFqbztO7/QdJFzyEcLTg==}
 
   '@auth/core@0.30.0':
     resolution: {integrity: sha512-8AE4m/nk+4EIiVCJwxZAsJeAQuzpEC8M8768mmKVn60CGDdupKQkVhxbRlm5Qh7eNRCoFFME+0DvtaX2aXrYaA==}
@@ -5313,8 +5316,8 @@ packages:
       vite:
         optional: true
 
-  unplugin-auto-import@0.17.5:
-    resolution: {integrity: sha512-fHNDkDSxv3PGagX1wmKBYBkgaM4AKAgZmdJw/bxjhNljx9KSXSgHpGfX0MwUrq9qw6q1bhHIZVWyOwoY2koo4w==}
+  unplugin-auto-import@0.17.6:
+    resolution: {integrity: sha512-dmX0Pex5DzMzVuALkexboOZvh51fL/BD6aoPO7qHoTYGlQp0GRKsREv2KMF1lzYI9SXKQiRxAjwzbQnrFFNydQ==}
     engines: {node: '>=14'}
     peerDependencies:
       '@nuxt/kit': ^3.2.2
@@ -5609,6 +5612,8 @@ snapshots:
       '@jsdevtools/ez-spawn': 3.0.4
 
   '@antfu/utils@0.7.7': {}
+
+  '@antfu/utils@0.7.8': {}
 
   '@auth/core@0.30.0(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)':
     dependencies:
@@ -11330,9 +11335,9 @@ snapshots:
       - rollup
       - supports-color
 
-  unplugin-auto-import@0.17.5(rollup@4.14.3):
+  unplugin-auto-import@0.17.6(rollup@4.14.3):
     dependencies:
-      '@antfu/utils': 0.7.7
+      '@antfu/utils': 0.7.8
       '@rollup/pluginutils': 5.1.0(rollup@4.14.3)
       fast-glob: 3.3.2
       local-pkg: 0.5.0
