@@ -18,7 +18,7 @@ import {
 import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState, useTransition } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useFormStatus } from 'react-dom'
 
@@ -73,7 +73,8 @@ export default function Credentials(props: Props) {
   const toast = useToast()
 
   const [authType, setAuthType] = useState(CredentialsAuthType.WebAuthn)
-  const [pending, startTransition] = useTransition()
+  // const [pending, startTransition] = useTransition()
+  const [pending, setPending] = useState(false)
 
   const searchParams = useSearchParams()
   const signIn = signInAction.bind(
@@ -86,59 +87,55 @@ export default function Credentials(props: Props) {
     PublicKeyCredentialCreationOptionsJSON
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   >(signIn as any, {
-    onSuccess: (state) => {
-      startTransition(async () => {
-        let asseResp
-        try {
-          // Pass the options to the authenticator and wait for a response
-          asseResp = await startAuthentication(state.data!)
-        } catch (error) {
-          console.error(error)
-          toast({
-            title: t('auth.signin.credentials.feedback.error.title'),
-            description: t(
-              'auth.signin.credentials.feedback.error.description',
-              {
-                error:
-                  error instanceof Error
-                    ? error.name === 'NotAllowedError'
-                      ? t('auth.signin.form.feedback.error.not_allowed_error')
-                      : 'Unknown error'
-                    : 'Unknown error'
-              }
-            ),
-            status: 'error',
-            duration: 5000,
-            isClosable: true
-          })
-          return
-        }
+    onSuccess: async (state) => {
+      setPending(true)
+      let asseResp
+      try {
+        // Pass the options to the authenticator and wait for a response
+        asseResp = await startAuthentication(state.data!)
+      } catch (error) {
+        console.error(error)
+        toast({
+          title: t('auth.signin.credentials.feedback.error.title'),
+          description: t('auth.signin.credentials.feedback.error.description', {
+            error:
+              error instanceof Error
+                ? error.name === 'NotAllowedError'
+                  ? t('auth.signin.form.feedback.error.not_allowed_error')
+                  : 'Unknown error'
+                : 'Unknown error'
+          }),
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        })
+        setPending(false)
+        return
+      }
 
-        try {
-          const resp = await verifySignInWithWebAuthnAction(
-            searchParams.get('callbackUrl') || undefined,
-            {
-              ctx: asseResp
-            }
-          )
-          if (!resp) return // It means redirect
-          if (resp.status !== ResponseCode.OK) throw new Error(resp.error)
-        } catch (error) {
-          console.error(error)
-          toast({
-            title: t('auth.signin.credentials.feedback.error.title'),
-            description: t(
-              'auth.signin.credentials.feedback.error.description',
-              {
-                error: (error as Error).message
-              }
-            ),
-            status: 'error',
-            duration: 5000,
-            isClosable: true
-          })
-        }
-      })
+      try {
+        const resp = await verifySignInWithWebAuthnAction(
+          searchParams.get('callbackUrl') || undefined,
+          {
+            ctx: asseResp
+          }
+        )
+        if (!resp) return // It means redirect
+        if (resp.status !== ResponseCode.OK) throw new Error(resp.error)
+      } catch (error) {
+        console.error(error)
+        toast({
+          title: t('auth.signin.credentials.feedback.error.title'),
+          description: t('auth.signin.credentials.feedback.error.description', {
+            error: (error as Error).message
+          }),
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        })
+      } finally {
+        setPending(false)
+      }
     },
     onError: (state) => {
       if (

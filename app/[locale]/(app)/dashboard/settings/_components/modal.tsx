@@ -57,41 +57,43 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
     const [preName, setPreName] = useState(name)
 
     const toast = useToast()
-    const [pending, startTransition] = useTransition()
+    // const [pending, startTransition] = useTransition()
+    const [pending, setPending] = useState(false)
     if (preName !== name) {
       setPreName(name)
       setNameState(name)
     }
 
-    const onSubmit = useMemoizedFn((nextName) => {
+    const onSubmit = useMemoizedFn(async (nextName) => {
       if (nextName === preName) return
-      startTransition(async () => {
-        try {
-          const res = await modifyAuthenticatorName({
-            name: nextName,
-            credential_id: credentialID
-          })
-          if (res.status !== ResponseCode.OK) {
-            throw new Error(res.error || 'Unknown error')
-          }
-          toast({
-            title: 'Passkey name changed.',
-            description: 'Your passkey name has been changed.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true
-          })
-          onSuccessfulChange && onSuccessfulChange()
-        } catch (e) {
-          toast({
-            title: 'Failed to change passkey name.',
-            description: (e as Error).message,
-            status: 'error',
-            duration: 5000,
-            isClosable: true
-          })
+      setPending(true)
+      try {
+        const res = await modifyAuthenticatorName({
+          name: nextName,
+          credential_id: credentialID
+        })
+        if (res.status !== ResponseCode.OK) {
+          throw new Error(res.error || 'Unknown error')
         }
-      })
+        toast({
+          title: 'Passkey name changed.',
+          description: 'Your passkey name has been changed.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true
+        })
+        onSuccessfulChange && onSuccessfulChange()
+      } catch (e) {
+        toast({
+          title: 'Failed to change passkey name.',
+          description: (e as Error).message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        })
+      } finally {
+        setPending(false)
+      }
     })
     return (
       <Editable
@@ -109,6 +111,7 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
           px="1"
           py="0.5"
           outline="none"
+          disabled={pending}
         />
       </Editable>
     )
@@ -122,33 +125,35 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
     onSuccessfulDelete?: () => void
   }) {
     const toast = useToast()
-    const [pending, startTransition] = useTransition()
-    const onDelete = useMemoizedFn(() => {
-      startTransition(async () => {
-        try {
-          const result = await removeAuthenticatorAction({
-            credentialID: credentialID
-          })
-          if (result.status !== ResponseCode.OK)
-            throw new Error(result.error || 'Unknown error')
-          toast({
-            title: 'Passkey removed.',
-            description: 'Your passkey has been removed.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true
-          })
-          onSuccessfulDelete && onSuccessfulDelete()
-        } catch (e) {
-          toast({
-            title: 'Failed to remove passkey.',
-            description: (e as Error).message,
-            status: 'error',
-            duration: 5000,
-            isClosable: true
-          })
-        }
-      })
+    // const [pending, startTransition] = useTransition()
+    const [pending, setPending] = useState(false)
+    const onDelete = useMemoizedFn(async () => {
+      setPending(true)
+      try {
+        const result = await removeAuthenticatorAction({
+          credentialID: credentialID
+        })
+        if (result.status !== ResponseCode.OK)
+          throw new Error(result.error || 'Unknown error')
+        toast({
+          title: 'Passkey removed.',
+          description: 'Your passkey has been removed.',
+          status: 'success',
+          duration: 5000,
+          isClosable: true
+        })
+        onSuccessfulDelete && onSuccessfulDelete()
+      } catch (e) {
+        toast({
+          title: 'Failed to remove passkey.',
+          description: (e as Error).message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true
+        })
+      } finally {
+        setPending(false)
+      }
     })
     return (
       <Button
@@ -340,7 +345,8 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
   const onTwiceConfirmationSuccess = useMemoizedFn(() => {
     setFinishTwiceConfirmationTrue()
   })
-  const [changePasswordPending, startTransition] = useTransition()
+  // const [changePasswordPending, startTransition] = useTransition()
+  const [changePasswordPending, setChangePasswordPending] = useState(false)
   const [formState, setFormState] = useState<{
     password: string | undefined
     password_confirmation: string | undefined
@@ -356,7 +362,7 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
     password_confirmation: undefined
   })
 
-  const onChangePassword = useMemoizedFn(() => {
+  const onChangePassword = useMemoizedFn(async () => {
     let data: {
       password: string
       password_confirmation: string
@@ -382,29 +388,30 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
       }
       return
     }
-    startTransition(async () => {
-      try {
-        const result = await modifyPasswordAction(data)
-        if (result.status !== ResponseCode.OK)
-          throw new Error(result.error || 'Unknown error')
-        toast({
-          title: 'Password changed.',
-          description: 'Your password has been changed.',
-          status: 'success',
-          duration: 5000,
-          isClosable: true
-        })
-        onClose()
-      } catch (e) {
-        toast({
-          title: 'Failed to change password.',
-          description: (e as Error).message,
-          status: 'error',
-          duration: 5000,
-          isClosable: true
-        })
-      }
-    })
+    setChangePasswordPending(true)
+    try {
+      const result = await modifyPasswordAction(data)
+      if (result.status !== ResponseCode.OK)
+        throw new Error(result.error || 'Unknown error')
+      toast({
+        title: 'Password changed.',
+        description: 'Your password has been changed.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true
+      })
+      onClose()
+    } catch (e) {
+      toast({
+        title: 'Failed to change password.',
+        description: (e as Error).message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true
+      })
+    } finally {
+      setChangePasswordPending(false)
+    }
   })
   return (
     <Modal
