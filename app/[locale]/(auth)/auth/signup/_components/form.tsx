@@ -22,7 +22,7 @@ import {
 } from '@simplewebauthn/types'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 
 import { useFormStatus } from 'react-dom'
 
@@ -74,8 +74,7 @@ function Submit({ pending }: { pending: boolean }) {
 
 export default function SignUpForm() {
   const t = useTranslations()
-  // const [isVerifyWebauthnPending, startTransition] = useTransition()
-  const [isVerifyWebauthnPending, setIsVerifyWebauthnPending] = useState(false)
+  const [isVerifyWebauthnPending, startTransition] = useTransition()
   const toast = useToast()
   const callbackURL = useSearchParams().get('callbackUrl')
 
@@ -89,58 +88,57 @@ export default function SignUpForm() {
   >(signUp as any, {
     onSuccess: async (state) => {
       // console.log(state)
-      setIsVerifyWebauthnPending(true)
-      // In current case, if enter this branch, it means this request is a webauthn request
-      let attResp: RegistrationResponseJSON
-      try {
-        // Pass the options to the authenticator and wait for a response
-        attResp = await startRegistration(state.data!)
-      } catch (error) {
-        console.error(error)
-        toast({
-          title: t('auth.signup.form.feedback.error.title'),
-          description: t('auth.signup.form.feedback.error.description', {
-            error:
-              error instanceof Error
-                ? error.name === 'InvalidStateError'
-                  ? t('auth.signup.form.feedback.error.invalid_state_error')
-                  : error.name === 'NotAllowedError'
-                    ? t('auth.signup.form.feedback.error.not_allowed_error')
-                    : 'Unknown error'
-                : 'Unknown error'
-          }),
-          status: 'error',
-          duration: 5000,
-          isClosable: true
-        })
-        setIsVerifyWebauthnPending(false)
-        return
-      }
 
-      try {
-        const result = await verifySignUpWithWebAuthnAction(
-          callbackURL || undefined,
-          {
-            ctx: attResp
-          }
-        )
-        if (!result) return // It means redirect
-        // Due to not redirect, there should be error
-        if (result.status !== ResponseCode.OK) throw new Error(result.error)
-      } catch (error) {
-        console.error(error)
-        toast({
-          title: t('auth.signup.form.feedback.error.title'),
-          description: t('auth.signup.form.feedback.error.description', {
-            error: translateIfKey(t, 'Unknown error')
-          }),
-          status: 'error',
-          duration: 5000,
-          isClosable: true
-        })
-      } finally {
-        setIsVerifyWebauthnPending(true)
-      }
+      startTransition(async () => {
+        // In current case, if enter this branch, it means this request is a webauthn request
+        let attResp: RegistrationResponseJSON
+        try {
+          // Pass the options to the authenticator and wait for a response
+          attResp = await startRegistration(state.data!)
+        } catch (error) {
+          console.error(error)
+          toast({
+            title: t('auth.signup.form.feedback.error.title'),
+            description: t('auth.signup.form.feedback.error.description', {
+              error:
+                error instanceof Error
+                  ? error.name === 'InvalidStateError'
+                    ? t('auth.signup.form.feedback.error.invalid_state_error')
+                    : error.name === 'NotAllowedError'
+                      ? t('auth.signup.form.feedback.error.not_allowed_error')
+                      : 'Unknown error'
+                  : 'Unknown error'
+            }),
+            status: 'error',
+            duration: 5000,
+            isClosable: true
+          })
+          return
+        }
+
+        try {
+          const result = await verifySignUpWithWebAuthnAction(
+            callbackURL || undefined,
+            {
+              ctx: attResp
+            }
+          )
+          if (!result) return // It means redirect
+          // Due to not redirect, there should be error
+          if (result.status !== ResponseCode.OK) throw new Error(result.error)
+        } catch (error) {
+          console.error(error)
+          toast({
+            title: t('auth.signup.form.feedback.error.title'),
+            description: t('auth.signup.form.feedback.error.description', {
+              error: translateIfKey(t, 'Unknown error')
+            }),
+            status: 'error',
+            duration: 5000,
+            isClosable: true
+          })
+        }
+      })
     },
     onError: (state) => {
       toast({
