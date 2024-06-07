@@ -274,8 +274,8 @@ importers:
         specifier: 1.77.4
         version: 1.77.4
       shiki:
-        specifier: 1.6.2
-        version: 1.6.2
+        specifier: 1.6.3
+        version: 1.6.3
       stylelint:
         specifier: 16.6.1
         version: 16.6.1(typescript@5.4.5)
@@ -2013,8 +2013,8 @@ packages:
   '@rushstack/eslint-patch@1.10.2':
     resolution: {integrity: sha512-hw437iINopmQuxWPSUEvqE56NCPsiU8N4AYtfHmJFckclktzK9YQJieD3XkDCDH4OjL+C7zgPUh73R/nrcHrqw==}
 
-  '@shikijs/core@1.6.2':
-    resolution: {integrity: sha512-guW5JeDzZ7uwOjTfCOFZ2VtVXk5tmkMzBYbKGfXsmAH1qYOej49L5jQDcGmwd6/OgvpmWhzO2GNJkQIFnbwLPQ==}
+  '@shikijs/core@1.6.3':
+    resolution: {integrity: sha512-QnJKHFUW95GnlJLJGP6QLx4M69HM0KlXk+R2Y8lr/x4nAx1Yb/lsuxq4XwybuUjTxbJk+BT0g/kvn0bcsjGGHg==}
 
   '@simplewebauthn/browser@10.0.0':
     resolution: {integrity: sha512-hG0JMZD+LiLUbpQcAjS4d+t4gbprE/dLYop/CkE01ugU/9sKXflxV5s0DRjdz3uNMFecatRfb4ZLG3XvF8m5zg==}
@@ -4910,8 +4910,8 @@ packages:
   shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
 
-  shiki@1.6.2:
-    resolution: {integrity: sha512-X3hSm5GzzBd/BmPmGfkueOUADLyBoZo1ojYQXhd+NU2VJn458yt4duaS0rVzC+WtqftSV7mTVvDw+OB9AHi3Eg==}
+  shiki@1.6.3:
+    resolution: {integrity: sha512-lE1/YGlzFY0hQSyEfsZj18xGrTWxyhFQkaiILALqTBZPbJeYFWpbUhlmTGPOupYB/qC+H6sV4UznJzcEh3WMHQ==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -7542,7 +7542,7 @@ snapshots:
 
   '@rushstack/eslint-patch@1.10.2': {}
 
-  '@shikijs/core@1.6.2': {}
+  '@shikijs/core@1.6.3': {}
 
   '@simplewebauthn/browser@10.0.0':
     dependencies:
@@ -10865,9 +10865,9 @@ snapshots:
 
   shell-quote@1.8.1: {}
 
-  shiki@1.6.2:
+  shiki@1.6.3:
     dependencies:
-      '@shikijs/core': 1.6.2
+      '@shikijs/core': 1.6.3
 
   side-channel@1.0.6:
     dependencies:
