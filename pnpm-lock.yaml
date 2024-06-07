@@ -30,8 +30,8 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       tsx:
-        specifier: 4.12.0
-        version: 4.12.0
+        specifier: 4.13.0
+        version: 4.13.0
       zod:
         specifier: 3.23.8
         version: 3.23.8
@@ -5281,8 +5281,8 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
-  tsx@4.12.0:
-    resolution: {integrity: sha512-642NAWAbDqPZINjmL32Lh/B+pd8vbVj6LHPsWm09IIHqQuWhCrNfcPTjRlHFWvv3FfM4vt9NLReBIjUNj5ZhDg==}
+  tsx@4.13.0:
+    resolution: {integrity: sha512-kNY70P2aLMdVBii1Err5ENxDhQ6Vz2PbQGX68DcvzY2/PWK5NLBO6vI7lPr1/2xG3IKSt2MN+KOAyWDQSRlbCA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -11285,7 +11285,7 @@ snapshots:
 
   tslib@2.6.2: {}
 
-  tsx@4.12.0:
+  tsx@4.13.0:
     dependencies:
       esbuild: 0.20.2
       get-tsconfig: 4.7.5
