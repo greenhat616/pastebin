@@ -34,7 +34,7 @@
     "prisma": "5.15.0",
     "prisma-extension-soft-delete": "1.0.1",
     "superjson": "2.2.1",
-    "tsx": "4.15.2",
+    "tsx": "4.15.3",
     "zod": "3.23.8"
   },
   "devDependencies": {
