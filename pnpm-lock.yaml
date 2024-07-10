@@ -184,8 +184,8 @@ importers:
         specifier: 8.57.0
         version: 8.57.0
       eslint-config-next:
-        specifier: 14.2.4
-        version: 14.2.4(eslint@8.57.0)(typescript@5.4.5)
+        specifier: 14.2.5
+        version: 14.2.5(eslint@8.57.0)(typescript@5.4.5)
       eslint-config-prettier:
         specifier: 9.1.0
         version: 9.1.0(eslint@8.57.0)
@@ -295,8 +295,8 @@ importers:
         specifier: 6.0.4
         version: 6.0.4(stylelint@16.6.1(typescript@5.4.5))
       stylelint-scss:
-        specifier: 6.4.0
-        version: 6.4.0(stylelint@16.6.1(typescript@5.4.5))
+        specifier: 6.4.1
+        version: 6.4.1(stylelint@16.6.1(typescript@5.4.5))
       tailwindcss:
         specifier: 3.4.4
         version: 3.4.4
@@ -1691,8 +1691,8 @@ packages:
   '@next/env@14.2.4':
     resolution: {integrity: sha512-3EtkY5VDkuV2+lNmKlbkibIJxcO4oIHEhBWne6PaAp+76J9KoSsGvNikp6ivzAT8dhhBMYrm6op2pS1ApG0Hzg==}
 
-  '@next/eslint-plugin-next@14.2.4':
-    resolution: {integrity: sha512-svSFxW9f3xDaZA3idQmlFw7SusOuWTpDTAeBlO3AEPDltrraV+lqs7mAc6A27YdnpQVVIA3sODqUAAHdWhVWsA==}
+  '@next/eslint-plugin-next@14.2.5':
+    resolution: {integrity: sha512-LY3btOpPh+OTIpviNojDpUdIbHW9j0JBYBjsIp8IxtDFfYFyORvw3yNq6N231FVqQA7n7lwaf7xHbVJlA1ED7g==}
 
   '@next/swc-darwin-arm64@14.2.4':
     resolution: {integrity: sha512-AH3mO4JlFUqsYcwFUHb1wAKlebHU/Hv2u2kb1pAuRanDZ7pD/A/KPD98RHZmwsJpdHQwfEc/06mgpSzwrJYnNg==}
@@ -3211,8 +3211,8 @@ packages:
     peerDependencies:
       eslint: '>=6.0.0'
 
-  eslint-config-next@14.2.4:
-    resolution: {integrity: sha512-Qr0wMgG9m6m4uYy2jrYJmyuNlYZzPRQq5Kvb9IDlYwn+7yq6W6sfMNFgb+9guM1KYwuIo6TIaiFhZJ6SnQ/Efw==}
+  eslint-config-next@14.2.5:
+    resolution: {integrity: sha512-zogs9zlOiZ7ka+wgUnmcM0KBEDjo4Jis7kxN1jvC0N4wynQ2MIx/KBkg4mVF63J5EK4W0QMCn7xO3vNisjaAoA==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0
       typescript: '>=3.3.1'
@@ -5126,8 +5126,8 @@ packages:
     peerDependencies:
       stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
 
-  stylelint-scss@6.4.0:
-    resolution: {integrity: sha512-1BKRzh2TW38hZm/IWdvBVjlJRERB2zTiwm1xaOeDtUEmEKfxYMNr9THBQQtBV8wGxal/sN+TRsF7v9A5sqGI1A==}
+  stylelint-scss@6.4.1:
+    resolution: {integrity: sha512-+clI2bQC2FPOt06ZwUlXZZ95IO2C5bKTP0GLN1LNQPVvISfSNcgMKv/VTwym1mK9vnqhHbOk8lO4rj4nY7L9pw==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
@@ -7330,7 +7330,7 @@ snapshots:
 
   '@next/env@14.2.4': {}
 
-  '@next/eslint-plugin-next@14.2.4':
+  '@next/eslint-plugin-next@14.2.5':
     dependencies:
       glob: 10.3.10
 
@@ -9024,9 +9024,9 @@ snapshots:
       eslint: 8.57.0
       semver: 7.6.0
 
-  eslint-config-next@14.2.4(eslint@8.57.0)(typescript@5.4.5):
+  eslint-config-next@14.2.5(eslint@8.57.0)(typescript@5.4.5):
     dependencies:
-      '@next/eslint-plugin-next': 14.2.4
+      '@next/eslint-plugin-next': 14.2.5
       '@rushstack/eslint-patch': 1.10.2
       '@typescript-eslint/parser': 7.2.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
@@ -11138,7 +11138,7 @@ snapshots:
       postcss-sorting: 8.0.2(postcss@8.4.39)
       stylelint: 16.6.1(typescript@5.4.5)
 
-  stylelint-scss@6.4.0(stylelint@16.6.1(typescript@5.4.5)):
+  stylelint-scss@6.4.1(stylelint@16.6.1(typescript@5.4.5)):
     dependencies:
       known-css-properties: 0.34.0
       postcss-media-query-parser: 0.2.3
