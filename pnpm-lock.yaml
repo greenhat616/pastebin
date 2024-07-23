@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@auth/prisma-adapter':
         specifier: 2.4.1
-        version: 2.4.1(@prisma/client@5.17.0(prisma@5.17.0))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)
+        version: 2.4.1(@prisma/client@5.17.0(prisma@5.17.0))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
       '@prisma/client':
         specifier: 5.17.0
         version: 5.17.0(prisma@5.17.0)
@@ -76,8 +76,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0
       '@simplewebauthn/server':
-        specifier: 10.0.0
-        version: 10.0.0
+        specifier: 10.0.1
+        version: 10.0.1
       '@simplewebauthn/types':
         specifier: 10.0.0
         version: 10.0.0
@@ -236,7 +236,7 @@ importers:
         version: 14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
       next-auth:
         specifier: 5.0.0-beta.19
-        version: 5.0.0-beta.19(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1)
+        version: 5.0.0-beta.19(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1)
       next-intl:
         specifier: 3.17.2
         version: 3.17.2(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1)
@@ -2057,8 +2057,8 @@ packages:
   '@simplewebauthn/browser@10.0.0':
     resolution: {integrity: sha512-hG0JMZD+LiLUbpQcAjS4d+t4gbprE/dLYop/CkE01ugU/9sKXflxV5s0DRjdz3uNMFecatRfb4ZLG3XvF8m5zg==}
 
-  '@simplewebauthn/server@10.0.0':
-    resolution: {integrity: sha512-w5eIoiF7ltg1sgggjY5Tx654j+DBuyEx2B3869jjmPp0xl2Z4BUP4kJ3yJ6DnZIv+ZYYntT3E6nZXNjPOQbrtw==}
+  '@simplewebauthn/server@10.0.1':
+    resolution: {integrity: sha512-djNWcRn+H+6zvihBFJSpG3fzb0NQS9c/Mw5dYOtZ9H+oDw8qn9Htqxt4cpqRvSOAfwqP7rOvE9rwqVaoGGc3hg==}
     engines: {node: '>=20.0.0'}
 
   '@simplewebauthn/types@10.0.0':
@@ -5736,7 +5736,7 @@ snapshots:
 
   '@antfu/utils@0.7.8': {}
 
-  '@auth/core@0.32.0(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)':
+  '@auth/core@0.32.0(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
     dependencies:
       '@panva/hkdf': 1.1.1
       '@types/cookie': 0.6.0
@@ -5747,9 +5747,9 @@ snapshots:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
-      '@simplewebauthn/server': 10.0.0
+      '@simplewebauthn/server': 10.0.1
 
-  '@auth/core@0.34.1(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)':
+  '@auth/core@0.34.1(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
     dependencies:
       '@panva/hkdf': 1.1.1
       '@types/cookie': 0.6.0
@@ -5760,11 +5760,11 @@ snapshots:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
-      '@simplewebauthn/server': 10.0.0
+      '@simplewebauthn/server': 10.0.1
 
-  '@auth/prisma-adapter@2.4.1(@prisma/client@5.17.0(prisma@5.17.0))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)':
+  '@auth/prisma-adapter@2.4.1(@prisma/client@5.17.0(prisma@5.17.0))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
     dependencies:
-      '@auth/core': 0.34.1(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)
+      '@auth/core': 0.34.1(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
       '@prisma/client': 5.17.0(prisma@5.17.0)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
@@ -7696,7 +7696,7 @@ snapshots:
     dependencies:
       '@simplewebauthn/types': 10.0.0
 
-  '@simplewebauthn/server@10.0.0':
+  '@simplewebauthn/server@10.0.1':
     dependencies:
       '@hexagon/base64': 1.1.28
       '@levischuck/tiny-cbor': 0.2.2
@@ -10367,14 +10367,14 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-auth@5.0.0-beta.19(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1):
+  next-auth@5.0.0-beta.19(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1):
     dependencies:
-      '@auth/core': 0.32.0(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.0)
+      '@auth/core': 0.32.0(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
       next: 14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8)
       react: 18.3.1
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
-      '@simplewebauthn/server': 10.0.0
+      '@simplewebauthn/server': 10.0.1
 
   next-intl@3.17.2(next@14.2.5(@babel/core@7.24.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.77.8))(react@18.3.1):
     dependencies:
