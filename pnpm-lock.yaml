@@ -91,8 +91,8 @@ importers:
         specifier: 0.5.13
         version: 0.5.13(tailwindcss@3.4.7)
       '@tanstack/react-query':
-        specifier: 5.51.16
-        version: 5.51.16(react@18.3.1)
+        specifier: 5.51.21
+        version: 5.51.21(react@18.3.1)
       '@types/cookie-signature':
         specifier: 1.1.2
         version: 1.1.2
@@ -2180,11 +2180,11 @@ packages:
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders'
 
-  '@tanstack/query-core@5.51.16':
-    resolution: {integrity: sha512-zfV+WAtBGm1dUIbL0w/x8qTqVLKU1/Bo1p19J9LF02MmIc4FxzMImMXhFzYJQl5Hx8Wit6RiQ4tB/DvN8y9zaQ==}
+  '@tanstack/query-core@5.51.21':
+    resolution: {integrity: sha512-POQxm42IUp6n89kKWF4IZi18v3fxQWFRolvBA6phNVmA8psdfB1MvDnGacCJdS+EOX12w/CyHM62z//rHmYmvw==}
 
-  '@tanstack/react-query@5.51.16':
-    resolution: {integrity: sha512-NZnpJ30zkwaA2ZPhxJLs/qoMbd0yNAj6yyb3JTADJx9HjSdtvnNzOY1bDa3bU1B9CZTBBb7W9E1PpWlNXdgESg==}
+  '@tanstack/react-query@5.51.21':
+    resolution: {integrity: sha512-Q/V81x3sAYgCsxjwOkfLXfrmoG+FmDhLeHH5okC/Bp8Aaw2c33lbEo/mMcMnkxUPVtB2FLpzHT0tq3c+OlZEbw==}
     peerDependencies:
       react: ^18.0.0
 
@@ -7865,11 +7865,11 @@ snapshots:
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.4.7
 
-  '@tanstack/query-core@5.51.16': {}
+  '@tanstack/query-core@5.51.21': {}
 
-  '@tanstack/react-query@5.51.16(react@18.3.1)':
+  '@tanstack/react-query@5.51.21(react@18.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.51.16
+      '@tanstack/query-core': 5.51.21
       react: 18.3.1
 
   '@tanstack/react-virtual@3.8.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
