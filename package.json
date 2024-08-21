@@ -42,7 +42,7 @@
     "@choc-ui/chakra-autocomplete": "5.6.2",
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
-    "@emotion/react": "11.13.0",
+    "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
     "@formatjs/intl-localematcher": "0.5.4",
     "@headlessui/react": "2.1.2",
