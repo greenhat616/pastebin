@@ -283,8 +283,8 @@ importers:
         specifier: 1.1.0
         version: 1.1.0(postcss-html@1.7.0)(stylelint@16.9.0(typescript@5.4.5))
       stylelint-config-recess-order:
-        specifier: 5.1.0
-        version: 5.1.0(stylelint@16.9.0(typescript@5.4.5))
+        specifier: 5.1.1
+        version: 5.1.1(stylelint@16.9.0(typescript@5.4.5))
       stylelint-config-standard:
         specifier: 36.0.1
         version: 36.0.1(stylelint@16.9.0(typescript@5.4.5))
@@ -5203,8 +5203,8 @@ packages:
       postcss-html: ^1.0.0
       stylelint: '>=14.0.0'
 
-  stylelint-config-recess-order@5.1.0:
-    resolution: {integrity: sha512-ddapCF6B/kEtQYIFhQFReQ0dvK1ZdgJDM/SGFtIyeooYDbqaJqcOlGkRRGaVErCQYJY/bPSPsLRS2LdQtLJUVQ==}
+  stylelint-config-recess-order@5.1.1:
+    resolution: {integrity: sha512-eDAHWVBelzDbMbdMj15pSw0Ycykv5eLeriJdbGCp0zd44yvhgZLI+wyVHegzXp5NrstxTPSxl0fuOVKdMm0XLA==}
     peerDependencies:
       stylelint: '>=16'
 
@@ -11127,7 +11127,7 @@ snapshots:
       postcss-html: 1.7.0
       stylelint: 16.9.0(typescript@5.4.5)
 
-  stylelint-config-recess-order@5.1.0(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-config-recess-order@5.1.1(stylelint@16.9.0(typescript@5.4.5)):
     dependencies:
       stylelint: 16.9.0(typescript@5.4.5)
       stylelint-order: 6.0.4(stylelint@16.9.0(typescript@5.4.5))
