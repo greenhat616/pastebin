@@ -47,7 +47,7 @@
     "@formatjs/intl-localematcher": "0.5.4",
     "@headlessui/react": "2.1.9",
     "@heroicons/react": "2.1.5",
-    "@iconify/json": "2.2.255",
+    "@iconify/json": "2.2.256",
     "@next/bundle-analyzer": "14.2.14",
     "@node-rs/argon2": "1.8.3",
     "@simplewebauthn/browser": "10.0.0",
