@@ -277,26 +277,26 @@ importers:
         specifier: 1.22.0
         version: 1.22.0
       stylelint:
-        specifier: 16.9.0
-        version: 16.9.0(typescript@5.4.5)
+        specifier: 16.10.0
+        version: 16.10.0(typescript@5.4.5)
       stylelint-config-html:
         specifier: 1.1.0
-        version: 1.1.0(postcss-html@1.7.0)(stylelint@16.9.0(typescript@5.4.5))
+        version: 1.1.0(postcss-html@1.7.0)(stylelint@16.10.0(typescript@5.4.5))
       stylelint-config-recess-order:
         specifier: 5.1.1
-        version: 5.1.1(stylelint@16.9.0(typescript@5.4.5))
+        version: 5.1.1(stylelint@16.10.0(typescript@5.4.5))
       stylelint-config-standard:
         specifier: 36.0.1
-        version: 36.0.1(stylelint@16.9.0(typescript@5.4.5))
+        version: 36.0.1(stylelint@16.10.0(typescript@5.4.5))
       stylelint-declaration-block-no-ignored-properties:
         specifier: 2.8.0
-        version: 2.8.0(stylelint@16.9.0(typescript@5.4.5))
+        version: 2.8.0(stylelint@16.10.0(typescript@5.4.5))
       stylelint-order:
         specifier: 6.0.4
-        version: 6.0.4(stylelint@16.9.0(typescript@5.4.5))
+        version: 6.0.4(stylelint@16.10.0(typescript@5.4.5))
       stylelint-scss:
         specifier: 6.7.0
-        version: 6.7.0(stylelint@16.9.0(typescript@5.4.5))
+        version: 6.7.0(stylelint@16.10.0(typescript@5.4.5))
       tailwindcss:
         specifier: 3.4.13
         version: 3.4.13
@@ -2649,8 +2649,8 @@ packages:
   crypt@0.0.2:
     resolution: {integrity: sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==}
 
-  css-functions-list@3.2.2:
-    resolution: {integrity: sha512-c+N0v6wbKVxTu5gOBBFkr9BEdBWaqqjQeiJ8QvSRIJOf+UxlJh930m8e6/WNeODIK0mYLFkoONrnj16i2EcvfQ==}
+  css-functions-list@3.2.3:
+    resolution: {integrity: sha512-IQOkD3hbR5KrN93MtcYuad6YPuTSUhntLHDuLEbFWE+ff2/XSZNdZG+LcbbIW5AXKg/WFIfYItIzVoHngHXZzA==}
     engines: {node: '>=12 || >=16'}
 
   css-in-js-utils@3.1.0:
@@ -3198,8 +3198,8 @@ packages:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
     engines: {node: ^10.12.0 || >=12.0.0}
 
-  file-entry-cache@9.0.0:
-    resolution: {integrity: sha512-6MgEugi8p2tiUhqO7GnPsmbCCzj0YRCwwaTbpGRyKZesjRSzkqkAE9fPp7V2yMs5hwfgbQLgdvSSkGNg1s5Uvw==}
+  file-entry-cache@9.1.0:
+    resolution: {integrity: sha512-/pqPFG+FdxWQj+/WSuzXSDaNzxgTLr/OrR1QuqfEZzDakpdYE70PwUxL7BPUa8hpjbvY1+qvCl8k+8Tq34xJgg==}
     engines: {node: '>=18'}
 
   fill-range@7.1.1:
@@ -3461,6 +3461,10 @@ packages:
 
   ignore@5.3.2:
     resolution: {integrity: sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==}
+    engines: {node: '>= 4'}
+
+  ignore@6.0.2:
+    resolution: {integrity: sha512-InwqeHHN2XpumIkMvpl/DCJVrAHgCsG5+cn1XlnLWGwtZBm8QJfSusItfrwx81CTp5agNZqpKU2J/ccC5nGT4A==}
     engines: {node: '>= 4'}
 
   immutable@4.3.5:
@@ -4378,8 +4382,8 @@ packages:
     peerDependencies:
       postcss: ^8.3.3
 
-  postcss-safe-parser@7.0.0:
-    resolution: {integrity: sha512-ovehqRNVCpuFzbXoTb4qLtyzK3xn3t/CUBxOs8LsnQjQrShaB4lKiHoVqY8ANaC0hBMHq5QVWk77rwGklFUDrg==}
+  postcss-safe-parser@7.0.1:
+    resolution: {integrity: sha512-0AioNCJZ2DPYz5ABT6bddIqlhgwhpHZ/l65YAYo0BCIn0xiDpsnTHz0gnoTGk0OXZW0JRs+cDwL8u/teRdz+8A==}
     engines: {node: '>=18.0'}
     peerDependencies:
       postcss: ^8.4.31
@@ -4919,8 +4923,8 @@ packages:
     peerDependencies:
       stylelint: ^16.0.2
 
-  stylelint@16.9.0:
-    resolution: {integrity: sha512-31Nm3WjxGOBGpQqF43o3wO9L5AC36TPIe6030Lnm13H3vDMTcS21DrLh69bMX+DBilKqMMVLian4iG6ybBoNRQ==}
+  stylelint@16.10.0:
+    resolution: {integrity: sha512-z/8X2rZ52dt2c0stVwI9QL2AFJhLhbPkyfpDFcizs200V/g7v+UYY6SNcB9hKOLcDDX/yGLDsY/pX08sLkz9xQ==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -7845,7 +7849,7 @@ snapshots:
 
   crypt@0.0.2: {}
 
-  css-functions-list@3.2.2: {}
+  css-functions-list@3.2.3: {}
 
   css-in-js-utils@3.1.0:
     dependencies:
@@ -8555,7 +8559,7 @@ snapshots:
     dependencies:
       flat-cache: 3.2.0
 
-  file-entry-cache@9.0.0:
+  file-entry-cache@9.1.0:
     dependencies:
       flat-cache: 5.0.0
 
@@ -8827,6 +8831,8 @@ snapshots:
   ignore@5.3.1: {}
 
   ignore@5.3.2: {}
+
+  ignore@6.0.2: {}
 
   immutable@4.3.5: {}
 
@@ -9681,7 +9687,7 @@ snapshots:
     dependencies:
       postcss: 8.4.47
 
-  postcss-safe-parser@7.0.0(postcss@8.4.47):
+  postcss-safe-parser@7.0.1(postcss@8.4.47):
     dependencies:
       postcss: 8.4.47
 
@@ -10244,36 +10250,36 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.24.4
 
-  stylelint-config-html@1.1.0(postcss-html@1.7.0)(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-config-html@1.1.0(postcss-html@1.7.0)(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
       postcss-html: 1.7.0
-      stylelint: 16.9.0(typescript@5.4.5)
+      stylelint: 16.10.0(typescript@5.4.5)
 
-  stylelint-config-recess-order@5.1.1(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-config-recess-order@5.1.1(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
-      stylelint: 16.9.0(typescript@5.4.5)
-      stylelint-order: 6.0.4(stylelint@16.9.0(typescript@5.4.5))
+      stylelint: 16.10.0(typescript@5.4.5)
+      stylelint-order: 6.0.4(stylelint@16.10.0(typescript@5.4.5))
 
-  stylelint-config-recommended@14.0.1(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-config-recommended@14.0.1(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
-      stylelint: 16.9.0(typescript@5.4.5)
+      stylelint: 16.10.0(typescript@5.4.5)
 
-  stylelint-config-standard@36.0.1(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-config-standard@36.0.1(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
-      stylelint: 16.9.0(typescript@5.4.5)
-      stylelint-config-recommended: 14.0.1(stylelint@16.9.0(typescript@5.4.5))
+      stylelint: 16.10.0(typescript@5.4.5)
+      stylelint-config-recommended: 14.0.1(stylelint@16.10.0(typescript@5.4.5))
 
-  stylelint-declaration-block-no-ignored-properties@2.8.0(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-declaration-block-no-ignored-properties@2.8.0(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
-      stylelint: 16.9.0(typescript@5.4.5)
+      stylelint: 16.10.0(typescript@5.4.5)
 
-  stylelint-order@6.0.4(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-order@6.0.4(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
       postcss: 8.4.47
       postcss-sorting: 8.0.2(postcss@8.4.47)
-      stylelint: 16.9.0(typescript@5.4.5)
+      stylelint: 16.10.0(typescript@5.4.5)
 
-  stylelint-scss@6.7.0(stylelint@16.9.0(typescript@5.4.5)):
+  stylelint-scss@6.7.0(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
       css-tree: 2.3.1
       is-plain-object: 5.0.0
@@ -10282,9 +10288,9 @@ snapshots:
       postcss-resolve-nested-selector: 0.1.6
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
-      stylelint: 16.9.0(typescript@5.4.5)
+      stylelint: 16.10.0(typescript@5.4.5)
 
-  stylelint@16.9.0(typescript@5.4.5):
+  stylelint@16.10.0(typescript@5.4.5):
     dependencies:
       '@csstools/css-parser-algorithms': 3.0.1(@csstools/css-tokenizer@3.0.1)
       '@csstools/css-tokenizer': 3.0.1
@@ -10294,17 +10300,17 @@ snapshots:
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 9.0.0(typescript@5.4.5)
-      css-functions-list: 3.2.2
-      css-tree: 2.3.1
-      debug: 4.3.6
+      css-functions-list: 3.2.3
+      css-tree: 3.0.0
+      debug: 4.3.7
       fast-glob: 3.3.2
       fastest-levenshtein: 1.0.16
-      file-entry-cache: 9.0.0
+      file-entry-cache: 9.1.0
       global-modules: 2.0.0
       globby: 11.1.0
       globjoin: 0.1.4
       html-tags: 3.3.1
-      ignore: 5.3.2
+      ignore: 6.0.2
       imurmurhash: 0.1.4
       is-plain-object: 5.0.0
       known-css-properties: 0.34.0
@@ -10312,15 +10318,14 @@ snapshots:
       meow: 13.2.0
       micromatch: 4.0.8
       normalize-path: 3.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       postcss: 8.4.47
       postcss-resolve-nested-selector: 0.1.6
-      postcss-safe-parser: 7.0.0(postcss@8.4.47)
+      postcss-safe-parser: 7.0.1(postcss@8.4.47)
       postcss-selector-parser: 6.1.2
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       string-width: 4.2.3
-      strip-ansi: 7.1.0
       supports-hyperlinks: 3.1.0
       svg-tags: 1.0.0
       table: 6.8.2
