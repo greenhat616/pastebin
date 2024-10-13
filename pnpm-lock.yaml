@@ -328,8 +328,8 @@ importers:
         specifier: 5.0.1
         version: 5.0.1(typescript@5.4.5)(vite@5.4.8(@types/node@20.16.11)(sass@1.79.5)(terser@5.30.3))
       yaml:
-        specifier: 2.5.1
-        version: 2.5.1
+        specifier: 2.6.0
+        version: 2.6.0
       yaml-loader:
         specifier: 0.8.1
         version: 0.8.1
@@ -5436,6 +5436,11 @@ packages:
     engines: {node: '>= 14'}
     hasBin: true
 
+  yaml@2.6.0:
+    resolution: {integrity: sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==}
+    engines: {node: '>= 14'}
+    hasBin: true
+
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -9670,7 +9675,7 @@ snapshots:
   postcss-load-config@4.0.2(postcss@8.4.47):
     dependencies:
       lilconfig: 3.1.2
-      yaml: 2.5.1
+      yaml: 2.6.0
     optionalDependencies:
       postcss: 8.4.47
 
@@ -10931,11 +10936,13 @@ snapshots:
     dependencies:
       javascript-stringify: 2.1.0
       loader-utils: 2.0.4
-      yaml: 2.5.1
+      yaml: 2.6.0
 
   yaml@1.10.2: {}
 
   yaml@2.5.1: {}
+
+  yaml@2.6.0: {}
 
   yargs-parser@21.1.1: {}
 
