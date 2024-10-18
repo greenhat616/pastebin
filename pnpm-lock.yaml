@@ -24,8 +24,8 @@ importers:
         specifier: 5.21.0
         version: 5.21.0
       prisma-extension-soft-delete:
-        specifier: 1.0.1
-        version: 1.0.1(@prisma/client@5.21.0(prisma@5.21.0))
+        specifier: 2.0.0
+        version: 2.0.0(@prisma/client@5.21.0(prisma@5.21.0))
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -4439,8 +4439,8 @@ packages:
     peerDependencies:
       '@prisma/client': '*'
 
-  prisma-extension-soft-delete@1.0.1:
-    resolution: {integrity: sha512-iUidZZndjf2J8i6hsM6y5gRCQyFYEfe2c+NlNTqg63OvAP9bPny0WE6+IhX1YQ1E3h78WHjwM/0eanBzmfVELg==}
+  prisma-extension-soft-delete@2.0.0:
+    resolution: {integrity: sha512-OAeKBpVwPkPCaFm5ELMxdqm5pqUdCLC1VyE120rNPxfWWwC+v29b6W6XhtrvTylZ2ydR5DfPm/eoI2hzRjZQdg==}
     peerDependencies:
       '@prisma/client': '*'
 
@@ -9736,7 +9736,7 @@ snapshots:
       '@prisma/client': 5.21.0(prisma@5.21.0)
       lodash: 4.17.21
 
-  prisma-extension-soft-delete@1.0.1(@prisma/client@5.21.0(prisma@5.21.0)):
+  prisma-extension-soft-delete@2.0.0(@prisma/client@5.21.0(prisma@5.21.0)):
     dependencies:
       '@prisma/client': 5.21.0(prisma@5.21.0)
       prisma-extension-nested-operations: 1.0.1(@prisma/client@5.21.0(prisma@5.21.0))
