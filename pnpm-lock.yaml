@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@auth/prisma-adapter':
         specifier: 2.7.0
-        version: 2.7.0(@prisma/client@5.21.0(prisma@5.21.0))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
+        version: 2.7.0(@prisma/client@5.21.1(prisma@5.21.1))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
       '@prisma/client':
-        specifier: 5.21.0
-        version: 5.21.0(prisma@5.21.0)
+        specifier: 5.21.1
+        version: 5.21.1(prisma@5.21.1)
       '@t3-oss/env-nextjs':
         specifier: 0.11.1
         version: 0.11.1(typescript@5.4.5)(zod@3.23.8)
@@ -21,11 +21,11 @@ importers:
         specifier: 5.3.0
         version: 5.3.0
       prisma:
-        specifier: 5.21.0
-        version: 5.21.0
+        specifier: 5.21.1
+        version: 5.21.1
       prisma-extension-soft-delete:
         specifier: 1.0.1
-        version: 1.0.1(@prisma/client@5.21.0(prisma@5.21.0))
+        version: 1.0.1(@prisma/client@5.21.1(prisma@5.21.1))
       superjson:
         specifier: 2.2.1
         version: 2.2.1
@@ -1594,8 +1594,8 @@ packages:
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
-  '@prisma/client@5.21.0':
-    resolution: {integrity: sha512-Qf2YleB3dsCRXiKSQZ+j0aF5E+ojpfqF8ExXaNAWBbAhKapMduwNvgo13K2pEuTiQq8voG2aQPQnxjsO9fOpTQ==}
+  '@prisma/client@5.21.1':
+    resolution: {integrity: sha512-3n+GgbAZYjaS/k0M03yQsQfR1APbr411r74foknnsGpmhNKBG49VuUkxIU6jORgvJPChoD4WC4PqoHImN1FP0w==}
     engines: {node: '>=16.13'}
     peerDependencies:
       prisma: '*'
@@ -1603,20 +1603,20 @@ packages:
       prisma:
         optional: true
 
-  '@prisma/debug@5.21.0':
-    resolution: {integrity: sha512-8gX68E36OKImh7LBz5fFIuTRLZgM1ObnDA8ukhC1kZvTK7k7Unti6pJe3ZiudzuFAxae06PV1rhq1u9DZbXVnQ==}
+  '@prisma/debug@5.21.1':
+    resolution: {integrity: sha512-uY8SAhcnORhvgtOrNdvWS98Aq/nkQ9QDUxrWAgW8XrCZaI3j2X7zb7Xe6GQSh6xSesKffFbFlkw0c2luHQviZA==}
 
-  '@prisma/engines-version@5.21.0-36.08713a93b99d58f31485621c634b04983ae01d95':
-    resolution: {integrity: sha512-hfq7c8MnkhcZTY0bGXG6bV5Cr7OsnHLERNy4xkZy6rbpWnhtfjuj3yUVM4u1GKXd6uWmFbg0+HDw8KXTgTVepQ==}
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36':
+    resolution: {integrity: sha512-qvnEflL0//lh44S/T9NcvTMxfyowNeUxTunPcDfKPjyJNrCNf2F1zQLcUv5UHAruECpX+zz21CzsC7V2xAeM7Q==}
 
-  '@prisma/engines@5.21.0':
-    resolution: {integrity: sha512-IBewQJiDnFiz39pl8kEIzmzV4RAoBPBD2DoLDntMMXObg1an90Dp+xeb1mmwrTgRDE3elu/LYxyVPEkKw9LZ7A==}
+  '@prisma/engines@5.21.1':
+    resolution: {integrity: sha512-hGVTldUkIkTwoV8//hmnAAiAchi4oMEKD3aW5H2RrnI50tTdwza7VQbTTAyN3OIHWlK5DVg6xV7X8N/9dtOydA==}
 
-  '@prisma/fetch-engine@5.21.0':
-    resolution: {integrity: sha512-nXKJrsxVKng6yjJzl7vBjrr3S34cOmWQ9SiGTo9xidVTmVSgg5GCTwDL4r2be8DE3RntqK5BW2LWQ1gF80eINw==}
+  '@prisma/fetch-engine@5.21.1':
+    resolution: {integrity: sha512-70S31vgpCGcp9J+mh/wHtLCkVezLUqe/fGWk3J3JWZIN7prdYSlr1C0niaWUyNK2VflLXYi8kMjAmSxUVq6WGQ==}
 
-  '@prisma/get-platform@5.21.0':
-    resolution: {integrity: sha512-NAyaAcHJhs0IysGYJtM6Fm3ccEs/LkCZqz/8riVkkJswFrRtFV93jAUIVKWO/wj1Ca1gO7HaMd/tr6e/9Xmvww==}
+  '@prisma/get-platform@5.21.1':
+    resolution: {integrity: sha512-sRxjL3Igst3ct+e8ya/x//cDXmpLbZQ5vfps2N4tWl4VGKQAmym77C/IG/psSMsQKszc8uFC/q1dgmKFLUgXZQ==}
 
   '@react-aria/focus@3.17.1':
     resolution: {integrity: sha512-FLTySoSNqX++u0nWZJPPN5etXY0WBxaIe/YuL/GTEeuqUIuC/2bJSaw5hlsM6T2yjy6Y/VAxBcKSdAFUlU6njQ==}
@@ -4444,8 +4444,8 @@ packages:
     peerDependencies:
       '@prisma/client': '*'
 
-  prisma@5.21.0:
-    resolution: {integrity: sha512-Pc/xn2eZPiANbFFGp+YoCQSKQ5t9W/dBzQ+3HrcfrOWZAzt7n77VsVCPa9WdfTjim4CuodkCFyiP2+uGY5/gqw==}
+  prisma@5.21.1:
+    resolution: {integrity: sha512-PB+Iqzld/uQBPaaw2UVIk84kb0ITsLajzsxzsadxxl54eaU5Gyl2/L02ysivHxK89t7YrfQJm+Ggk37uvM70oQ==}
     engines: {node: '>=16.13'}
     hasBin: true
 
@@ -5504,10 +5504,10 @@ snapshots:
       '@simplewebauthn/browser': 10.0.0
       '@simplewebauthn/server': 10.0.1
 
-  '@auth/prisma-adapter@2.7.0(@prisma/client@5.21.0(prisma@5.21.0))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
+  '@auth/prisma-adapter@2.7.0(@prisma/client@5.21.1(prisma@5.21.1))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
     dependencies:
       '@auth/core': 0.37.0(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
-      '@prisma/client': 5.21.0(prisma@5.21.0)
+      '@prisma/client': 5.21.1(prisma@5.21.1)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
       - '@simplewebauthn/server'
@@ -6646,30 +6646,30 @@ snapshots:
 
   '@popperjs/core@2.11.8': {}
 
-  '@prisma/client@5.21.0(prisma@5.21.0)':
+  '@prisma/client@5.21.1(prisma@5.21.1)':
     optionalDependencies:
-      prisma: 5.21.0
+      prisma: 5.21.1
 
-  '@prisma/debug@5.21.0': {}
+  '@prisma/debug@5.21.1': {}
 
-  '@prisma/engines-version@5.21.0-36.08713a93b99d58f31485621c634b04983ae01d95': {}
+  '@prisma/engines-version@5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36': {}
 
-  '@prisma/engines@5.21.0':
+  '@prisma/engines@5.21.1':
     dependencies:
-      '@prisma/debug': 5.21.0
-      '@prisma/engines-version': 5.21.0-36.08713a93b99d58f31485621c634b04983ae01d95
-      '@prisma/fetch-engine': 5.21.0
-      '@prisma/get-platform': 5.21.0
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/fetch-engine': 5.21.1
+      '@prisma/get-platform': 5.21.1
 
-  '@prisma/fetch-engine@5.21.0':
+  '@prisma/fetch-engine@5.21.1':
     dependencies:
-      '@prisma/debug': 5.21.0
-      '@prisma/engines-version': 5.21.0-36.08713a93b99d58f31485621c634b04983ae01d95
-      '@prisma/get-platform': 5.21.0
+      '@prisma/debug': 5.21.1
+      '@prisma/engines-version': 5.21.1-1.bf0e5e8a04cada8225617067eaa03d041e2bba36
+      '@prisma/get-platform': 5.21.1
 
-  '@prisma/get-platform@5.21.0':
+  '@prisma/get-platform@5.21.1':
     dependencies:
-      '@prisma/debug': 5.21.0
+      '@prisma/debug': 5.21.1
 
   '@react-aria/focus@3.17.1(react@18.3.1)':
     dependencies:
@@ -9730,20 +9730,20 @@ snapshots:
 
   pretty-format@3.8.0: {}
 
-  prisma-extension-nested-operations@1.0.1(@prisma/client@5.21.0(prisma@5.21.0)):
+  prisma-extension-nested-operations@1.0.1(@prisma/client@5.21.1(prisma@5.21.1)):
     dependencies:
       '@open-draft/deferred-promise': 2.2.0
-      '@prisma/client': 5.21.0(prisma@5.21.0)
+      '@prisma/client': 5.21.1(prisma@5.21.1)
       lodash: 4.17.21
 
-  prisma-extension-soft-delete@1.0.1(@prisma/client@5.21.0(prisma@5.21.0)):
+  prisma-extension-soft-delete@1.0.1(@prisma/client@5.21.1(prisma@5.21.1)):
     dependencies:
-      '@prisma/client': 5.21.0(prisma@5.21.0)
-      prisma-extension-nested-operations: 1.0.1(@prisma/client@5.21.0(prisma@5.21.0))
+      '@prisma/client': 5.21.1(prisma@5.21.1)
+      prisma-extension-nested-operations: 1.0.1(@prisma/client@5.21.1(prisma@5.21.1))
 
-  prisma@5.21.0:
+  prisma@5.21.1:
     dependencies:
-      '@prisma/engines': 5.21.0
+      '@prisma/engines': 5.21.1
     optionalDependencies:
       fsevents: 2.3.3
 
