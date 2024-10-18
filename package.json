@@ -127,7 +127,7 @@
     "stylelint-scss": "6.8.1",
     "tailwindcss": "3.4.14",
     "tailwindcss-animate": "1.0.7",
-    "typescript": "5.4.5",
+    "typescript": "5.6.3",
     "unocss": "0.63.4",
     "unplugin-auto-import": "0.18.3",
     "unplugin-icons": "0.19.3",
