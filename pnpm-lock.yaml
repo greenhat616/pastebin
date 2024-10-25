@@ -79,8 +79,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       '@simplewebauthn/types':
-        specifier: 10.0.0
-        version: 10.0.0
+        specifier: 11.0.0
+        version: 11.0.0
       '@svgr/core':
         specifier: 8.1.0
         version: 8.1.0(typescript@5.4.5)
@@ -1760,6 +1760,9 @@ packages:
 
   '@simplewebauthn/types@10.0.0':
     resolution: {integrity: sha512-SFXke7xkgPRowY2E+8djKbdEznTVnD5R6GO7GPTthpHrokLvNKw8C3lFZypTxLI7KkCfGPfhtqB3d7OVGGa9jQ==}
+
+  '@simplewebauthn/types@11.0.0':
+    resolution: {integrity: sha512-b2o0wC5u2rWts31dTgBkAtSNKGX0cvL6h8QedNsKmj8O4QoLFQFR3DBVBUlpyVEhYKA+mXGUaXbcOc4JdQ3HzA==}
 
   '@size-limit/esbuild-why@11.1.5':
     resolution: {integrity: sha512-2flK0Jz0lthzqPsM0QtkEhjXkjTO3mmmw2bhaIftDROTe6xbGNWYuWj5HnKNwbITHWLn6zpjT4fkLBoVvEUCOw==}
@@ -6832,6 +6835,8 @@ snapshots:
       - encoding
 
   '@simplewebauthn/types@10.0.0': {}
+
+  '@simplewebauthn/types@11.0.0': {}
 
   '@size-limit/esbuild-why@11.1.5(size-limit@11.1.5)':
     dependencies:
