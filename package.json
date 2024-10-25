@@ -45,7 +45,7 @@
     "@emotion/react": "11.13.3",
     "@emotion/styled": "11.13.0",
     "@formatjs/intl-localematcher": "0.5.6",
-    "@headlessui/react": "2.1.10",
+    "@headlessui/react": "2.2.0",
     "@heroicons/react": "2.1.5",
     "@iconify/json": "2.2.263",
     "@next/bundle-analyzer": "14.2.16",
