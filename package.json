@@ -82,7 +82,7 @@
     "ahooks": "3.8.1",
     "autoprefixer": "10.4.20",
     "chakra-react-select": "4.10.1",
-    "cookie-signature": "1.2.1",
+    "cookie-signature": "1.2.2",
     "cross-env": "7.0.3",
     "dayjs": "1.11.13",
     "dotenv": "16.4.5",
