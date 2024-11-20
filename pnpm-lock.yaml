@@ -295,8 +295,8 @@ importers:
         specifier: 6.0.4
         version: 6.0.4(stylelint@16.10.0(typescript@5.4.5))
       stylelint-scss:
-        specifier: 6.9.0
-        version: 6.9.0(stylelint@16.10.0(typescript@5.4.5))
+        specifier: 6.10.0
+        version: 6.10.0(stylelint@16.10.0(typescript@5.4.5))
       tailwindcss:
         specifier: 3.4.15
         version: 3.4.15
@@ -4191,6 +4191,10 @@ packages:
     resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
     engines: {node: '>=4'}
 
+  postcss-selector-parser@7.0.0:
+    resolution: {integrity: sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==}
+    engines: {node: '>=4'}
+
   postcss-sorting@8.0.2:
     resolution: {integrity: sha512-M9dkSrmU00t/jK7rF6BZSZauA5MAaBW4i5EnJXspMwt4iqTh/L9j6fgMnbElEOfyRyfLfVbIHj/R52zHzAPe1Q==}
     peerDependencies:
@@ -4708,8 +4712,8 @@ packages:
     peerDependencies:
       stylelint: ^14.0.0 || ^15.0.0 || ^16.0.1
 
-  stylelint-scss@6.9.0:
-    resolution: {integrity: sha512-oWOR+g6ccagfrENecImGmorWWjVyWpt2R8bmkhOW8FkNNPGStZPQMqb8QWMW4Lwu9TyPqmyjHkkAsy3weqsnNw==}
+  stylelint-scss@6.10.0:
+    resolution: {integrity: sha512-y03if6Qw9xBMoVaf7tzp5BbnYhYvudIKzURkhSHzcHG0bW0fAYvQpTUVJOe7DyhHaxeThBil4ObEMvGbV7+M+w==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
@@ -9369,6 +9373,11 @@ snapshots:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
 
+  postcss-selector-parser@7.0.0:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
   postcss-sorting@8.0.2(postcss@8.4.49):
     dependencies:
       postcss: 8.4.49
@@ -9942,7 +9951,7 @@ snapshots:
       postcss-sorting: 8.0.2(postcss@8.4.49)
       stylelint: 16.10.0(typescript@5.4.5)
 
-  stylelint-scss@6.9.0(stylelint@16.10.0(typescript@5.4.5)):
+  stylelint-scss@6.10.0(stylelint@16.10.0(typescript@5.4.5)):
     dependencies:
       css-tree: 3.0.1
       is-plain-object: 5.0.0
@@ -9950,7 +9959,7 @@ snapshots:
       mdn-data: 2.12.2
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-selector-parser: 6.1.2
+      postcss-selector-parser: 7.0.0
       postcss-value-parser: 4.2.0
       stylelint: 16.10.0(typescript@5.4.5)
 
