@@ -51,7 +51,7 @@
     "@next/bundle-analyzer": "14.2.18",
     "@node-rs/argon2": "1.8.3",
     "@simplewebauthn/browser": "10.0.0",
-    "@simplewebauthn/server": "10.0.1",
+    "@simplewebauthn/server": "11.0.0",
     "@simplewebauthn/types": "10.0.0",
     "@svgr/core": "8.1.0",
     "@svgr/plugin-jsx": "8.1.0",
