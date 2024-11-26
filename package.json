@@ -112,7 +112,7 @@
     "postcss-html": "1.7.0",
     "postcss-import": "16.1.0",
     "postcss-scss": "4.0.9",
-    "prettier": "3.4.0",
+    "prettier": "3.4.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-use": "17.5.1",
