@@ -87,7 +87,7 @@
     "dayjs": "1.11.13",
     "dotenv": "16.4.7",
     "eslint": "8.57.1",
-    "eslint-config-next": "14.2.19",
+    "eslint-config-next": "14.2.20",
     "eslint-config-prettier": "9.1.0",
     "eslint-config-standard": "17.1.0",
     "eslint-import-resolver-typescript": "3.7.0",
