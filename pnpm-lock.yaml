@@ -160,8 +160,8 @@ importers:
         specifier: 1.4.1
         version: 1.4.1(next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.81.1))(react@18.3.1)(vue@3.5.12(typescript@5.4.5))
       ahooks:
-        specifier: 3.8.2
-        version: 3.8.2(react@18.3.1)
+        specifier: 3.8.4
+        version: 3.8.4(react@18.3.1)
       autoprefixer:
         specifier: 10.4.20
         version: 10.4.20(postcss@8.4.49)
@@ -2091,8 +2091,8 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
-  ahooks@3.8.2:
-    resolution: {integrity: sha512-iuYD3PWopdw9HqH++3ul6/Oxl9Q9/tP+np4yiYd0mIzN3QfDKnyII28MWUcmSkaHF415R6bUcrl0vD/80NNogg==}
+  ahooks@3.8.4:
+    resolution: {integrity: sha512-39wDEw2ZHvypaT14EpMMk4AzosHWt0z9bulY0BeDsvc9PqJEV+Kjh/4TZfftSsotBMq52iYIOFPd3PR56e0ZJg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -7114,7 +7114,7 @@ snapshots:
 
   acorn@8.14.0: {}
 
-  ahooks@3.8.2(react@18.3.1):
+  ahooks@3.8.4(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.24.4
       dayjs: 1.11.13
