@@ -44,7 +44,7 @@
     "@commitlint/config-conventional": "19.6.0",
     "@emotion/react": "11.13.5",
     "@emotion/styled": "11.13.5",
-    "@formatjs/intl-localematcher": "0.5.8",
+    "@formatjs/intl-localematcher": "0.5.9",
     "@headlessui/react": "2.2.0",
     "@heroicons/react": "2.2.0",
     "@iconify/json": "2.2.280",
