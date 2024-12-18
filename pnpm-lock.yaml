@@ -238,8 +238,8 @@ importers:
         specifier: 5.0.0-beta.25
         version: 5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react@18.3.1)
       next-intl:
-        specifier: 3.26.1
-        version: 3.26.1(next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react@18.3.1)
+        specifier: 3.26.2
+        version: 3.26.2(next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react@18.3.1)
       npm-run-all2:
         specifier: 6.2.6
         version: 6.2.6
@@ -3865,8 +3865,8 @@ packages:
       nodemailer:
         optional: true
 
-  next-intl@3.26.1:
-    resolution: {integrity: sha512-TE4cQgXNw4jzEtVPdiYQOCmhAu+Z2qoUppCMxPkJoz8XXe8TdqiNEPhD/GtXEsI80nV6NnVAq3hyTHH5+ex6Hw==}
+  next-intl@3.26.2:
+    resolution: {integrity: sha512-fPsL5/9Y/aYNHoOf904b+PhYkm1RfZKrNMAxUvURMqFuQTA0TQAIGnY0s03yPH7oRv9qCFcutaxr6DsHq0aCzQ==}
     peerDependencies:
       next: ^10.0.0 || ^11.0.0 || ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
@@ -5021,8 +5021,8 @@ packages:
       '@types/react':
         optional: true
 
-  use-intl@3.26.1:
-    resolution: {integrity: sha512-MZhtSBcMrDna3xs1T6O7CAXx4wRfm1eGyUYrDCCnW9qTOGZurCH5k/X6ChDl6EI4f+qYEtXQCRMkQUVOIhJWTQ==}
+  use-intl@3.26.2:
+    resolution: {integrity: sha512-H0BpBXLNFTkw6RvntLXSXr2+la4T/xilKSG5l8ND9Br9+i1hqHensWouNS288QZdiDTrfYUVswDtUIR6L39JHQ==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc <19.0.0 || ^19.0.0
 
@@ -9049,13 +9049,13 @@ snapshots:
       '@simplewebauthn/browser': 10.0.0
       '@simplewebauthn/server': 10.0.1
 
-  next-intl@3.26.1(next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react@18.3.1):
+  next-intl@3.26.2(next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0))(react@18.3.1):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.9
       negotiator: 1.0.0
       next: 14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0)
       react: 18.3.1
-      use-intl: 3.26.1(react@18.3.1)
+      use-intl: 3.26.2(react@18.3.1)
 
   next@14.2.20(@babel/core@7.24.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sass@1.83.0):
     dependencies:
@@ -10350,7 +10350,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.17
 
-  use-intl@3.26.1(react@18.3.1):
+  use-intl@3.26.2(react@18.3.1):
     dependencies:
       '@formatjs/fast-memoize': 2.2.0
       intl-messageformat: 10.5.14
