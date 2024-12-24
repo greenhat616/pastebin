@@ -28,10 +28,10 @@
   },
   "dependencies": {
     "@auth/prisma-adapter": "2.7.4",
-    "@prisma/client": "5.22.0",
+    "@prisma/client": "6.1.0",
     "@t3-oss/env-nextjs": "0.11.1",
     "chalk": "5.4.1",
-    "prisma": "5.22.0",
+    "prisma": "6.1.0",
     "prisma-extension-soft-delete": "2.0.0",
     "superjson": "2.2.2",
     "tsx": "4.19.2",
