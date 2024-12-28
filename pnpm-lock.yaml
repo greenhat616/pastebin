@@ -316,8 +316,8 @@ importers:
         specifier: 0.22.0
         version: 0.22.0(@svgr/core@8.1.0(typescript@5.4.5))(@vue/compiler-sfc@3.5.12)
       uuid:
-        specifier: 10.0.0
-        version: 10.0.0
+        specifier: 11.0.3
+        version: 11.0.3
       vite:
         specifier: 5.4.11
         version: 5.4.11(@types/node@20.17.10)(sass@1.83.0)(terser@5.30.3)
@@ -5061,8 +5061,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  uuid@10.0.0:
-    resolution: {integrity: sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==}
+  uuid@11.0.3:
+    resolution: {integrity: sha512-d0z310fCWv5dJwnX1Y/MncBAqGMKEzlBb1AOf7z9K8ALnd0utBX/msg/fA0+sbyN1ihbMsLhrBlnl1ak7Wa0rg==}
     hasBin: true
 
   vfile-message@4.0.2:
@@ -10402,7 +10402,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  uuid@10.0.0: {}
+  uuid@11.0.3: {}
 
   vfile-message@4.0.2:
     dependencies:
