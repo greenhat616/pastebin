@@ -7,14 +7,13 @@ import { getTranslations } from 'next-intl/server'
 import SignUpForm from './_components/form'
 
 type Props = {
-  params: {
+  params: Promise<{
     locale: string
-  }
+  }>
 }
 
-export async function generateMetadata({
-  params: { locale }
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
   const t = await getTranslations({ locale })
 
   return {

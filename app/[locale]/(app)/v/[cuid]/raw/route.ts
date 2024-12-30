@@ -5,8 +5,9 @@ import { NextRequest } from 'next/server'
 
 export async function GET(
   req: NextRequest,
-  { params: { cuid } }: { params: { cuid: string } }
+  { params }: { params: Promise<{ cuid: string }> }
 ) {
+  const { cuid } = await params
   if (!cuid) return new Response('Not Found', { status: 404 })
   const result = await client.paste.findUnique({
     where: { id: cuid }

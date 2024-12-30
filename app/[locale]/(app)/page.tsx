@@ -6,7 +6,7 @@ import { useLocale, useMessages, type AbstractIntlMessages } from 'next-intl'
 import Announcement from './_components/home/Announcement'
 import { CreateSnippetForm } from './_components/home/form'
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 function CreateSnippetIntlProvider({

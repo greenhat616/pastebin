@@ -78,6 +78,15 @@
     "IFluentEmojiFlatSmirkingFace": true,
     "IFluentEmojiFlatWoozyFace": true,
     "IFluentEmojiFlatZanyFace": true,
-    "cn": true
+    "cn": true,
+    "ISolarChatRoundDotsLinear": true,
+    "ISolarDocumentsLinear": true,
+    "ISolarHomeSmileLinear": true,
+    "ISolarInboxLinear": true,
+    "ISolarSettingsLinear": true,
+    "ISolarClipboardBroken": true,
+    "ISolarShareLinear": true,
+    "ISolarShieldKeyholeBold": true,
+    "ISolarShieldUserBold": true
   }
 }

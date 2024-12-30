@@ -22,9 +22,8 @@ import { getTranslations } from 'next-intl/server'
 import { headers } from 'next/headers'
 import Credentials from './_components/Credentials'
 import OAuthProvider from './_components/OAuthProvider'
-export async function generateMetadata({
-  params: { locale }
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
   const t = await getTranslations({ locale })
 
   return {
@@ -92,7 +91,7 @@ function PageInner({
 }
 
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export default async function SignInPage(props: Props) {

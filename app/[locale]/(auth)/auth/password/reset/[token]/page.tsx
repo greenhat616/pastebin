@@ -2,9 +2,9 @@ import { Stack } from '@chakra-ui/react'
 import { PasswordResetForm } from './_components/form'
 
 type Props = {
-  params: {
+  params: Promise<{
     token: string
-  }
+  }>
 }
 
 export default function ResetPasswordPage(props: Props) {

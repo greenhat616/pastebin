@@ -1,5 +1,5 @@
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export default function About(props: Props) {

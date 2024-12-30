@@ -34,7 +34,7 @@ async function getPasteData(cuid: string) {
 }
 
 type Props = {
-  params: { cuid: string }
+  params: Promise<{ cuid: string }>
 }
 
 function PosterInfo({
@@ -99,7 +99,7 @@ export default async function View(props: Props) {
   const locale = useLocale()
   const timeZone = await getTimeZone({ locale })
   // if (!checkUUIDValidation(props.params.cuid)) return notFound()
-  const cuid = props.params.cuid
+  const { cuid } = await props.params
   const data = await getPasteData(cuid)
   if (!data || !(data?.content as Content[])[0]) notFound()
 
