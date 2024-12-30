@@ -44,6 +44,7 @@ function AddButtonIntlProvider({ children }: { children: React.ReactNode }) {
 }
 
 export default async function SnippetsPage() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const locale = useLocale()
   const timeZone = await getTimeZone({ locale })
   const session = await auth()

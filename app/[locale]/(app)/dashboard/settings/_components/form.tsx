@@ -65,7 +65,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
     }
   )
   return (
-    <form className='grid gap-4' action={action}>
+    <form className="grid gap-4" action={action}>
       <Field
         label="Nickname"
         helperText="This is how your name will be displayed in the account."
@@ -79,7 +79,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
       </Field>
       <Field
         label="Email address"
-        helperText="We&apos;ll never share your email with anyone else."
+        helperText="We'll never share your email with anyone else."
       >
         <Input type="email" disabled value={defaultValues.email} />
       </Field>

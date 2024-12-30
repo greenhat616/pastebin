@@ -1,12 +1,12 @@
-import type { ButtonProps, InputProps } from "@chakra-ui/react"
+import type { ButtonProps, InputProps } from '@chakra-ui/react'
 import {
   Button,
   Clipboard as ChakraClipboard,
   IconButton,
-  Input,
-} from "@chakra-ui/react"
-import * as React from "react"
-import { LuCheck, LuClipboard, LuLink } from "react-icons/lu"
+  Input
+} from '@chakra-ui/react'
+import * as React from 'react'
+import { LuCheck, LuClipboard, LuLink } from 'react-icons/lu'
 
 const ClipboardIcon = React.forwardRef<
   HTMLDivElement,
@@ -56,7 +56,7 @@ export const ClipboardButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </Button>
       </ChakraClipboard.Trigger>
     )
-  },
+  }
 )
 
 export const ClipboardLink = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -78,7 +78,7 @@ export const ClipboardLink = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </Button>
       </ChakraClipboard.Trigger>
     )
-  },
+  }
 )
 
 export const ClipboardIconButton = React.forwardRef<
@@ -102,7 +102,7 @@ export const ClipboardInput = React.forwardRef<HTMLInputElement, InputProps>(
         <Input ref={ref} {...props} />
       </ChakraClipboard.Input>
     )
-  },
+  }
 )
 
 export const ClipboardRoot = ChakraClipboard.Root

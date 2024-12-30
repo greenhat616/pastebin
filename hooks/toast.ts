@@ -5,7 +5,7 @@ import { useMemoizedFn } from 'ahooks'
 type UseToastFeedbackProps<E extends Event> = {
   fn: (e: E) => Awaitable<void>
   messages: {
-    [K in "success" | "info" | "warning"]?: {
+    [K in 'success' | 'info' | 'warning']?: {
       title: string
       description: string
     }
@@ -22,7 +22,7 @@ type UseToastFeedbackProps<E extends Event> = {
   }
 }
 type ToastMessages = {
-  [K in "success" | "info" | "warning" | "error"]?: {
+  [K in 'success' | 'info' | 'warning' | 'error']?: {
     title: string
     description: string
   }
@@ -39,11 +39,14 @@ export function useToastFeedback<E extends Event>(
   const { messages } = props
 
   const toastFeedback = useMemoizedFn(
-    (message: ToastMessages, status: "success" | "info" | "warning" | "error") => {
+    (
+      message: ToastMessages,
+      status: 'success' | 'info' | 'warning' | 'error'
+    ) => {
       toaster.create({
         title: message[status]?.title || 'No Title',
         description: message[status]?.description || undefined,
-        type: status,
+        type: status
       })
     }
   )

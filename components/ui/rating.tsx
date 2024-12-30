@@ -1,5 +1,5 @@
-import { RatingGroup } from "@chakra-ui/react"
-import * as React from "react"
+import { RatingGroup } from '@chakra-ui/react'
+import * as React from 'react'
 
 export interface RatingProps extends RatingGroup.RootProps {
   icon?: React.ReactElement
@@ -23,5 +23,5 @@ export const Rating = React.forwardRef<HTMLDivElement, RatingProps>(
         </RatingGroup.Control>
       </RatingGroup.Root>
     )
-  },
+  }
 )

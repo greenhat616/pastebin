@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import type { ButtonProps, RecipeProps } from "@chakra-ui/react"
+import type { ButtonProps, RecipeProps } from '@chakra-ui/react'
 import {
   Button,
   FileUpload as ChakraFileUpload,
@@ -9,10 +9,10 @@ import {
   Span,
   Text,
   useFileUploadContext,
-  useRecipe,
-} from "@chakra-ui/react"
-import * as React from "react"
-import { LuFile, LuUpload, LuX } from "react-icons/lu"
+  useRecipe
+} from '@chakra-ui/react'
+import * as React from 'react'
+import { LuFile, LuUpload, LuX } from 'react-icons/lu'
 
 export interface FileUploadRootProps extends ChakraFileUpload.RootProps {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
@@ -94,7 +94,7 @@ const FileUploadItem = React.forwardRef<HTMLLIElement, FileUploadItemProps>(
         )}
       </ChakraFileUpload.Item>
     )
-  },
+  }
 )
 
 interface FileUploadListProps
@@ -130,15 +130,15 @@ export const FileUploadList = React.forwardRef<
 
 type Assign<T, U> = Omit<T, keyof U> & U
 
-interface FileInputProps extends Assign<ButtonProps, RecipeProps<"input">> {
+interface FileInputProps extends Assign<ButtonProps, RecipeProps<'input'>> {
   placeholder?: React.ReactNode
 }
 
 export const FileInput = React.forwardRef<HTMLButtonElement, FileInputProps>(
   function FileInput(props, ref) {
-    const inputRecipe = useRecipe({ key: "input" })
+    const inputRecipe = useRecipe({ key: 'input' })
     const [recipeProps, restProps] = inputRecipe.splitVariantProps(props)
-    const { placeholder = "Select file(s)", ...rest } = restProps
+    const { placeholder = 'Select file(s)', ...rest } = restProps
     return (
       <ChakraFileUpload.Trigger asChild>
         <Button
@@ -162,7 +162,7 @@ export const FileInput = React.forwardRef<HTMLButtonElement, FileInputProps>(
         </Button>
       </ChakraFileUpload.Trigger>
     )
-  },
+  }
 )
 
 export const FileUploadLabel = ChakraFileUpload.Label

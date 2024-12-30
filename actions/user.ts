@@ -107,7 +107,9 @@ export async function confirmTwiceAction<T>(
       .parse(input)
     authType = data.authType
     token = data.token
-    const signedToken = await getCookie('user.twice_confirmed_id', { signed: true })
+    const signedToken = await getCookie('user.twice_confirmed_id', {
+      signed: true
+    })
     if (!signedToken || md5(token) !== signedToken.value)
       throw new Error('Invalid token')
   } catch (e) {

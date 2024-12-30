@@ -1,12 +1,12 @@
 import type {
   SkeletonProps as ChakraSkeletonProps,
-  CircleProps,
-} from "@chakra-ui/react"
-import { Skeleton as ChakraSkeleton, Circle, Stack } from "@chakra-ui/react"
-import * as React from "react"
+  CircleProps
+} from '@chakra-ui/react'
+import { Skeleton as ChakraSkeleton, Circle, Stack } from '@chakra-ui/react'
+import * as React from 'react'
 
 export interface SkeletonCircleProps extends ChakraSkeletonProps {
-  size?: CircleProps["size"]
+  size?: CircleProps['size']
 }
 
 export const SkeletonCircle = React.forwardRef<
@@ -35,13 +35,13 @@ export const SkeletonText = React.forwardRef<HTMLDivElement, SkeletonTextProps>(
             height="4"
             key={index}
             {...props}
-            _last={{ maxW: "80%" }}
+            _last={{ maxW: '80%' }}
             {...rest}
           />
         ))}
       </Stack>
     )
-  },
+  }
 )
 
 export const Skeleton = ChakraSkeleton

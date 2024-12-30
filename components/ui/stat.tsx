@@ -2,10 +2,10 @@ import {
   Badge,
   type BadgeProps,
   Stat as ChakraStat,
-  FormatNumber,
-} from "@chakra-ui/react"
-import { InfoTip } from "./toggle-tip"
-import * as React from "react"
+  FormatNumber
+} from '@chakra-ui/react'
+import { InfoTip } from './toggle-tip'
+import * as React from 'react'
 
 interface StatLabelProps extends ChakraStat.LabelProps {
   info?: React.ReactNode
@@ -20,7 +20,7 @@ export const StatLabel = React.forwardRef<HTMLDivElement, StatLabelProps>(
         {info && <InfoTip>{info}</InfoTip>}
       </ChakraStat.Label>
     )
-  },
+  }
 )
 
 interface StatValueTextProps extends ChakraStat.ValueTextProps {
@@ -49,7 +49,7 @@ export const StatUpTrend = React.forwardRef<HTMLDivElement, BadgeProps>(
         {props.children}
       </Badge>
     )
-  },
+  }
 )
 
 export const StatDownTrend = React.forwardRef<HTMLDivElement, BadgeProps>(
@@ -60,7 +60,7 @@ export const StatDownTrend = React.forwardRef<HTMLDivElement, BadgeProps>(
         {props.children}
       </Badge>
     )
-  },
+  }
 )
 
 export const StatRoot = ChakraStat.Root

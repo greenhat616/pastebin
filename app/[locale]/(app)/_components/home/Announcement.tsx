@@ -7,9 +7,8 @@ import {
   Box,
   useDisclosure
 } from '@chakra-ui/react'
-import { Alert } from "@/components/ui/alert"
+import { Alert } from '@/components/ui/alert'
 import { CloseButton } from '@/components/ui/close-button'
-
 
 export default function Announcement() {
   const {

@@ -1,5 +1,5 @@
-import { Blockquote as ChakraBlockquote } from "@chakra-ui/react"
-import * as React from "react"
+import { Blockquote as ChakraBlockquote } from '@chakra-ui/react'
+import * as React from 'react'
 
 export interface BlockquoteProps extends ChakraBlockquote.RootProps {
   cite?: React.ReactNode
@@ -25,7 +25,7 @@ export const Blockquote = React.forwardRef<HTMLDivElement, BlockquoteProps>(
         )}
       </ChakraBlockquote.Root>
     )
-  },
+  }
 )
 
 export const BlockquoteIcon = ChakraBlockquote.Icon

@@ -17,7 +17,7 @@ export type MiddlewareCtx = {
 
 // FIXME: why fucking next-auth prevent use to reading its internal types?
 // Fuck fuck fuck
- interface NextAuthRequest extends NextRequest {
+interface NextAuthRequest extends NextRequest {
   auth: Session | null
 }
 

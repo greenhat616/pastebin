@@ -28,7 +28,6 @@ export function Header(props: Props) {
   const router = useRouter()
   const t = useTranslations()
 
-
   return (
     <Disclosure as="nav" className={classNames('bg-gray-800', props.className)}>
       {({ open }) => (

@@ -1,7 +1,7 @@
-"use client"
+'use client'
 
-import { For, SegmentGroup } from "@chakra-ui/react"
-import * as React from "react"
+import { For, SegmentGroup } from '@chakra-ui/react'
+import * as React from 'react'
 
 interface Item {
   value: string
@@ -15,7 +15,7 @@ export interface SegmentedControlProps extends SegmentGroup.RootProps {
 
 function normalize(items: Array<string | Item>): Item[] {
   return items.map((item) => {
-    if (typeof item === "string") return { value: item, label: item }
+    if (typeof item === 'string') return { value: item, label: item }
     return item
   })
 }

@@ -30,7 +30,7 @@ import type {
   PublicKeyCredentialCreationOptionsJSON,
   PublicKeyCredentialRequestOptionsJSON,
   RegistrationResponseJSON,
-  AttestationConveyancePreference,
+  AttestationConveyancePreference
 } from '@simplewebauthn/types'
 import { CredentialsSignin } from 'next-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
@@ -445,7 +445,8 @@ export async function verifySignInWithWebAuthnAction(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   input: Record<string, any>
 ): Promise<ActionReturn<never, object>> {
-  const email = (await getCookie('next-auth.login_email', { signed: true }))?.value
+  const email = (await getCookie('next-auth.login_email', { signed: true }))
+    ?.value
   try {
     const data = VerifySignInWithWebAuthnSchema.parse({
       email: email,

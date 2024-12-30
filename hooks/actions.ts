@@ -69,11 +69,15 @@ export function useSubmitForm<T, E extends object>(
         state?.status !== ResponseCode.NotInvoke) ||
       state?.error
     ) {
-      typeof onError == 'function' && onError(state, ref)
+      if (typeof onError === 'function') {
+        onError(state, ref)
+      }
     }
 
     if (state?.status == ResponseCode.OK) {
-      typeof onSuccess == 'function' && onSuccess(state, ref)
+      if (typeof onSuccess === 'function') {
+        onSuccess(state, ref)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state, ref])

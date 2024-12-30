@@ -4,7 +4,7 @@ import {
   DialogCloseTrigger,
   DialogContent,
   DialogHeader,
-  DialogRoot,
+  DialogRoot
 } from '@/components/ui/dialog'
 import { CloseButton } from '@/components/ui/close-button'
 import 'client-only'

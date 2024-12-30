@@ -1,65 +1,65 @@
-"use client"
+'use client'
 
-import type { ButtonProps, TextProps } from "@chakra-ui/react"
+import type { ButtonProps, TextProps } from '@chakra-ui/react'
 import {
   Button,
   Pagination as ChakraPagination,
   IconButton,
   Text,
   createContext,
-  usePaginationContext,
-} from "@chakra-ui/react"
-import * as React from "react"
+  usePaginationContext
+} from '@chakra-ui/react'
+import * as React from 'react'
 import {
   HiChevronLeft,
   HiChevronRight,
-  HiMiniEllipsisHorizontal,
-} from "react-icons/hi2"
-import { LinkButton } from "./link-button"
+  HiMiniEllipsisHorizontal
+} from 'react-icons/hi2'
+import { LinkButton } from './link-button'
 
 interface ButtonVariantMap {
-  current: ButtonProps["variant"]
-  default: ButtonProps["variant"]
-  ellipsis: ButtonProps["variant"]
+  current: ButtonProps['variant']
+  default: ButtonProps['variant']
+  ellipsis: ButtonProps['variant']
 }
 
-type PaginationVariant = "outline" | "solid" | "subtle"
+type PaginationVariant = 'outline' | 'solid' | 'subtle'
 
 interface ButtonVariantContext {
-  size: ButtonProps["size"]
+  size: ButtonProps['size']
   variantMap: ButtonVariantMap
   getHref?: (page: number) => string
 }
 
 const [RootPropsProvider, useRootProps] = createContext<ButtonVariantContext>({
-  name: "RootPropsProvider",
+  name: 'RootPropsProvider'
 })
 
 export interface PaginationRootProps
-  extends Omit<ChakraPagination.RootProps, "type"> {
-  size?: ButtonProps["size"]
+  extends Omit<ChakraPagination.RootProps, 'type'> {
+  size?: ButtonProps['size']
   variant?: PaginationVariant
   getHref?: (page: number) => string
 }
 
 const variantMap: Record<PaginationVariant, ButtonVariantMap> = {
-  outline: { default: "ghost", ellipsis: "plain", current: "outline" },
-  solid: { default: "outline", ellipsis: "outline", current: "solid" },
-  subtle: { default: "ghost", ellipsis: "plain", current: "subtle" },
+  outline: { default: 'ghost', ellipsis: 'plain', current: 'outline' },
+  solid: { default: 'outline', ellipsis: 'outline', current: 'solid' },
+  subtle: { default: 'ghost', ellipsis: 'plain', current: 'subtle' }
 }
 
 export const PaginationRoot = React.forwardRef<
   HTMLDivElement,
   PaginationRootProps
 >(function PaginationRoot(props, ref) {
-  const { size = "sm", variant = "outline", getHref, ...rest } = props
+  const { size = 'sm', variant = 'outline', getHref, ...rest } = props
   return (
     <RootPropsProvider
       value={{ size, variantMap: variantMap[variant], getHref }}
     >
       <ChakraPagination.Root
         ref={ref}
-        type={getHref ? "link" : "button"}
+        type={getHref ? 'link' : 'button'}
         {...rest}
       />
     </RootPropsProvider>
@@ -168,7 +168,7 @@ export const PaginationItems = (props: React.HTMLAttributes<HTMLElement>) => {
     <ChakraPagination.Context>
       {({ pages }) =>
         pages.map((page, index) => {
-          return page.type === "ellipsis" ? (
+          return page.type === 'ellipsis' ? (
             <PaginationEllipsis key={index} index={index} {...props} />
           ) : (
             <PaginationItem
@@ -185,18 +185,18 @@ export const PaginationItems = (props: React.HTMLAttributes<HTMLElement>) => {
 }
 
 interface PageTextProps extends TextProps {
-  format?: "short" | "compact" | "long"
+  format?: 'short' | 'compact' | 'long'
 }
 
 export const PaginationPageText = React.forwardRef<
   HTMLParagraphElement,
   PageTextProps
 >(function PaginationPageText(props, ref) {
-  const { format = "compact", ...rest } = props
+  const { format = 'compact', ...rest } = props
   const { page, totalPages, pageRange, count } = usePaginationContext()
   const content = React.useMemo(() => {
-    if (format === "short") return `${page} / ${totalPages}`
-    if (format === "compact") return `${page} of ${totalPages}`
+    if (format === 'short') return `${page} / ${totalPages}`
+    if (format === 'compact') return `${page} of ${totalPages}`
     return `${pageRange.start + 1} - ${pageRange.end} of ${count}`
   }, [format, page, totalPages, pageRange, count])
 

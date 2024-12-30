@@ -1,9 +1,9 @@
-import { Breadcrumb, type SystemStyleObject } from "@chakra-ui/react"
-import * as React from "react"
+import { Breadcrumb, type SystemStyleObject } from '@chakra-ui/react'
+import * as React from 'react'
 
 export interface BreadcrumbRootProps extends Breadcrumb.RootProps {
   separator?: React.ReactNode
-  separatorGap?: SystemStyleObject["gap"]
+  separatorGap?: SystemStyleObject['gap']
 }
 
 export const BreadcrumbRoot = React.forwardRef<
@@ -13,7 +13,7 @@ export const BreadcrumbRoot = React.forwardRef<
   const { separator, separatorGap, children, ...rest } = props
 
   const validChildren = React.Children.toArray(children).filter(
-    React.isValidElement,
+    React.isValidElement
   )
 
   return (

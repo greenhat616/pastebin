@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import type { GroupProps, SlotRecipeProps } from "@chakra-ui/react"
-import { Avatar as ChakraAvatar, Group } from "@chakra-ui/react"
-import * as React from "react"
+import type { GroupProps, SlotRecipeProps } from '@chakra-ui/react'
+import { Avatar as ChakraAvatar, Group } from '@chakra-ui/react'
+import * as React from 'react'
 
 type ImageProps = React.ImgHTMLAttributes<HTMLImageElement>
 
@@ -10,7 +10,7 @@ export interface AvatarProps extends ChakraAvatar.RootProps {
   name?: string
   src?: string
   srcSet?: string
-  loading?: ImageProps["loading"]
+  loading?: ImageProps['loading']
   icon?: React.ReactElement
   fallback?: React.ReactNode
 }
@@ -28,7 +28,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         {children}
       </ChakraAvatar.Root>
     )
-  },
+  }
 )
 
 interface AvatarFallbackProps extends ChakraAvatar.FallbackProps {
@@ -48,19 +48,19 @@ const AvatarFallback = React.forwardRef<HTMLDivElement, AvatarFallbackProps>(
         )}
       </ChakraAvatar.Fallback>
     )
-  },
+  }
 )
 
 function getInitials(name: string) {
-  const names = name.trim().split(" ")
-  const firstName = names[0] != null ? names[0] : ""
-  const lastName = names.length > 1 ? names[names.length - 1] : ""
+  const names = name.trim().split(' ')
+  const firstName = names[0] != null ? names[0] : ''
+  const lastName = names.length > 1 ? names[names.length - 1] : ''
   return firstName && lastName
     ? `${firstName.charAt(0)}${lastName.charAt(0)}`
     : firstName.charAt(0)
 }
 
-interface AvatarGroupProps extends GroupProps, SlotRecipeProps<"avatar"> {}
+interface AvatarGroupProps extends GroupProps, SlotRecipeProps<'avatar'> {}
 
 export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   function AvatarGroup(props, ref) {
@@ -70,5 +70,5 @@ export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         <Group gap="0" spaceX="-3" ref={ref} {...rest} />
       </ChakraAvatar.PropsProvider>
     )
-  },
+  }
 )

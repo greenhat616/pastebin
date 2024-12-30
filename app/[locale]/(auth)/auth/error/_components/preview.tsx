@@ -1,8 +1,6 @@
 'use client'
 
-import {
-  Alert,
-} from '@/components/ui/alert'
+import { Alert } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Stack } from '@chakra-ui/react'
 

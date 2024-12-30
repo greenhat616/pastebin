@@ -1,4 +1,4 @@
-import type { IconButtonProps, StackProps } from "@chakra-ui/react"
+import type { IconButtonProps, StackProps } from '@chakra-ui/react'
 import {
   ColorPicker as ChakraColorPicker,
   For,
@@ -7,10 +7,10 @@ import {
   Span,
   Stack,
   Text,
-  VStack,
-} from "@chakra-ui/react"
-import { forwardRef } from "react"
-import { LuCheck, LuPipette } from "react-icons/lu"
+  VStack
+} from '@chakra-ui/react'
+import { forwardRef } from 'react'
+import { LuCheck, LuPipette } from 'react-icons/lu'
 
 export const ColorPickerTrigger = forwardRef<
   HTMLButtonElement,
@@ -30,7 +30,7 @@ export const ColorPickerTrigger = forwardRef<
 
 export const ColorPickerInput = forwardRef<
   HTMLInputElement,
-  Omit<ChakraColorPicker.ChannelInputProps, "channel">
+  Omit<ChakraColorPicker.ChannelInputProps, 'channel'>
 >(function ColorHexInput(props, ref) {
   return <ChakraColorPicker.ChannelInput channel="hex" ref={ref} {...props} />
 })
@@ -77,7 +77,7 @@ export const ColorPickerSliders = forwardRef<HTMLDivElement, StackProps>(
         <ColorPickerChannelSlider channel="alpha" />
       </Stack>
     )
-  },
+  }
 )
 
 export const ColorPickerArea = forwardRef<
@@ -121,14 +121,14 @@ export const ColorPickerChannelSlider = forwardRef<
 export const ColorPickerSwatchTrigger = forwardRef<
   HTMLButtonElement,
   ChakraColorPicker.SwatchTriggerProps & {
-    swatchSize?: ChakraColorPicker.SwatchTriggerProps["boxSize"]
+    swatchSize?: ChakraColorPicker.SwatchTriggerProps['boxSize']
   }
 >(function ColorPickerSwatchTrigger(props, ref) {
   const { swatchSize, children, ...rest } = props
   return (
     <ChakraColorPicker.SwatchTrigger
       ref={ref}
-      style={{ ["--color" as string]: props.value }}
+      style={{ ['--color' as string]: props.value }}
       {...rest}
     >
       {children || (
@@ -155,10 +155,10 @@ export const ColorPickerRoot = forwardRef<
 })
 
 const formatMap = {
-  rgba: ["red", "green", "blue", "alpha"],
-  hsla: ["hue", "saturation", "lightness", "alpha"],
-  hsba: ["hue", "saturation", "brightness", "alpha"],
-  hexa: ["hex", "alpha"],
+  rgba: ['red', 'green', 'blue', 'alpha'],
+  hsla: ['hue', 'saturation', 'lightness', 'alpha'],
+  hsba: ['hue', 'saturation', 'brightness', 'alpha'],
+  hexa: ['hex', 'alpha']
 } as const
 
 export const ColorPickerChannelInputs = forwardRef<

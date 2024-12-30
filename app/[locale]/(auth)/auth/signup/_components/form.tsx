@@ -22,7 +22,6 @@ import { useEffect, useState, useTransition } from 'react'
 
 import { useFormStatus } from 'react-dom'
 
-
 // type State = {
 //   form: {
 //     email: string
@@ -105,7 +104,7 @@ export default function SignUpForm() {
                       : 'Unknown error'
                   : 'Unknown error'
             }),
-            duration: 5000,
+            duration: 5000
           })
           return
         }
@@ -127,7 +126,7 @@ export default function SignUpForm() {
             description: t('auth.signup.form.feedback.error.description', {
               error: translateIfKey(t, 'Unknown error')
             }),
-            duration: 5000,
+            duration: 5000
           })
         }
       })
@@ -138,7 +137,7 @@ export default function SignUpForm() {
         description: t('auth.signup.form.feedback.error.description', {
           error: translateIfKey(t, state?.error || 'Unknown error')
         }),
-        duration: 5000,
+        duration: 5000
       })
     }
   })
@@ -199,9 +198,7 @@ export default function SignUpForm() {
       </Field>
       {authType === CredentialsAuthType.Password && (
         <>
-          <Field invalid={!!msgs?.password}
-            errorText={msgs?.password}
-          >
+          <Field invalid={!!msgs?.password} errorText={msgs?.password}>
             <Input
               variant="outline"
               placeholder={t('auth.signup.form.placeholder.password')}
@@ -215,7 +212,8 @@ export default function SignUpForm() {
               // }}
             />
           </Field>
-          <Field invalid={!!msgs?.password_confirmation}
+          <Field
+            invalid={!!msgs?.password_confirmation}
             errorText={msgs?.password_confirmation}
           >
             <Input

@@ -1,5 +1,3 @@
-
-
 import type { APIAuthenticatorResponse } from '@/app/api/user/authenticators/route'
 import { ResponseCode } from '@/enums/response'
 import { ofetchClient as $fetch } from '@/libs/requests'
@@ -29,7 +27,7 @@ export function useUserAuthenticatorsQuery(
             toaster.error({
               title: 'Failed to get authenticators',
               description: response._data.message,
-              duration: 5000,
+              duration: 5000
             })
             return Promise.reject(response._data)
           }
@@ -39,7 +37,7 @@ export function useUserAuthenticatorsQuery(
           toaster.create({
             title: 'Failed to get authenticators',
             description: response._data.message,
-            duration: 5000,
+            duration: 5000
           })
           return Promise.reject(response?._data ?? null)
         }

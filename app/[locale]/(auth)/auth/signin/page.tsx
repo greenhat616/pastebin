@@ -45,7 +45,13 @@ function SignInPageIntlProviders({ children }: { children: React.ReactNode }) {
   )
 }
 
-function PageInner({ children, searchParams }: { children: React.ReactNode, searchParams: string }) {
+function PageInner({
+  children,
+  searchParams
+}: {
+  children: React.ReactNode
+  searchParams: string
+}) {
   const t = useTranslations()
 
   return (
@@ -81,7 +87,6 @@ function PageInner({ children, searchParams }: { children: React.ReactNode, sear
         </AbsoluteCenter>
       </Box>
       {children}
-
     </>
   )
 }

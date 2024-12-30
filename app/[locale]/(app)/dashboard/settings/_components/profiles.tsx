@@ -1,12 +1,6 @@
 'use client'
 import { providers } from '@/libs/auth/providers'
-import {
-
-  Card,
-
-  Heading,
-  useDisclosure
-} from '@chakra-ui/react'
+import { Card, Heading, useDisclosure } from '@chakra-ui/react'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import type { User } from '@prisma/client'

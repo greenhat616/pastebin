@@ -186,7 +186,9 @@ export async function codeToHTMLWithTransformers(
       ...(options.transformers || []),
       {
         code(node) {
-          options.lang && (node.properties.class = `language-${options.lang}`)
+          if (options.lang) {
+            node.properties.class = `language-${options.lang}`
+          }
         },
         line(node, line) {
           // node.properties['data-line'] = line

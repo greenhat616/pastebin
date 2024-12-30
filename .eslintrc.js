@@ -13,6 +13,7 @@ module.exports = {
   ],
   rules: {
     'react/jsx-no-undef': 'off',
+    '@typescript-eslint/no-empty-object-type': 'warn',
     'no-console': [
       process.env.NODE_ENV === 'production' ? 'error' : 'off',
       { allow: ['warn', 'error'] }
