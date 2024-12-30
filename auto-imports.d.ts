@@ -39,6 +39,7 @@ declare global {
   const NScript: typeof import('next/script')['default']
   const checkTwiceSignedCookie: typeof import('./utils/cookies')['checkTwiceSignedCookie']
   const classNames: typeof import('./utils/helper')['classNames']
+  const cn: typeof import('./utils/index')['cn']
   const fail: typeof import('./utils/response')['fail']
   const formatDateTime: typeof import('./utils/formatter')['formatDateTime']
   const formatPasteType: typeof import('./utils/formatter')['formatPasteType']
