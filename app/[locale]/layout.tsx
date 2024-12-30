@@ -21,6 +21,9 @@ import {
 
 import { UnoCSSIndicator } from '@/components/uno-css-indicator'
 import { Fira_Code } from 'next/font/google'
+import { QueryClientProvider } from '@/components/provider'
+import { Toaster } from '@/components/ui/toaster'
+import { Provider } from '@/components/ui/provider'
 const firaCode = Fira_Code({
   variable: '--font-fira-code',
   subsets: ['latin', 'cyrillic']
@@ -56,11 +59,16 @@ export default function LocaleLayout({ children, params }: Props) {
   const locale = useLocale()
   if (params.locale !== locale) notFound()
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${firaCode.variable} font-sans`}>
-        <UnoCSSIndicator />
-        {children}
-        <Analytics />
+        <Provider>
+          <QueryClientProvider>
+            <UnoCSSIndicator />
+            {children}
+            <Analytics />
+            <Toaster />
+          </QueryClientProvider>
+        </Provider>
       </body>
     </html>
   )

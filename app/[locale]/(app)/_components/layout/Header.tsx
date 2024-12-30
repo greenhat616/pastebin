@@ -1,6 +1,8 @@
 'use client'
 import AnimatedLogo from '@/components/animated-logo'
-import { Avatar, Box, Link, useToast } from '@chakra-ui/react'
+import { Box, Link } from '@chakra-ui/react'
+import { Avatar } from '@/components/ui/avatar'
+import { toaster } from '@/components/ui/toaster'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import {
   ArrowRightOnRectangleIcon,
@@ -25,7 +27,7 @@ type Props = {
 export function Header(props: Props) {
   const router = useRouter()
   const t = useTranslations()
-  const toast = useToast()
+
 
   return (
     <Disclosure as="nav" className={classNames('bg-gray-800', props.className)}>
@@ -165,16 +167,15 @@ export function Header(props: Props) {
                                 )}
                                 onClick={() =>
                                   signOut().then(() => {
-                                    toast({
+                                    toaster.create({
                                       title: t(
                                         'app.nav.accounts.sign_out.toast.success.title'
                                       ),
                                       description: t(
                                         'app.nav.accounts.sign_out.toast.success.description'
                                       ),
-                                      status: 'success',
-                                      duration: 3000,
-                                      isClosable: true
+                                      type: 'success',
+                                      duration: 3000
                                     })
                                     setTimeout(() => {
                                       router.refresh()

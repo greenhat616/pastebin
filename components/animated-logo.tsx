@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import { Icon, chakra, shouldForwardProp } from '@chakra-ui/react'
-import { AnimatePresence, isValidMotionProp, motion } from 'framer-motion'
+import { Icon } from '@chakra-ui/react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import {
   JSXElementConstructor,
@@ -11,15 +11,6 @@ import {
   useMemo,
   useState
 } from 'react'
-
-// ChakraBox is Icon wrapper of motion.div
-const ChakraBox = chakra(motion.div, {
-  /**
-   * Allow motion props and non-ChakrIcon props to be forwarded.
-   */
-  shouldForwardProp: (prop) =>
-    isValidMotionProp(prop) || shouldForwardProp(prop)
-})
 
 type EmojiProps = {
   className?: string
@@ -109,7 +100,7 @@ export default function AnimatedLogo(props: AnimatedLogoProps) {
   const [index, setIndex] = useState(Math.floor(Math.random() * emojis.length))
   return (
     <AnimatePresence>
-      <ChakraBox
+      <motion.div
         key={index}
         initial={{ scale: 0 }}
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -122,7 +113,6 @@ export default function AnimatedLogo(props: AnimatedLogoProps) {
         animate={{ scale: 1, rotate: 360 }}
         whileHover={{ scale: 1.2, rotate: 0 }}
         whileTap={{ scale: 0.8, rotate: -90 }}
-        as={motion.div}
         className={classNames('w-10 h-10', props.className)}
       >
         <Emoji
@@ -130,7 +120,7 @@ export default function AnimatedLogo(props: AnimatedLogoProps) {
           index={index}
           setIndex={setIndex}
         />
-      </ChakraBox>
+      </motion.div>
     </AnimatePresence>
   )
 }

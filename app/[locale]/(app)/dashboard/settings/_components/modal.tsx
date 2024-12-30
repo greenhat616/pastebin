@@ -13,30 +13,27 @@ import { ResponseCode } from '@/enums/response'
 import { useUserAuthenticatorsQuery } from '@/hooks/requests/user'
 import { ChangePasswordSchema } from '@/libs/validation/user'
 import {
-  Button,
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogHeader,
   Editable,
-  EditableInput,
-  EditablePreview,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Tooltip,
-  useToast
+  Input
 } from '@chakra-ui/react'
+import { Tooltip } from '@/components/ui/tooltip'
+import { Button } from '@/components/ui/button'
+import { DialogRoot } from '@/components/ui/dialog'
+
 import { startRegistration } from '@simplewebauthn/browser'
 import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types'
 import { useBoolean, useMemoizedFn } from 'ahooks'
 import { useState, useTransition } from 'react'
 import { ZodError } from 'zod'
 import { BlockButtonSkeleton } from '../../_components/skeleton'
+import { toaster } from '@/components/ui/toaster'
+import { CloseButton } from '@/components/ui/close-button'
+import { Field } from '@/components/ui/field'
 
 type ModalProps = {
   isOpen: boolean
@@ -56,7 +53,6 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
     const [nameState, setNameState] = useState(name)
     const [preName, setPreName] = useState(name)
 
-    const toast = useToast()
     const [pending, startTransition] = useTransition()
     if (preName !== name) {
       setPreName(name)
@@ -74,43 +70,40 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
           if (res.status !== ResponseCode.OK) {
             throw new Error(res.error || 'Unknown error')
           }
-          toast({
+          toaster.success({
             title: 'Passkey name changed.',
             description: 'Your passkey name has been changed.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true
+            duration: 5000
           })
-          onSuccessfulChange && onSuccessfulChange()
+          onSuccessfulChange?.()
         } catch (e) {
-          toast({
+          toaster.error({
             title: 'Failed to change passkey name.',
             description: (e as Error).message,
-            status: 'error',
-            duration: 5000,
-            isClosable: true
+            duration: 5000
           })
         }
       })
     })
     return (
-      <Editable
+      <Editable.Root
         as={Flex}
         defaultValue={name || 'Unnamed passkey'}
         m="0"
         p="0"
         onSubmit={onSubmit}
         value={nameState}
-        onChange={(e) => setNameState(e)}
+        disabled={pending}
+        onValueChange={(e) => setNameState(e.value)}
       >
-        <EditablePreview className="!py-0 !text-sm !font-medium !truncate" />
-        <EditableInput
+        <Editable.Preview className="!py-0 !text-sm !font-medium !truncate" />
+        <Editable.Input
           className="!text-xs !font-medium !truncate"
           px="1"
           py="0.5"
           outline="none"
         />
-      </Editable>
+      </Editable.Root>
     )
   }
 
@@ -121,7 +114,6 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
     credentialID: string
     onSuccessfulDelete?: () => void
   }) {
-    const toast = useToast()
     const [pending, startTransition] = useTransition()
     const onDelete = useMemoizedFn(() => {
       startTransition(async () => {
@@ -131,21 +123,17 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
           })
           if (result.status !== ResponseCode.OK)
             throw new Error(result.error || 'Unknown error')
-          toast({
+          toaster.success({
             title: 'Passkey removed.',
             description: 'Your passkey has been removed.',
-            status: 'success',
-            duration: 5000,
-            isClosable: true
+            duration: 5000
           })
-          onSuccessfulDelete && onSuccessfulDelete()
+          onSuccessfulDelete?.()
         } catch (e) {
-          toast({
+          toaster.error({
             title: 'Failed to remove passkey.',
             description: (e as Error).message,
-            status: 'error',
-            duration: 5000,
-            isClosable: true
+            duration: 5000
           })
         }
       })
@@ -153,7 +141,7 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
     return (
       <Button
         size="sm"
-        isLoading={pending}
+        loading={pending}
         loadingText="Removing"
         disabled={pending}
         onClick={onDelete}
@@ -163,7 +151,6 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
     )
   }
 
-  const toast = useToast()
   const [finishTwiceConfirmation, { setTrue: setFinishTwiceConfirmationTrue }] =
     useBoolean(false)
   const {
@@ -191,12 +178,10 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
           throw new Error(result.error || 'Unknown error')
         options = result.data
       } catch (e) {
-        toast({
+        toaster.error({
           title: 'Failed to request challenge.',
           description: (e as Error).message,
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          duration: 5000
         })
         return
       }
@@ -208,7 +193,7 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
           options as PublicKeyCredentialCreationOptionsJSON
         )
       } catch (e) {
-        toast({
+        toaster.error({
           title: 'Failed to request authenticator.',
           description:
             e instanceof Error
@@ -216,9 +201,7 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
                 ? 'User cancelled or timeout'
                 : e.message
               : 'Unknown error',
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          duration: 5000
         })
         return
       }
@@ -230,39 +213,37 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
         })
         if (result.status !== ResponseCode.OK)
           throw new Error(result.error || 'Unknown error')
-        toast({
+        toaster.success({
           title: 'Passkey added.',
           description: 'Your passkey has been added.',
-          status: 'success',
-          duration: 5000,
-          isClosable: true
+          duration: 5000
         })
         // 4. refetch authenticators
         refetchAuthenticators()
       } catch (e) {
-        toast({
+        toaster.error({
           title: 'Failed to add passkey.',
           description: (e as Error).message,
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          duration: 5000
         })
       }
     })
   })
 
   return (
-    <Modal
-      isCentered
-      onClose={onClose}
-      isOpen={isOpen}
-      motionPreset="slideInBottom"
+    <DialogRoot
+      onOpenChange={(e) => {
+        if (!e) onClose()
+      }}
+      open={isOpen}
+      motionPreset="slide-in-bottom"
     >
-      <ModalOverlay />
-      <ModalContent rounded="16px" py="5">
-        <ModalHeader>Manage Passkeys</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
+      <DialogContent rounded="16px" py="5">
+        <DialogHeader>Manage Passkeys</DialogHeader>
+        <DialogCloseTrigger>
+          <CloseButton />
+        </DialogCloseTrigger>
+        <DialogBody>
           {!finishTwiceConfirmation ? (
             <TwiceConfirmation onSuccess={onTwiceConfirmationSuccess} />
           ) : (
@@ -270,7 +251,7 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
               <Button
                 width="100%"
                 onClick={onAddAuthenticator}
-                isLoading={addAuthenticatorPending}
+                loading={addAuthenticatorPending}
                 loadingText="Adding Passkey"
                 disabled={addAuthenticatorPending}
               >
@@ -305,7 +286,7 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
                             {authenticator.name || 'Unnamed passkey'}
                           </h2> */}
                           <Tooltip
-                            label={`Created at: ${formatDateTime(
+                            content={`Created at: ${formatDateTime(
                               authenticator.createdAt
                             )}`}
                           >
@@ -327,14 +308,13 @@ export function ManagePasskeysModal({ isOpen, onClose }: ModalProps) {
               )}
             </div>
           )}
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        </DialogBody>
+      </DialogContent>
+    </DialogRoot>
   )
 }
 
 export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
-  const toast = useToast()
   const [finishTwiceConfirmation, { setTrue: setFinishTwiceConfirmationTrue }] =
     useBoolean(false)
   const onTwiceConfirmationSuccess = useMemoizedFn(() => {
@@ -387,43 +367,44 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
         const result = await modifyPasswordAction(data)
         if (result.status !== ResponseCode.OK)
           throw new Error(result.error || 'Unknown error')
-        toast({
+        toaster.success({
           title: 'Password changed.',
           description: 'Your password has been changed.',
-          status: 'success',
-          duration: 5000,
-          isClosable: true
+          duration: 5000
         })
         onClose()
       } catch (e) {
-        toast({
+        toaster.error({
           title: 'Failed to change password.',
           description: (e as Error).message,
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          duration: 5000
         })
       }
     })
   })
   return (
-    <Modal
-      isCentered
-      onClose={onClose}
-      isOpen={isOpen}
-      motionPreset="slideInBottom"
+    <DialogRoot
+      onOpenChange={(e) => {
+        if (!e) onClose()
+      }}
+      open={isOpen}
+      motionPreset="slide-in-bottom"
     >
-      <ModalOverlay />
-      <ModalContent rounded="16px" py="5">
-        <ModalHeader>Change Password</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody pt="0">
+      <DialogContent rounded="16px" py="5">
+        <DialogHeader>Change Password</DialogHeader>
+        <DialogCloseTrigger>
+          <CloseButton />
+        </DialogCloseTrigger>
+        <DialogBody pt="0">
           {!finishTwiceConfirmation ? (
             <TwiceConfirmation onSuccess={onTwiceConfirmationSuccess} />
           ) : (
             <div className="flex flex-col gap-3">
-              <FormControl isInvalid={!!msgs.password}>
-                <FormLabel>New password</FormLabel>
+              <Field
+                invalid={!!msgs.password}
+                label="New password"
+                errorText={msgs.password}
+              >
                 <Input
                   type="password"
                   placeholder="New password"
@@ -436,12 +417,12 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
                     }))
                   }}
                 />
-                {!!msgs.password && (
-                  <FormErrorMessage>{msgs.password}</FormErrorMessage>
-                )}
-              </FormControl>
-              <FormControl isInvalid={!!msgs.password_confirmation}>
-                <FormLabel>Confirm password</FormLabel>
+              </Field>
+              <Field
+                invalid={!!msgs.password_confirmation}
+                label="Confirm password"
+                errorText={msgs.password_confirmation}
+              >
                 <Input
                   type="password"
                   placeholder="Confirm new password"
@@ -454,16 +435,11 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
                     }))
                   }}
                 />
-                {!!msgs.password_confirmation && (
-                  <FormErrorMessage>
-                    {msgs.password_confirmation}
-                  </FormErrorMessage>
-                )}
-              </FormControl>
+              </Field>
               <Button
                 className="mt-3"
                 onClick={onChangePassword}
-                isLoading={changePasswordPending}
+                loading={changePasswordPending}
                 loadingText="Applying"
                 disabled={changePasswordPending}
               >
@@ -471,8 +447,8 @@ export function ChangePasswordModal({ isOpen, onClose }: ModalProps) {
               </Button>
             </div>
           )}
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        </DialogBody>
+      </DialogContent>
+    </DialogRoot>
   )
 }

@@ -1,25 +1,22 @@
 'use client'
 
 import {
-  Alert,
   // AlertIcon,
   AlertTitle,
   AlertDescription,
-  CloseButton,
   Box,
   useDisclosure
 } from '@chakra-ui/react'
+import { Alert } from "@/components/ui/alert"
+import { CloseButton } from '@/components/ui/close-button'
 
-type Props = {
-  // children: React.ReactNode
-}
 
-export default function Announcement(props: Props) {
+export default function Announcement() {
   const {
-    isOpen: isVisible,
+    open: isVisible,
     onClose,
     onOpen
-  } = useDisclosure({ defaultIsOpen: true })
+  } = useDisclosure({ defaultOpen: true })
 
   return (
     isVisible && (

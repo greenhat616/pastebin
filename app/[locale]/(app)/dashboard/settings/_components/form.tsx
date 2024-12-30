@@ -1,17 +1,10 @@
 import { modifyProfileAction } from '@/actions/user'
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Grid,
-  Input,
-  Textarea,
-  useToast
-} from '@chakra-ui/react'
+import { Grid, Input, Textarea } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
+import { Field } from '@/components/ui/field'
 
 import { useFormStatus } from 'react-dom'
+import { toaster } from '@/components/ui/toaster'
 
 export type ProfileFormProps = {
   defaultValues: {
@@ -30,7 +23,7 @@ function ProfileSubmitButton() {
       type="submit"
       disabled={pending}
       loadingText="Saving"
-      isLoading={pending}
+      loading={pending}
     >
       Save
     </Button>
@@ -38,24 +31,20 @@ function ProfileSubmitButton() {
 }
 
 export function ProfileForm({ defaultValues }: ProfileFormProps) {
-  const toast = useToast()
-
   const { state, action } = useSubmitForm(modifyProfileAction, {
     onSuccess: () => {
-      toast({
+      toaster.create({
         title: 'Profile updated.',
-        status: 'success',
-        duration: 5000,
-        isClosable: true
+        type: 'success',
+        duration: 5000
       })
     },
     onError: (state) => {
-      toast({
+      toaster.create({
         title: 'Profile update failed.',
         description: state.error!,
-        status: 'error',
-        duration: 5000,
-        isClosable: true
+        type: 'error',
+        duration: 5000
       })
     }
   })
@@ -77,57 +66,46 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
   )
   return (
     <Grid as="form" gap={4} action={action}>
-      <FormControl isInvalid={!!msgs?.nickname}>
-        <FormLabel>Nickname</FormLabel>
+      <Field
+        label="Nickname"
+        helperText="This is how your name will be displayed in the account."
+        invalid={!!msgs?.nickname}
+      >
         <Input
           type="text"
           defaultValue={defaultValues.nickname}
           name="nickname"
         />
-        {!!msgs?.nickname ? (
-          <FormErrorMessage>{msgs?.nickname}</FormErrorMessage>
-        ) : (
-          <FormHelperText>
-            This is how your name will be displayed in the account.
-          </FormHelperText>
-        )}
-      </FormControl>
-      <FormControl>
-        <FormLabel>Email address</FormLabel>
+      </Field>
+      <Field
+        label="Email address"
+        helperText="We&apos;ll never share your email with anyone else."
+      >
         <Input type="email" disabled value={defaultValues.email} />
-        <FormHelperText>
-          We&apos;ll never share your email with anyone else.
-        </FormHelperText>
-      </FormControl>
-      <FormControl isInvalid={!!msgs?.website}>
-        <FormLabel>Website</FormLabel>
+      </Field>
+      <Field
+        label="Website"
+        helperText="Your personal website, blog, or portfolio."
+        invalid={!!msgs?.website}
+      >
         <Input
           name="website"
           type="text"
           placeholder="https://"
           defaultValue={defaultValues.website || undefined}
         />
-        {!!msgs?.website ? (
-          <FormErrorMessage>{msgs?.website}</FormErrorMessage>
-        ) : (
-          <FormHelperText>
-            Your personal website, blog, or portfolio.
-          </FormHelperText>
-        )}
-      </FormControl>
-      <FormControl isInvalid={!!msgs?.bio}>
-        <FormLabel>Bio</FormLabel>
+      </Field>
+      <Field
+        label="Bio"
+        helperText="Tell us a little bit about yourself."
+        invalid={!!msgs?.bio}
+      >
         <Textarea
           name="bio"
           placeholder="Bio..."
           defaultValue={defaultValues.bio || undefined}
         />
-        {!!msgs?.bio ? (
-          <FormErrorMessage>{msgs?.bio}</FormErrorMessage>
-        ) : (
-          <FormHelperText>Tell us a little bit about yourself.</FormHelperText>
-        )}
-      </FormControl>
+      </Field>
       <div className="flex justify-start">
         <ProfileSubmitButton />
       </div>

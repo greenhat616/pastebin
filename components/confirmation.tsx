@@ -4,15 +4,17 @@ import {
 } from '@/actions/user'
 import { CredentialsAuthType } from '@/enums/app'
 import { ResponseCode } from '@/enums/response'
-import { Button, FormControl, Input, useToast } from '@chakra-ui/react'
+import { Input } from '@chakra-ui/react'
+import { Field } from './ui/field'
+import { Button } from './ui/button'
 import { startAuthentication } from '@simplewebauthn/browser'
 import { PublicKeyCredentialCreationOptionsJSON } from '@simplewebauthn/types'
 import { useLatest, useMemoizedFn } from 'ahooks'
 import { useState, useTransition } from 'react'
 import { v4 as uuidV4 } from 'uuid'
+import { toaster } from './ui/toaster'
 
 export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
-  const toast = useToast()
   const [token, setToken] = useState('')
   const latestToken = useLatest(token)
   const [pending, startTransition] = useTransition()
@@ -39,14 +41,13 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
         setAuthType(CredentialsAuthType.Password)
         return
       } else if (requestRes.status !== ResponseCode.OK) {
-        toast({
+        toaster.create({
           title: wrapTranslationKey(
             'actions.user.request_twice_confirmation.failed'
           ),
           description: requestRes.error,
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          type: 'error',
+          duration: 5000
         })
         return
       }
@@ -57,7 +58,7 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
         )
       } catch (error) {
         console.error(error)
-        toast({
+        toaster.create({
           title: wrapTranslationKey(
             'actions.user.request_twice_confirmation.failed'
           ),
@@ -70,9 +71,8 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
                 : 'Unknown Error'
               : 'Unknown Error',
 
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          type: 'error',
+          duration: 5000
         })
         return
       }
@@ -84,14 +84,13 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
         ctx: authResp
       })
       if (finishRes.status !== ResponseCode.OK) {
-        toast({
+        toaster.create({
           title: wrapTranslationKey(
             'actions.user.request_twice_confirmation.failed'
           ),
           description: finishRes.error || 'Unknown Error',
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          type: 'error',
+          duration: 5000
         })
         return
       }
@@ -107,14 +106,13 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
         password: password
       })
       if (finishRes.status !== ResponseCode.OK) {
-        toast({
+        toaster.create({
           title: wrapTranslationKey(
             'actions.user.request_twice_confirmation.failed'
           ),
           description: finishRes.error || 'Unknown Error',
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          type: 'error',
+          duration: 5000
         })
         return
       }
@@ -128,7 +126,7 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
       <h1 className="text-lg font-medium">Confirm Your identity</h1>
       <Button
         width="100%"
-        isLoading={pending}
+        loading={pending}
         disabled={pending}
         loadingText="Pending"
         onClick={requestTwiceConfirmation}
@@ -139,18 +137,18 @@ export function TwiceConfirmation({ onSuccess }: { onSuccess: () => void }) {
   ) : (
     <div>
       <div className="flex flex-col gap-8 pt-5 items-center w-full justify-center">
-        <FormControl>
+        <Field>
           <Input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-        </FormControl>
+        </Field>
         <Button
           onClick={onPasswordConfirm}
           width="100%"
-          isLoading={pending}
+          loading={pending}
           disabled={pending}
           loadingText="Confirming"
         >

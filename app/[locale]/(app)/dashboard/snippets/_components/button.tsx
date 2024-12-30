@@ -1,24 +1,24 @@
 'use client'
-import { Button, useDisclosure, useToast } from '@chakra-ui/react'
+import { Button, useDisclosure } from '@chakra-ui/react'
 import { useMemoizedFn } from 'ahooks'
 import { useRouter } from 'next/navigation'
 import { CreateSnippetModal } from './modal'
+import { toaster } from '@/components/ui/toaster'
+import { open } from 'fs'
 
 export type AddButtonProps = {
   username?: string
 }
 
 export function AddButton({ username }: AddButtonProps) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const toast = useToast()
+  const { open, onOpen, onClose } = useDisclosure()
   const router = useRouter()
   const onSuccess = useMemoizedFn((pasteID: string) => {
-    toast({
+    toaster.create({
       title: 'Snippet created',
       description: `Your snippet has been created successfully. You can view it at ${pasteID}`,
-      status: 'success',
-      duration: 5000,
-      isClosable: true
+      type: 'success',
+      duration: 5000
     })
     router.refresh()
     onClose()
@@ -29,7 +29,7 @@ export function AddButton({ username }: AddButtonProps) {
         Create snippet
       </Button>
       <CreateSnippetModal
-        isOpen={isOpen}
+        open={open}
         onClose={onClose}
         onSuccess={onSuccess}
         nickname={username}

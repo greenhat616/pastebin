@@ -1,5 +1,5 @@
 import { auth } from '@/libs/auth'
-import { Box, ChakraProvider } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { useTranslations } from 'next-intl'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
@@ -24,7 +24,7 @@ function GoBack() {
 
 export default async function AuthLayout(props: Props) {
   // lazyload image
-  const header = headers()
+  const header = await headers()
   const session = await auth()
   // console.log(session)
   if (session) {
@@ -35,14 +35,12 @@ export default async function AuthLayout(props: Props) {
   }
 
   return (
-    <ChakraProvider>
-      <Box className={styles['auth-layout']}>
-        <GoBack />
-        <Box className={styles.main}>
-          <Logo className={styles.logo} emojiClassName={styles.inner} />
-          <Content className={styles.container}>{props.children}</Content>
-        </Box>
+    <Box className={styles['auth-layout']}>
+      <GoBack />
+      <Box className={styles.main}>
+        <Logo className={styles.logo} emojiClassName={styles.inner} />
+        <Content className={styles.container}>{props.children}</Content>
       </Box>
-    </ChakraProvider>
+    </Box>
   )
 }

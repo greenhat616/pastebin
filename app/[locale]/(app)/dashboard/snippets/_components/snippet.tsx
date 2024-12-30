@@ -2,7 +2,8 @@
 
 import { PasteType } from '@/enums/paste'
 import { getDisplayNameByLanguageID } from '@/libs/shiki'
-import { Card, CardBody, CardHeader, Flex, Tag } from '@chakra-ui/react'
+import { Card, Flex } from '@chakra-ui/react'
+import { Tag } from '@/components/ui/tag'
 import { type Paste } from '@prisma/client'
 
 import { Link } from '@/libs/navigation'
@@ -24,13 +25,13 @@ export default function Snippet({ locale, timeZone, snippet }: SnippetProps) {
     >
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
       <Link href={`/v/${snippet.id}` as any}>
-        <Card
+        <Card.Root
           key={snippet.id}
           variant="outline"
           rounded="2xl"
           className={styles.snippet}
         >
-          <CardHeader>
+          <Card.Header>
             <Flex>
               <h2 className="font-medium text-lg flex-1">
                 {snippet.title || 'Untitled Snippet'}
@@ -44,8 +45,8 @@ export default function Snippet({ locale, timeZone, snippet }: SnippetProps) {
                 )}
               </div>
             </Flex>
-          </CardHeader>
-          <CardBody pt="0">
+          </Card.Header>
+          <Card.Body pt="0">
             <p className="text-sm font-italic">
               {snippet.description || 'No description provided.'}
             </p>
@@ -68,8 +69,8 @@ export default function Snippet({ locale, timeZone, snippet }: SnippetProps) {
                 </Tag>
               )}
             </div>
-          </CardBody>
-        </Card>
+          </Card.Body>
+        </Card.Root>
       </Link>
     </motion.div>
   )

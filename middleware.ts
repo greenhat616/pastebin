@@ -88,6 +88,7 @@ export default async function middleware(req: NextAuthRequest) {
       }
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore ts(2339)
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       res.cookies &&
         (res as NextResponse<unknown>).cookies.getAll().forEach((cookie) => {
           req.cookies.set(cookie) // It is intentional, to let sub middlewares can get the ctx cookies

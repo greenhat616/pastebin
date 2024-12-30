@@ -80,8 +80,8 @@ export default function CodePreview(props: Props) {
   })
 
   return (
-    <Card variant="outline" p={0} rounded="3xl" overflow="hidden">
-      <CardBody p={0}>
+    <Card.Root variant="outline" p={0} rounded="3xl" overflow="hidden">
+      <Card.Body p={0}>
         {/* {transformedCode !== '' ? (
           <Box
             className={classNames(styles['code-preview'], 'code-preview')}
@@ -135,7 +135,7 @@ export default function CodePreview(props: Props) {
             </Box>
           </Box>
         </Box>
-      </CardBody>
-    </Card>
+      </Card.Body>
+    </Card.Root>
   )
 }

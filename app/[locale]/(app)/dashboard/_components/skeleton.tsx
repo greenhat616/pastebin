@@ -1,4 +1,8 @@
-import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import {
+  Skeleton,
+  SkeletonCircle,
+  SkeletonText
+} from '@/components/ui/skeleton'
 
 export function H2Skeleton() {
   return <Skeleton height="24px" width="100px" />

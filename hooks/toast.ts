@@ -1,11 +1,11 @@
 import { Awaitable } from '@/utils/types'
-import { useToast, type AlertStatus } from '@chakra-ui/react'
+import { toaster } from '@/components/ui/toaster'
 import { useMemoizedFn } from 'ahooks'
 
 type UseToastFeedbackProps<E extends Event> = {
   fn: (e: E) => Awaitable<void>
   messages: {
-    [K in Exclude<AlertStatus, 'error'>]?: {
+    [K in "success" | "info" | "warning"]?: {
       title: string
       description: string
     }
@@ -22,7 +22,7 @@ type UseToastFeedbackProps<E extends Event> = {
   }
 }
 type ToastMessages = {
-  [K in AlertStatus]?: {
+  [K in "success" | "info" | "warning" | "error"]?: {
     title: string
     description: string
   }
@@ -37,15 +37,13 @@ export function useToastFeedback<E extends Event>(
   props: UseToastFeedbackProps<E>
 ) {
   const { messages } = props
-  const toast = useToast()
 
   const toastFeedback = useMemoizedFn(
-    (message: ToastMessages, status: AlertStatus) => {
-      toast({
+    (message: ToastMessages, status: "success" | "info" | "warning" | "error") => {
+      toaster.create({
         title: message[status]?.title || 'No Title',
         description: message[status]?.description || undefined,
-        status,
-        isClosable: true
+        type: status,
       })
     }
   )

@@ -1,14 +1,14 @@
 'use client'
 import { providers } from '@/libs/auth/providers'
 import {
-  Avatar,
-  Button,
+
   Card,
-  CardBody,
-  CardHeader,
+
   Heading,
   useDisclosure
 } from '@chakra-ui/react'
+import { Avatar } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import type { User } from '@prisma/client'
 import { SSOButton } from './button'
 import { ProfileForm } from './form'
@@ -20,12 +20,12 @@ type ProfilesProps = {
 
 export default function Profiles({ user, ssos }: ProfilesProps) {
   const {
-    isOpen: isManagePasskeysModalOpen,
+    open: isManagePasskeysModalOpen,
     onClose: onManagePasskeysModalClose,
     onOpen: onManagePasskeysModalOpen
   } = useDisclosure()
   const {
-    isOpen: isChangePasswordModalOpen,
+    open: isChangePasswordModalOpen,
     onClose: onChangePasswordModalClose,
     onOpen: onChangePasswordModalOpen
   } = useDisclosure()
@@ -52,11 +52,11 @@ export default function Profiles({ user, ssos }: ProfilesProps) {
         onClose={onChangePasswordModalClose}
       />
       {/* Profiles */}
-      <Card variant="outline" rounded="16px">
-        <CardHeader>
+      <Card.Root variant="outline" rounded="16px">
+        <Card.Header>
           <Heading size="md">Profiles</Heading>
-        </CardHeader>
-        <CardBody pt="0">
+        </Card.Header>
+        <Card.Body pt="0">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <ProfileForm
               defaultValues={{
@@ -92,8 +92,8 @@ export default function Profiles({ user, ssos }: ProfilesProps) {
               </div>
             </div>
           </div>
-        </CardBody>
-      </Card>
+        </Card.Body>
+      </Card.Root>
     </>
   )
 }

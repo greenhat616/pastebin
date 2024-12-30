@@ -25,7 +25,7 @@ const nextConfig = {
   skipTrailingSlashRedirect: true,
   experimental: {
     serverComponentsExternalPackages: ['@node-rs/argon2'],
-    optimizePackageImports: ['shiki']
+    optimizePackageImports: ['shiki', '@chakra-ui/react']
   },
   images: {
     remotePatterns: [

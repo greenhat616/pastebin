@@ -3,8 +3,9 @@ import { getRequestConfig } from 'next-intl/server'
 import { headers } from 'next/headers'
 
 export default getRequestConfig(async ({ locale }) => {
-  const now = headers().get('x-now')
-  const timeZone = headers().get('x-time-zone') ?? 'Asia/Shanghai'
+  const header = await headers()
+  const now = header.get('x-now')
+  const timeZone = header.get('x-time-zone') ?? 'Asia/Shanghai'
   return {
     now: now ? new Date(now) : undefined,
     timeZone,

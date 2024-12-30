@@ -60,10 +60,10 @@ export default defineConfig({
     transformerDirectives({
       enforce: 'pre'
     }),
-    transformerCompileClass({
-      classPrefix: 'ouo-',
-      trigger: /(["'`]):ouo(?:-)?(?<name>[^\s\1]+)?:\s([^\1]*?)\1/g
-    }),
+    // transformerCompileClass({
+    //   classPrefix: 'ouo-',
+    //   // trigger: /(["'`]):ouo(?:-)?(?<name>[^\s\1]+)?:\s([^\1]*?)\1/g
+    // }),
     transformerVariantGroup()
   ]
 })

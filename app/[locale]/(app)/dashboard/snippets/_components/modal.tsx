@@ -1,16 +1,16 @@
 import { CreateNormalSnippet } from '@/components/form'
 import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay
-} from '@chakra-ui/react'
+  DialogBody,
+  DialogCloseTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogRoot,
+} from '@/components/ui/dialog'
+import { CloseButton } from '@/components/ui/close-button'
 import 'client-only'
 
 type ModalProps = {
-  isOpen: boolean
+  open: boolean
   onClose: () => void
 }
 
@@ -21,19 +21,17 @@ export interface CreateSnippetModalProps extends ModalProps {
 
 export function CreateSnippetModal({
   onClose,
-  isOpen,
+  open: isOpen,
   nickname,
   onSuccess
 }: CreateSnippetModalProps) {
   return (
-    <Modal
-      isCentered
-      onClose={onClose}
-      isOpen={isOpen}
-      motionPreset="slideInBottom"
+    <DialogRoot
+      onOpenChange={onClose}
+      open={isOpen}
+      motionPreset="slide-in-bottom"
     >
-      <ModalOverlay />
-      <ModalContent
+      <DialogContent
         rounded="16px"
         maxWidth={{
           sm: '90%',
@@ -42,15 +40,17 @@ export function CreateSnippetModal({
         }}
         py="5"
       >
-        <ModalHeader>Create snippet</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
+        <DialogHeader>Create snippet</DialogHeader>
+        <DialogCloseTrigger>
+          <CloseButton />
+        </DialogCloseTrigger>
+        <DialogBody>
           <CreateNormalSnippet
             defaultNickname={nickname}
             onSuccess={onSuccess}
           />
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        </DialogBody>
+      </DialogContent>
+    </DialogRoot>
   )
 }

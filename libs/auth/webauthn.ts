@@ -8,7 +8,7 @@ import {
   verifyRegistrationResponse,
   type GenerateRegistrationOptionsOpts
 } from '@simplewebauthn/server'
-import type { AttestationFormat } from '@simplewebauthn/server/script/helpers/decodeAttestationObject'
+
 import type {
   AuthenticationResponseJSON,
   AuthenticatorTransportFuture,
@@ -94,7 +94,7 @@ export async function verifyUserRegistration(
   user: User | { email: string; name: string },
   ctx: RegistrationResponseJSON
 ): Promise<VerifyUserResult> {
-  const challenge = getCookie('next-auth.challenge', { signed: true }) // Must be signed
+  const challenge = await getCookie('next-auth.challenge', { signed: true }) // Must be signed
   if (!challenge) throw new Error('No challenge found')
   const verification = await verifyRegistrationResponse({
     response: ctx,
@@ -184,7 +184,7 @@ export async function verifyUserAuthentication(
   user: { id: string },
   ctx: AuthenticationResponseJSON
 ): Promise<VerifyUserResult> {
-  const challenge = getCookie('next-auth.challenge', { signed: true }) // Must be signed
+  const challenge = await getCookie('next-auth.challenge', { signed: true }) // Must be signed
   if (!challenge) throw new Error('No challenge found')
   const authenticator = await client.authenticator.findFirst({
     where: {

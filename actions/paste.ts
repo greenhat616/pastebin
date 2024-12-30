@@ -11,7 +11,7 @@ import {
 } from '@/libs/validation/paste'
 import type { ActionReturn } from '@/utils/actions'
 import type { Session } from 'next-auth'
-import { isRedirectError } from 'next/dist/client/components/redirect'
+import { isRedirectError } from 'next/dist/client/components/redirect-error'
 import { redirect } from 'next/navigation'
 
 // Type: normal

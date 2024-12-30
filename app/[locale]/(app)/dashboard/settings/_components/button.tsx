@@ -1,20 +1,20 @@
 import { linkAccountAction, unlinkAccountAction } from '@/actions/user'
 import { ResponseCode } from '@/enums/response'
-import { Button, useToast } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
 import { useMemoizedFn } from 'ahooks'
 import { useRouter } from 'next/navigation'
-import { useTransition } from 'react'
+import { useTransition, type ReactNode } from 'react'
+import { toaster } from '@/components/ui/toaster'
 
 export type SSO = {
   id: string
   name: string
-  icon: JSX.Element
+  icon: ReactNode
 } & {
   connected: boolean
 }
 
 export function SSOButton({ sso }: { sso: SSO }) {
-  const toast = useToast()
   const router = useRouter()
   const [pending, startTransition] = useTransition()
 
@@ -34,12 +34,11 @@ export function SSOButton({ sso }: { sso: SSO }) {
           }
         }
       } catch (e) {
-        toast({
+        toaster.create({
           title: 'Link account failed.',
           description: e instanceof Error ? e.message : 'Unknown error',
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          type: 'error',
+          duration: 5000
         })
       }
     })
@@ -52,20 +51,18 @@ export function SSOButton({ sso }: { sso: SSO }) {
         if (res.status !== ResponseCode.OK) {
           throw new Error(res.error)
         }
-        toast({
+        toaster.create({
           title: 'Account unlinked.',
-          status: 'success',
-          duration: 5000,
-          isClosable: true
+          type: 'success',
+          duration: 5000
         })
         router.refresh()
       } catch (e) {
-        toast({
+        toaster.create({
           title: 'Link account failed.',
           description: e instanceof Error ? e.message : 'Unknown error',
-          status: 'error',
-          duration: 5000,
-          isClosable: true
+          type: 'error',
+          duration: 5000
         })
       }
     })
@@ -75,7 +72,7 @@ export function SSOButton({ sso }: { sso: SSO }) {
 
   return (
     <Button
-      isLoading={pending}
+      loading={pending}
       disabled={pending}
       loadingText={text}
       colorScheme={sso.connected ? 'blue' : 'gray'}

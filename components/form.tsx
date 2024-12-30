@@ -2,20 +2,10 @@ import { submitPasteNormalAction } from '@/actions/paste'
 import { codeToHTML, getShikiAllSupportedLanguages } from '@/libs/shiki'
 import { CreateNormalSnippetForm } from '@/libs/validation/paste'
 import { ReducerDispatcher } from '@/utils/types'
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormHelperText,
-  FormLabel,
-  Input,
-  Textarea,
-  useToast
-} from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Input, Textarea } from '@chakra-ui/react'
+import { Button } from './ui/button'
+import { Field } from './ui/field'
+import { Fieldset } from '@chakra-ui/react'
 import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
 import 'client-only'
@@ -24,6 +14,7 @@ import React, { useReducer, useRef, useState } from 'react'
 
 import { useFormStatus } from 'react-dom'
 import type { BundledLanguage } from 'shiki/bundle/full'
+import { toaster } from './ui/toaster'
 
 type Props = {
   defaultNickname?: string
@@ -80,7 +71,7 @@ export function SubmitButton({
       colorScheme="blue"
       variant="solid"
       type="submit"
-      isLoading={pending}
+      loading={pending}
       disabled={pending}
       loadingText={loadingText}
     >
@@ -91,7 +82,6 @@ export function SubmitButton({
 
 export function CreateNormalSnippet(props: Props) {
   const t = useTranslations()
-  const toast = useToast()
 
   // Generates Options with i18n
   const syntaxOptions = syntaxes.reduce(
@@ -142,13 +132,12 @@ export function CreateNormalSnippet(props: Props) {
     { id: string }
   >(submitPasteNormalAction, {
     onError(state) {
-      toast({
+      toaster.create({
         title: t('components.code_form.feedback.fail.title'),
         description: t('components.code_form.feedback.fail.description', {
           error: translateIfKey(t, state.error || 'unknown_error')
         }),
-        status: 'error',
-        isClosable: true
+        type: 'error'
       })
     },
     onSuccess(state) {
@@ -194,13 +183,15 @@ export function CreateNormalSnippet(props: Props) {
   }, [formState.content, formState.syntax])
 
   return (
-    <Box className={props.className} as="form" action={action}>
+    <form className={props.className} action={action}>
       <Flex gap={4} direction={{ base: 'column', md: 'row' }}>
-        <FormControl
+        <Field
           w={{ base: '100%', md: '33.3333%' }}
-          isInvalid={!!msgs?.poster}
+          invalid={!!msgs?.poster}
+          label={t('components.code_form.form.poster.label')}
+          errorText={msgs?.poster}
+          helperText={t('components.code_form.form.poster.helper_text')}
         >
-          <FormLabel>{t('components.code_form.form.poster.label')}</FormLabel>
           <Input
             name="poster"
             type="text"
@@ -214,19 +205,14 @@ export function CreateNormalSnippet(props: Props) {
               })
             }
           />
-          {!!msgs?.poster ? (
-            <FormErrorMessage>{msgs.poster}</FormErrorMessage>
-          ) : (
-            <FormHelperText>
-              {t('components.code_form.form.poster.helper_text')}
-            </FormHelperText>
-          )}
-        </FormControl>
-        <FormControl
+        </Field>
+        <Field
           w={{ base: '100%', md: '33.3333%' }}
-          isInvalid={!!msgs?.syntax}
+          invalid={!!msgs?.syntax}
+          label={t('components.code_form.form.syntax.label')}
+          errorText={msgs?.syntax}
+          helperText={t('components.code_form.form.syntax.helper_text')}
         >
-          <FormLabel>{t('components.code_form.form.syntax.label')}</FormLabel>
           <Select
             instanceId="syntax"
             name="syntax"
@@ -243,15 +229,14 @@ export function CreateNormalSnippet(props: Props) {
               })
             }}
           ></Select>
-          {!!msgs?.syntax && <FormErrorMessage>{msgs.syntax}</FormErrorMessage>}
-        </FormControl>
-        <FormControl
+        </Field>
+        <Field
           w={{ base: '100%', md: '33.3333%' }}
-          isInvalid={!!msgs?.expiration}
+          invalid={!!msgs?.expiration}
+          label={t('components.code_form.form.expiration.label')}
+          errorText={msgs?.expiration}
+          helperText={t('components.code_form.form.expiration.helper_text')}
         >
-          <FormLabel>
-            {t('components.code_form.form.expiration.label')}
-          </FormLabel>
           <Select
             instanceId="expiration"
             name="expiration"
@@ -270,15 +255,7 @@ export function CreateNormalSnippet(props: Props) {
               })
             }}
           ></Select>
-
-          {!!msgs?.expiration ? (
-            <FormErrorMessage>{msgs.expiration}</FormErrorMessage>
-          ) : (
-            <FormHelperText>
-              {t('components.code_form.form.expiration.helper_text')}
-            </FormHelperText>
-          )}
-        </FormControl>
+        </Field>
         <input
           name="redirect"
           className="hidden"
@@ -288,10 +265,14 @@ export function CreateNormalSnippet(props: Props) {
       </Flex>
 
       <Box className="mt-4">
-        <FormControl isInvalid={!!msgs?.content}>
-          <FormLabel>{t('components.code_form.form.content.label')}</FormLabel>
-          <Card variant="outline" height="md" p={0} hidden={!isPreview}>
-            <CardBody
+        <Field
+          invalid={!!msgs?.content}
+          label={t('components.code_form.form.content.label')}
+          errorText={msgs?.content}
+          helperText={t('components.code_form.form.content.helper_text')}
+        >
+          <Card.Root variant="outline" height="md" p={0} hidden={!isPreview}>
+            <Card.Body
               paddingX="1em"
               paddingY="0.5em"
               lineHeight="short"
@@ -302,7 +283,8 @@ export function CreateNormalSnippet(props: Props) {
                 contentRef?.current?.focus()
               }}
             />
-          </Card>
+          </Card.Root>
+
           <Textarea
             ref={contentRef}
             className={classNames('font-mono', isPreview && 'hidden')}
@@ -318,12 +300,8 @@ export function CreateNormalSnippet(props: Props) {
               })
             }
             resize="none"
-          ></Textarea>
-
-          {!!msgs?.content && (
-            <FormErrorMessage>{msgs.content}</FormErrorMessage>
-          )}
-        </FormControl>
+          />
+        </Field>
       </Box>
       <Flex className="mt-4 md:mt-6" justify="flex-end" gap={4}>
         <SubmitButton loadingText={t('components.code_form.form.submitting')}>
@@ -333,6 +311,6 @@ export function CreateNormalSnippet(props: Props) {
           {t('components.code_form.form.actions.preview')}
         </Button>
       </Flex>
-    </Box>
+    </form>
   )
 }

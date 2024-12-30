@@ -32,7 +32,7 @@ import type {
   RegistrationResponseJSON
 } from '@simplewebauthn/types'
 import { CredentialsSignin } from 'next-auth'
-import { isRedirectError } from 'next/dist/client/components/redirect'
+import { isRedirectError } from 'next/dist/client/components/redirect-error'
 import { redirect } from 'next/navigation'
 import { ZodError } from 'zod'
 

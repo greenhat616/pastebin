@@ -16,9 +16,10 @@ export type BaseOptions = {
   cookiesJar?: Map<string, string>
 }
 
-function setCookies(cookiesJar: Map<string, string>) {
+async function setCookies(cookiesJar: Map<string, string>) {
+  const cookies_jar = await cookies()
   for (const [key, value] of cookiesJar) {
-    cookies().set(key, value)
+    cookies_jar.set(key, value)
   }
 }
 

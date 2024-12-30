@@ -1,6 +1,6 @@
 'use client'
 
-import { Card, CardBody, CardHeader, Heading } from '@chakra-ui/react'
+import { Card, Heading } from '@chakra-ui/react'
 import {
   BlockButtonSkeleton,
   FormInputSkeleton,
@@ -9,11 +9,11 @@ import {
 
 export default function ProfilesLoading() {
   return (
-    <Card variant="outline" className="!rounded-2xl">
-      <CardHeader>
+    <Card.Root variant="outline" className="!rounded-2xl">
+      <Card.Header>
         <Heading size="md">Profiles</Heading>
-      </CardHeader>
-      <CardBody pt="0">
+      </Card.Header>
+      <Card.Body pt="0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           <div className="flex flex-col gap-4">
             <FormInputSkeleton />
@@ -28,7 +28,7 @@ export default function ProfilesLoading() {
             <BlockButtonSkeleton />
           </div>
         </div>
-      </CardBody>
-    </Card>
+      </Card.Body>
+    </Card.Root>
   )
 }

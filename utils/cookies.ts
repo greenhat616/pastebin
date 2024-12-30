@@ -11,23 +11,25 @@ export class CookieSignatureMismatchError extends Error {
   }
 }
 
-export function setCookie(
+export async function setCookie(
   name: string,
   value: string,
   options: Partial<ResponseCookie & { sign: boolean }> = {}
 ) {
-  cookies().set(
+  const cookies_jar = await cookies()
+  cookies_jar.set(
     name,
     options.sign ? sign(value, env.NEXTAUTH_SECRET) : value,
     options
   )
 }
 
-export function getCookie(
+export async function getCookie(
   name: string,
   options: Partial<{ signed: boolean }> = {}
 ) {
-  const item = cookies().get(name)
+  const cookies_jar = await cookies()
+  const item = cookies_jar.get(name)
   if (options.signed) {
     if (!item) return null
     const unsigned = unsign(item.value, env.NEXTAUTH_SECRET)
@@ -37,8 +39,8 @@ export function getCookie(
   return item
 }
 
-export function checkTwiceSignedCookie() {
-  const signedTwiceConfirmationToken = getCookie('user.twice_confirmed', {
+export async function checkTwiceSignedCookie() {
+  const signedTwiceConfirmationToken = await getCookie('user.twice_confirmed', {
     signed: true
   })
   if (!signedTwiceConfirmationToken) throw new Error('No signed token found')
