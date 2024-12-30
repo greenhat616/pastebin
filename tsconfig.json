@@ -5,13 +5,19 @@
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "ESNext"],
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ESNext"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     },
     "plugins": [
       {
@@ -23,9 +29,13 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["unplugin-icons/types/react"]
+    "types": [
+      "unplugin-icons/types/react"
+    ]
   },
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "next-env.d.ts",
     "auto-imports.d.ts",

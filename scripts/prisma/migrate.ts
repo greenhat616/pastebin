@@ -53,7 +53,7 @@ async function main() {
     console.log(chalk.cyan(`  - ${driver}`))
     const command = `./node_modules/.bin/prisma migrate ${parentArgvs.join(
       ' '
-    )} --schema=./prisma/${configuredDriver}/schema.prisma`
+    )} --schema ./prisma/${configuredDriver}/schema.prisma`
     console.log(chalk.gray(`    $ ${chalk.reset(command)}`))
     await new Promise<void>((resolve, reject) => {
       const p = spawn(command, {

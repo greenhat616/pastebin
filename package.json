@@ -82,7 +82,7 @@
     "@vercel/analytics": "1.4.1",
     "ahooks": "3.8.4",
     "autoprefixer": "10.4.20",
-    "chakra-react-select": "5.0.2",
+    "chakra-react-select": "next",
     "cookie-signature": "1.2.2",
     "cross-env": "7.0.3",
     "dayjs": "1.11.13",
@@ -119,6 +119,7 @@
     "react-use": "17.6.0",
     "sass": "1.83.0",
     "shiki": "1.24.4",
+    "styled-components": "^6.1.13",
     "stylelint": "16.12.0",
     "stylelint-config-html": "1.1.0",
     "stylelint-config-recess-order": "5.1.1",
@@ -147,5 +148,6 @@
     "@prisma/client",
     "argon2",
     "prisma"
-  ]
+  ],
+  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
 }

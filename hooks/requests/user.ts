@@ -1,4 +1,4 @@
-import { useToast } from '@chakra-ui/react'
+
 
 import type { APIAuthenticatorResponse } from '@/app/api/user/authenticators/route'
 import { ResponseCode } from '@/enums/response'
@@ -9,11 +9,11 @@ import {
   UseQueryResult,
   useQuery
 } from '@tanstack/react-query'
+import { toaster } from '@/components/ui/toaster'
 
 export function useUserAuthenticatorsQuery(
   options?: Partial<Omit<UseQueryOptions, 'queryKey' | 'queryFn'>>
 ): UseQueryResult<R<Array<APIAuthenticatorResponse>>, Error> {
-  const toast = useToast()
   return useQuery({
     queryKey: ['user-authenticators'],
     queryFn: (): Promise<R<Array<APIAuthenticatorResponse>>> =>
@@ -26,24 +26,20 @@ export function useUserAuthenticatorsQuery(
           )
             return response
           if (response._data.code !== ResponseCode.OK) {
-            toast({
+            toaster.error({
               title: 'Failed to get authenticators',
               description: response._data.message,
-              status: 'error',
               duration: 5000,
-              isClosable: true
             })
             return Promise.reject(response._data)
           }
           return response._data
         },
         onResponseError({ response }) {
-          toast({
+          toaster.create({
             title: 'Failed to get authenticators',
             description: response._data.message,
-            status: 'error',
             duration: 5000,
-            isClosable: true
           })
           return Promise.reject(response?._data ?? null)
         }

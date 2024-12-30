@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { submitPasteNormalAction } from '@/actions/paste'
 import { codeToHTML, getShikiAllSupportedLanguages } from '@/libs/shiki'
 import { CreateNormalSnippetForm } from '@/libs/validation/paste'
@@ -221,7 +222,7 @@ export function CreateNormalSnippet(props: Props) {
             options={syntaxOptions}
             placeholder={t('components.code_form.form.syntax.placeholder')}
             value={syntaxOptions.find((o) => o.value === formState.syntax)}
-            onChange={(e) => {
+            onChange={(e: any) => {
               formStateDispatch({
                 type: 'update',
                 field: 'syntax',
@@ -247,7 +248,7 @@ export function CreateNormalSnippet(props: Props) {
             value={expirationOptions.find(
               (o) => o.value === formState.expiration
             )}
-            onChange={(e) => {
+            onChange={(e: any) => {
               formStateDispatch({
                 type: 'update',
                 field: 'expiration',

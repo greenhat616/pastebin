@@ -29,7 +29,8 @@ import { setCookie } from '@/utils/cookies'
 import type {
   PublicKeyCredentialCreationOptionsJSON,
   PublicKeyCredentialRequestOptionsJSON,
-  RegistrationResponseJSON
+  RegistrationResponseJSON,
+  AttestationConveyancePreference,
 } from '@simplewebauthn/types'
 import { CredentialsSignin } from 'next-auth'
 import { isRedirectError } from 'next/dist/client/components/redirect-error'
@@ -341,8 +342,8 @@ export async function verifySignUpWithWebAuthnAction(
   // console.log(input)
   try {
     const data = VerifySignUpWithWebAuthnSchema.parse({
-      email: getCookie('next-auth.reg_email', { signed: true })?.value,
-      name: getCookie('next-auth.reg_name', { signed: true })?.value,
+      email: (await getCookie('next-auth.reg_email', { signed: true }))?.value,
+      name: (await getCookie('next-auth.reg_name', { signed: true }))?.value,
       ctx: input.ctx
     })
     const result = await verifyUserRegistration(
@@ -444,7 +445,7 @@ export async function verifySignInWithWebAuthnAction(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   input: Record<string, any>
 ): Promise<ActionReturn<never, object>> {
-  const email = getCookie('next-auth.login_email', { signed: true })?.value
+  const email = (await getCookie('next-auth.login_email', { signed: true }))?.value
   try {
     const data = VerifySignInWithWebAuthnSchema.parse({
       email: email,
@@ -462,7 +463,7 @@ export async function verifySignInWithWebAuthnAction(
         error: wrapTranslationKey('auth.signin.webauthn.feedback.auth_invalid')
       })
     // do sign in
-    const res = await signIn('webauthnCredentials', {
+    await signIn('webauthnCredentials', {
       redirect: false,
       id: result.userID,
       token: result.authenticator.credentialID,

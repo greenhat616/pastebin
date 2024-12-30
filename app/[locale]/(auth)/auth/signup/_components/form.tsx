@@ -4,14 +4,10 @@ import { signUpAction, verifySignUpWithWebAuthnAction } from '@/actions/auth'
 import { CredentialsAuthType } from '@/enums/app'
 import { ResponseCode } from '@/enums/response'
 import { SignUpWithPassword } from '@/libs/validation/auth'
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  Input,
-  Stack,
-  useToast
-} from '@chakra-ui/react'
+import { Input } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
+import { Field } from '@/components/ui/field'
+import { toaster } from '@/components/ui/toaster'
 import {
   browserSupportsWebAuthn,
   startRegistration
@@ -25,6 +21,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
 
 import { useFormStatus } from 'react-dom'
+
 
 // type State = {
 //   form: {
@@ -51,7 +48,7 @@ function Submit({ pending }: { pending: boolean }) {
       colorScheme="gray"
       size="lg"
       rounded="xl"
-      isLoading={pending || formPending}
+      loading={pending || formPending}
       loadingText={t('auth.signup.form.loading')}
       type="submit"
     >
@@ -75,7 +72,6 @@ function Submit({ pending }: { pending: boolean }) {
 export default function SignUpForm() {
   const t = useTranslations()
   const [isVerifyWebauthnPending, startTransition] = useTransition()
-  const toast = useToast()
   const callbackURL = useSearchParams().get('callbackUrl')
 
   // Form
@@ -97,7 +93,7 @@ export default function SignUpForm() {
           attResp = await startRegistration(state.data!)
         } catch (error) {
           console.error(error)
-          toast({
+          toaster.error({
             title: t('auth.signup.form.feedback.error.title'),
             description: t('auth.signup.form.feedback.error.description', {
               error:
@@ -109,9 +105,7 @@ export default function SignUpForm() {
                       : 'Unknown error'
                   : 'Unknown error'
             }),
-            status: 'error',
             duration: 5000,
-            isClosable: true
           })
           return
         }
@@ -128,27 +122,23 @@ export default function SignUpForm() {
           if (result.status !== ResponseCode.OK) throw new Error(result.error)
         } catch (error) {
           console.error(error)
-          toast({
+          toaster.error({
             title: t('auth.signup.form.feedback.error.title'),
             description: t('auth.signup.form.feedback.error.description', {
               error: translateIfKey(t, 'Unknown error')
             }),
-            status: 'error',
             duration: 5000,
-            isClosable: true
           })
         }
       })
     },
     onError: (state) => {
-      toast({
+      toaster.error({
         title: t('auth.signup.form.feedback.error.title'),
         description: t('auth.signup.form.feedback.error.description', {
           error: translateIfKey(t, state?.error || 'Unknown error')
         }),
-        status: 'error',
         duration: 5000,
-        isClosable: true
       })
     }
   })
@@ -179,8 +169,8 @@ export default function SignUpForm() {
     }
   }, [authType])
   return (
-    <Stack as="form" gap={4} action={action}>
-      <FormControl isInvalid={!!msgs?.email}>
+    <form className="grid cols-1 gap-4" action={action}>
+      <Field invalid={!!msgs?.email} errorText={msgs?.email}>
         <Input
           variant="outline"
           placeholder={t('auth.signup.form.placeholder.email')}
@@ -192,9 +182,9 @@ export default function SignUpForm() {
           //   state.form.email = e.target.value
           // }}
         />
-        {!!msgs?.email && <FormErrorMessage>{msgs?.email}</FormErrorMessage>}
-      </FormControl>
-      <FormControl isInvalid={!!msgs?.nickname}>
+      </Field>
+
+      <Field invalid={!!msgs?.nickname} errorText={msgs?.nickname}>
         <Input
           variant="outline"
           placeholder={t('auth.signup.form.placeholder.nickname')}
@@ -206,13 +196,12 @@ export default function SignUpForm() {
           //   state.form.nickname = e.target.value
           // }}
         />
-        {!!msgs?.nickname && (
-          <FormErrorMessage>{msgs?.nickname}</FormErrorMessage>
-        )}
-      </FormControl>
+      </Field>
       {authType === CredentialsAuthType.Password && (
         <>
-          <FormControl isInvalid={!!msgs?.password}>
+          <Field invalid={!!msgs?.password}
+            errorText={msgs?.password}
+          >
             <Input
               variant="outline"
               placeholder={t('auth.signup.form.placeholder.password')}
@@ -225,11 +214,10 @@ export default function SignUpForm() {
               //   state.form.password = e.target.value
               // }}
             />
-            {!!msgs?.password && (
-              <FormErrorMessage>{msgs?.password}</FormErrorMessage>
-            )}
-          </FormControl>
-          <FormControl isInvalid={!!msgs?.password_confirmation}>
+          </Field>
+          <Field invalid={!!msgs?.password_confirmation}
+            errorText={msgs?.password_confirmation}
+          >
             <Input
               variant="outline"
               placeholder={t(
@@ -244,10 +232,7 @@ export default function SignUpForm() {
               //   state.form.password_confirmation = e.target.value
               // }}
             />
-            {!!msgs?.password_confirmation && (
-              <FormErrorMessage>{msgs?.password_confirmation}</FormErrorMessage>
-            )}
-          </FormControl>
+          </Field>
         </>
       )}
       <input
@@ -279,6 +264,6 @@ export default function SignUpForm() {
           )
         })}
       </Button>
-    </Stack>
+    </form>
   )
 }

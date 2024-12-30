@@ -2,7 +2,8 @@ import client from '@/libs/prisma/client'
 import { codeToHTMLWithTransformers } from '@/libs/shiki'
 import { Content } from '@/libs/validation/paste'
 import { getUserAvatar } from '@/utils/user'
-import { Avatar, Flex, Text } from '@chakra-ui/react'
+import {  Flex, Text } from '@chakra-ui/react'
+import { Avatar } from '@/components/ui/avatar'
 import { useLocale, useTranslations } from 'next-intl'
 import { getTimeZone } from 'next-intl/server'
 import { notFound } from 'next/navigation'
@@ -94,6 +95,7 @@ function renderCode(code: string, language: string) {
 }
 
 export default async function View(props: Props) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const locale = useLocale()
   const timeZone = await getTimeZone({ locale })
   // if (!checkUUIDValidation(props.params.cuid)) return notFound()

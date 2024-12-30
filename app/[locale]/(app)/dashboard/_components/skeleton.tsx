@@ -13,7 +13,7 @@ export function PSkeleton() {
 }
 
 export function TextSkeleton(props: { lines?: number }) {
-  return <SkeletonText mt="4" noOfLines={props.lines || 4} spacing="4" />
+  return <SkeletonText mt="4" noOfLines={props.lines || 4} spaceX={4} />
 }
 
 export function BlockButtonSkeleton() {

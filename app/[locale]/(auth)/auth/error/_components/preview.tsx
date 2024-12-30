@@ -2,12 +2,10 @@
 
 import {
   Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Button,
-  Stack
-} from '@chakra-ui/react'
+} from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
+import { Stack } from '@chakra-ui/react'
+
 import { useSearchParams } from 'next/navigation'
 
 export default function ErrorPreview() {
@@ -24,12 +22,10 @@ export default function ErrorPreview() {
         textAlign="center"
         bgColor="transparent"
         minH="175px"
+        title="Auth error occurred"
+        maxWidth="sm"
       >
-        <AlertIcon boxSize="40px" mr={0} />
-        <AlertTitle mt={4} mb={1} fontSize="lg">
-          Auth error occurred
-        </AlertTitle>
-        <AlertDescription maxWidth="sm">{err}</AlertDescription>
+        {err}
       </Alert>
 
       <Button colorScheme="gray" size="lg" rounded="xl">

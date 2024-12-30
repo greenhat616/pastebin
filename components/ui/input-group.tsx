@@ -26,6 +26,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
     } = props
 
     const child =
+      // @ts-expect-error we cannot handle the upstream error
       React.Children.only<React.ReactElement<InputElementProps>>(children)
 
     return (
@@ -40,6 +41,7 @@ export const InputGroup = React.forwardRef<HTMLDivElement, InputGroupProps>(
             ps: `calc(var(--input-height) - ${startOffset})`,
           }),
           ...(endElement && { pe: `calc(var(--input-height) - ${endOffset})` }),
+          // @ts-expect-error we cannot handle the upstream error
           ...children.props,
         })}
         {endElement && (

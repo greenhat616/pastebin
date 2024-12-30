@@ -4,7 +4,6 @@ import { providers } from '@/libs/auth/providers'
 import {
   AbsoluteCenter,
   Box,
-  Divider,
   Grid,
   GridItem,
   Link,
@@ -46,12 +45,9 @@ function SignInPageIntlProviders({ children }: { children: React.ReactNode }) {
   )
 }
 
-function PageInner({ children }: { children: React.ReactNode }) {
+function PageInner({ children, searchParams }: { children: React.ReactNode, searchParams: string }) {
   const t = useTranslations()
-  const header = headers()
-  const searchParams = header.get('x-search-params')
-    ? `?${header.get('x-search-params')}`
-    : ``
+
   return (
     <>
       <Grid gap={4} templateColumns="repeat(2, 1fr)">
@@ -80,12 +76,12 @@ function PageInner({ children }: { children: React.ReactNode }) {
       </Grid>
       {/* Social Login */}
       <Box position="relative" paddingY="4">
-        <Divider />
         <AbsoluteCenter bg="white" px="4">
           {t('auth.signin.divider')}
         </AbsoluteCenter>
       </Box>
       {children}
+
     </>
   )
 }
@@ -95,12 +91,16 @@ type Props = {
 }
 
 export default async function SignInPage(props: Props) {
+  const header = await headers()
+  const searchParams = header.get('x-search-params')
+    ? `?${header.get('x-search-params')}`
+    : ``
   return (
     <SignInPageIntlProviders>
       <Stack gap={4}>
         {/* Credentials Login */}
         <Credentials />
-        <PageInner>
+        <PageInner searchParams={searchParams}>
           <OAuthProvider providers={providers} />
         </PageInner>
       </Stack>

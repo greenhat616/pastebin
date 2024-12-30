@@ -1,5 +1,5 @@
 import { modifyProfileAction } from '@/actions/user'
-import { Grid, Input, Textarea } from '@chakra-ui/react'
+import { Input, Textarea } from '@chakra-ui/react'
 import { Button } from '@/components/ui/button'
 import { Field } from '@/components/ui/field'
 
@@ -65,7 +65,7 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
     }
   )
   return (
-    <Grid as="form" gap={4} action={action}>
+    <form className='grid gap-4' action={action}>
       <Field
         label="Nickname"
         helperText="This is how your name will be displayed in the account."
@@ -109,6 +109,6 @@ export function ProfileForm({ defaultValues }: ProfileFormProps) {
       <div className="flex justify-start">
         <ProfileSubmitButton />
       </div>
-    </Grid>
+    </form>
   )
 }

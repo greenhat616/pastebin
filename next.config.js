@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /**  @type {(options?: import('unplugin-icons/resolver').ComponentResolverOption) => (name: string) => string | undefined} */
 const IconsResolver = require('unplugin-icons/resolver').default
@@ -23,8 +24,8 @@ const nextConfig = {
   },
   reactStrictMode: true,
   skipTrailingSlashRedirect: true,
+  serverExternalPackages: ['@node-rs/argon2'],
   experimental: {
-    serverComponentsExternalPackages: ['@node-rs/argon2'],
     optimizePackageImports: ['shiki', '@chakra-ui/react']
   },
   images: {

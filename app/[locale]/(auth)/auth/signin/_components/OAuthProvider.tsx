@@ -1,6 +1,7 @@
 'use client'
 
-import { Button, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
 import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import React from 'react'
@@ -21,12 +22,12 @@ export default function OAuthProvider(props: OAuthProviderProps) {
         return (
           <Button
             key={provider.id}
-            leftIcon={provider.icon}
             colorScheme="gray"
             size="lg"
             rounded="xl"
             onClick={() => signIn(provider.id)}
           >
+            {provider.icon}
             {t('auth.signin.sso', {
               provider: provider.name
             })}

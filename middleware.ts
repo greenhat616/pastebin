@@ -1,12 +1,11 @@
 import { config as Locales, pathnames } from '@/libs/navigation'
 import { type Awaitable } from '@/utils/types'
-import NextAuth from 'next-auth'
-import type { NextAuthRequest } from 'next-auth/lib'
+import NextAuth, { Session } from 'next-auth'
 // import { NextRequestWithAuth, withAuth } from 'next-auth/middleware'
 import createMiddleware from 'next-intl/middleware'
 import { type ResponseCookies } from 'next/dist/compiled/@edge-runtime/cookies'
 import { type NextMiddlewareResult } from 'next/dist/server/web/types'
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { authConfig } from './libs/auth/config/edge'
 export type MiddlewareCtx = {
   headers: Headers
@@ -14,6 +13,12 @@ export type MiddlewareCtx = {
   // Context is a map, and will be destroyed after the request.
   // It maybe a good place to store some security related data, such as token or user info.
   context: Map<string, unknown>
+}
+
+// FIXME: why fucking next-auth prevent use to reading its internal types?
+// Fuck fuck fuck
+ interface NextAuthRequest extends NextRequest {
+  auth: Session | null
 }
 
 // const protectedPathname = ['/admin', '/me']

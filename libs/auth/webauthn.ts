@@ -9,6 +9,8 @@ import {
   type GenerateRegistrationOptionsOpts
 } from '@simplewebauthn/server'
 
+import { AttestationFormat } from '@simplewebauthn/server/helpers'
+
 import type {
   AuthenticationResponseJSON,
   AuthenticatorTransportFuture,

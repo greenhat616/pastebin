@@ -3,14 +3,10 @@ import { signInAction, verifySignInWithWebAuthnAction } from '@/actions/auth'
 import { CredentialsAuthType } from '@/enums/app'
 import { ResponseCode } from '@/enums/response'
 import { SignInWithPassword } from '@/libs/validation/auth'
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  Input,
-  Stack,
-  useToast
-} from '@chakra-ui/react'
+import { Input } from '@chakra-ui/react'
+import { Button } from '@/components/ui/button'
+import { Field } from '@/components/ui/field'
+import { toaster } from '@/components/ui/toaster'
 import {
   browserSupportsWebAuthn,
   startAuthentication
@@ -22,6 +18,7 @@ import { useEffect, useState, useTransition } from 'react'
 
 import { useFormStatus } from 'react-dom'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 type Props = {
   // signInAction: (
   //   callbackURL: string | undefined,
@@ -59,7 +56,7 @@ function Submit({ pending }: { pending: boolean }) {
       size="lg"
       rounded="xl"
       // onClick={handleSignIn}
-      isLoading={pending || formPending}
+      loading={pending || formPending}
       loadingText={t('auth.signin.credentials.loading')}
       type="submit"
     >
@@ -69,9 +66,6 @@ function Submit({ pending }: { pending: boolean }) {
 }
 
 export default function Credentials(props: Props) {
-  // Deps
-  const toast = useToast()
-
   const [authType, setAuthType] = useState(CredentialsAuthType.WebAuthn)
   const [pending, startTransition] = useTransition()
 
@@ -94,7 +88,7 @@ export default function Credentials(props: Props) {
           asseResp = await startAuthentication(state.data!)
         } catch (error) {
           console.error(error)
-          toast({
+          toaster.create({
             title: t('auth.signin.credentials.feedback.error.title'),
             description: t(
               'auth.signin.credentials.feedback.error.description',
@@ -107,9 +101,8 @@ export default function Credentials(props: Props) {
                     : 'Unknown error'
               }
             ),
-            status: 'error',
-            duration: 5000,
-            isClosable: true
+            type: 'error',
+            duration: 5000
           })
           return
         }
@@ -125,7 +118,7 @@ export default function Credentials(props: Props) {
           if (resp.status !== ResponseCode.OK) throw new Error(resp.error)
         } catch (error) {
           console.error(error)
-          toast({
+          toaster.create({
             title: t('auth.signin.credentials.feedback.error.title'),
             description: t(
               'auth.signin.credentials.feedback.error.description',
@@ -133,9 +126,8 @@ export default function Credentials(props: Props) {
                 error: (error as Error).message
               }
             ),
-            status: 'error',
-            duration: 5000,
-            isClosable: true
+            type: 'error',
+            duration: 5000
           })
         }
       })
@@ -151,14 +143,12 @@ export default function Credentials(props: Props) {
         setAuthType(CredentialsAuthType.Password)
         return
       }
-      toast({
+      toaster.error({
         title: t('auth.signin.credentials.feedback.error.title'),
         description: t('auth.signin.credentials.feedback.error.description', {
           error: translateIfKey(t, state.error || 'Unknown error')
         }),
-        status: 'error',
-        duration: 5000,
-        isClosable: true
+        duration: 5000
       })
     }
   })
@@ -260,8 +250,8 @@ export default function Credentials(props: Props) {
   }, [authType])
 
   return (
-    <Stack as="form" action={action} gap={4}>
-      <FormControl isInvalid={!!msgs?.email}>
+    <form className="grid cols-1 gap-4" action={action}>
+      <Field invalid={!!msgs?.email} errorText={msgs?.email}>
         <Input
           variant="outline"
           placeholder={t('auth.signin.credentials.placeholder.email')}
@@ -274,10 +264,9 @@ export default function Credentials(props: Props) {
           //   state.form.email = e.target.value
           // }}
         />
-        {!!msgs?.email && <FormErrorMessage>{msgs?.email}</FormErrorMessage>}
-      </FormControl>
+      </Field>
       {authType === CredentialsAuthType.Password && (
-        <FormControl isInvalid={!!msgs?.password}>
+        <Field invalid={!!msgs?.password} errorText={msgs?.password}>
           <Input
             variant="outline"
             placeholder={t('auth.signin.credentials.placeholder.password')}
@@ -290,10 +279,7 @@ export default function Credentials(props: Props) {
             //   state.form.password = e.target.value
             // }}
           />
-          {!!msgs?.password && (
-            <FormErrorMessage>{msgs?.password}</FormErrorMessage>
-          )}
-        </FormControl>
+        </Field>
       )}
       <input
         className="hidden"
@@ -303,6 +289,6 @@ export default function Credentials(props: Props) {
       />
 
       <Submit pending={pending} />
-    </Stack>
+    </form>
   )
 }

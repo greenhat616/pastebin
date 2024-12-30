@@ -15,7 +15,7 @@ export const GET = auth(async function (req): Promise<NextResponse> {
   if (!req.auth) return fail(ResponseCode.NotAuthorized, {})
   // Check signed token
   try {
-    const signedTwiceConfirmationToken = getCookie('user.twice_confirmed', {
+    const signedTwiceConfirmationToken = await getCookie('user.twice_confirmed', {
       signed: true
     })
     if (!signedTwiceConfirmationToken) throw new Error('No signed token found')
