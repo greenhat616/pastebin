@@ -3,10 +3,9 @@ import { submitPasteNormalAction } from '@/actions/paste'
 import { codeToHTML, getShikiAllSupportedLanguages } from '@/libs/shiki'
 import { CreateNormalSnippetForm } from '@/libs/validation/paste'
 import { ReducerDispatcher } from '@/utils/types'
-import { Box, Card, CardBody, Flex, Input, Textarea } from '@chakra-ui/react'
+import { Box, Card, Flex, Input, Textarea } from '@chakra-ui/react'
 import { Button } from './ui/button'
 import { Field } from './ui/field'
-import { Fieldset } from '@chakra-ui/react'
 import { useAsyncEffect } from 'ahooks'
 import { Select } from 'chakra-react-select'
 import 'client-only'
@@ -212,7 +211,6 @@ export function CreateNormalSnippet(props: Props) {
           invalid={!!msgs?.syntax}
           label={t('components.code_form.form.syntax.label')}
           errorText={msgs?.syntax}
-          helperText={t('components.code_form.form.syntax.helper_text')}
         >
           <Select
             instanceId="syntax"
@@ -270,7 +268,6 @@ export function CreateNormalSnippet(props: Props) {
           invalid={!!msgs?.content}
           label={t('components.code_form.form.content.label')}
           errorText={msgs?.content}
-          helperText={t('components.code_form.form.content.helper_text')}
         >
           <Card.Root variant="outline" height="md" p={0} hidden={!isPreview}>
             <Card.Body

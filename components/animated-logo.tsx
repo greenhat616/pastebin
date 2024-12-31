@@ -68,9 +68,14 @@ function Emoji(props: EmojiProps) {
 
   const mergedEmojis = useMemo(
     () =>
-      emojis.map((emoji) => (
-        <Icon key={emoji[0]} as={emoji[1]} {...extraProps} />
-      )),
+      emojis.map((emoji) => {
+        const EmojiIcon = emoji[1]
+        return (
+          <Icon key={emoji[0]} {...extraProps}>
+            <EmojiIcon {...extraProps} />
+          </Icon>
+        )
+      }),
     [extraProps]
   )
 
