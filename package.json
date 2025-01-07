@@ -97,7 +97,7 @@
     "eslint-plugin-n": "17.15.1",
     "eslint-plugin-prettier": "5.2.1",
     "eslint-plugin-promise": "7.2.1",
-    "framer-motion": "11.15.0",
+    "framer-motion": "11.16.0",
     "hast-util-to-html": "9.0.4",
     "husky": "9.1.7",
     "lint-staged": "15.3.0",
