@@ -46,8 +46,8 @@ importers:
         specifier: 3.4.0
         version: 3.4.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@choc-ui/chakra-autocomplete':
-        specifier: 5.8.0
-        version: 5.8.0(@chakra-ui/react@3.4.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(@types/react@19.0.7)(react@19.0.0))(framer-motion@11.18.1(@emotion/is-prop-valid@1.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)
+        specifier: 6.0.0
+        version: 6.0.0(@chakra-ui/react@3.4.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@commitlint/cli':
         specifier: 19.6.1
         version: 19.6.1(@types/node@22.10.7)(typescript@5.7.3)
@@ -553,14 +553,12 @@ packages:
       react: '>=18'
       react-dom: '>=18'
 
-  '@choc-ui/chakra-autocomplete@5.8.0':
-    resolution: {integrity: sha512-8Pybq4rABSEueA2tNHUEHf+yV6A2RMW3Qwksmf3qMM0SdDUH5oEqDNhWJoeeAhjkzwHyjxVxk12DdCV0b8FQ1Q==}
+  '@choc-ui/chakra-autocomplete@6.0.0':
+    resolution: {integrity: sha512-zSKacPPxFfKYiwVzGV5A1lmGv1yga6k9McpUbnz/bJfQS2rOOejqOI30aXnPCj4EBNsGf9SsHrj6Lyj3hYC4cA==}
     engines: {node: '>=10'}
     peerDependencies:
-      '@chakra-ui/react': ^2.5.5
-      '@emotion/react': ^11.10.0
-      '@emotion/styled': ^11.10.0
-      framer-motion: '>7.6.14'
+      '@chakra-ui/react': ^3.2.2
+      '@emotion/react': ^11.13.5
       react: ^18.2.0
 
   '@commitlint/cli@19.6.1':
@@ -706,16 +704,6 @@ packages:
 
   '@emotion/sheet@1.4.0':
     resolution: {integrity: sha512-fTBW9/8r2w3dXWYM4HCB1Rdp8NLibOw2+XELH5m5+AkWiL/KqYX6dc0kKYlaYyKjrQ6ds33MCdMPEwgs2z1rqg==}
-
-  '@emotion/styled@11.14.0':
-    resolution: {integrity: sha512-XxfOnXFffatap2IyCeJyNov3kiDQWoR08gPUQxvbL7fxKryGBKUZUkG6Hz48DZwVrJSVh9sJboyV1Ds4OW6SgA==}
-    peerDependencies:
-      '@emotion/react': ^11.0.0-rc.0
-      '@types/react': '*'
-      react: '>=16.8.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@emotion/unitless@0.10.0':
     resolution: {integrity: sha512-dFoMUuQA20zvtVTuxZww6OHoJYgrzfKM1t52mVySDJnMSEa08ruEvdYQbhvyu6soU+NeLVd3yKfTfT0NeV6qGg==}
@@ -6390,14 +6378,16 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@choc-ui/chakra-autocomplete@5.8.0(@chakra-ui/react@3.4.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(@types/react@19.0.7)(react@19.0.0))(framer-motion@11.18.1(@emotion/is-prop-valid@1.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react@19.0.0)':
+  '@choc-ui/chakra-autocomplete@6.0.0(@chakra-ui/react@3.4.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@chakra-ui/react': 3.4.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@emotion/react': 11.14.0(@types/react@19.0.7)(react@19.0.0)
-      '@emotion/styled': 11.14.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(@types/react@19.0.7)(react@19.0.0)
-      framer-motion: 11.18.1(@emotion/is-prop-valid@1.3.1)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      next-themes: 0.4.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react: 19.0.0
+      react-icons: 5.4.0(react@19.0.0)
       react-nanny: 2.15.0(react@19.0.0)
+    transitivePeerDependencies:
+      - react-dom
 
   '@commitlint/cli@19.6.1(@types/node@22.10.7)(typescript@5.7.3)':
     dependencies:
@@ -6607,21 +6597,6 @@ snapshots:
       csstype: 3.1.3
 
   '@emotion/sheet@1.4.0': {}
-
-  '@emotion/styled@11.14.0(@emotion/react@11.14.0(@types/react@19.0.7)(react@19.0.0))(@types/react@19.0.7)(react@19.0.0)':
-    dependencies:
-      '@babel/runtime': 7.24.4
-      '@emotion/babel-plugin': 11.13.5
-      '@emotion/is-prop-valid': 1.3.1
-      '@emotion/react': 11.14.0(@types/react@19.0.7)(react@19.0.0)
-      '@emotion/serialize': 1.3.3
-      '@emotion/use-insertion-effect-with-fallbacks': 1.2.0(react@19.0.0)
-      '@emotion/utils': 1.4.2
-      react: 19.0.0
-    optionalDependencies:
-      '@types/react': 19.0.7
-    transitivePeerDependencies:
-      - supports-color
 
   '@emotion/unitless@0.10.0': {}
 
