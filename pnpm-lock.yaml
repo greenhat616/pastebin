@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@auth/prisma-adapter':
         specifier: 2.7.4
-        version: 2.7.4(@prisma/client@6.2.1(prisma@6.2.1))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
+        version: 2.7.4(@prisma/client@6.2.1(prisma@6.2.1))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)
       '@prisma/client':
         specifier: 6.2.1
         version: 6.2.1(prisma@6.2.1)
@@ -79,8 +79,8 @@ importers:
         specifier: 10.0.0
         version: 10.0.0
       '@simplewebauthn/server':
-        specifier: 10.0.1
-        version: 10.0.1
+        specifier: 13.1.0
+        version: 13.1.0
       '@simplewebauthn/types':
         specifier: 10.0.0
         version: 10.0.0
@@ -239,7 +239,7 @@ importers:
         version: 15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
       next-auth:
         specifier: 5.0.0-beta.25
-        version: 5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)
+        version: 5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)(next@15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)
       next-intl:
         specifier: 3.26.3
         version: 3.26.3(next@15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)
@@ -1969,8 +1969,8 @@ packages:
   '@simplewebauthn/browser@10.0.0':
     resolution: {integrity: sha512-hG0JMZD+LiLUbpQcAjS4d+t4gbprE/dLYop/CkE01ugU/9sKXflxV5s0DRjdz3uNMFecatRfb4ZLG3XvF8m5zg==}
 
-  '@simplewebauthn/server@10.0.1':
-    resolution: {integrity: sha512-djNWcRn+H+6zvihBFJSpG3fzb0NQS9c/Mw5dYOtZ9H+oDw8qn9Htqxt4cpqRvSOAfwqP7rOvE9rwqVaoGGc3hg==}
+  '@simplewebauthn/server@13.1.0':
+    resolution: {integrity: sha512-vGz9sgzoN0c0IySnpdG0TG0B71GM75basrlTpXHDAw8tQ/JUH5O73x6s3UXzDWHlv7d2E4Hy4aX5ugoHkW4udg==}
     engines: {node: '>=20.0.0'}
 
   '@simplewebauthn/types@10.0.0':
@@ -3065,9 +3065,6 @@ packages:
     resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
     engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
     hasBin: true
-
-  cross-fetch@4.0.0:
-    resolution: {integrity: sha512-e4a5N8lVvuLgAWgnCrLr2PP0YyDOTHa9H/Rj54dirp61qXnNq46m82bRhNqIA5VccJtWBvPTFRV3TtvHUKPB1g==}
 
   cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -4602,15 +4599,6 @@ packages:
   node-fetch-native@1.6.4:
     resolution: {integrity: sha512-IhOigYzAKHd244OC0JIMIUrjzctirCmPkaIfhDeGcEETWof5zKYUW7e7MYvChGWh/4CJeXEgsRyGzuF334rOOQ==}
 
-  node-fetch@2.7.0:
-    resolution: {integrity: sha512-c4FRfUm/dbcWZ7U+1Wq0AwCyFL+3nt2bEw05wfxSz+DWpWsitgmSgYmy2dQdWyKC1694ELPqMs/YzUSNozLt8A==}
-    engines: {node: 4.x || >=6.0.0}
-    peerDependencies:
-      encoding: ^0.1.0
-    peerDependenciesMeta:
-      encoding:
-        optional: true
-
   node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}
 
@@ -5592,9 +5580,6 @@ packages:
     resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
     engines: {node: '>=6'}
 
-  tr46@0.0.3:
-    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
-
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
 
@@ -5915,9 +5900,6 @@ packages:
     resolution: {integrity: sha512-8wrBCMtVhqcXP2Sup1ctSkga6uc2Bx0IIvKyT7yTFier5AXHooSI+QyQQAtTb7+E0IUCCKyTFmXqdqgum2XWGg==}
     engines: {node: '>=10.13.0'}
 
-  webidl-conversions@3.0.1:
-    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
-
   webpack-bundle-analyzer@4.10.1:
     resolution: {integrity: sha512-s3P7pgexgT/HTUSYgxJyn28A+99mmLq4HsJepMPzu0R8ImJc52QNqaFYW1Z2z2uIb1/J3eYgaAWVpaC+v/1aAQ==}
     engines: {node: '>= 10.13.0'}
@@ -5939,9 +5921,6 @@ packages:
     peerDependenciesMeta:
       webpack-cli:
         optional: true
-
-  whatwg-url@5.0.0:
-    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
   which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}
@@ -6138,7 +6117,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  '@auth/core@0.37.2(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
+  '@auth/core@0.37.2(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)':
     dependencies:
       '@panva/hkdf': 1.2.1
       '@types/cookie': 0.6.0
@@ -6149,9 +6128,9 @@ snapshots:
       preact-render-to-string: 5.2.3(preact@10.11.3)
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
-      '@simplewebauthn/server': 10.0.1
+      '@simplewebauthn/server': 13.1.0
 
-  '@auth/core@0.37.4(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
+  '@auth/core@0.37.4(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)':
     dependencies:
       '@panva/hkdf': 1.2.1
       jose: 5.9.6
@@ -6160,11 +6139,11 @@ snapshots:
       preact-render-to-string: 6.5.11(preact@10.24.3)
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
-      '@simplewebauthn/server': 10.0.1
+      '@simplewebauthn/server': 13.1.0
 
-  '@auth/prisma-adapter@2.7.4(@prisma/client@6.2.1(prisma@6.2.1))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)':
+  '@auth/prisma-adapter@2.7.4(@prisma/client@6.2.1(prisma@6.2.1))(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)':
     dependencies:
-      '@auth/core': 0.37.4(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
+      '@auth/core': 0.37.4(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)
       '@prisma/client': 6.2.1(prisma@6.2.1)
     transitivePeerDependencies:
       - '@simplewebauthn/browser'
@@ -7571,7 +7550,7 @@ snapshots:
     dependencies:
       '@simplewebauthn/types': 10.0.0
 
-  '@simplewebauthn/server@10.0.1':
+  '@simplewebauthn/server@13.1.0':
     dependencies:
       '@hexagon/base64': 1.1.28
       '@levischuck/tiny-cbor': 0.2.2
@@ -7580,10 +7559,6 @@ snapshots:
       '@peculiar/asn1-rsa': 2.3.8
       '@peculiar/asn1-schema': 2.3.8
       '@peculiar/asn1-x509': 2.3.8
-      '@simplewebauthn/types': 10.0.0
-      cross-fetch: 4.0.0
-    transitivePeerDependencies:
-      - encoding
 
   '@simplewebauthn/types@10.0.0': {}
 
@@ -9115,12 +9090,6 @@ snapshots:
   cross-env@7.0.3:
     dependencies:
       cross-spawn: 7.0.3
-
-  cross-fetch@4.0.0:
-    dependencies:
-      node-fetch: 2.7.0
-    transitivePeerDependencies:
-      - encoding
 
   cross-spawn@7.0.3:
     dependencies:
@@ -10824,14 +10793,14 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-auth@5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0):
+  next-auth@5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)(next@15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0):
     dependencies:
-      '@auth/core': 0.37.2(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
+      '@auth/core': 0.37.2(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@13.1.0)
       next: 15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
       react: 19.0.0
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
-      '@simplewebauthn/server': 10.0.1
+      '@simplewebauthn/server': 13.1.0
 
   next-intl@3.26.3(next@15.1.5(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0):
     dependencies:
@@ -10881,10 +10850,6 @@ snapshots:
     optional: true
 
   node-fetch-native@1.6.4: {}
-
-  node-fetch@2.7.0:
-    dependencies:
-      whatwg-url: 5.0.0
 
   node-releases@2.0.14: {}
 
@@ -12051,8 +12016,6 @@ snapshots:
 
   totalist@3.0.1: {}
 
-  tr46@0.0.3: {}
-
   trim-lines@3.0.1: {}
 
   ts-api-utils@2.0.0(typescript@5.7.3):
@@ -12413,8 +12376,6 @@ snapshots:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
 
-  webidl-conversions@3.0.1: {}
-
   webpack-bundle-analyzer@4.10.1:
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
@@ -12468,11 +12429,6 @@ snapshots:
       - '@swc/core'
       - esbuild
       - uglify-js
-
-  whatwg-url@5.0.0:
-    dependencies:
-      tr46: 0.0.3
-      webidl-conversions: 3.0.1
 
   which-boxed-primitive@1.0.2:
     dependencies:
