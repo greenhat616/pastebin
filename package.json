@@ -120,7 +120,7 @@
     "sass": "1.83.4",
     "shiki": "1.29.1",
     "styled-components": "6.1.14",
-    "stylelint": "16.13.2",
+    "stylelint": "16.14.0",
     "stylelint-config-html": "1.1.0",
     "stylelint-config-recess-order": "5.1.1",
     "stylelint-config-standard": "36.0.1",
