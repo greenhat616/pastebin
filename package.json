@@ -118,7 +118,7 @@
     "react-dom": "19.0.0",
     "react-use": "17.6.0",
     "sass": "1.83.4",
-    "shiki": "1.29.1",
+    "shiki": "1.29.2",
     "styled-components": "6.1.14",
     "stylelint": "16.14.1",
     "stylelint-config-html": "1.1.0",
