@@ -67,8 +67,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0(react@19.0.0)
       '@iconify/json':
-        specifier: 2.2.302
-        version: 2.2.302
+        specifier: 2.2.304
+        version: 2.2.304
       '@next/bundle-analyzer':
         specifier: 15.1.6
         version: 15.1.6
@@ -1263,8 +1263,8 @@ packages:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
 
-  '@iconify/json@2.2.302':
-    resolution: {integrity: sha512-gklpnOBA3xLNW68cdQz6iI4UnRGIXb+se8UyQN1lzy4Si01XIHynGq2nTep01HQK/I1Ltgz2h6srnPGSDB8LhQ==}
+  '@iconify/json@2.2.304':
+    resolution: {integrity: sha512-8eO5m27lIfYLRFCxNgZQD/AMcDYw9NzPT6ViSYJDvX+Vevuj/smaQ/SfHVTNFzj5JcISDh5AV6n2nllQthceog==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -6889,7 +6889,7 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
-  '@iconify/json@2.2.302':
+  '@iconify/json@2.2.304':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.2
