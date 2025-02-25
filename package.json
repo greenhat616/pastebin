@@ -98,7 +98,7 @@
     "eslint-plugin-prettier": "5.2.3",
     "eslint-plugin-promise": "7.2.1",
     "framer-motion": "11.18.2",
-    "hast-util-to-html": "9.0.4",
+    "hast-util-to-html": "9.0.5",
     "husky": "9.1.7",
     "lint-staged": "15.4.3",
     "lodash-es": "4.17.21",
