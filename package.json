@@ -81,7 +81,7 @@
     "@unocss/webpack": "0.65.4",
     "@vercel/analytics": "1.4.1",
     "ahooks": "3.8.4",
-    "autoprefixer": "10.4.20",
+    "autoprefixer": "10.4.21",
     "chakra-react-select": "next",
     "cookie-signature": "1.2.2",
     "cross-env": "7.0.3",
