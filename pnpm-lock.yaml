@@ -161,7 +161,7 @@ importers:
         version: 0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2))
       '@vercel/analytics':
         specifier: 1.4.1
-        version: 1.4.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))
+        version: 1.4.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))
       ahooks:
         specifier: 3.8.4
         version: 3.8.4(react@19.0.0)
@@ -236,13 +236,13 @@ importers:
         version: 1.0.0
       next:
         specifier: 15.1.7
-        version: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
+        version: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1)
       next-auth:
         specifier: 5.0.0-beta.25
-        version: 5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)
+        version: 5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1))(react@19.0.0)
       next-intl:
         specifier: 3.26.4
-        version: 3.26.4(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)
+        version: 3.26.4(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1))(react@19.0.0)
       npm-run-all2:
         specifier: 7.0.2
         version: 7.0.2
@@ -274,8 +274,8 @@ importers:
         specifier: 17.6.0
         version: 17.6.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       sass:
-        specifier: 1.83.4
-        version: 1.83.4
+        specifier: 1.85.1
+        version: 1.85.1
       shiki:
         specifier: 1.29.2
         version: 1.29.2
@@ -314,7 +314,7 @@ importers:
         version: 5.7.3
       unocss:
         specifier: 0.65.4
-        version: 0.65.4(@unocss/webpack@0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2)))(postcss@8.5.3)(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
+        version: 0.65.4(@unocss/webpack@0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2)))(postcss@8.5.3)(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
       unplugin-auto-import:
         specifier: 0.19.0
         version: 0.19.0(rollup@4.29.1)
@@ -326,13 +326,13 @@ importers:
         version: 11.0.5
       vite:
         specifier: 6.0.11
-        version: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
+        version: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
       vite-node:
         specifier: 2.1.9
-        version: 2.1.9(@types/node@22.13.10)(sass@1.83.4)(terser@5.30.3)
+        version: 2.1.9(@types/node@22.13.10)(sass@1.85.1)(terser@5.30.3)
       vite-tsconfig-paths:
         specifier: 5.1.4
-        version: 5.1.4(typescript@5.7.3)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))
+        version: 5.1.4(typescript@5.7.3)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))
       yaml:
         specifier: 2.7.0
         version: 2.7.0
@@ -2749,11 +2749,6 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
-  browserslist@4.23.3:
-    resolution: {integrity: sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-
   browserslist@4.24.4:
     resolution: {integrity: sha512-KDi1Ny1gSePi1vm0q4oxSF8b4DR44GF4BbmS2YdhPLOEqd8pDviZOGH/GsmRwoWJ2+5Lr085X7naowMwKHDG1A==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -5095,8 +5090,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  sass@1.83.4:
-    resolution: {integrity: sha512-B1bozCeNQiOgDcLd33e2Cs2U60wZwjUUXzh900ZyQF5qUasvMdDZYbQ566LJu7cqR+sAHlAfO6RMkaID5s6qpA==}
+  sass@1.85.1:
+    resolution: {integrity: sha512-Uk8WpxM5v+0cMR0XjX9KfRIacmSG86RH4DCCZjLU2rFh5tyutt9siAXJ7G+YfxQ99Q6wrRMbMlVl6KqUms71ag==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -7750,13 +7745,13 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@unocss/astro@0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))':
+  '@unocss/astro@0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))':
     dependencies:
       '@unocss/core': 0.65.4
       '@unocss/reset': 0.65.4
-      '@unocss/vite': 0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
+      '@unocss/vite': 0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
     optionalDependencies:
-      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
+      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -7890,7 +7885,7 @@ snapshots:
     dependencies:
       '@unocss/core': 0.65.4
 
-  '@unocss/vite@0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))':
+  '@unocss/vite@0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@rollup/pluginutils': 5.1.4(rollup@4.29.1)
@@ -7900,7 +7895,7 @@ snapshots:
       chokidar: 3.6.0
       magic-string: 0.30.17
       tinyglobby: 0.2.10
-      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
+      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -7922,9 +7917,9 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/analytics@1.4.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))':
+  '@vercel/analytics@1.4.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))':
     optionalDependencies:
-      next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
+      next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1)
       react: 19.0.0
       vue: 3.5.12(typescript@5.7.3)
 
@@ -8754,13 +8749,6 @@ snapshots:
       electron-to-chromium: 1.5.4
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.2)
-
-  browserslist@4.23.3:
-    dependencies:
-      caniuse-lite: 1.0.30001647
-      electron-to-chromium: 1.5.4
-      node-releases: 2.0.18
-      update-browserslist-db: 1.1.0(browserslist@4.23.3)
 
   browserslist@4.24.4:
     dependencies:
@@ -10723,20 +10711,20 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-auth@5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0):
+  next-auth@5.0.0-beta.25(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1))(react@19.0.0):
     dependencies:
       '@auth/core': 0.37.2(@simplewebauthn/browser@10.0.0)(@simplewebauthn/server@10.0.1)
-      next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
+      next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1)
       react: 19.0.0
     optionalDependencies:
       '@simplewebauthn/browser': 10.0.0
       '@simplewebauthn/server': 10.0.1
 
-  next-intl@3.26.4(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0):
+  next-intl@3.26.4(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1))(react@19.0.0):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.10
       negotiator: 1.0.0
-      next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
+      next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1)
       react: 19.0.0
       use-intl: 3.26.4(react@19.0.0)
 
@@ -10745,7 +10733,7 @@ snapshots:
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
 
-  next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4):
+  next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.85.1):
     dependencies:
       '@next/env': 15.1.7
       '@swc/counter': 0.1.3
@@ -10765,7 +10753,7 @@ snapshots:
       '@next/swc-linux-x64-musl': 15.1.7
       '@next/swc-win32-arm64-msvc': 15.1.7
       '@next/swc-win32-x64-msvc': 15.1.7
-      sass: 1.83.4
+      sass: 1.85.1
       sharp: 0.33.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -11364,7 +11352,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  sass@1.83.4:
+  sass@1.85.1:
     dependencies:
       chokidar: 4.0.0
       immutable: 5.0.2
@@ -12106,9 +12094,9 @@ snapshots:
       unist-util-is: 6.0.0
       unist-util-visit-parents: 6.0.1
 
-  unocss@0.65.4(@unocss/webpack@0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2)))(postcss@8.5.3)(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3)):
+  unocss@0.65.4(@unocss/webpack@0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2)))(postcss@8.5.3)(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3)):
     dependencies:
-      '@unocss/astro': 0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
+      '@unocss/astro': 0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
       '@unocss/cli': 0.65.4(rollup@4.29.1)
       '@unocss/core': 0.65.4
       '@unocss/postcss': 0.65.4(postcss@8.5.3)
@@ -12124,10 +12112,10 @@ snapshots:
       '@unocss/transformer-compile-class': 0.65.4
       '@unocss/transformer-directives': 0.65.4
       '@unocss/transformer-variant-group': 0.65.4
-      '@unocss/vite': 0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
+      '@unocss/vite': 0.65.4(rollup@4.29.1)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0))(vue@3.5.12(typescript@5.7.3))
     optionalDependencies:
       '@unocss/webpack': 0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2))
-      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
+      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -12177,12 +12165,6 @@ snapshots:
       escalade: 3.1.2
       picocolors: 1.1.1
 
-  update-browserslist-db@1.1.0(browserslist@4.23.3):
-    dependencies:
-      browserslist: 4.23.3
-      escalade: 3.1.2
-      picocolors: 1.1.1
-
   update-browserslist-db@1.1.3(browserslist@4.24.4):
     dependencies:
       browserslist: 4.24.4
@@ -12222,13 +12204,13 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-node@2.1.9(@types/node@22.13.10)(sass@1.83.4)(terser@5.30.3):
+  vite-node@2.1.9(@types/node@22.13.10)(sass@1.85.1)(terser@5.30.3):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       es-module-lexer: 1.6.0
       pathe: 1.1.2
-      vite: 5.4.11(@types/node@22.13.10)(sass@1.83.4)(terser@5.30.3)
+      vite: 5.4.11(@types/node@22.13.10)(sass@1.85.1)(terser@5.30.3)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -12240,18 +12222,18 @@ snapshots:
       - supports-color
       - terser
 
-  vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)):
+  vite-tsconfig-paths@5.1.4(typescript@5.7.3)(vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
       tsconfck: 3.0.3(typescript@5.7.3)
     optionalDependencies:
-      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
+      vite: 6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  vite@5.4.11(@types/node@22.13.10)(sass@1.83.4)(terser@5.30.3):
+  vite@5.4.11(@types/node@22.13.10)(sass@1.85.1)(terser@5.30.3):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.5.3
@@ -12259,10 +12241,10 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.13.10
       fsevents: 2.3.3
-      sass: 1.83.4
+      sass: 1.85.1
       terser: 5.30.3
 
-  vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.83.4)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0):
+  vite@6.0.11(@types/node@22.13.10)(jiti@2.4.1)(sass@1.85.1)(terser@5.30.3)(tsx@4.19.2)(yaml@2.7.0):
     dependencies:
       esbuild: 0.24.2
       postcss: 8.5.3
@@ -12271,7 +12253,7 @@ snapshots:
       '@types/node': 22.13.10
       fsevents: 2.3.3
       jiti: 2.4.1
-      sass: 1.83.4
+      sass: 1.85.1
       terser: 5.30.3
       tsx: 4.19.2
       yaml: 2.7.0
@@ -12329,7 +12311,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.12.1
       acorn: 8.14.0
       acorn-import-assertions: 1.9.0(acorn@8.14.0)
-      browserslist: 4.23.3
+      browserslist: 4.24.4
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.18.0
       es-module-lexer: 1.6.0
