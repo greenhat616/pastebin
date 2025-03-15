@@ -160,8 +160,8 @@ importers:
         specifier: 0.65.4
         version: 0.65.4(rollup@4.29.1)(webpack@5.91.0(esbuild@0.24.2))
       '@vercel/analytics':
-        specifier: 1.4.1
-        version: 1.4.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))
+        specifier: 1.5.0
+        version: 1.5.0(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))
       ahooks:
         specifier: 3.8.4
         version: 3.8.4(react@19.0.0)
@@ -2241,8 +2241,8 @@ packages:
     peerDependencies:
       webpack: ^4 || ^5
 
-  '@vercel/analytics@1.4.1':
-    resolution: {integrity: sha512-ekpL4ReX2TH3LnrRZTUKjHHNpNy9S1I7QmS+g/RQXoSUQ8ienzosuX7T9djZ/s8zPhBx1mpHP/Rw5875N+zQIQ==}
+  '@vercel/analytics@1.5.0':
+    resolution: {integrity: sha512-MYsBzfPki4gthY5HnYN7jgInhAZ7Ac1cYDoRWFomwGHWEX7odTEzbtg9kf/QSo7XEsEAqlQugA6gJ2WS2DEa3g==}
     peerDependencies:
       '@remix-run/react': ^2
       '@sveltejs/kit': ^1 || ^2
@@ -2746,11 +2746,6 @@ packages:
 
   browserslist@4.23.2:
     resolution: {integrity: sha512-qkqSyistMYdxAcw+CzbZwlBy8AGmS/eEWs+sEV5TnLRGDOL+C5M2EnH6tlZyg0YoAxGJAFKh61En9BR941GnHA==}
-    engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
-    hasBin: true
-
-  browserslist@4.23.3:
-    resolution: {integrity: sha512-btwCFJVjI4YWDNfau8RhZ+B1Q/VLoUITrm3RlP6y1tYGWIOa+InuYiRGXUBXo8nA1qKmHMyLB/iVQg5TT4eFoA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
 
@@ -7922,7 +7917,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/analytics@1.4.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))':
+  '@vercel/analytics@1.5.0(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))':
     optionalDependencies:
       next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
       react: 19.0.0
@@ -8754,13 +8749,6 @@ snapshots:
       electron-to-chromium: 1.5.4
       node-releases: 2.0.18
       update-browserslist-db: 1.1.0(browserslist@4.23.2)
-
-  browserslist@4.23.3:
-    dependencies:
-      caniuse-lite: 1.0.30001647
-      electron-to-chromium: 1.5.4
-      node-releases: 2.0.18
-      update-browserslist-db: 1.1.0(browserslist@4.23.3)
 
   browserslist@4.24.4:
     dependencies:
@@ -12177,12 +12165,6 @@ snapshots:
       escalade: 3.1.2
       picocolors: 1.1.1
 
-  update-browserslist-db@1.1.0(browserslist@4.23.3):
-    dependencies:
-      browserslist: 4.23.3
-      escalade: 3.1.2
-      picocolors: 1.1.1
-
   update-browserslist-db@1.1.3(browserslist@4.24.4):
     dependencies:
       browserslist: 4.24.4
@@ -12329,7 +12311,7 @@ snapshots:
       '@webassemblyjs/wasm-parser': 1.12.1
       acorn: 8.14.0
       acorn-import-assertions: 1.9.0(acorn@8.14.0)
-      browserslist: 4.23.3
+      browserslist: 4.24.4
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.18.0
       es-module-lexer: 1.6.0
