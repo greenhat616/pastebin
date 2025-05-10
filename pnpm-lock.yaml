@@ -280,8 +280,8 @@ importers:
         specifier: 1.29.2
         version: 1.29.2
       styled-components:
-        specifier: 6.1.17
-        version: 6.1.17(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: 6.1.18
+        version: 6.1.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       stylelint:
         specifier: 16.14.1
         version: 16.14.1(typescript@5.7.3)
@@ -5340,8 +5340,8 @@ packages:
   strip-literal@2.1.1:
     resolution: {integrity: sha512-631UJ6O00eNGfMiWG78ck80dfBab8X6IVFB51jZK5Icd7XAs60Z5y7QdSd/wGIklnWvRbUNloVzhOKKmutxQ6Q==}
 
-  styled-components@6.1.17:
-    resolution: {integrity: sha512-97D7DwWanI7nN24v0D4SvbfjLE9656umNSJZkBkDIWL37aZqG/wRQ+Y9pWtXyBIM/NSfcBzHLErEsqHmJNSVUg==}
+  styled-components@6.1.18:
+    resolution: {integrity: sha512-Mvf3gJFzZCkhjY2Y/Fx9z1m3dxbza0uI9H1CbNZm/jSHCojzJhQ0R7bByrlFJINnMzz/gPulpoFFGymNwrsMcw==}
     engines: {node: '>= 16'}
     peerDependencies:
       react: '>= 16.8.0'
@@ -11733,7 +11733,7 @@ snapshots:
     dependencies:
       js-tokens: 9.0.1
 
-  styled-components@6.1.17(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+  styled-components@6.1.18(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/unitless': 0.8.1
