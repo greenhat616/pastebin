@@ -40,7 +40,7 @@
     "zod": "3.24.4"
   },
   "devDependencies": {
-    "@chakra-ui/react": "3.19.1",
+    "@chakra-ui/react": "3.24.2",
     "@choc-ui/chakra-autocomplete": "5.8.4",
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
