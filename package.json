@@ -80,7 +80,7 @@
     "@unocss/transformer-variant-group": "0.65.4",
     "@unocss/webpack": "0.65.4",
     "@vercel/analytics": "1.5.0",
-    "ahooks": "3.8.5",
+    "ahooks": "3.9.5",
     "autoprefixer": "10.4.21",
     "chakra-react-select": "next",
     "cookie-signature": "1.2.2",
