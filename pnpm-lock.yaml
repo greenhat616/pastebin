@@ -82,8 +82,8 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       '@simplewebauthn/types':
-        specifier: 10.0.0
-        version: 10.0.0
+        specifier: 12.0.0
+        version: 12.0.0
       '@svgr/core':
         specifier: 8.1.0
         version: 8.1.0(typescript@5.7.3)
@@ -1916,6 +1916,10 @@ packages:
 
   '@simplewebauthn/types@10.0.0':
     resolution: {integrity: sha512-SFXke7xkgPRowY2E+8djKbdEznTVnD5R6GO7GPTthpHrokLvNKw8C3lFZypTxLI7KkCfGPfhtqB3d7OVGGa9jQ==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+
+  '@simplewebauthn/types@12.0.0':
+    resolution: {integrity: sha512-q6y8MkoV8V8jB4zzp18Uyj2I7oFp2/ONL8c3j8uT06AOWu3cIChc1au71QYHrP2b+xDapkGTiv+9lX7xkTlAsA==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0':
@@ -3946,6 +3950,7 @@ packages:
 
   intersection-observer@0.12.2:
     resolution: {integrity: sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==}
+    deprecated: The Intersection Observer polyfill is no longer needed and can safely be removed. Intersection Observer has been Baseline since 2019.
 
   intl-messageformat@10.5.14:
     resolution: {integrity: sha512-IjC6sI0X7YRjjyVH9aUgdftcmZK7WXdHeil4KwbjDnRWjnVitKpAx3rr6t6di1joFp5188VqKcobOPA6mCLG/w==}
@@ -7548,6 +7553,8 @@ snapshots:
       - encoding
 
   '@simplewebauthn/types@10.0.0': {}
+
+  '@simplewebauthn/types@12.0.0': {}
 
   '@svgr/babel-plugin-add-jsx-attribute@8.0.0(@babel/core@7.24.4)':
     dependencies:
