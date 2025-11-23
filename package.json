@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@chakra-ui/react": "3.27.1",
-    "@choc-ui/chakra-autocomplete": "5.9.1",
+    "@choc-ui/chakra-autocomplete": "6.2.1",
     "@commitlint/cli": "19.7.1",
     "@commitlint/config-conventional": "19.7.1",
     "@emotion/react": "11.14.0",
