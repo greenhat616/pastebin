@@ -86,7 +86,7 @@
     "cookie-signature": "1.2.2",
     "cross-env": "7.0.3",
     "dayjs": "1.11.18",
-    "dotenv": "16.6.1",
+    "dotenv": "17.2.3",
     "eslint": "8.57.1",
     "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "9.1.0",
