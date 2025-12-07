@@ -79,7 +79,7 @@
     "@unocss/transformer-directives": "0.65.4",
     "@unocss/transformer-variant-group": "0.65.4",
     "@unocss/webpack": "0.65.4",
-    "@vercel/analytics": "1.5.0",
+    "@vercel/analytics": "1.6.1",
     "ahooks": "3.9.6",
     "autoprefixer": "10.4.22",
     "chakra-react-select": "next",
