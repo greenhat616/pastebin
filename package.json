@@ -51,7 +51,7 @@
     "@iconify/json": "2.2.397",
     "@next/bundle-analyzer": "15.1.7",
     "@node-rs/argon2": "2.0.2",
-    "@simplewebauthn/browser": "10.0.0",
+    "@simplewebauthn/browser": "13.2.2",
     "@simplewebauthn/server": "10.0.1",
     "@simplewebauthn/types": "10.0.0",
     "@svgr/core": "8.1.0",
