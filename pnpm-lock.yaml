@@ -253,8 +253,8 @@ importers:
         specifier: 8.5.6
         version: 8.5.6
       postcss-html:
-        specifier: 1.8.0
-        version: 1.8.0
+        specifier: 2.0.0
+        version: 2.0.0(postcss@8.5.6)
       postcss-import:
         specifier: 16.1.1
         version: 16.1.1(postcss@8.5.6)
@@ -287,7 +287,7 @@ importers:
         version: 16.14.1(typescript@5.7.3)
       stylelint-config-html:
         specifier: 1.1.0
-        version: 1.1.0(postcss-html@1.8.0)(stylelint@16.14.1(typescript@5.7.3))
+        version: 1.1.0(postcss-html@2.0.0(postcss@8.5.6))(stylelint@16.14.1(typescript@5.7.3))
       stylelint-config-recess-order:
         specifier: 5.1.1
         version: 5.1.1(stylelint@16.14.1(typescript@5.7.3))
@@ -4025,9 +4025,6 @@ packages:
   html-void-elements@3.0.0:
     resolution: {integrity: sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg==}
 
-  htmlparser2@8.0.2:
-    resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
-
   htmlparser2@9.1.0:
     resolution: {integrity: sha512-5zfg6mHUoaer/97TxnGpxmbR7zJtPwIYFMZ/H5ucTlPZhKvtum05yiPK3Mgai3a0DyVxv7qYqoweaEd2nrYQzQ==}
 
@@ -4948,9 +4945,11 @@ packages:
     resolution: {integrity: sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==}
     engines: {node: '>= 0.4'}
 
-  postcss-html@1.8.0:
-    resolution: {integrity: sha512-5mMeb1TgLWoRKxZ0Xh9RZDfwUUIqRrcxO2uXO+Ezl1N5lqpCiSU5Gk6+1kZediBfBHFtPCdopr2UZ2SgUsKcgQ==}
-    engines: {node: ^12 || >=14}
+  postcss-html@2.0.0:
+    resolution: {integrity: sha512-f2Rvw5FCollEfVj3wfN7JdQb7n2rNIthW+epw2EByio7M6P7RH0BTj8a/ODHrUXd0cmO7ychb6YniymV93182Q==}
+    engines: {node: ^22.12 || >=24}
+    peerDependencies:
+      postcss: ^8.5.0
 
   postcss-import@15.1.0:
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
@@ -4993,12 +4992,6 @@ packages:
 
   postcss-resolve-nested-selector@0.1.6:
     resolution: {integrity: sha512-0sglIs9Wmkzbr8lQwEyIzlDOOC9bGmfVKcJTaxv3vMmd3uo4o4DerC3En0bnmgceeql9BfC8hRkp7cg0fjdVqw==}
-
-  postcss-safe-parser@6.0.0:
-    resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.3.3
 
   postcss-safe-parser@7.0.1:
     resolution: {integrity: sha512-0AioNCJZ2DPYz5ABT6bddIqlhgwhpHZ/l65YAYo0BCIn0xiDpsnTHz0gnoTGk0OXZW0JRs+cDwL8u/teRdz+8A==}
@@ -7921,11 +7914,11 @@ snapshots:
   '@types/eslint-scope@3.7.7':
     dependencies:
       '@types/eslint': 8.56.9
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.9
 
   '@types/eslint@8.56.9':
     dependencies:
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
 
   '@types/estree@1.0.5': {}
@@ -10477,13 +10470,6 @@ snapshots:
 
   html-void-elements@3.0.0: {}
 
-  htmlparser2@8.0.2:
-    dependencies:
-      domelementtype: 2.3.0
-      domhandler: 5.0.3
-      domutils: 3.1.0
-      entities: 4.5.0
-
   htmlparser2@9.1.0:
     dependencies:
       domelementtype: 2.3.0
@@ -11353,12 +11339,12 @@ snapshots:
 
   possible-typed-array-names@1.0.0: {}
 
-  postcss-html@1.8.0:
+  postcss-html@2.0.0(postcss@8.5.6):
     dependencies:
-      htmlparser2: 8.0.2
+      htmlparser2: 9.1.0
       js-tokens: 9.0.1
       postcss: 8.5.6
-      postcss-safe-parser: 6.0.0(postcss@8.5.6)
+      postcss-safe-parser: 7.0.1(postcss@8.5.6)
 
   postcss-import@15.1.0(postcss@8.5.6):
     dependencies:
@@ -11394,10 +11380,6 @@ snapshots:
       postcss-selector-parser: 6.1.2
 
   postcss-resolve-nested-selector@0.1.6: {}
-
-  postcss-safe-parser@6.0.0(postcss@8.5.6):
-    dependencies:
-      postcss: 8.5.6
 
   postcss-safe-parser@7.0.1(postcss@8.5.6):
     dependencies:
@@ -12104,9 +12086,9 @@ snapshots:
     optionalDependencies:
       '@babel/core': 7.24.4
 
-  stylelint-config-html@1.1.0(postcss-html@1.8.0)(stylelint@16.14.1(typescript@5.7.3)):
+  stylelint-config-html@1.1.0(postcss-html@2.0.0(postcss@8.5.6))(stylelint@16.14.1(typescript@5.7.3)):
     dependencies:
-      postcss-html: 1.8.0
+      postcss-html: 2.0.0(postcss@8.5.6)
       stylelint: 16.14.1(typescript@5.7.3)
 
   stylelint-config-recess-order@5.1.1(stylelint@16.14.1(typescript@5.7.3)):
@@ -12733,7 +12715,7 @@ snapshots:
   webpack@5.91.0(esbuild@0.24.2):
     dependencies:
       '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.9
       '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/wasm-edit': 1.12.1
       '@webassemblyjs/wasm-parser': 1.12.1
