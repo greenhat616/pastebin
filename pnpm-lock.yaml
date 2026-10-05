@@ -160,8 +160,8 @@ importers:
         specifier: 0.65.4
         version: 0.65.4(rollup@4.64.0)(webpack@5.91.0(esbuild@0.24.2))
       '@vercel/analytics':
-        specifier: 1.5.0
-        version: 1.5.0(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))
+        specifier: 1.6.1
+        version: 1.6.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))
       ahooks:
         specifier: 3.9.6
         version: 3.9.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -2395,8 +2395,8 @@ packages:
     peerDependencies:
       webpack: ^4 || ^5
 
-  '@vercel/analytics@1.5.0':
-    resolution: {integrity: sha512-MYsBzfPki4gthY5HnYN7jgInhAZ7Ac1cYDoRWFomwGHWEX7odTEzbtg9kf/QSo7XEsEAqlQugA6gJ2WS2DEa3g==}
+  '@vercel/analytics@1.6.1':
+    resolution: {integrity: sha512-oH9He/bEM+6oKlv3chWuOOcp8Y6fo6/PSro8hEkgCW3pu9/OiCXiUpRUogDh3Fs3LH2sosDrx8CxeOLBEE+afg==}
     peerDependencies:
       '@remix-run/react': ^2
       '@sveltejs/kit': ^1 || ^2
@@ -7921,11 +7921,11 @@ snapshots:
   '@types/eslint-scope@3.7.7':
     dependencies:
       '@types/eslint': 8.56.9
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.9
 
   '@types/eslint@8.56.9':
     dependencies:
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
 
   '@types/estree@1.0.5': {}
@@ -8235,7 +8235,7 @@ snapshots:
       - rollup
       - supports-color
 
-  '@vercel/analytics@1.5.0(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))':
+  '@vercel/analytics@1.6.1(next@15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4))(react@19.0.0)(vue@3.5.12(typescript@5.7.3))':
     optionalDependencies:
       next: 15.1.7(@babel/core@7.24.4)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.83.4)
       react: 19.0.0
@@ -12733,7 +12733,7 @@ snapshots:
   webpack@5.91.0(esbuild@0.24.2):
     dependencies:
       '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.9
       '@webassemblyjs/ast': 1.12.1
       '@webassemblyjs/wasm-edit': 1.12.1
       '@webassemblyjs/wasm-parser': 1.12.1
